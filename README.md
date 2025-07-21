@@ -2,3 +2,4 @@
 
 ### Team
 - Estuardo Lopez
+- Sureima Burgos 
