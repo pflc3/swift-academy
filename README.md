@@ -1,4 +1,4 @@
 # Team Fire 🔥
 
-### Team
+### Our Team
 - Estuardo Lopez
