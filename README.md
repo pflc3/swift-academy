@@ -2,6 +2,7 @@
 
 ### Team
 - Estuardo Lopez
+- Brandon Steide
 - Sureima Burgos 
-- Joshua
+- Joshua Fineboy-Mark
 - Alana Davis
