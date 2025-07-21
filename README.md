@@ -1,6 +1,6 @@
 # Team Fire 🔥
 
-### Team
+### Our Team
 - Estuardo Lopez
 - Brandon Steide
 - Sureima Burgos 
