@@ -3,3 +3,4 @@
 ### Team
 - Estuardo Lopez
 - Joshua
+- Alana Davis
