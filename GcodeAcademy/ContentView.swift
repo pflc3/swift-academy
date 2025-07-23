@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  teamFire
+//  GcodeAcademy
 //
-//  Created by Estuardo Lopez Letona on 7/21/25.
+//  Created by Estuardo Lopez Letona on 7/23/25.
 //
 
 import SwiftUI

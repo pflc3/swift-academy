@@ -1,13 +1,13 @@
 //
-//  teamFireUITestsLaunchTests.swift
-//  teamFireUITests
+//  GcodeAcademyUITestsLaunchTests.swift
+//  GcodeAcademyUITests
 //
-//  Created by Estuardo Lopez Letona on 7/21/25.
+//  Created by Estuardo Lopez Letona on 7/23/25.
 //
 
 import XCTest
 
-final class teamFireUITestsLaunchTests: XCTestCase {
+final class GcodeAcademyUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

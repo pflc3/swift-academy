@@ -7,67 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E87DD6F82E2E862F009ECCA6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E87DD6F72E2E862F009ECCA6 /* README.md */; };
+		E86ACF8B2E3132CB006BB2FF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E86ACF8A2E3132CB006BB2FF /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E87DD6DB2E2E855C009ECCA6 /* PBXContainerItemProxy */ = {
+		E86ACF612E313247006BB2FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E87DD6C42E2E8559009ECCA6 /* Project object */;
+			containerPortal = E86ACF4A2E313245006BB2FF /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E87DD6CB2E2E8559009ECCA6;
-			remoteInfo = teamFire;
+			remoteGlobalIDString = E86ACF512E313245006BB2FF;
+			remoteInfo = GcodeAcademy;
 		};
-		E87DD6E52E2E855C009ECCA6 /* PBXContainerItemProxy */ = {
+		E86ACF6B2E313247006BB2FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E87DD6C42E2E8559009ECCA6 /* Project object */;
+			containerPortal = E86ACF4A2E313245006BB2FF /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E87DD6CB2E2E8559009ECCA6;
-			remoteInfo = teamFire;
+			remoteGlobalIDString = E86ACF512E313245006BB2FF;
+			remoteInfo = GcodeAcademy;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E87DD6CC2E2E8559009ECCA6 /* teamFire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teamFire.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E87DD6DA2E2E855C009ECCA6 /* teamFireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = teamFireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E87DD6E42E2E855C009ECCA6 /* teamFireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = teamFireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E87DD6F72E2E862F009ECCA6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E86ACF522E313245006BB2FF /* GcodeAcademy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GcodeAcademy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E86ACF602E313247006BB2FF /* GcodeAcademyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GcodeAcademyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E86ACF6A2E313247006BB2FF /* GcodeAcademyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GcodeAcademyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E86ACF8A2E3132CB006BB2FF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		E87DD6CE2E2E8559009ECCA6 /* teamFire */ = {
+		E86ACF542E313245006BB2FF /* GcodeAcademy */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = teamFire;
+			path = GcodeAcademy;
 			sourceTree = "<group>";
 		};
-		E87DD6DD2E2E855C009ECCA6 /* teamFireTests */ = {
+		E86ACF632E313247006BB2FF /* GcodeAcademyTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = teamFireTests;
+			path = GcodeAcademyTests;
 			sourceTree = "<group>";
 		};
-		E87DD6E72E2E855C009ECCA6 /* teamFireUITests */ = {
+		E86ACF6D2E313247006BB2FF /* GcodeAcademyUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = teamFireUITests;
+			path = GcodeAcademyUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E87DD6C92E2E8559009ECCA6 /* Frameworks */ = {
+		E86ACF4F2E313245006BB2FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E87DD6D72E2E855C009ECCA6 /* Frameworks */ = {
+		E86ACF5D2E313247006BB2FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E87DD6E12E2E855C009ECCA6 /* Frameworks */ = {
+		E86ACF672E313247006BB2FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -77,23 +77,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E87DD6C32E2E8559009ECCA6 = {
+		E86ACF492E313245006BB2FF = {
 			isa = PBXGroup;
 			children = (
-				E87DD6F72E2E862F009ECCA6 /* README.md */,
-				E87DD6CE2E2E8559009ECCA6 /* teamFire */,
-				E87DD6DD2E2E855C009ECCA6 /* teamFireTests */,
-				E87DD6E72E2E855C009ECCA6 /* teamFireUITests */,
-				E87DD6CD2E2E8559009ECCA6 /* Products */,
+				E86ACF8A2E3132CB006BB2FF /* README.md */,
+				E86ACF542E313245006BB2FF /* GcodeAcademy */,
+				E86ACF632E313247006BB2FF /* GcodeAcademyTests */,
+				E86ACF6D2E313247006BB2FF /* GcodeAcademyUITests */,
+				E86ACF532E313245006BB2FF /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E87DD6CD2E2E8559009ECCA6 /* Products */ = {
+		E86ACF532E313245006BB2FF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E87DD6CC2E2E8559009ECCA6 /* teamFire.app */,
-				E87DD6DA2E2E855C009ECCA6 /* teamFireTests.xctest */,
-				E87DD6E42E2E855C009ECCA6 /* teamFireUITests.xctest */,
+				E86ACF522E313245006BB2FF /* GcodeAcademy.app */,
+				E86ACF602E313247006BB2FF /* GcodeAcademyTests.xctest */,
+				E86ACF6A2E313247006BB2FF /* GcodeAcademyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,135 +101,135 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E87DD6CB2E2E8559009ECCA6 /* teamFire */ = {
+		E86ACF512E313245006BB2FF /* GcodeAcademy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E87DD6EE2E2E855C009ECCA6 /* Build configuration list for PBXNativeTarget "teamFire" */;
+			buildConfigurationList = E86ACF742E313247006BB2FF /* Build configuration list for PBXNativeTarget "GcodeAcademy" */;
 			buildPhases = (
-				E87DD6C82E2E8559009ECCA6 /* Sources */,
-				E87DD6C92E2E8559009ECCA6 /* Frameworks */,
-				E87DD6CA2E2E8559009ECCA6 /* Resources */,
+				E86ACF4E2E313245006BB2FF /* Sources */,
+				E86ACF4F2E313245006BB2FF /* Frameworks */,
+				E86ACF502E313245006BB2FF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				E87DD6CE2E2E8559009ECCA6 /* teamFire */,
+				E86ACF542E313245006BB2FF /* GcodeAcademy */,
 			);
-			name = teamFire;
+			name = GcodeAcademy;
 			packageProductDependencies = (
 			);
-			productName = teamFire;
-			productReference = E87DD6CC2E2E8559009ECCA6 /* teamFire.app */;
+			productName = GcodeAcademy;
+			productReference = E86ACF522E313245006BB2FF /* GcodeAcademy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E87DD6D92E2E855C009ECCA6 /* teamFireTests */ = {
+		E86ACF5F2E313247006BB2FF /* GcodeAcademyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E87DD6F12E2E855C009ECCA6 /* Build configuration list for PBXNativeTarget "teamFireTests" */;
+			buildConfigurationList = E86ACF772E313247006BB2FF /* Build configuration list for PBXNativeTarget "GcodeAcademyTests" */;
 			buildPhases = (
-				E87DD6D62E2E855C009ECCA6 /* Sources */,
-				E87DD6D72E2E855C009ECCA6 /* Frameworks */,
-				E87DD6D82E2E855C009ECCA6 /* Resources */,
+				E86ACF5C2E313247006BB2FF /* Sources */,
+				E86ACF5D2E313247006BB2FF /* Frameworks */,
+				E86ACF5E2E313247006BB2FF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E87DD6DC2E2E855C009ECCA6 /* PBXTargetDependency */,
+				E86ACF622E313247006BB2FF /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				E87DD6DD2E2E855C009ECCA6 /* teamFireTests */,
+				E86ACF632E313247006BB2FF /* GcodeAcademyTests */,
 			);
-			name = teamFireTests;
+			name = GcodeAcademyTests;
 			packageProductDependencies = (
 			);
-			productName = teamFireTests;
-			productReference = E87DD6DA2E2E855C009ECCA6 /* teamFireTests.xctest */;
+			productName = GcodeAcademyTests;
+			productReference = E86ACF602E313247006BB2FF /* GcodeAcademyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E87DD6E32E2E855C009ECCA6 /* teamFireUITests */ = {
+		E86ACF692E313247006BB2FF /* GcodeAcademyUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E87DD6F42E2E855C009ECCA6 /* Build configuration list for PBXNativeTarget "teamFireUITests" */;
+			buildConfigurationList = E86ACF7A2E313247006BB2FF /* Build configuration list for PBXNativeTarget "GcodeAcademyUITests" */;
 			buildPhases = (
-				E87DD6E02E2E855C009ECCA6 /* Sources */,
-				E87DD6E12E2E855C009ECCA6 /* Frameworks */,
-				E87DD6E22E2E855C009ECCA6 /* Resources */,
+				E86ACF662E313247006BB2FF /* Sources */,
+				E86ACF672E313247006BB2FF /* Frameworks */,
+				E86ACF682E313247006BB2FF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E87DD6E62E2E855C009ECCA6 /* PBXTargetDependency */,
+				E86ACF6C2E313247006BB2FF /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				E87DD6E72E2E855C009ECCA6 /* teamFireUITests */,
+				E86ACF6D2E313247006BB2FF /* GcodeAcademyUITests */,
 			);
-			name = teamFireUITests;
+			name = GcodeAcademyUITests;
 			packageProductDependencies = (
 			);
-			productName = teamFireUITests;
-			productReference = E87DD6E42E2E855C009ECCA6 /* teamFireUITests.xctest */;
+			productName = GcodeAcademyUITests;
+			productReference = E86ACF6A2E313247006BB2FF /* GcodeAcademyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E87DD6C42E2E8559009ECCA6 /* Project object */ = {
+		E86ACF4A2E313245006BB2FF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					E87DD6CB2E2E8559009ECCA6 = {
+					E86ACF512E313245006BB2FF = {
 						CreatedOnToolsVersion = 16.4;
 					};
-					E87DD6D92E2E855C009ECCA6 = {
+					E86ACF5F2E313247006BB2FF = {
 						CreatedOnToolsVersion = 16.4;
-						TestTargetID = E87DD6CB2E2E8559009ECCA6;
+						TestTargetID = E86ACF512E313245006BB2FF;
 					};
-					E87DD6E32E2E855C009ECCA6 = {
+					E86ACF692E313247006BB2FF = {
 						CreatedOnToolsVersion = 16.4;
-						TestTargetID = E87DD6CB2E2E8559009ECCA6;
+						TestTargetID = E86ACF512E313245006BB2FF;
 					};
 				};
 			};
-			buildConfigurationList = E87DD6C72E2E8559009ECCA6 /* Build configuration list for PBXProject "teamFire" */;
+			buildConfigurationList = E86ACF4D2E313245006BB2FF /* Build configuration list for PBXProject "GcodeAcademy" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = E87DD6C32E2E8559009ECCA6;
+			mainGroup = E86ACF492E313245006BB2FF;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = E87DD6CD2E2E8559009ECCA6 /* Products */;
+			productRefGroup = E86ACF532E313245006BB2FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E87DD6CB2E2E8559009ECCA6 /* teamFire */,
-				E87DD6D92E2E855C009ECCA6 /* teamFireTests */,
-				E87DD6E32E2E855C009ECCA6 /* teamFireUITests */,
+				E86ACF512E313245006BB2FF /* GcodeAcademy */,
+				E86ACF5F2E313247006BB2FF /* GcodeAcademyTests */,
+				E86ACF692E313247006BB2FF /* GcodeAcademyUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E87DD6CA2E2E8559009ECCA6 /* Resources */ = {
+		E86ACF502E313245006BB2FF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E87DD6F82E2E862F009ECCA6 /* README.md in Resources */,
+				E86ACF8B2E3132CB006BB2FF /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E87DD6D82E2E855C009ECCA6 /* Resources */ = {
+		E86ACF5E2E313247006BB2FF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E87DD6E22E2E855C009ECCA6 /* Resources */ = {
+		E86ACF682E313247006BB2FF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,21 +239,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E87DD6C82E2E8559009ECCA6 /* Sources */ = {
+		E86ACF4E2E313245006BB2FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E87DD6D62E2E855C009ECCA6 /* Sources */ = {
+		E86ACF5C2E313247006BB2FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E87DD6E02E2E855C009ECCA6 /* Sources */ = {
+		E86ACF662E313247006BB2FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -263,20 +263,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E87DD6DC2E2E855C009ECCA6 /* PBXTargetDependency */ = {
+		E86ACF622E313247006BB2FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E87DD6CB2E2E8559009ECCA6 /* teamFire */;
-			targetProxy = E87DD6DB2E2E855C009ECCA6 /* PBXContainerItemProxy */;
+			target = E86ACF512E313245006BB2FF /* GcodeAcademy */;
+			targetProxy = E86ACF612E313247006BB2FF /* PBXContainerItemProxy */;
 		};
-		E87DD6E62E2E855C009ECCA6 /* PBXTargetDependency */ = {
+		E86ACF6C2E313247006BB2FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E87DD6CB2E2E8559009ECCA6 /* teamFire */;
-			targetProxy = E87DD6E52E2E855C009ECCA6 /* PBXContainerItemProxy */;
+			target = E86ACF512E313245006BB2FF /* GcodeAcademy */;
+			targetProxy = E86ACF6B2E313247006BB2FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		E87DD6EC2E2E855C009ECCA6 /* Debug */ = {
+		E86ACF722E313247006BB2FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -338,7 +338,7 @@
 			};
 			name = Debug;
 		};
-		E87DD6ED2E2E855C009ECCA6 /* Release */ = {
+		E86ACF732E313247006BB2FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -392,12 +392,12 @@
 			};
 			name = Release;
 		};
-		E87DD6EF2E2E855C009ECCA6 /* Debug */ = {
+		E86ACF752E313247006BB2FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = teamFire/teamFire.entitlements;
+				CODE_SIGN_ENTITLEMENTS = GcodeAcademy/GcodeAcademy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XJBBVPAR9T;
@@ -419,7 +419,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = gcode.teamFire;
+				PRODUCT_BUNDLE_IDENTIFIER = org.primefactors.GcodeAcademy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -431,12 +431,12 @@
 			};
 			name = Debug;
 		};
-		E87DD6F02E2E855C009ECCA6 /* Release */ = {
+		E86ACF762E313247006BB2FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = teamFire/teamFire.entitlements;
+				CODE_SIGN_ENTITLEMENTS = GcodeAcademy/GcodeAcademy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XJBBVPAR9T;
@@ -458,7 +458,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = gcode.teamFire;
+				PRODUCT_BUNDLE_IDENTIFIER = org.primefactors.GcodeAcademy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -470,7 +470,7 @@
 			};
 			name = Release;
 		};
-		E87DD6F22E2E855C009ECCA6 /* Debug */ = {
+		E86ACF782E313247006BB2FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -481,19 +481,19 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = gcode.teamFireTests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.primefactors.GcodeAcademyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/teamFire.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/teamFire";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GcodeAcademy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GcodeAcademy";
 				XROS_DEPLOYMENT_TARGET = 2.5;
 			};
 			name = Debug;
 		};
-		E87DD6F32E2E855C009ECCA6 /* Release */ = {
+		E86ACF792E313247006BB2FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -504,19 +504,19 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = gcode.teamFireTests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.primefactors.GcodeAcademyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/teamFire.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/teamFire";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GcodeAcademy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GcodeAcademy";
 				XROS_DEPLOYMENT_TARGET = 2.5;
 			};
 			name = Release;
 		};
-		E87DD6F52E2E855C009ECCA6 /* Debug */ = {
+		E86ACF7B2E313247006BB2FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -526,19 +526,19 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = gcode.teamFireUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.primefactors.GcodeAcademyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = teamFire;
+				TEST_TARGET_NAME = GcodeAcademy;
 				XROS_DEPLOYMENT_TARGET = 2.5;
 			};
 			name = Debug;
 		};
-		E87DD6F62E2E855C009ECCA6 /* Release */ = {
+		E86ACF7C2E313247006BB2FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -548,14 +548,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = gcode.teamFireUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.primefactors.GcodeAcademyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = teamFire;
+				TEST_TARGET_NAME = GcodeAcademy;
 				XROS_DEPLOYMENT_TARGET = 2.5;
 			};
 			name = Release;
@@ -563,43 +563,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E87DD6C72E2E8559009ECCA6 /* Build configuration list for PBXProject "teamFire" */ = {
+		E86ACF4D2E313245006BB2FF /* Build configuration list for PBXProject "GcodeAcademy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E87DD6EC2E2E855C009ECCA6 /* Debug */,
-				E87DD6ED2E2E855C009ECCA6 /* Release */,
+				E86ACF722E313247006BB2FF /* Debug */,
+				E86ACF732E313247006BB2FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E87DD6EE2E2E855C009ECCA6 /* Build configuration list for PBXNativeTarget "teamFire" */ = {
+		E86ACF742E313247006BB2FF /* Build configuration list for PBXNativeTarget "GcodeAcademy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E87DD6EF2E2E855C009ECCA6 /* Debug */,
-				E87DD6F02E2E855C009ECCA6 /* Release */,
+				E86ACF752E313247006BB2FF /* Debug */,
+				E86ACF762E313247006BB2FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E87DD6F12E2E855C009ECCA6 /* Build configuration list for PBXNativeTarget "teamFireTests" */ = {
+		E86ACF772E313247006BB2FF /* Build configuration list for PBXNativeTarget "GcodeAcademyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E87DD6F22E2E855C009ECCA6 /* Debug */,
-				E87DD6F32E2E855C009ECCA6 /* Release */,
+				E86ACF782E313247006BB2FF /* Debug */,
+				E86ACF792E313247006BB2FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E87DD6F42E2E855C009ECCA6 /* Build configuration list for PBXNativeTarget "teamFireUITests" */ = {
+		E86ACF7A2E313247006BB2FF /* Build configuration list for PBXNativeTarget "GcodeAcademyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E87DD6F52E2E855C009ECCA6 /* Debug */,
-				E87DD6F62E2E855C009ECCA6 /* Release */,
+				E86ACF7B2E313247006BB2FF /* Debug */,
+				E86ACF7C2E313247006BB2FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E87DD6C42E2E8559009ECCA6 /* Project object */;
+	rootObject = E86ACF4A2E313245006BB2FF /* Project object */;
 }

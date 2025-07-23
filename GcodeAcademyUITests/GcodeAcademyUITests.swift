@@ -1,13 +1,13 @@
 //
-//  teamFireUITests.swift
-//  teamFireUITests
+//  GcodeAcademyUITests.swift
+//  GcodeAcademyUITests
 //
-//  Created by Estuardo Lopez Letona on 7/21/25.
+//  Created by Estuardo Lopez Letona on 7/23/25.
 //
 
 import XCTest
 
-final class teamFireUITests: XCTestCase {
+final class GcodeAcademyUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
