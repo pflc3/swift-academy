@@ -2,7 +2,7 @@
 
 An educational iOS app developed by Swift Minds to support coding education for high school students.
 
-## Swift Minds Team Members
+## Swift Minds Team
 - Estuardo Lopez
 - Jason Obou
 - Brandon Steide
