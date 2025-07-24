@@ -16,8 +16,8 @@ Gcode Academy is a learning app inspired by the Gcode summer program, which intr
 ## Key Features
 - **Home View**: Visual learning path/map of programming lessons
 - **Lesson Detail View**: In-depth content for each learning module
-- **Chat Bot**: AI-style assistant for coding questions
-- **Profile**: Personalized user experience
+- **Chat Bot View**: AI-style assistant for coding questions
+- **Profile View**: Personalized user experience
 
 ## About Gcode
 Gcode is a 6-week summer program run by Prime Factors Learning Lab that teaches coding, tech literacy, and mobile development to high school students.
