@@ -8,7 +8,7 @@ struct HomeView: View {
                     .font(.title)
                 
                 // Simple placeholder for lessons
-                NavigationLink(destination: LessonDetailView()) {
+                NavigationLink(destination:  LessonDetailView()) {
                     Text("Sample Lesson")
                         .padding()
                         .background(Color.blue.opacity(0.1))
