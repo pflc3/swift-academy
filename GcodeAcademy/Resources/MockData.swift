@@ -1,9 +1,3 @@
-//
-//  MockData.swift
-//  GcodeAcademy
-//
-//  Created by Estuardo Lopez Letona on 7/28/25.
-//
 import Foundation
 
 struct MockData {
