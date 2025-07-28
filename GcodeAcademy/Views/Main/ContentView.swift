@@ -1,21 +1,23 @@
-//
-//  ContentView.swift
-//  GcodeAcademy
-//
-//  Created by Estuardo Lopez Letona on 7/23/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+            
+            ChatBotView()
+                .tabItem {
+                    Label("Chat", systemImage: "message")
+                }
+            
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person")
+                }
         }
-        .padding()
     }
 }
 
