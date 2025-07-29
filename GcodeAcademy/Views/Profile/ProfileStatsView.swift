@@ -36,10 +36,10 @@ struct ProfileStatsView: View {
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
             
-            // Placeholder for progress bar
-            Text("Progress bar will go here")
-                .padding(.bottom, 16)
-                .frame(maxWidth: .infinity)
+            // Progress bar implementation
+            progressBar
+                .padding(.horizontal, 16)
+                .padding(.bottom, 24)
         }
         .background(Color.cardBackgroundApp)
         .cornerRadius(16)
@@ -120,6 +120,7 @@ struct ProfileStatsView: View {
         }
     }
 }
-    #Preview {
-        ProfileStatsView(user: MockData.currentUser)
-    }
+
+#Preview {
+    ProfileStatsView(user: MockData.currentUser)
+}
