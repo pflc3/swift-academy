@@ -13,17 +13,17 @@ struct ProfileAchievementsView: View {
                 .foregroundColor(.textPrimaryApp)
             
             // Grid layout for achievement badges - two columns
-            LazyVGrid (columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                 // Display each achievement from user data using our card function
                 ForEach(user.achievements) { achievement in
-                    achievementCard (achievement)
+                    achievementCard(achievement)
                 }
             }
         }
         .padding(16)
         .background(Color.cardBackgroundApp)
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.03), radius:3, x:0, y:1)
+        .shadow(color: Color.black.opacity(0.03), radius: 3, x: 0, y: 1)
         .padding(.horizontal, 16)
     }
     
@@ -37,7 +37,7 @@ struct ProfileAchievementsView: View {
      * - Adds subtle shadows and background changes
      */
     private func achievementCard(_ achievement: Achievement) -> some View {
-        VStack(spacing:12) {
+        VStack(spacing: 12) {
             // Achievement icon
             Image(systemName: achievement.icon)
                 .font(.system(size: 24))
@@ -52,10 +52,10 @@ struct ProfileAchievementsView: View {
             VStack(spacing: 2) {
                 Text(achievement.name)
                     .font(.bodyMedium)
-                    .foregroundColor(achievement.unlocked ? Color.accentApp.opacity(0.1) : Color.surfaceApp)
-                multilineTextAlignment(.center)
+                    .foregroundColor(achievement.unlocked ? .textPrimaryApp : .textSecondaryApp)
+                    .multilineTextAlignment(.center)
                 
-                //Only show "Locked" text for locked achievements
+                // Only show "Locked" text for locked achievements
                 if !achievement.unlocked {
                     Text("Locked")
                         .font(.caption)
@@ -68,7 +68,7 @@ struct ProfileAchievementsView: View {
         .background(
             RoundedRectangle(cornerRadius: 12)
                 .fill(achievement.unlocked ? Color.cardBackgroundApp : Color.surfaceApp)
-                .foregroundColor(.textTertiaryApp)
+                .shadow(color: Color.black.opacity(achievement.unlocked ? 0.05 : 0), radius: 2, x: 0, y: 1)
         )
     }
 }
