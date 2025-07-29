@@ -33,6 +33,8 @@ struct ProfileStatsView: View {
                     color: .accentApp
                 )
             }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
             
             // Placeholder for progress bar
             Text("Progress bar will go here")
@@ -82,8 +84,42 @@ struct ProfileStatsView: View {
                 .fill(color.opacity(0.1))
         )
     }
+    
+    /*
+     * Progress bar with gradient fill and lesson information
+     * This uses Geometry Reader to create a responsive width based on the user's progress
+     */
+    var progressBar: some View {
+        VStack(spacing: 8) {
+            // Visual progress bar
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    // Background track
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(Color.surfaceApp)
+                        .frame(height: 8)
+                    
+                    // Filled portion based on progress percentage
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(
+                            LinearGradient(
+                                colors: [.primaryApp, .accentApp],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(width: max(8, geometry.size.width * user.progressPercentage), height: 8)
+                }
+            }
+            .frame(height: 8)
+            
+            // Progress labels – completed lessons counter
+            Text("\(user.lessonsCompleted) of \(user.totalLessons) lessons")
+                .font(.caption)
+                .foregroundColor(.textSecondaryApp)
+        }
+    }
 }
-
-#Preview {
-    ProfileStatsView(user: MockData.currentUser)
-}
+    #Preview {
+        ProfileStatsView(user: MockData.currentUser)
+    }
