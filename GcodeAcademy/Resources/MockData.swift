@@ -10,7 +10,7 @@ struct MockData {
     // Sample user
     static let currentUser = User(
         name: "Ada Lovelace",
-        bio: "High school begginner learning IOS development with Swift and Java",
+        bio: "High school begginner learning IOS development with Swift",
         lessonsCompleted: 2,
         totalLessons: 7
     )
