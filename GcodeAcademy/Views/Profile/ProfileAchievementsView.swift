@@ -13,15 +13,10 @@ struct ProfileAchievementsView: View {
                 .foregroundColor(.textPrimaryApp)
             
             // Grid layout for achievement badges - two columns
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12){
-                // Placeholder for achievement cards
-                // We'll implement actual achievement cards in the next issue
+            LazyVGrid (columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+                // Display each achievement from user data using our card function
                 ForEach(user.achievements) { achievement in
-                    Text(achievement.name)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.surfaceApp)
-                        .cornerRadius(12)
+                    achievementCard (achievement)
                 }
             }
         }
@@ -74,11 +69,11 @@ struct ProfileAchievementsView: View {
             RoundedRectangle(cornerRadius: 12)
                 .fill(achievement.unlocked ? Color.cardBackgroundApp : Color.surfaceApp)
                 .foregroundColor(.textTertiaryApp)
-            
         )
     }
 }
-    #Preview {
-        // Make sure we have achievements data in the user for the preview
-        ProfileAchievementsView(user: MockData.currentUser)
-    }
+
+#Preview {
+    // Make sure we have achievements data in the user for the preview
+    ProfileAchievementsView(user: MockData.currentUser)
+}
