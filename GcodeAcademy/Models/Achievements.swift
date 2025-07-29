@@ -1,10 +1,3 @@
-//
-//  Achievements.swift
-//  GcodeAcademy
-//
-//  Created by Emmanuel L on 7/29/25.
-//
-
 import Foundation
 
 struct Achievement: Identifiable {

@@ -9,7 +9,7 @@ struct MockData {
     
     // Sample achievements
     static let achievements: [Achievement] = [
-        Achievemnt(
+        Achievement(
             name: "First Lesson",
             description: "Complete your first lesson",
             icon: "star.fill",

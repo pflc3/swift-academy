@@ -17,7 +17,7 @@ struct User: Identifiable {
             // If we have two name, take first letter from each
             let first = components[0].prefix(1)
             let last = components[1].prefix(1)
-            return "/(first)/(last)"
+            return "\(first)\(last)"
         } else if let first = name.first {
             //if we have one name, take the first letter
             return String(first)
