@@ -31,7 +31,42 @@ struct ProfileStatsView: View {
         .padding(.horizontal, 16)
         }
     }
-
+/* helper function to create consistent stat cards
+ * This function takes parameters to customize each card:
+ -value: the numerical value to display ('2" or "28%")
+ -label: The description of the value ("Lessons" of Complete")
+ -icon: SF Symbol name to use as the icon
+ -color: The theme color to use for the icon and background
+ */
+private func statCard(value: String, label: String, icon: String, color: Color) -> some View {
+    HStack {
+        // Left Icon
+        Image(systemName: icon)
+            .font(.system(size: 22))
+            .foregroundColor(color)
+            .frame(width: 32, height: 32)
+        
+        // Value and Label
+        VStack(alignment: .leading, spacing: 2) {
+            Text(value)
+                .font(.titleMedium)
+                .foregroundColor(.textPrimaryApp)
+            
+            Text(label)
+                .font(.caption)
+                .foregroundColor(.textSecondaryApp)
+        }
+        
+        Spacer()
+    }
+    .padding(16)
+    .frame(maxWidth: .infinity)
+    .background(
+        RoundedRectangle(cornerRadius: 12)
+            .fill(color.opacity(0.1))
+    )
+}
+        
 
 #Preview {
     ProfileStatsView(user: MockData.currentUser)
