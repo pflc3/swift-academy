@@ -40,16 +40,6 @@
 			path = GcodeAcademy;
 			sourceTree = "<group>";
 		};
-		E86ACF632E313247006BB2FF /* GcodeAcademyTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = GcodeAcademyTests;
-			sourceTree = "<group>";
-		};
-		E86ACF6D2E313247006BB2FF /* GcodeAcademyUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = GcodeAcademyUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +72,6 @@
 			children = (
 				E86ACF8A2E3132CB006BB2FF /* README.md */,
 				E86ACF542E313245006BB2FF /* GcodeAcademy */,
-				E86ACF632E313247006BB2FF /* GcodeAcademyTests */,
-				E86ACF6D2E313247006BB2FF /* GcodeAcademyUITests */,
 				E86ACF532E313245006BB2FF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -136,9 +124,6 @@
 			dependencies = (
 				E86ACF622E313247006BB2FF /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				E86ACF632E313247006BB2FF /* GcodeAcademyTests */,
-			);
 			name = GcodeAcademyTests;
 			packageProductDependencies = (
 			);
@@ -158,9 +143,6 @@
 			);
 			dependencies = (
 				E86ACF6C2E313247006BB2FF /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				E86ACF6D2E313247006BB2FF /* GcodeAcademyUITests */,
 			);
 			name = GcodeAcademyUITests;
 			packageProductDependencies = (
