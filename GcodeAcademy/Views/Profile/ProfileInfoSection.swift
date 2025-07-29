@@ -8,18 +8,17 @@ struct ProfileInfoSection: View {
                 .font(.bodyMedium)
                 .foregroundColor(.textSecondaryApp)
             
-            
             // App version
             Text("Version 1.0")
                 .font(.caption)
                 .foregroundColor(.textTertiaryApp)
-            
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 8)
         .padding(.bottom, 30)
     }
 }
+
 #Preview {
     ProfileInfoSection()
 }
