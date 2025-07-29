@@ -6,6 +6,7 @@ struct User: Identifiable {
     var bio: String = "Gcode Academy Student"
     var lessonsCompleted: Int = 0
     var totalLessons: Int = 7
+    var achievements: [Achievement] = [] // Achievement array
     
     // Generates intials from the user's name/
     var initials: String {
