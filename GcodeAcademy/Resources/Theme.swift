@@ -15,18 +15,28 @@ import SwiftUI
 /* Colors - Creates a consistent color palette for the entire app */
 extension Color {
     // Primary colors
-    static let primaryApp = Color(hex: "4080BF") // Medium blue
-    static let secondaryApp = Color(hex: "50A0B0") // Teal blue
-    static let accentApp = Color(hex: "A0FF80") // Light green
+    static let primaryApp = Color(hex: "4080BF")    // Medium blue (base color) - kept the same
+    static let secondaryApp = Color(hex: "2C5282")  // Darker blue for contrast
+    static let accentApp = Color(hex: "38B2AC")     // Teal that complements the blue
     
-    // Background colors
-    static let backgroundDarkApp = Color(hex: "1A1A1A") // Dark background
-    static let backgroundLightApp = Color.white // White
+    // Background colors - clean and subtle
+    static let backgroundApp = Color(hex: "F7FAFC") // Very light blue-gray
+    static let cardBackgroundApp = Color.white      // White for cards
+    static let surfaceApp = Color(hex: "EDF2F7")    // Light blue-gray for surfaces
     
-    // Text colors
-    static let textPrimaryApp = Color.white // White
-    static let textSecondaryApp = Color(hex: "50A0E0") // Blue text
-    static let textTertiaryApp = Color(hex: "A0A0A0") // Light gray
+    // Text colors - proper contrast for readability
+    static let textPrimaryApp = Color(hex: "2D3748")    // Dark blue-gray for headings
+    static let textSecondaryApp = Color(hex: "4A5568")  // Medium blue-gray for body
+    static let textTertiaryApp = Color(hex: "718096")   // Light blue-gray for captions
+    static let textOnColorApp = Color.white             // White text for colored backgrounds
+    
+    // Status colors - complementary to our palette
+    static let successApp = Color(hex: "48BB78")    // Green
+    static let errorApp = Color(hex: "F56565")      // Red
+    
+    // Additional UI colors
+    static let dividerApp = Color(hex: "E2E8F0")     // Very light gray for dividers
+    static let buttonHoverApp = Color(hex: "2B6CB0") // Slightly darker blue for hover states
 }
 
 /* Typography - Defines standard text styles for consistency */
@@ -39,7 +49,8 @@ extension Font {
     static let bodyMedium = Font.system(size: 15)
     static let bodySmall = Font.system(size: 13)
     
-    static let caption = Font.system(size: 12, weight: .light)
+    static let caption = Font.system(size: 12, weight: .regular)
+    static let caption2 = Font.system(size: 11, weight: .regular)
 }
 
 /*
