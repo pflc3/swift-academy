@@ -1,25 +1,45 @@
-
-
 import SwiftUI
 
 struct ProfileView: View {
+    // State variables to track user data and edit profile sheet visibility
+    @State private var user = MockData.currentUser
+    @State private var showingEditProfile = false
+    
     var body: some View {
-        VStack {
-            Text("Profile")
-                .font(.title)
-            
-            Image(systemName: "person.circle.fill")
-                .resizable()
-                .frame(width: 100, height: 100)
-                .padding()
-            
-            Text("Gcode Student")
-                .font(.headline)
-            
-            Text("Lessons Completed: 0")
-                .foregroundColor(.secondary)
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 16){
+                    // Use the modular components instead of inline implementations
+                    ProfileHeaderView (user: user)
+                    ProfileStatsView(user: user)
+                    ProfileAchievementsView(user: user)
+                    ProfileInfoSection()
+                    
+                }
+                .background(Color.backgroundApp)
+                .padding(.bottom, 20)
+            }
+            .navigationTitle("Profile")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                // Edit button in the navigation bar
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: { showingEditProfile = true}) {
+                        Image(systemName: "pencil")
+                            .font(.system(size:10))
+                            .foregroundColor(Color.primaryApp)
+                            .frame(width: 36, height: 36)
+                            .background(
+                                Circle()
+                                    .fill(Color.surfaceApp)
+                            )
+                    }
+                }
+            }
+            .sheet(isPresented: $showingEditProfile) {
+                EditProfileView(user: $user)
+            }
         }
-        .padding()
     }
 }
 
