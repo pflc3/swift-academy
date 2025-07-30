@@ -23,25 +23,25 @@ extension Lesson {
         var id = UUID()
         var description: String
     }
-}
+    
+    struct ContentSection: Identifiable {
+        var id = UUID()
+        var title: String
+        var content: String
+        var codeExample: String? = nil // Optional code snippet
+    }
 
-struct ContentSection: Identifiable {
-    var id = UUID()
-    var title: String
-    var content: String
-    var codeExample: String? = nil // Optional code snippet
-}
+    struct Question: Identifiable {
+        var id = UUID()
+        var text: String
+        var options: [String]
+        var correctOptionIndex: Int  // Index of correct answer
+    }
 
-struct Question: Identifiable {
-    var id = UUID()
-    var text: String
-    var options: [String]
-    var correctOptionIndex: Int  // Index of correct answer
-}
-
-struct Resource: Identifiable {
-    var id = UUID()
-    var title: String
-    var description: String
-    var url: String
+    struct Resource: Identifiable {
+        var id = UUID()
+        var title: String
+        var description: String
+        var url: String
+    }
 }
