@@ -2,15 +2,26 @@ import SwiftUI
 
 struct CodeBlock: View {
     let code: String
-    let language: String
+    let language: String // For future syntax highlighting support
     
     var body: some View {
-        Text("Code Block Component")
-            .padding()
-            .background(Color.gray.opacity(0.2))
+        // Horizontal scroll for code that doesn't fit on screen
+        ScrollView(.horizontal, showsIndicators: false) {
+            Text(code)
+                .font(.system(size: 14, design: .monospaced))
+                .padding(16)
+                .background(Color.surfaceApp)
+                .cornerRadius(8)
+            Text("Code Block Component")
+                .padding()
+                .background(Color.gray.opacity(0.2))
+        }
     }
 }
+    
+        
 
 #Preview {
-    CodeBlock(code: "example", language: "swift")
+    CodeBlock(code: "// This is a code example\nlet name = \"Gcode\"", language: "swift")
+        .padding()
 }
