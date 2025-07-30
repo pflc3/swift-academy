@@ -1,11 +1,7 @@
 # Gcode Academy 📱
 
-**Tech Stack:** iOS | Swift | SwiftUI | Xcode
-
 ### 🎓 Empowering the next generation of coders
 An educational iOS app that makes learning programming engaging and accessible for high school students
-
----
 
 ## 🌟 Overview
 
@@ -70,32 +66,29 @@ Gcode Academy is inspired by the **Gcode Summer Program**, a transformative 6-we
 
 ## 👥 Development Team - Swift Minds
 
-- **Estuardo Lopez** - [@estulpz](https://github.com/estulpz202)
-- **Jason Obou** - [@jasonobou](https://github.com/jaalenci)
-- **Brandon Steide** - [@brandonsteide](https://github.com/GcodeBrandone)
-- **Sureima Burgos** - [@sureimaburgos](https://github.com/Sureima)
-- **Joshua Fineboy-Mark** - [@jfineboy](https://github.com/AnonymousPanda7)
-- **Alana Davis** - [@alanadavis](https://github.com/lanagzz)
+- **Estuardo Lopez** - [@estulpz202](https://github.com/estulpz202)
+- **Jason Obou** - [@jaalenci](https://github.com/jaalenci)
+- **Brandon Steide** - [@GcodeBrandone](https://github.com/GcodeBrandone)
+- **Sureima Burgos** - [@Sureima](https://github.com/Sureima)
+- **Joshua Fineboy-Mark** - [@AnonymousPanda7](https://github.com/AnonymousPanda7)
+- **Alana Davis** - [@lanagzz](https://github.com/lanagzz)
 
 ## 📞 Contact & Support
 
-- **Project Lead**: Estuardo Lopez - [estuardo@email.com](mailto:estuardo@email.com)
+- **Project Lead**: Estuardo Lopez - estulpzlet@gmail.com
 - **Organization**: Prime Factors Learning Lab
 - **Program**: Gcode Summer Initiative
 
 ### **Connect With Us**
 - 🌐 Website: [Prime Factors Learning Lab](https://primefactors.org/programs/gcode)
-- 📧 Email: gcode@primefactorslab.org
-- 💬 Issues: [GitHub Issues](https://github.com/yourusername/gcode-academy/issues)
+- 📧 Email: team@primefactors.org
 
 ## 🙏 Acknowledgments
 
 - **Prime Factors Learning Lab** for the inspiring Gcode program
-- **Our amazing student beta testers** from the Gcode program
+- **Our amazing student engineers** from the Gcode program
 - **The Swift community** for continuous support and learning resources
 
 ---
 
-**Made with ❤️ by Swift Minds Team**
-
-*Empowering students • Building futures • Creating opportunities*
+**Made with ❤️ by the Swift Minds team**
