@@ -1,23 +1,101 @@
-# Gcode Academy
+# Gcode Academy 📱
 
-An educational iOS app developed by Swift Minds to support coding education for high school students.
+**Tech Stack:** iOS | Swift | SwiftUI | Xcode
 
-## Swift Minds Team
-- Estuardo Lopez
-- Jason Obou
-- Brandon Steide
-- Sureima Burgos 
-- Joshua Fineboy-Mark
-- Alana Davis
+### 🎓 Empowering the next generation of coders
+An educational iOS app that makes learning programming engaging and accessible for high school students
 
-## App Overview
-Gcode Academy is a learning app inspired by the Gcode summer program, which introduces high school students to computer science and mobile development.
+---
 
-## Key Features
-- **Home View**: Visual learning path/map of programming lessons
-- **Lesson Detail View**: In-depth content for each learning module
-- **Chat Bot View**: AI-style assistant for coding questions
-- **Profile View**: Personalized user experience
+## 🌟 Overview
 
-## About Gcode
-Gcode is a 6-week summer program run by Prime Factors Learning Lab that teaches coding, tech literacy, and mobile development to high school students.
+Gcode Academy is an interactive learning platform designed to support coding education for high school students. Inspired by the successful Gcode summer program, this app transforms traditional programming education into an engaging, gamified experience.
+
+**🎯 Mission**: Bridge the gap between traditional education and modern tech skills, making programming accessible to underrepresented students in technology.
+
+## ✨ Key Features
+
+### 🏠 **Interactive Learning Path**
+- Visual progress tracking with completion percentages
+- Structured lesson progression from beginner to advanced
+- Achievement system to motivate continued learning
+
+### 📚 **Comprehensive Lessons**
+- In-depth programming modules covering iOS development
+- Swift and SwiftUI fundamentals
+- Hands-on coding exercises and projects
+
+### 🤖 **AI-Powered Assistant**
+- Intelligent chatbot for instant coding help
+- Personalized learning support
+- 24/7 availability for student questions
+
+### 👤 **Personalized Profiles**
+- Individual progress tracking
+- Achievement badges and milestones
+- Custom learning paths based on skill level
+
+## 🏗️ Technical Architecture
+
+### **Built With**
+- **Language**: Swift 5.0+
+- **Framework**: SwiftUI
+- **Platform**: iOS 15.0+
+- **IDE**: Xcode 14.0+
+- **Architecture**: MVVM (Model-View-ViewModel)
+
+### **Project Structure**
+```
+GcodeAcademy/
+├── App/                    # App configuration and entry point
+├── Models/                 # Data models (User, Lesson, Achievements)
+├── Views/                  # SwiftUI views organized by feature
+│   ├── Home/              # Learning path and dashboard
+│   ├── Lessons/           # Lesson content and detail views  
+│   ├── Chat/              # AI chatbot interface
+│   └── Profile/           # User profile and progress tracking
+├── Resources/             # Theme, mock data, and assets
+└── Assets.xcassets/       # App icons and visual assets
+```
+
+## 🎓 About Gcode Program
+
+Gcode Academy is inspired by the **Gcode Summer Program**, a transformative 6-week initiative by **Prime Factors Learning Lab** that:
+
+- Introduces high school students to computer science fundamentals
+- Provides hands-on mobile development experience
+- Focuses on underrepresented communities in tech
+- Builds both technical skills and confidence
+- Creates pathways to tech careers and higher education
+
+## 👥 Development Team - Swift Minds
+
+- **Estuardo Lopez** - [@estulpz](https://github.com/estulpz202)
+- **Jason Obou** - [@jasonobou](https://github.com/jaalenci)
+- **Brandon Steide** - [@brandonsteide](https://github.com/GcodeBrandone)
+- **Sureima Burgos** - [@sureimaburgos](https://github.com/Sureima)
+- **Joshua Fineboy-Mark** - [@jfineboy](https://github.com/AnonymousPanda7)
+- **Alana Davis** - [@alanadavis](https://github.com/lanagzz)
+
+## 📞 Contact & Support
+
+- **Project Lead**: Estuardo Lopez - [estuardo@email.com](mailto:estuardo@email.com)
+- **Organization**: Prime Factors Learning Lab
+- **Program**: Gcode Summer Initiative
+
+### **Connect With Us**
+- 🌐 Website: [Prime Factors Learning Lab](https://primefactors.org/programs/gcode)
+- 📧 Email: gcode@primefactorslab.org
+- 💬 Issues: [GitHub Issues](https://github.com/yourusername/gcode-academy/issues)
+
+## 🙏 Acknowledgments
+
+- **Prime Factors Learning Lab** for the inspiring Gcode program
+- **Our amazing student beta testers** from the Gcode program
+- **The Swift community** for continuous support and learning resources
+
+---
+
+**Made with ❤️ by Swift Minds Team**
+
+*Empowering students • Building futures • Creating opportunities*
