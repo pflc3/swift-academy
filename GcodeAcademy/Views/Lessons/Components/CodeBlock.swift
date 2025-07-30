@@ -12,9 +12,6 @@ struct CodeBlock: View {
                 .padding(16)
                 .background(Color.surfaceApp)
                 .cornerRadius(8)
-            Text("Code Block Component")
-                .padding()
-                .background(Color.gray.opacity(0.2))
         }
     }
 }
