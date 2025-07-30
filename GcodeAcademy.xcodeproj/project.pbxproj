@@ -10,27 +10,8 @@
 		E86ACF8B2E3132CB006BB2FF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E86ACF8A2E3132CB006BB2FF /* README.md */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E86ACF612E313247006BB2FF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E86ACF4A2E313245006BB2FF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E86ACF512E313245006BB2FF;
-			remoteInfo = GcodeAcademy;
-		};
-		E86ACF6B2E313247006BB2FF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E86ACF4A2E313245006BB2FF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E86ACF512E313245006BB2FF;
-			remoteInfo = GcodeAcademy;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		E86ACF522E313245006BB2FF /* GcodeAcademy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GcodeAcademy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E86ACF602E313247006BB2FF /* GcodeAcademyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GcodeAcademyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E86ACF6A2E313247006BB2FF /* GcodeAcademyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GcodeAcademyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86ACF8A2E3132CB006BB2FF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,20 +25,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		E86ACF4F2E313245006BB2FF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E86ACF5D2E313247006BB2FF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E86ACF672E313247006BB2FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,8 +47,6 @@
 			isa = PBXGroup;
 			children = (
 				E86ACF522E313245006BB2FF /* GcodeAcademy.app */,
-				E86ACF602E313247006BB2FF /* GcodeAcademyTests.xctest */,
-				E86ACF6A2E313247006BB2FF /* GcodeAcademyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,46 +76,6 @@
 			productReference = E86ACF522E313245006BB2FF /* GcodeAcademy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E86ACF5F2E313247006BB2FF /* GcodeAcademyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E86ACF772E313247006BB2FF /* Build configuration list for PBXNativeTarget "GcodeAcademyTests" */;
-			buildPhases = (
-				E86ACF5C2E313247006BB2FF /* Sources */,
-				E86ACF5D2E313247006BB2FF /* Frameworks */,
-				E86ACF5E2E313247006BB2FF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E86ACF622E313247006BB2FF /* PBXTargetDependency */,
-			);
-			name = GcodeAcademyTests;
-			packageProductDependencies = (
-			);
-			productName = GcodeAcademyTests;
-			productReference = E86ACF602E313247006BB2FF /* GcodeAcademyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		E86ACF692E313247006BB2FF /* GcodeAcademyUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E86ACF7A2E313247006BB2FF /* Build configuration list for PBXNativeTarget "GcodeAcademyUITests" */;
-			buildPhases = (
-				E86ACF662E313247006BB2FF /* Sources */,
-				E86ACF672E313247006BB2FF /* Frameworks */,
-				E86ACF682E313247006BB2FF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E86ACF6C2E313247006BB2FF /* PBXTargetDependency */,
-			);
-			name = GcodeAcademyUITests;
-			packageProductDependencies = (
-			);
-			productName = GcodeAcademyUITests;
-			productReference = E86ACF6A2E313247006BB2FF /* GcodeAcademyUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -163,14 +88,6 @@
 				TargetAttributes = {
 					E86ACF512E313245006BB2FF = {
 						CreatedOnToolsVersion = 16.4;
-					};
-					E86ACF5F2E313247006BB2FF = {
-						CreatedOnToolsVersion = 16.4;
-						TestTargetID = E86ACF512E313245006BB2FF;
-					};
-					E86ACF692E313247006BB2FF = {
-						CreatedOnToolsVersion = 16.4;
-						TestTargetID = E86ACF512E313245006BB2FF;
 					};
 				};
 			};
@@ -189,8 +106,6 @@
 			projectRoot = "";
 			targets = (
 				E86ACF512E313245006BB2FF /* GcodeAcademy */,
-				E86ACF5F2E313247006BB2FF /* GcodeAcademyTests */,
-				E86ACF692E313247006BB2FF /* GcodeAcademyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -204,20 +119,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E86ACF5E2E313247006BB2FF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E86ACF682E313247006BB2FF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -228,34 +129,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E86ACF5C2E313247006BB2FF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E86ACF662E313247006BB2FF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E86ACF622E313247006BB2FF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E86ACF512E313245006BB2FF /* GcodeAcademy */;
-			targetProxy = E86ACF612E313247006BB2FF /* PBXContainerItemProxy */;
-		};
-		E86ACF6C2E313247006BB2FF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E86ACF512E313245006BB2FF /* GcodeAcademy */;
-			targetProxy = E86ACF6B2E313247006BB2FF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E86ACF722E313247006BB2FF /* Debug */ = {
@@ -452,96 +326,6 @@
 			};
 			name = Release;
 		};
-		E86ACF782E313247006BB2FF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XJBBVPAR9T;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				MACOSX_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.primefactors.GcodeAcademyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GcodeAcademy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GcodeAcademy";
-				XROS_DEPLOYMENT_TARGET = 2.5;
-			};
-			name = Debug;
-		};
-		E86ACF792E313247006BB2FF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XJBBVPAR9T;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				MACOSX_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.primefactors.GcodeAcademyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GcodeAcademy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GcodeAcademy";
-				XROS_DEPLOYMENT_TARGET = 2.5;
-			};
-			name = Release;
-		};
-		E86ACF7B2E313247006BB2FF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XJBBVPAR9T;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				MACOSX_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.primefactors.GcodeAcademyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = GcodeAcademy;
-				XROS_DEPLOYMENT_TARGET = 2.5;
-			};
-			name = Debug;
-		};
-		E86ACF7C2E313247006BB2FF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XJBBVPAR9T;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				MACOSX_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.primefactors.GcodeAcademyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = GcodeAcademy;
-				XROS_DEPLOYMENT_TARGET = 2.5;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -559,24 +343,6 @@
 			buildConfigurations = (
 				E86ACF752E313247006BB2FF /* Debug */,
 				E86ACF762E313247006BB2FF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E86ACF772E313247006BB2FF /* Build configuration list for PBXNativeTarget "GcodeAcademyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E86ACF782E313247006BB2FF /* Debug */,
-				E86ACF792E313247006BB2FF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E86ACF7A2E313247006BB2FF /* Build configuration list for PBXNativeTarget "GcodeAcademyUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E86ACF7B2E313247006BB2FF /* Debug */,
-				E86ACF7C2E313247006BB2FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
