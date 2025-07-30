@@ -8,24 +8,24 @@ Gcode Academy is an interactive learning platform designed to support coding edu
 
 Bridge the gap between traditional education and modern tech skills, making programming accessible to underrepresented students in technology.
 
-## Key Features
+## 🤖 Key Features
 
-### 🏠 **Interactive Learning Path**
+### **Interactive Learning Path**
 - Visual progress tracking with completion percentages
 - Structured lesson progression from beginner to advanced
 - Achievement system to motivate continued learning
 
-### 📚 **Comprehensive Lessons**
+### **Comprehensive Lessons**
 - In-depth programming modules covering iOS development
 - Swift and SwiftUI fundamentals
 - Hands-on coding exercises and projects
 
-### 🤖 **AI-Powered Assistant**
+### **AI-Powered Assistant**
 - Intelligent chatbot for instant coding help
 - Personalized learning support
 - 24/7 availability for student questions
 
-### 👤 **Personalized Profiles**
+### **Personalized Profiles**
 - Individual progress tracking
 - Achievement badges and milestones
 - Custom learning paths based on skill level
