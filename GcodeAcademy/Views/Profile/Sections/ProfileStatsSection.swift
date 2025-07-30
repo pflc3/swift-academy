@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProfileStatsView: View {
+struct ProfileStatsSection: View {
     // the user model containing progress information
     let user: User
     
@@ -122,5 +122,5 @@ struct ProfileStatsView: View {
 }
 
 #Preview {
-    ProfileStatsView(user: MockData.currentUser)
+    ProfileStatsSection(user: MockData.currentUser)
 }

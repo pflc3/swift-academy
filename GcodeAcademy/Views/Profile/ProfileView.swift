@@ -10,17 +10,15 @@ struct ProfileView: View {
             ScrollView {
                 VStack(spacing: 16){
                     // Use the modular components instead of inline implementations
-                    ProfileHeaderView (user: user)
-                    ProfileStatsView(user: user)
-                    ProfileAchievementsView(user: user)
+                    ProfileHeaderSection(user: user)
+                    ProfileStatsSection(user: user)
+                    ProfileAchievementsSection(user: user)
                     ProfileInfoSection()
                     
                 }
                 .background(Color.backgroundApp)
                 .padding(.bottom, 20)
             }
-            .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 // Edit button in the navigation bar
                 ToolbarItem(placement: .topBarTrailing) {

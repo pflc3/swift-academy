@@ -1,7 +1,7 @@
 import SwiftUI
 
 // Displays a grid of the user's achievements
-struct ProfileAchievementsView: View {
+struct ProfileAchievementsSection: View {
     // The user model containing achievements
     let user: User
     
@@ -75,5 +75,5 @@ struct ProfileAchievementsView: View {
 
 #Preview {
     // Make sure we have achievements data in the user for the preview
-    ProfileAchievementsView(user: MockData.currentUser)
+    ProfileAchievementsSection(user: MockData.currentUser)
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 // Displays the user's avatar, name, and bio
-struct ProfileHeaderView: View {
+struct ProfileHeaderSection: View {
     // The user model to display
     let user: User
     
@@ -38,5 +38,5 @@ struct ProfileHeaderView: View {
 }
 
 #Preview {
-    ProfileHeaderView(user: MockData.currentUser)
+    ProfileHeaderSection(user: MockData.currentUser)
 }
