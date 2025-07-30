@@ -86,4 +86,4 @@ Gcode Academy is inspired by the **Gcode Summer Program**, a transformative 6-we
 - **Our amazing student engineers** from the Gcode program
 - **The Swift community** for continuous support and learning resources
 
-**Made with ❤️ by the Swift Minds team**
+Made with ❤️ by the Swift Minds team
