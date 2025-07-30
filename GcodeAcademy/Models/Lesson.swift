@@ -13,7 +13,7 @@ struct Lesson: Identifiable {
     var videoID: String? = nil
     var goals: [LessonGoal] = []
     var contentSections: [ContentSection] = []
-    var question: [Question] = []
+    var questions: [Question] = []
     var resources: [Resource] = []
 }
 
