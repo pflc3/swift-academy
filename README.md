@@ -67,7 +67,7 @@ Gcode Academy is inspired by the **Gcode Summer Program**, a transformative 6-we
 
 - **Estuardo Lopez** - [@estulpz202](https://github.com/estulpz202)
 - **Jason Obou** - [@jaalenci](https://github.com/jaalenci)
-- **Brandon Steide** - [@GcodeBrandone](https://github.com/GcodeBrandone)
+- **Brandon Steide** - [@GcodeBrandon](https://github.com/GcodeBrandon)
 - **Sureima Burgos** - [@Sureima](https://github.com/Sureima)
 - **Joshua Fineboy-Mark** - [@AnonymousPanda7](https://github.com/AnonymousPanda7)
 - **Alana Davis** - [@lanagzz](https://github.com/lanagzz)
