@@ -1,15 +1,14 @@
 # Gcode Academy 📱
 
-### 🎓 Empowering the next generation of coders
-An educational iOS app that makes learning programming engaging and accessible for high school students
-
 ## 🌟 Overview
 
 Gcode Academy is an interactive learning platform designed to support coding education for high school students. Inspired by the successful Gcode summer program, this app transforms traditional programming education into an engaging, gamified experience.
 
-**🎯 Mission**: Bridge the gap between traditional education and modern tech skills, making programming accessible to underrepresented students in technology.
+## 🎯 Mission: Empowering the next generation of coders
 
-## ✨ Key Features
+Bridge the gap between traditional education and modern tech skills, making programming accessible to underrepresented students in technology.
+
+## Key Features
 
 ### 🏠 **Interactive Learning Path**
 - Visual progress tracking with completion percentages
@@ -73,15 +72,13 @@ Gcode Academy is inspired by the **Gcode Summer Program**, a transformative 6-we
 - **Joshua Fineboy-Mark** - [@AnonymousPanda7](https://github.com/AnonymousPanda7)
 - **Alana Davis** - [@lanagzz](https://github.com/lanagzz)
 
-## 📞 Contact & Support
+## 📞 Connect With Us
 
 - **Project Lead**: Estuardo Lopez - estulpzlet@gmail.com
 - **Organization**: Prime Factors Learning Lab
 - **Program**: Gcode Summer Initiative
-
-### **Connect With Us**
-- 🌐 Website: [Prime Factors Learning Lab](https://primefactors.org/programs/gcode)
-- 📧 Email: team@primefactors.org
+- **Website**: [Prime Factors Learning Lab](https://primefactors.org/programs/gcode)
+- **Email**: team@primefactors.org
 
 ## 🙏 Acknowledgments
 
