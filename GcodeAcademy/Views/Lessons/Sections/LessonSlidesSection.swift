@@ -68,18 +68,14 @@ struct LessonSlidesDetailView: View {
                 .padding(.bottom, 20)
             
             // Placeholder slide display area
-            Color.gray.opacity(0.2)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .overlay(
                     VStack {
-                        Image(systemName: "doc.text.image")
-                            .font(.system(size:60))
-                            .foregroundColor(.primaryApp.opacity(0.8))
-                        Text("Slides would appear here")
-                            .padding(.top, 10)
-                    }
+                                    GoogleSlidesView(embedURL: URL(string: "https://docs.google.com/presentation/d/1mGTJNUocYB3rweKax4Id0PYb1tHGyAgT3rel3P5eB_8/edit?usp=sharing")!)
+                                        .frame(height: 300)
+                                        .cornerRadius(12)
+                                        .shadow(radius: 5)
+                                        .padding()
+                                }
                     
-                )
         }
     }
 }
