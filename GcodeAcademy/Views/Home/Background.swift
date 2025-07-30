@@ -39,11 +39,11 @@ struct Background: View {
 
 struct BgImage: View {
     var image:String
-    var size:CGFloat = 160
+    var size:CGFloat = 140
     var offsetRange:Int
     var body: some View {
         VStack {
-            if (image=="sun"||image=="swift"||image=="github"||image=="ai") {
+            if (image=="sun"||image=="swift"||image=="github"||image=="ai"||image=="app-store") {
                 Image(image)
                     .resizable()
                     .opacity(0.7)
