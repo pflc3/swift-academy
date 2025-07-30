@@ -1,7 +1,8 @@
 import SwiftUI
 
+// This view pulls together all the modular components to display a full lesson page
 struct LessonDetailView: View {
-    // State variables
+    // Holds the current lesson data (replace with real model in future)
     @State private var lesson = MockData.binaryCommunicationLesson
     @State private var isVideoWatched = false
     @State private var completedGoals: Set<UUID> = []
@@ -11,48 +12,48 @@ struct LessonDetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 16) {
-                // Header section
+            VStack(alignment: .leading, spacing: 20) {
+                // Title and description of the lesson
                 LessonHeaderSection(
                     lesson: lesson,
                     progressPercentage: progressPercentage
                 )
                 
-                // Video section
+                // Video content (Youtube embed)
                 LessonVideoSection(
                     videoID: lesson.videoID ?? "",
                     isVideoWatched: $isVideoWatched
                 )
                 
-                // Goals section
+                // Checklist of learning goals
                 LessonGoalsSection(
                     goals: lesson.goals,
                     completedGoals: $completedGoals
                 )
                 
-                // Content section
+                // Explanations, examples, and codr
                 LessonContentSection(
                     contentSections: lesson.contentSections
                 )
                 
-                // Slides section
+                // Small preview + full slides toggle
                 LessonSlidesSection(
                     showingSlides: $showingSlides
                 )
                 
-                // Questions section
+                // Interactive multiple choice question
                 LessonQuestionsSection(
                     questions: lesson.questions,
                     selectedQuestionIndex: $selectedQuestionIndex
                 )
                 
-                // Resources section
+                // Optional links for further learning
                 LessonResourcesSection(
                     resources: lesson.resources,
                     showingResourceLinks: $showingResourceLinks
                 )
                 
-                // Navigation controls
+                // Navigation buttons to move between lessons
                 LessonNavControls(
                     onPrevious: navigateToPreviousLesson,
                     onNext: navigateToNextLesson
@@ -60,26 +61,43 @@ struct LessonDetailView: View {
             }
             .padding()
         }
+        // Google Slides sheet shown when user taps "View All Slides"
         .sheet(isPresented: $showingSlides) {
             LessonSlidesDetailView(showingSlides: $showingSlides)
         }
     }
     
-    // Helper methods
+    // Calculates overall progress for this lesson
     private var progressPercentage: Double {
-        // Simple placeholder calculation
-        return 0.4
+        var total = 0.0
+        
+        // Watching the video is worth 35%
+        if isVideoWatched {
+            total += 0.35
+        }
+        
+        // Completed goals is worth 65%
+        if !lesson.goals.isEmpty {
+            let goalWeight = 0.65 / Double(lesson.goals.count)
+            total += Double(completedGoals.count * goalWeight)
+        }
+        
+        return total
     }
     
     private func navigateToPreviousLesson() {
-        // Placeholder
+        // TODO: Add logic for navigating back
+        print("Navigating to previous lesson")
     }
     
     private func navigateToNextLesson() {
-        // Placeholder
+        // TODO: Add logic for navigating forward
+        print("Navigating to previous lesson")
     }
 }
 
 #Preview {
-    LessonDetailView()
+    NavigationStack {
+        LessonDetailView()
+    }
 }
