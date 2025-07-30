@@ -79,7 +79,7 @@ struct LessonDetailView: View {
         // Completed goals is worth 65%
         if !lesson.goals.isEmpty {
             let goalWeight = 0.65 / Double(lesson.goals.count)
-            total += Double(completedGoals.count * goalWeight)
+            total += Double(completedGoals.count) * goalWeight
         }
         
         return total
