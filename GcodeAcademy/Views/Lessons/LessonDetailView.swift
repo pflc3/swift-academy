@@ -1,29 +1,85 @@
 import SwiftUI
 
 struct LessonDetailView: View {
+    // State variables
+    @State private var lesson = MockData.binaryCommunicationLesson
+    @State private var isVideoWatched = false
+    @State private var completedGoals: Set<UUID> = []
+    @State private var showingSlides = false
+    @State private var selectedQuestionIndex: Int? = nil
+    @State private var showingResourceLinks = false
+    
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                Text("Lesson Title")
-                    .font(.largeTitle)
-                    .bold()
+            VStack(spacing: 16) {
+                // Header section
+                LessonHeaderSection(
+                    lesson: lesson,
+                    progressPercentage: progressPercentage
+                )
                 
-                Text("This is where the lesson description will appear. It explains what the student will learn in this lesson.")
-                    .padding(.bottom)
+                // Video section
+                LessonVideoSection(
+                    videoID: lesson.videoID ?? "",
+                    isVideoWatched: $isVideoWatched
+                )
                 
-                Text("Lesson Content")
-                    .font(.headline)
+                // Goals section
+                LessonGoalsSection(
+                    goals: lesson.goals,
+                    completedGoals: $completedGoals
+                )
                 
-                Text("The actual lesson content will go here. This could include explanations, code examples, and interactive elements.")
+                // Content section
+                LessonContentSection(
+                    contentSections: lesson.contentSections
+                )
+                
+                // Slides section
+                LessonSlidesSection(
+                    showingSlides: $showingSlides
+                )
+                
+                // Questions section
+                LessonQuestionsSection(
+                    questions: lesson.questions,
+                    selectedQuestionIndex: $selectedQuestionIndex
+                )
+                
+                // Resources section
+                LessonResourcesSection(
+                    resources: lesson.resources,
+                    showingResourceLinks: $showingResourceLinks
+                )
+                
+                // Navigation controls
+                LessonNavControls(
+                    onPrevious: navigateToPreviousLesson,
+                    onNext: navigateToNextLesson
+                )
             }
             .padding()
         }
-        .navigationTitle("Lesson")
+        .sheet(isPresented: $showingSlides) {
+            LessonSlidesDetailView(showingSlides: $showingSlides)
+        }
+    }
+    
+    // Helper methods
+    private var progressPercentage: Double {
+        // Simple placeholder calculation
+        return 0.4
+    }
+    
+    private func navigateToPreviousLesson() {
+        // Placeholder
+    }
+    
+    private func navigateToNextLesson() {
+        // Placeholder
     }
 }
 
 #Preview {
-    NavigationStack {
-        LessonDetailView()
-    }
+    LessonDetailView()
 }
