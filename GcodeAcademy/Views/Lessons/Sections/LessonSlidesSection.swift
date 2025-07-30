@@ -62,20 +62,12 @@ struct LessonSlidesDetailView: View {
                 .padding()
             }
             
-            // Slide content area
-            Text("Google Slides Presentation")
-                .font(.titleMedium)
-                .padding(.bottom, 20)
-            
-            // Placeholder slide display area
-                    VStack {
-                                    GoogleSlidesView(embedURL: URL(string: "https://docs.google.com/presentation/d/1mGTJNUocYB3rweKax4Id0PYb1tHGyAgT3rel3P5eB_8/edit?usp=sharing")!)
-                                        .frame(height: 300)
-                                        .cornerRadius(12)
-                                        .shadow(radius: 5)
-                                        .padding()
-                                }
-                    
+            // Slides
+            GoogleSlidesView(embedURL: URL(string: "https://docs.google.com/presentation/d/1mGTJNUocYB3rweKax4Id0PYb1tHGyAgT3rel3P5eB_8/edit?usp=sharing")!)
+                .frame(height: 300)
+                .cornerRadius(12)
+                .shadow(radius: 5)
+                .padding()
         }
     }
 }
@@ -89,14 +81,3 @@ struct LessonSlidesDetailView: View {
 #Preview("SlidesDetailView"){
     LessonSlidesDetailView(showingSlides: .constant(true))
 }
-
-
-
-
-
-
-
-
-
-
-
