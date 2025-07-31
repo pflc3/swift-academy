@@ -53,7 +53,7 @@ struct LessonDetailSheet: View {
                         ForEach(lesson.goals) { goal in
                             Label(goal.description, systemImage: "checkmark.circle.fill")
                                 .font(.bodySmall)
-                                .foregroundColor(.textSecondaryApp)
+                                .foregroundColor(.green)
                         }
                     }
 
