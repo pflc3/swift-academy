@@ -1,70 +1,69 @@
 import Foundation
 import SwiftUI
 
-//Manages chat state and communication with the AI backend
-class ChatMessageManager:ObservableObject{
-    //Current messages in the chat
+// Manages chat message state and communication with the AI backend
+class ChatMessageManager: ObservableObject {
+    // Current messages in the chat
     @Published var messages: [ChatMessage] = [
         ChatMessage(
-            content: "Hi, I'm the Gcode Helper Bot, How may I be of help",
+            content: "Hi! I'm the Gcode Helper Bot. How can I assist you with your programming questions?",
             isFromUser: false
         )
     ]
     
-    //Whether the AI is currently generating a response
+    // Whether the AI is currently generating a response
     @Published var isLoading = false
     
-    //Text being typed by the user
-    @Published var newMessage:String = ""
+    // Text being typed by the user
+    @Published var newMessage: String = ""
     
+    // Service for API communication
     private let chatService = ChatService()
     
-    //Sends a message to the AI and processes the response
-    func sendMessage(){
-        //Don't send empty message or while loading
-        guard !newMessage.isEmpty && !isLoading else{ return }
+    // Sends a message to the AI and processes the response
+    func sendMessage() {
+        // Don't send empty messages or while loading
+        guard !newMessage.isEmpty && !isLoading else { return }
         
-        //Add user messages to the chat
-        let userMessage = ChatMessage(
-            content: newMessage,
-            isFromUser: true
-        )
+        // Add user message to the chat
+        let userMessage = ChatMessage(content: newMessage, isFromUser: true)
         messages.append(userMessage)
         
-        //Get message content and clear input field
+        // Get message content and clear input field
         let messageToSend = newMessage
         newMessage = ""
         
-        //Show loading indiator
+        // Show loading indicator
         isLoading = true
         
-        //Add system message for context if this is the user's first time
+        // Add system message for context if this is the first user message
         var messagesToSend = messages
-        if messages.count == 2 && messages[0].isFromUser == false && messages[1].isFromUser == true{
+        if messages.count == 2 && messages[0].isFromUser == false && messages[1].isFromUser == true {
             let systemMessage = ChatMessage(
-                content: "You are a helpful programming tutor specializing in swift and ios developement. Provide clear, consise explanations with examples when helpful.",
+                content: "You are a helpful programming tutor specializing in Swift and iOS development. Provide clear, concise explanations with examples when helpful.",
                 isFromUser: false
             )
             messagesToSend = [systemMessage] + messagesToSend
         }
         
-        //Send to API and handle response
+        // Send to API and handle response
         chatService.sendMessage(messages: messagesToSend) { [weak self] result in
-            //Update UI on main thread
-            DispatchQueue.main.async{
+            // Update UI on main thread
+            DispatchQueue.main.async {
                 guard let self = self else { return }
                 
                 self.isLoading = false
                 
-                switch result{
+                switch result {
                 case .success(let response):
-                    //Add bot response to chat
+                    // Add bot response to the chat
                     let botMessage = ChatMessage(content: response, isFromUser: false)
                     self.messages.append(botMessage)
                     
                 case .failure(let error):
+                    // Add error message to the chat
                     let errorMessage = ChatMessage(
-                        content: "Sorry i'm having trouble responding right now, Please try again later. Error:\(error.localizedDescription).",
+                        content: "Sorry, I'm having trouble responding right now. Please try again later. Error: \(error.localizedDescription)",
                         isFromUser: false
                     )
                     self.messages.append(errorMessage)
