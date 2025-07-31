@@ -3,7 +3,11 @@ import SwiftUI
 // Multiple-choice questions for lesson comprehension
 struct LessonQuestionsSection: View {
     let questions: [Lesson.Question]                // Questions passed from lesson model
-    @Binding var selectedQuestionIndex: Int?        // Tracks which question is open
+    @Binding var selectedQuestionIndex: Int?
+    @State var icon:String = ""
+    @State var iconWrong:String = ""
+    @State var OptionsUsed:[[String:Int]:Int] = [:]
+    // Tracks which question is open
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -24,7 +28,12 @@ struct LessonQuestionsSection: View {
                         // Show answer options
                         ForEach(Array(question.options.enumerated()), id: \.offset) { optionIndex, option in
                             Button(action: {
-                                // Could add answer logic here later
+                                if question.correctOptionIndex == optionIndex{
+                                    icon = "checkmark.circle.fill"
+                                }else{
+                                    iconWrong = "xmark"
+                                }
+                                OptionsUsed[[option:index]] = optionIndex
                             }) {
                                 HStack {
                                     Text(option)
@@ -34,9 +43,14 @@ struct LessonQuestionsSection: View {
                                     Spacer()
                                     
                                     // Show checkmark only for correct option
-                                    if question.correctOptionIndex == optionIndex {
-                                        Image(systemName: "checkmark.circle.fill")
-                                            .foregroundColor(.successApp)
+                                    if OptionsUsed[[option:index]] != nil{
+                                        if question.correctOptionIndex == optionIndex {
+                                            Image(systemName: icon)
+                                                .foregroundColor(.successApp)
+                                        }else{
+                                            Image(systemName: iconWrong)
+                                                .foregroundColor(.red)
+                                        }
                                     }
                                 }
                                 .padding()
