@@ -39,7 +39,7 @@ struct ChatMessagesSection: View {
                 }
             }
             // Scroll when loading state changes
-            .onChange(of: isloading) {
+            .onChange(of: isLoading) {
                 withAnimation {
                     if isLoading {
                         // Scroll to typing indicator when loading starts
@@ -55,7 +55,7 @@ struct ChatMessagesSection: View {
 }
 
 #Preview {
-    ChatMessageSection(
+    ChatMessagesSection(
         messages: .constant([
             ChatMessage(content: "Hello! I'm the Gcode Helper Bot.", isFromUser: false),
             ChatMessage(content: "Can you help me with Swift?", isFromUser: true)
