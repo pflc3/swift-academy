@@ -11,7 +11,7 @@ class ChatService{
     
     func sendMessage(messages:[ChatMessage], completion:@escaping (Result<String, Error>) -> Void) {
         //Convert our ChatMessage objects to the API format
-        let apiMessages = messages.map { APIMessage(role:$0,apiRole, content:$0.content) }
+        let apiMessages = messages.map { APIMessage(role:$0.apiRole, content:$0.content) }
         
         //Create the request body
         let requestBody = ChatRequest(
