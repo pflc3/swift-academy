@@ -2,13 +2,10 @@ import SwiftUI
 
 // Multiple-choice questions for lesson comprehension
 struct LessonQuestionsSection: View {
-    let questions: [Lesson.Question]                // Questions passed from lesson model
-    @Binding var selectedQuestionIndex: Int?
-    @State var icon:String = ""
-    @State var iconWrong:String = ""
-    @State var OptionsUsed:[[String:Int]:Int] = [:]
-    // Tracks which question is open
-
+    let questions: [Lesson.Question]  // Questions passed from lesson model
+    @Binding var selectedQuestionIndex: Int?  // Tracks which question is expanded
+    @State private var selectedOptions: [Int: Int] = [:] // [questionIndex: selectedOptionIndex]
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Section title
@@ -28,12 +25,8 @@ struct LessonQuestionsSection: View {
                         // Show answer options
                         ForEach(Array(question.options.enumerated()), id: \.offset) { optionIndex, option in
                             Button(action: {
-                                if question.correctOptionIndex == optionIndex{
-                                    icon = "checkmark.circle.fill"
-                                }else{
-                                    iconWrong = "xmark"
-                                }
-                                OptionsUsed[[option:index]] = optionIndex
+                                // Record selected option for this question
+                                selectedOptions[index] = optionIndex
                             }) {
                                 HStack {
                                     Text(option)
@@ -42,14 +35,11 @@ struct LessonQuestionsSection: View {
                                     
                                     Spacer()
                                     
-                                    // Show checkmark only for correct option
-                                    if OptionsUsed[[option:index]] != nil{
-                                        if question.correctOptionIndex == optionIndex {
-                                            Image(systemName: icon)
-                                                .foregroundColor(.successApp)
-                                        }else{
-                                            Image(systemName: iconWrong)
-                                                .foregroundColor(.red)
+                                    // Show correct or incorrect icon if an option was selected
+                                    if let selected = selectedOptions[index] {
+                                        if selected == optionIndex {
+                                            Image(systemName: optionIndex == question.correctOptionIndex ? "checkmark.circle.fill" : "xmark")
+                                                .foregroundColor(optionIndex == question.correctOptionIndex ? .successApp : .red)
                                         }
                                     }
                                 }
