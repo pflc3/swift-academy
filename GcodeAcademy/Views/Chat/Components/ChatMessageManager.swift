@@ -29,8 +29,7 @@ class ChatMessageManager: ObservableObject {
         let userMessage = ChatMessage(content: newMessage, isFromUser: true)
         messages.append(userMessage)
         
-        // Get message content and clear input field
-        let messageToSend = newMessage
+        // Clear input field
         newMessage = ""
         
         // Show loading indicator
