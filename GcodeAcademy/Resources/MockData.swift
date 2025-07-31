@@ -137,7 +137,12 @@ struct MockData {
                 text: "What is the decimal value of binary 1010?",
                 options: ["5", "15", "10"],
                 correctOptionIndex: 2
-            )
+            ),
+            Lesson.Question(
+                text: "What is the decimal value of binary 1010?",
+                options: ["5", "15", "10"],
+                correctOptionIndex: 2  // Index 2 is "10"
+            ),
         ],
         resources: [
             Lesson.Resource(
