@@ -1,40 +1,24 @@
 import SwiftUI
 
+// Main view for the chat interface
 struct ChatBotView: View {
-    @State private var messageText = ""
+    // Manager for chat state and business logic
+    @StateObject private var chatManager = ChatMessageManager()
     
     var body: some View {
-        VStack {
-            // Message display area
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text("Hi! I'm the Gcode Helper Bot. How can I assist you?")
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
-                }
-                .padding()
-            }
-            
-            // Input field
-            HStack {
-                TextField("Type a message...", text: $messageText)
-                    .padding()
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(10)
-                
-                Button(action: {
-                    // Send message functionality will go here
-                }) {
-                    Image(systemName: "arrow.up.circle.fill")
-                        .font(.system(size: 30))
-                }
-            }
-            .padding()
-        }
+        // Use our ChatContentView component as the main container
+        ChatContentView(
+            messages: $chatManager.messages,
+            newMessage: $chatManager.newMessage,
+            isLoading: $chatManager.isLoading,
+            onSendMessage: chatManager.sendMessage
+        )
+        .navigationTitle("Gcode Helper")
     }
 }
 
 #Preview {
-    ChatBotView()
+    NavigationStack {
+        ChatBotView()
+    }
 }
