@@ -4,11 +4,7 @@ import SwiftUI
 struct ChatContentView: View {
     var body: some View {
         VStack {
-            // Messages section placeholder
-            // ChatMessagesSection()
-            
-            // Input section placeholder
-            // ChatInputSection()
+            Text("Hey")
         }
     }
 }
