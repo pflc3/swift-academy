@@ -4,18 +4,16 @@ struct Lesson: Identifiable {
     var id = UUID()
     var title: String
     var description: String
-    
-    // Metadata
+    var isUnlocked: Bool = true // <---- Add this
     var difficulty: String = "Beginner"
     var duration: String = "20 minutes"
-    
-    // Content
     var videoID: String? = nil
     var goals: [LessonGoal] = []
     var contentSections: [ContentSection] = []
     var questions: [Question] = []
     var resources: [Resource] = []
 }
+
 
 // Supporting models for lesson content
 extension Lesson {

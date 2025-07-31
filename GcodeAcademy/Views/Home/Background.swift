@@ -4,71 +4,81 @@
 //
 //  Created by Joshua Fineboy-Mark on 7/27/25.
 //
-
 import SwiftUI
+let Modernimages = [
+    "swift",        // Swift logo
+    "github",       // developer relevance
+    "ai",           // modern tech
+    "app-store",    // mobile app learning
+]
 
-public var Summerimages:[String] = ["summer-beach", "sun", "surfing"]
-public var Modernimages:[String] = ["ai","app-store","apple","swift","binary-coding","github"]
-
+/// A dynamic background composed of themed images for each level
 struct Background: View {
-    var length:Int
+    var length: Int
     var images: [String]
+
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.white)
-                .ignoresSafeArea()
-            VStack(alignment: .leading){
-                ForEach(Range(0...length), id:\.self){
-                    i in
-                    if (i%2==0){
-                        BgImage(image: images[Int.random(in: 0...(images.count)-1)], offsetRange: 128)
-                    }else{
-                        BgImage(image: images[Int.random(in: 0...(images.count)-1)], offsetRange: -120)
-                    }
+            // Background base color
+            Color.white.ignoresSafeArea()
+
+            // Vertical stack of decorative images
+            VStack(alignment: .leading, spacing: 0) {
+                ForEach(0...length, id: \.self) { i in
+                    BgImage(
+                        image: images.randomElement() ?? "swift",
+                        offsetX: i.isMultiple(of: 2) ? 128 : -120
+                    )
                 }
                 Spacer()
-            }.ignoresSafeArea()
-        }.ignoresSafeArea()
-    }
-}
-
-#Preview {
-    Background(length: 5, images: Modernimages)
-}
-
-struct BgImage: View {
-    var image:String
-    var size:CGFloat = 140
-    var offsetRange:Int
-    var body: some View {
-        VStack {
-            if (image=="sun"||image=="swift"||image=="github"||image=="ai"||image=="app-store") {
-                Image(image)
-                    .resizable()
-                    .opacity(0.7)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: size-40, height:size-40)
-                    .padding(10)
-                    .offset(x:CGFloat(offsetRange), y:CGFloat(Int.random(in: -5...5)))
-            } else if image=="surfing"{
-                Image(image)
-                    .resizable()
-                    .opacity(0.8)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: size, height:size)
-                    .padding(10)
-                    .offset(x:CGFloat(offsetRange), y:CGFloat(Int.random(in: -5...5)))
-            }else{
-                Image(image)
-                    .resizable()
-                    .opacity(0.8)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: size, height:size)
-                    .padding(10)
-                    .offset(x:CGFloat(offsetRange), y:CGFloat(Int.random(in: -5...5)))
-
             }
         }
     }
 }
+
+/// Individual background image element
+import SwiftUI
+
+/// Single animated background image with themed sizing and opacity
+struct BgImage: View {
+    var image: String
+    var size: CGFloat = 140
+    var offsetX: CGFloat
+
+    @State private var floatOffset: CGFloat = 0
+
+    var body: some View {
+        Image(image)
+            .resizable()
+            .opacity(opacityForImage(image))
+            .aspectRatio(contentMode: .fit)
+            .frame(width: sizeForImage(image), height: sizeForImage(image))
+            .padding(10)
+            .offset(x: offsetX, y: floatOffset)
+            .onAppear {
+                withAnimation(
+                    .easeInOut(duration: Double.random(in: 3.0...4.5))
+                        .repeatForever(autoreverses: true)
+                ) {
+                    floatOffset = CGFloat.random(in: -6...6)
+                }
+            }
+    }
+
+    /// Custom image size logic
+    private func sizeForImage(_ name: String) -> CGFloat {
+        if ["sun", "swift", "github", "ai", "app-store"].contains(name) {
+            return size - 40
+        }
+        return size
+    }
+
+    /// Opacity per image category
+    private func opacityForImage(_ name: String) -> Double {
+        return name == "surfing" ? 0.8 : 0.7
+    }
+}
+#Preview {
+    Background(length: 6, images: Modernimages)
+}
+

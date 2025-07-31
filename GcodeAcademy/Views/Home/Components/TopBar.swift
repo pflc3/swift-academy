@@ -7,25 +7,37 @@
 
 import SwiftUI
 
+/// A customizable top bar for section headers
 struct TopBar: View {
-    var Colortheme:Color
-    var title:String
-    var font:String
+    var color: Color = Color.backgroundApp    // Use theme color (default fallback)
+    var title: String
+    var fontName: String = "CherryBombOne-Regular"
+    
     var body: some View {
-            ZStack {
-                Rectangle()
-                    .fill(Colortheme)
-                    .ignoresSafeArea()
-                    .frame(height:60)
-                HStack {
-                    Text(title)
-                        .foregroundStyle(.white)
-                        .font(Font.custom(font, size: 30))
-                }.padding(.horizontal,20)
+        ZStack {
+            Rectangle()
+                .fill(color)
+                .ignoresSafeArea(edges: .top)
+                .frame(height: 60)
+            
+            HStack {
+                Text(title)
+                    .font(.custom(fontName, size: 28))
+                    .foregroundStyle(.white)
+                    .padding(.leading, 16)
+                
+                Spacer()
             }
+            .padding(.horizontal)
+        }
     }
 }
 
 #Preview {
-    TopBar(Colortheme: Color("SunnyHeader"), title: "Sunny Start", font: "CherryBombOne-Regular")
+    TopBar(
+        color: .backgroundApp,
+        title: "Sunny Start",
+        fontName: "CherryBombOne-Regular"
+    )
 }
+

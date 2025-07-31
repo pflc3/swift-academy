@@ -7,98 +7,106 @@
 import SwiftUI
 import Foundation
 
+/// The main home screen displaying the user's learning path
+import SwiftUI
 
 struct HomeView: View {
+    var lessons = Lessons
+
     var body: some View {
         ZStack {
             ScrollView {
                 ZStack {
-                    Background(length: SunnyStartLevels.count, images: Modernimages).ignoresSafeArea()
-                    RenderLevels()
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
+                    // Dynamically calculate background length
+                    Background(length: backgroundLength(for: lessons.count), images: Modernimages)
+                        .ignoresSafeArea()
+
+                    RenderLevels(lessons: Lessons)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }.padding(.top,20)
 
             VStack {
-                TopBar(Colortheme: Color("MainText"), title: "Learning Path", font: "CherryBombOne-Regular")
+                TopBar(
+                    color: .blue,
+                    title: "Learning Path",
+                    fontName: "CherryBombOne-Regular"
+                )
                 Spacer()
             }
-        }.background(Color.white)
-            .statusBarHidden(true)
+        }
+        .background(Color.white)
+        .statusBarHidden(true)
+    }
+
+    /// Calculates background repetition length based on number of lessons
+    private func backgroundLength(for lessonCount: Int) -> Int {
+        let estimatedFill = Int(UIScreen.main.bounds.height / 180) + 2 // fallback to fill screen
+        return max(lessonCount, estimatedFill)
     }
 }
+
 
 #Preview {
     HomeView()
 }
 
+
+import SwiftUI
+
+/// View responsible for rendering the vertical zig-zag level/lesson path
 struct RenderLevels: View {
+    let lessons: [Lesson]
+
     var body: some View {
-        VStack{
-            ForEach(0..<SunnyStartLevels.count, id:\.self){
-                level in
-                if (level%2 == 0){
-                    ZStack {
-                        if (level != (SunnyStartLevels.count-1)){
-                            if SunnyStartLevels[level+1].Unlocked{
-                                if level != 0{
-                                    Rectangle()
-                                        .fill(.others.gradient)
-                                        .frame(width: 3, height:195)
-                                        .offset(x:-1, y:15)
-                                        .rotationEffect(Angle(degrees: 40))
-                                }else{
-                                    Rectangle()
-                                        .fill(.others.gradient)
-                                        .frame(width: 3, height:180)
-                                        .offset(x:30, y:30)
-                                        .rotationEffect(Angle(degrees: 45))
-                                }
-                            }else{
-                                if level != 0{
-                                    Rectangle()
-                                        .fill(.black.gradient)
-                                        .frame(width: 3, height:195)
-                                        .offset(x:-1, y:15)
-                                        .rotationEffect(Angle(degrees: 40))
-                                }else{
-                                    Rectangle()
-                                        .fill(.black.gradient)
-                                        .frame(width: 3, height:180)
-                                        .offset(x:30, y:30)
-                                        .rotationEffect(Angle(degrees: 40))
-                                }
-                            }
-                        }
-                        if level != 0{
-                            LevelView(level: SunnyStartLevels[level])
-                                .offset(x:70,y:-90)
-                        }else{
-                            LevelView(level: SunnyStartLevels[level])
-                                .offset(x:70,y:0)
-                        }
+        VStack {
+            Spacer().frame(height: 20)
+            ForEach(lessons.indices, id: \.self) { index in
+                let lesson = lessons[index]
+                let isEven = index % 2 == 0
+                let isLast = index == lessons.count - 1
+                
+                ZStack {
+                    // Draw the connecting path line unless it's the last lesson
+                    if !isLast {
+                        let nextLessonUnlocked = false // Replace with actual unlock logic if needed
+                        
+                        LessonConnectorLine(
+                            isEven: isEven,
+                            unlocked: nextLessonUnlocked,
+                            isFirst: index == 0
+                        )
                     }
-                }else{
-                    ZStack {
-                        if (level != (SunnyStartLevels.count-1)){
-                            if SunnyStartLevels[level+1].Unlocked{
-                                Rectangle()
-                                    .fill(.others.gradient)
-                                    .frame(width: 3, height:195)
-                                    .offset(x:1, y:15)
-                                    .rotationEffect(Angle(degrees: -40))
-                            }else{
-                                Rectangle()
-                                    .fill(.black.gradient)
-                                    .frame(width: 3, height:195)
-                                    .offset(x:1, y:15)
-                                    .rotationEffect(Angle(degrees: -40))
-                            }
-                        }
-                        LevelView(level: SunnyStartLevels[level])
-                            .offset(x:-70,y:-90)
-                    }
+                    
+                    // Display lesson view offset based on position
+                    LessonView(lesson: lesson)
+                        .offset(
+                            x: isEven ? 70 : -70,
+                            y: index == 0 ? 0 : -90
+                        )
                 }
             }
+          Spacer()
         }
+    }
+}
+
+import SwiftUI
+
+/// Reusable vertical connector line between lessons
+struct LessonConnectorLine: View {
+    var isEven: Bool
+    var unlocked: Bool
+    var isFirst: Bool
+
+    var body: some View {
+        Rectangle()
+            .fill(unlocked ? .green : .black )
+            .frame(width: 3, height: isFirst ? 180 : 195)
+            .offset(
+                x: isEven ? (isFirst ? 30 : -1) : 1,
+                y: isFirst ? 30 : 15
+            )
+            .rotationEffect(Angle(degrees: isEven ? (isFirst ? 45 : 40) : -40))
     }
 }
