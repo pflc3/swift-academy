@@ -1,10 +1,3 @@
-//
-//  ChatMessageManager.swift
-//  GcodeAcademy
-//
-//  Created by Joshua Fineboy-Mark on 7/31/25.
-//
-
 import Foundation
 import SwiftUI
 
