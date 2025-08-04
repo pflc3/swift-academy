@@ -3,7 +3,7 @@ import SwiftUI
 // This view pulls together all the modular components to display a full lesson page
 struct LessonDetailView: View {
     // Holds the current lesson data (replace with real model in future)
-    @State private var lesson = MockData.binaryCommunicationLesson
+    @State private var lesson = MockData.swiftDataTypesLesson
     @State private var isVideoWatched = false
     @State private var completedGoals: Set<UUID> = []
     @State private var showingSlides = false

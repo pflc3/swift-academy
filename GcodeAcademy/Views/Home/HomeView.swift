@@ -4,7 +4,7 @@ struct HomeView: View {
     // Sample lessons (in a real app, this would come from a data model)
     let lessons = [
         MockData.binaryCommunicationLesson,
-        MockData.binaryCommunicationLesson
+        MockData.swiftDataTypesLesson
     ]
     
     var body: some View {
