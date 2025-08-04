@@ -38,7 +38,8 @@ struct LessonDetailView: View {
                 
                 // Small preview + full slides toggle
                 LessonSlidesSection(
-                    showingSlides: $showingSlides
+                    showingSlides: $showingSlides,
+                    slidesURL: lesson.slidesURL
                 )
                 
                 // Interactive multiple choice question
@@ -63,7 +64,10 @@ struct LessonDetailView: View {
         }
         // Google Slides sheet shown when user taps "View All Slides"
         .sheet(isPresented: $showingSlides) {
-            LessonSlidesDetailView(showingSlides: $showingSlides)
+            LessonSlidesDetailView(
+                showingSlides: $showingSlides,
+                slidesURL: lesson.slidesURL
+            )
         }
     }
     

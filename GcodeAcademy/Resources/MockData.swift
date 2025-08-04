@@ -8,6 +8,7 @@ struct MockData {
         difficulty: "Beginner",
         duration: "25 minutes",
         videoID: "zDNaUi2cjv4",  // YouTube video ID for an educational video about binary
+        slidesURL: "https://docs.google.com/presentation/d/1mGTJNUocYB3rweKax4Id0PYb1tHGyAgT3rel3P5eB_8/edit?usp=sharing",
         
         // Learning objectives for this lesson
         goals: [

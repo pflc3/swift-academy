@@ -11,6 +11,7 @@ struct Lesson: Identifiable {
     
     // Content
     var videoID: String? = nil
+    var slidesURL: String? = nil
     var goals: [LessonGoal] = []
     var contentSections: [ContentSection] = []
     var questions: [Question] = []

@@ -3,7 +3,8 @@ import SwiftUI
 // Slide preview card and open button
 struct LessonSlidesSection: View {
     @Binding var showingSlides: Bool // Controls sheet/modal visibilty
-
+    var slidesURL: String? // Slides URL from the lesson model
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Section header
@@ -14,14 +15,14 @@ struct LessonSlidesSection: View {
             // Slide thumbnail (just visual placeholders for now)
             HStack(spacing: 10) {
                 ForEach(0..<3) { index in
-                    RoundedRectangle(cornerRadius: 0)
+                    RoundedRectangle(cornerRadius: 8)
                         .fill(Color.surfaceApp)
-                        .frame(height:90)
+                        .frame(height: 90)
                         .overlay(
                             Text("Slide \(index + 1)")
                                 .font(.caption)
                                 .foregroundColor(.textTertiaryApp)
-                            )
+                        )
                 }
             }
             
@@ -50,6 +51,7 @@ struct LessonSlidesSection: View {
 // Full-screen modal slide view (can embed actual presentation in future)
 struct LessonSlidesDetailView: View {
     @Binding var showingSlides: Bool
+    var slidesURL: String? // Slides URL from the lesson model
     
     var body: some View {
         VStack {
@@ -62,22 +64,34 @@ struct LessonSlidesDetailView: View {
                 .padding()
             }
             
-            // Slides
-            GoogleSlidesView(embedURL: URL(string: "https://docs.google.com/presentation/d/1mGTJNUocYB3rweKax4Id0PYb1tHGyAgT3rel3P5eB_8/edit?usp=sharing")!)
-                .frame(height: 300)
-                .cornerRadius(12)
-                .shadow(radius: 5)
-                .padding()
+            // Slides content
+            if let urlString = slidesURL, let url = URL(string: urlString) {
+                GoogleSlides(embedURL: url)
+                    .frame(height: 300)
+                    .cornerRadius(12)
+                    .shadow(radius: 5)
+                    .padding()
+            } else {
+                Text("No slides available for this lesson")
+                    .foregroundColor(.textSecondaryApp)
+                    .padding()
+            }
         }
     }
 }
 
 // Previews
 #Preview("SlidesSection") {
-    LessonSlidesSection(showingSlides: .constant(false))
-        .padding()
+    LessonSlidesSection(
+        showingSlides: .constant(false),
+        slidesURL: MockData.binaryCommunicationLesson.slidesURL
+    )
+    .padding()
 }
 
 #Preview("SlidesDetailView"){
-    LessonSlidesDetailView(showingSlides: .constant(true))
+    LessonSlidesDetailView(
+        showingSlides: .constant(true),
+        slidesURL: MockData.binaryCommunicationLesson.slidesURL
+    )
 }
