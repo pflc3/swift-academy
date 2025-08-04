@@ -12,11 +12,6 @@ struct HomeView: View {
             ScrollView {
                 VStack(spacing: 0) {
                     // Header
-                    Text("Your Learning Path")
-                        .font(.titleLarge)
-                        .foregroundColor(.textPrimaryApp)
-                        .padding(.top, 20)
-                        .padding(.bottom, 30)
                     
                     // Diagonal learning path
                     // We'll repeat our two lessons multiple times to simulate content
@@ -72,7 +67,6 @@ struct HomeView: View {
                 }
                 .padding(.horizontal)
             }
-            .navigationTitle("Gcode Academy")
         }
     }
     
