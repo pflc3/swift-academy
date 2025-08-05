@@ -5,7 +5,7 @@ struct HomeHeaderSection: View {
     var lessons: [Lesson]
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             // Simple welcome section (not a full header since we have one in ContentView)
             VStack(alignment: .leading, spacing: 8) {
                 

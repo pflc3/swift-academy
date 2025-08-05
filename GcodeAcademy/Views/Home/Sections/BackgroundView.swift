@@ -10,11 +10,11 @@ struct BackgroundView: View {
     ]
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             // Background base color
             Color.backgroundApp.ignoresSafeArea()
             
-            // Vertical stack of decorative symbols - keeping student's animation approach
+            // Vertical stack of decorative symbols
             VStack(alignment: .leading, spacing: 0) {
                 ForEach(0..<length, id: \.self) { i in
                     BackgroundSymbol(
@@ -28,7 +28,7 @@ struct BackgroundView: View {
     }
 }
 
-// Individual floating background symbol - keeping student's animation
+// Individual floating background symbol
 struct BackgroundSymbol: View {
     var symbolName: String
     var offsetX: CGFloat
@@ -54,5 +54,5 @@ struct BackgroundSymbol: View {
 }
 
 #Preview {
-    BackgroundView(length: 6)
+    BackgroundView(length: 8)
 }

@@ -11,7 +11,7 @@ struct ContentView: View {
              * Main Content Container
              */
             
-            VStack(spacing: 0) {
+            VStack {
                 // Custom Navigation Bar
                 CustomNavBar(
                     title: title,
