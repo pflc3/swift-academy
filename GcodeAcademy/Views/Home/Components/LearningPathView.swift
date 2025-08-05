@@ -19,11 +19,12 @@ struct LearningPathView: View {
                 let isUnlocked = index < unlockedCount
                 
                 ZStack {
-                    // Only draw connector if it's not the last lesson
+                    // Draw connector, except last
                     if !isLast {
                         LessonConnectorLine(
                             isEven: isEven,
-                            isUnlocked: isUnlocked && index+1 < unlockedCount // Only color the connector if the next lesson is also unlocked
+                            // Only color the connector if the next lesson is also unlocked
+                            isUnlocked: isUnlocked && index+1 < unlockedCount
                         )
                     }
                     
