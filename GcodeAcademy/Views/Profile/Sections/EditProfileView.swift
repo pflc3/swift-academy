@@ -47,9 +47,6 @@ struct EditProfileView: View {
                     }
                 } header: {
                     Text("Profile Information")
-                }footer: {
-                    Text("This information will be displayed on your profile")
-                        .padding(.top, 8)
                 }
                 .padding(.vertical, 8)
             }
