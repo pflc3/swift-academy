@@ -17,6 +17,7 @@ struct ProfileFooter: View {
         .frame(maxWidth: .infinity)
         .padding(.top, 8)
         .padding(.bottom, 30)
+        .background(Color.backgroundApp)
     }
 }
 

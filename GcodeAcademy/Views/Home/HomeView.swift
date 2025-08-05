@@ -33,7 +33,7 @@ struct HomeView: View {
                         
                         // Simple progress indicator
                         HStack {
-                            Text("2/\(allLessons.count) lessons completed")
+                            Text("\(allLessons.count)/\(allLessons.count) lessons completed")
                                 .font(.bodyMedium)
                                 .foregroundColor(.textSecondaryApp)
                             
@@ -67,8 +67,11 @@ struct HomeView: View {
     
     // Keep student's background length calculation
     private func backgroundLength(for lessonCount: Int) -> Int {
-        let estimatedFill = Int(UIScreen.main.bounds.height / 180) + 2
-        return max(lessonCount, estimatedFill)
+        let estimatedFill = Int(UIScreen.main.bounds.height / 90) + 2
+        print(UIScreen.main.bounds.height)
+        print(estimatedFill)
+        return max(lessonCount, (135*lessonCount+100)/50)
+        
     }
 }
 

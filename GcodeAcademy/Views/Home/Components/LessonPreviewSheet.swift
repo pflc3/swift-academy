@@ -26,64 +26,44 @@ struct LessonPreviewSheet: View {
             }
             .padding(.top, 24)
             .padding(.horizontal, 20)
-            .padding(.bottom, 16)
+            .padding(.bottom, 12)
             
-            // Description
+            // Short description
             Text(lesson.description)
                 .font(.bodyMedium)
                 .foregroundColor(.textSecondaryApp)
+                .lineLimit(3) // Limit lines to prevent overflow
                 .padding(.horizontal, 20)
-                .padding(.bottom, 16)
+                .padding(.bottom, 12)
             
             Divider().background(Color.dividerApp)
             
-            // Learning goals preview - simplified from student's implementation
-            ScrollView {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("What You'll Learn")
-                        .font(.titleSmall)
-                        .foregroundColor(.textPrimaryApp)
-                        .padding(.top, 16)
-                    
-                    ForEach(lesson.goals) { goal in
-                        HStack(alignment: .top) {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.accentApp)
-                                .font(.caption)
-                                .padding(.top, 2)
-                            
-                            Text(goal.description)
-                                .font(.bodyMedium)
-                                .foregroundColor(.textSecondaryApp)
-                        }
-                    }
-                    
-                    // Quick overview of sections
-                    if !lesson.contentSections.isEmpty {
-                        Text("Content Overview")
-                            .font(.titleSmall)
-                            .foregroundColor(.textPrimaryApp)
-                            .padding(.top, 16)
+            // Top 2 Learning Goals (no scroll)
+            VStack(alignment: .leading, spacing: 10) {
+                Text("What You'll Learn")
+                    .font(.titleSmall)
+                    .foregroundColor(.textPrimaryApp)
+                
+                ForEach(lesson.goals.prefix(2)) { goal in
+                    HStack(alignment: .top) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.accentApp)
+                            .font(.caption)
+                            .padding(.top, 2)
                         
-                        // Just show section titles
-                        ForEach(lesson.contentSections) { section in
-                            HStack {
-                                Image(systemName: "doc.text")
-                                    .foregroundColor(.primaryApp)
-                                
-                                Text(section.title)
-                                    .font(.bodyMedium)
-                                    .foregroundColor(.textPrimaryApp)
-                            }
-                            .padding(.vertical, 4)
-                        }
+                        Text(goal.description)
+                            .font(.bodyMedium)
+                            .foregroundColor(.textSecondaryApp)
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 20)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 20)
+            .padding(.top, 12)
             
-            // Action buttons
+            Spacer()
+            
+            // Action button
             NavigationLink(destination: LessonDetailView(lesson: lesson)) {
                 Text("Start Lesson")
                     .font(.bodyLarge.bold())
@@ -97,10 +77,11 @@ struct LessonPreviewSheet: View {
             .padding(.vertical, 16)
         }
         .background(Color.backgroundApp)
-        .presentationDetents([.medium])
+        .presentationDetents([.height(350)]) // Adjust height as needed
         .presentationCornerRadius(16)
     }
 }
+
 
 #Preview {
     LessonPreviewSheet(
