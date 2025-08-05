@@ -23,7 +23,7 @@ struct LessonHeaderSection: View {
                 }
                 
                 Label {
-                    Text(lesson.duration)
+                    Text("\(lesson.duration) minutes")
                         .font(.caption)
                         .foregroundColor(.textSecondaryApp)
                 } icon: {

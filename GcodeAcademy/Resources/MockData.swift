@@ -3,10 +3,11 @@ import Foundation
 struct MockData {
     // Sample detailed lesson on binary communication
     static let binaryCommunicationLesson = Lesson(
-        title: "Understanding Binary Communication",
+        title: "Binary Communication",
+        shortTitle: "Binary Comm",
         description: "Learn how computers communicate using binary code and how binary digits represent information.",
         difficulty: "Beginner",
-        duration: "25 minutes",
+        duration: 25,
         videoID: "k68-cStI1ok",
         slidesURL: "https://docs.google.com/presentation/d/1mGTJNUocYB3rweKax4Id0PYb1tHGyAgT3rel3P5eB_8/edit?usp=sharing",
         
@@ -79,9 +80,10 @@ struct MockData {
     
     static let swiftDataTypesLesson = Lesson(
         title: "Swift Data Types",
+        shortTitle: "Data Types",
         description: "Learn about Swift's fundamental data types, type safety, and how to use different types in your code.",
         difficulty: "Beginner",
-        duration: "15 minutes",
+        duration: 15,
         videoID: "YjSfJTXaqTI",
         slidesURL: "https://docs.google.com/presentation/d/15-sR9-beHDIPxEvpBoW5LjQ-I3YMHClzUgsMFmTeBp4/edit?usp=sharing",
         

@@ -1,141 +1,74 @@
 import SwiftUI
 
 struct HomeView: View {
-    // Sample lessons (in a real app, this would come from a data model)
+    // Using your project's lesson data
     let lessons = [
         MockData.binaryCommunicationLesson,
         MockData.swiftDataTypesLesson
     ]
     
+    // For demo purposes, repeat lessons to show more in the path
+    var allLessons: [Lesson] {
+        var result: [Lesson] = []
+        // Repeat lessons to have 8 total for demonstration
+        for i in 0..<8 {
+            result.append(lessons[i % 2])
+        }
+        return result
+    }
+    
     var body: some View {
-        NavigationStack {
-            ScrollView {
+        ScrollView {
+            ZStack {
+                // Keep student's background with floating icons
+                BackgroundView(length: backgroundLength(for: allLessons.count))
+                    .ignoresSafeArea()
+                
                 VStack(spacing: 0) {
-                    // Diagonal learning path
-                    // We'll repeat our two lessons multiple times to simulate content
-                    ForEach(0..<8) { index in
-                        // Alternate between left and right
-                        let isRightSide = index % 2 == 1
-                        let currentLesson = lessons[index % 2]
+                    // Simple welcome section (not a full header since we have one in ContentView)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Your Learning Path")
+                            .font(.titleMedium)
+                            .foregroundColor(.textPrimaryApp)
                         
-                        // Diagonal path element with lesson
+                        // Simple progress indicator
                         HStack {
-                            // Spacer on the right side pushes content left
-                            if isRightSide {
-                                Spacer()
-                            }
+                            Text("2/\(allLessons.count) lessons completed")
+                                .font(.bodyMedium)
+                                .foregroundColor(.textSecondaryApp)
                             
-                            // Lesson card
-                            simpleLessonCard(
-                                lesson: currentLesson,
-                                index: index + 1,
-                                isCompleted: index < 2
-                            )
-                            .frame(width: 250)
+                            Spacer()
                             
-                            // Spacer on the left side pushes content right
-                            if !isRightSide {
-                                Spacer()
-                            }
+                            Text("25%")
+                                .font(.bodyMedium.bold())
+                                .foregroundColor(.primaryApp)
                         }
-                        .padding(.bottom, 10)
                         
-                        // Diagonal connector line (except for last item)
-                        if index < 7 {
-                            ZStack {
-                                // Diagonal line - direction depends on current position
-                                if isRightSide {
-                                    // Right to left diagonal
-                                    DiagonalLine(fromRight: true)
-                                        .stroke(Color.primaryApp, lineWidth: 3)
-                                        .frame(height: 60)
-                                } else {
-                                    // Left to right diagonal
-                                    DiagonalLine(fromRight: false)
-                                        .stroke(Color.primaryApp, lineWidth: 3)
-                                        .frame(height: 60)
-                                }
-                            }
-                            .padding(.bottom, 10)
-                        }
+                        // Progress bar
+                        ProgressView(value: 0.25)
+                            .tint(Color.primaryApp)
+                            .padding(.bottom, 8)
                     }
+                    .padding()
+                    .background(Color.cardBackgroundApp)
+                    .cornerRadius(12)
+                    .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 2)
+                    .padding(.horizontal)
+                    .padding(.top, 20)
                     
-                    // Bottom padding
-                    Spacer(minLength: 40)
+                    // Learning path view - keep the zigzag pattern
+                    LearningPathView(lessons: allLessons)
+                        .padding(.top, 75)
                 }
-                .padding(.horizontal)
             }
         }
+        .background(Color.backgroundApp)
     }
     
-    // Simplified lesson card component
-    @ViewBuilder
-    func simpleLessonCard(lesson: Lesson, index: Int, isCompleted: Bool) -> some View {
-        NavigationLink(destination: LessonDetailView(lesson: lesson)) {
-            VStack(alignment: .leading, spacing: 10) {
-                // Lesson number and completion status
-                HStack {
-                    // Circle with number
-                    ZStack {
-                        Circle()
-                            .fill(isCompleted ? Color.primaryApp : Color.surfaceApp)
-                            .frame(width: 36, height: 36)
-                        
-                        Text("\(index)")
-                            .font(.bodyMedium.bold())
-                            .foregroundColor(isCompleted ? .white : .textSecondaryApp)
-                    }
-                    
-                    Spacer()
-                    
-                    // Difficulty indicator
-                    Text(lesson.difficulty)
-                        .font(.caption)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(
-                            Capsule()
-                                .fill(Color.surfaceApp)
-                        )
-                        .foregroundColor(.textSecondaryApp)
-                }
-                
-                // Lesson title
-                Text(lesson.title)
-                    .font(.bodyLarge.bold())
-                    .foregroundColor(.textPrimaryApp)
-                    .lineLimit(2)
-                
-                // Duration
-                Label(lesson.duration, systemImage: "clock")
-                    .font(.caption)
-                    .foregroundColor(.textTertiaryApp)
-            }
-            .padding()
-            .background(Color.cardBackgroundApp)
-            .cornerRadius(12)
-            .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 2)
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-}
-
-// Custom shape for diagonal lines
-struct DiagonalLine: Shape {
-    let fromRight: Bool
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        
-        if fromRight {
-            path.move(to: CGPoint(x: rect.maxX, y: 0))
-            path.addLine(to: CGPoint(x: 0, y: rect.maxY))
-        } else {
-            path.move(to: CGPoint(x: 0, y: 0))
-            path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        }
-        
-        return path
+    // Keep student's background length calculation
+    private func backgroundLength(for lessonCount: Int) -> Int {
+        let estimatedFill = Int(UIScreen.main.bounds.height / 180) + 2
+        return max(lessonCount, estimatedFill)
     }
 }
 
