@@ -3,6 +3,7 @@ import SwiftUI
 struct LessonPreviewSheet: View {
     let lesson: Lesson
     @Binding var isPresented: Bool
+    var onStartLesson: (Lesson) -> Void  // Callback to parent view
     
     var body: some View {
         VStack(spacing: 0) {
@@ -63,8 +64,11 @@ struct LessonPreviewSheet: View {
             
             Spacer()
             
-            // Action button
-            NavigationLink(destination: LessonDetailView(lesson: lesson)) {
+            // Action button - simple button that calls the callback
+            Button {
+                isPresented = false  // First dismiss the sheet
+                onStartLesson(lesson)  // Then trigger navigation in parent
+            } label: {
                 Text("Start Lesson")
                     .font(.bodyLarge.bold())
                     .foregroundColor(.white)
@@ -82,10 +86,10 @@ struct LessonPreviewSheet: View {
     }
 }
 
-
 #Preview {
     LessonPreviewSheet(
         lesson: LessonData.binaryCommunicationLesson,
-        isPresented: .constant(true)
+        isPresented: .constant(true),
+        onStartLesson: { _ in /* Preview only */ }
     )
 }

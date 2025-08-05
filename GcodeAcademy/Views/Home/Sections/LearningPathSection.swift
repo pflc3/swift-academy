@@ -3,6 +3,7 @@ import SwiftUI
 struct LearningPathSection: View {
     let lessons: [Lesson]
     let user: User
+    var onStartLesson: (Lesson) -> Void
     
     // Determine unlocked lessons based on user progress
     // Current lesson (next one to complete) is also unlocked
@@ -33,7 +34,8 @@ struct LearningPathSection: View {
                     LessonCard(
                         lesson: lesson,
                         index: index + 1,
-                        isUnlocked: isUnlocked
+                        isUnlocked: isUnlocked,
+                        onStartLesson: onStartLesson
                     )
                     .offset(
                         x: isEven ? 70 : -70,
@@ -65,6 +67,7 @@ struct LearningPathSection: View {
             LessonData.binaryCommunicationLesson,
             LessonData.swiftDataTypesLesson,
         ],
-        user: MockData.currentUser
+        user: MockData.currentUser,
+        onStartLesson: { _ in /* Preview only */ }
     )
 }

@@ -3,27 +3,42 @@ import SwiftUI
 struct HomeView: View {
     // State variables to track user data
     @State private var user = MockData.currentUser
+    @State private var showLessonDetail = false
+    @State private var selectedLesson: Lesson?
 
     var body: some View {
-        ScrollView {
-            ZStack(alignment: .top) {
-                // Keep student's background with floating icons
-                BackgroundView(length: backgroundLength(for: LessonData.allLessons.count))
+        NavigationStack {
+            ScrollView {
+                ZStack(alignment: .top) {
+                    // Keep student's background with floating icons
+                    BackgroundView(length: backgroundLength(for: LessonData.allLessons.count))
 
-                VStack {
-                    HomeHeaderSection(user: user, lessons: LessonData.allLessons)
-                        .padding(.top, 25)
-                    
-                    // Learning path view
-                    LearningPathSection(
-                        lessons: LessonData.allLessons,
-                        user: user
-                    )
-                    .padding(.top, 75)
+                    VStack {
+                        HomeHeaderSection(user: user, lessons: LessonData.allLessons)
+                            .padding(.top, 25)
+                        
+                        // Learning path view
+                        LearningPathSection(
+                            lessons: LessonData.allLessons,
+                            user: user,
+                            onStartLesson: { lesson in
+                                // Set the selected lesson and trigger navigation
+                                selectedLesson = lesson
+                                showLessonDetail = true
+                            }
+                        )
+                        .padding(.top, 75)
+                    }
+                }
+            }
+            .background(Color.backgroundApp)
+            // Use a simple navigationDestination with a separate boolean state
+            .navigationDestination(isPresented: $showLessonDetail) {
+                if let lesson = selectedLesson {
+                    LessonDetailView(lesson: lesson)
                 }
             }
         }
-        .background(Color.backgroundApp)
     }
     
     // Keep student's background length calculation

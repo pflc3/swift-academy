@@ -5,6 +5,7 @@ struct LessonCard: View {
     let lesson: Lesson
     let index: Int
     let isUnlocked: Bool
+    var onStartLesson: (Lesson) -> Void
     
     var body: some View {
         Button {
@@ -78,16 +79,31 @@ struct LessonCard: View {
             .shadow(color: Color.black.opacity(isUnlocked ? 0.1 : 0.05), radius: 3, x: 0, y: 2) // Slightly less transparent for locked cards
         }
         .buttonStyle(PlainButtonStyle())
+        .disabled(!isUnlocked)
         .sheet(isPresented: $showPreview) {
-            LessonPreviewSheet(lesson: lesson, isPresented: $showPreview)
+            LessonPreviewSheet(
+                lesson: lesson,
+                isPresented: $showPreview,
+                onStartLesson: onStartLesson
+            )
         }
     }
 }
 
 #Preview {
     VStack {
-        LessonCard(lesson: LessonData.binaryCommunicationLesson, index: 1, isUnlocked: true)
-        LessonCard(lesson: LessonData.arraysAndListsLesson, index: 2, isUnlocked: false)
+        LessonCard(
+            lesson: LessonData.binaryCommunicationLesson,
+            index: 1,
+            isUnlocked: true,
+            onStartLesson: { _ in /* Preview only */ }
+        )
+        LessonCard(
+            lesson: LessonData.arraysAndListsLesson,
+            index: 2,
+            isUnlocked: false,
+            onStartLesson: { _ in /* Preview only */ }
+        )
     }
     .padding()
     .background(Color.backgroundApp)
