@@ -43,7 +43,7 @@ struct SideMenu: View {
                 )
                 
                 MenuItem(
-                    title: "Chat Assistant",
+                    title: "AI Tutor",
                     icon: "message",
                     isSelected: selectedTab == 2,
                     action: { selectTab(2) }

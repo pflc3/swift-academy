@@ -10,40 +10,44 @@ struct ContentView: View {
             /*
              * Main Content Container
              */
-            
-            VStack {
+            VStack(spacing: 0) {
                 // Custom Navigation Bar
                 CustomNavBar(
                     title: title,
                     showMenu: $showMenu
                 )
                 
-                // Main Content Area
-                TabView(selection: $selectedTab) {
-                    // Home Tab
-                    NavigationView {
-                        HomeView()
+                // Custom tab content
+                ZStack {
+                    // Only show the selected view
+                    if selectedTab == 1 {
+                        NavigationView {
+                            HomeView()
+                        }
+                        .transition(.opacity)
                     }
-                    .tag(1)
                     
-                    // Chat Tab
-                    NavigationView {
-                        ChatBotView()
+                    if selectedTab == 2 {
+                        NavigationView {
+                            ChatBotView()
+                        }
+                        .transition(.opacity)
                     }
-                    .tag(2)
                     
-                    // Profile Tab
-                    NavigationView {
-                        ProfileView()
+                    if selectedTab == 3 {
+                        NavigationView {
+                            ProfileView()
+                        }
+                        .transition(.opacity)
                     }
-                    .tag(3)
                 }
-                .animation(.easeInOut, value: selectedTab) // Keep animation for tab changes
+                .animation(.easeInOut, value: selectedTab)
             }
             .background(Color.backgroundApp)
+            .edgesIgnoringSafeArea(.bottom)
 
             /*
-             * Main Content Container
+             * Menu Overlay
              */
 
             // Dark overlay when menu is open
@@ -67,7 +71,7 @@ struct ContentView: View {
             .offset(x: showMenu ? 0 : -280)
             .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showMenu)
         }
-        .edgesIgnoringSafeArea(.bottom)
+        .ignoresSafeArea(.all, edges: .bottom)
     }
     
     // Dynamic title based on selected tab
@@ -76,7 +80,7 @@ struct ContentView: View {
         case 1:
             return "Learning Path"
         case 2:
-            return "Gcode Helper"
+            return "AI Tutor"
         case 3:
             return "My Profile"
         default:
