@@ -7,7 +7,7 @@ struct LessonConnectorLine: View {
     var body: some View {
         // Diagonal line connecting lessons
         Rectangle()
-            .fill(isUnlocked ? Color.primaryApp : Color.dividerApp)
+            .fill(isUnlocked ? Color.primaryApp : Color(.systemGray4))
             .frame(width: 3, height: 180) // Consistent height
             .offset(y: 60) // Position it lower to connect cards
             .rotationEffect(Angle(degrees: isEven ? 45 : -45)) // Consistent angle

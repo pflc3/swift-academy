@@ -75,11 +75,9 @@ struct LessonCard: View {
                             .stroke(isUnlocked ? Color.clear : Color.dividerApp, lineWidth: 1.5)
                     )
             )
-            .shadow(color: Color.black.opacity(isUnlocked ? 0.1 : 0.05), radius: 3, x: 0, y: 2)
-            .opacity(isUnlocked ? 1.0 : 0.9) // Slightly less transparent for locked cards
+            .shadow(color: Color.black.opacity(isUnlocked ? 0.1 : 0.05), radius: 3, x: 0, y: 2) // Slightly less transparent for locked cards
         }
         .buttonStyle(PlainButtonStyle())
-        .disabled(!isUnlocked)
         .sheet(isPresented: $showPreview) {
             LessonPreviewSheet(lesson: lesson, isPresented: $showPreview)
         }

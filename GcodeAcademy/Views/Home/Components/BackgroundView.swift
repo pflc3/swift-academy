@@ -6,7 +6,7 @@ struct BackgroundView: View {
     // Using SF Symbols that are thematic for coding/learning
     let backgroundSymbols = [
         "swift", "curlybraces", "terminal", "chevron.left.forwardslash.chevron.right",
-        "desktopcomputer", "function", "flowchart", "slider.horizontal.3"
+        "desktopcomputer","server.rack"
     ]
     
     var body: some View {
@@ -37,7 +37,7 @@ struct BackgroundSymbol: View {
     
     var body: some View {
         Image(systemName: symbolName)
-            .font(.system(size: 60))
+            .font(.system(size: 50))
             .foregroundColor(Color.primaryApp.opacity(0.12))
             .frame(width: 70, height: 70)
             .padding(10)
