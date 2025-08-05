@@ -3,11 +3,12 @@ import Foundation
 struct Lesson: Identifiable {
     var id = UUID()
     var title: String
+    var shortTitle: String
     var description: String
     
     // Metadata
     var difficulty: String = "Beginner"
-    var duration: String = "20 minutes"
+    var duration: Int = 20
     
     // Content
     var videoID: String? = nil
