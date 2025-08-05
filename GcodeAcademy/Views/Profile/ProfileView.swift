@@ -14,11 +14,9 @@ struct ProfileView: View {
                     ProfileStatsSection(user: user)
                     ProfileAchievementsSection(user: user)
                     ProfileInfoSection()
-                    
                 }
-                .background(Color.backgroundApp)
-                .padding(.bottom, 20)
             }
+            .background(Color.backgroundApp)
             .toolbar {
                 // Edit button in the navigation bar
                 ToolbarItem(placement: .topBarTrailing) {
