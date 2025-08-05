@@ -3,7 +3,7 @@ import Foundation
 struct MockData {
     // Sample detailed lesson on binary communication
     static let binaryCommunicationLesson = Lesson(
-        title: "Understanding Binary Communication",
+        title: "Binary Communication",
         description: "Learn how computers communicate using binary code and how binary digits represent information.",
         difficulty: "Beginner",
         duration: "25 minutes",
