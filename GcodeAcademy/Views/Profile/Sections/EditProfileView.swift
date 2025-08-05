@@ -30,7 +30,7 @@ struct EditProfileView: View {
                             .foregroundColor(.textSecondaryApp)
                         
                         TextField("Enter your name", text: $name)
-                            .padding(.vertical, 8)
+                            .padding(.vertical, 6)
                     }
                     
                     //Big field - multiline
@@ -41,9 +41,7 @@ struct EditProfileView: View {
                         
                         TextEditor(text: $bio)
                             .frame(minHeight: 100)
-                            .padding(4)
-                            .background(Color.surfaceApp)
-                            .cornerRadius(8)
+                            .padding(.vertical, 6)
                     }
                 } header: {
                     Text("Profile Information")
