@@ -7,7 +7,7 @@ struct MockData {
         description: "Learn how computers communicate using binary code and how binary digits represent information.",
         difficulty: "Beginner",
         duration: "25 minutes",
-        videoID: "zDNaUi2cjv4",  // YouTube video ID for an educational video about binary
+        videoID: "k68-cStI1ok",
         slidesURL: "https://docs.google.com/presentation/d/1mGTJNUocYB3rweKax4Id0PYb1tHGyAgT3rel3P5eB_8/edit?usp=sharing",
         
         // Learning objectives for this lesson
@@ -169,31 +169,37 @@ struct MockData {
             unlocked: true
         ),
         Achievement(
-            name: "Swift Beginner",
-            description: "Complete the Swift fundamentals module",
-            icon: "swift",
+            name: "Code Explorer",
+            description: "Write your first Swift code",
+            icon: "keyboard",
             unlocked: true
         ),
         Achievement(
-            name: "UI Builder",  // Fixed typo in name
-            description: "Create your first SwiftUI interface",
-            icon: "rectangle.3.group",
+            name: "Swift Beginner",
+            description: "Complete the Swift fundamentals module",
+            icon: "swift",
             unlocked: false
         ),
         Achievement(
+            name: "UI Builder",
+            description: "Create your first SwiftUI interface",
+            icon: "rectangle.3.group",
+            unlocked: false
+        )
+        /* Achievement(
             name: "Code Master",
             description: "Complete all lessons",
             icon: "trophy.fill",
             unlocked: false
-        )
+        ) */
     ]
     
     // Sample user
     static let currentUser = User(
         name: "Ada Lovelace",
-        bio: "High school beginner learning iOS development with Swift",  // Fixed spelling of "beginner"
+        bio: "High school beginner learning iOS development with Swift",
         lessonsCompleted: 2,
-        totalLessons: 4,
+        totalLessons: 8,
         achievements: achievements
     )
 }
