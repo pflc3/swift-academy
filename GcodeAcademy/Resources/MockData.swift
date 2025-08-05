@@ -1,13 +1,14 @@
 import Foundation
+
 let lessons = [
     MockData.binaryCommunicationLesson,
     MockData.swiftDataTypesLesson,
+    MockData.arraysAndListsLesson,
+    MockData.functionsLesson,
     MockData.binaryCommunicationLesson,
     MockData.swiftDataTypesLesson,
-    MockData.binaryCommunicationLesson,
-    MockData.swiftDataTypesLesson,
-    MockData.binaryCommunicationLesson,
-    MockData.swiftDataTypesLesson
+    MockData.arraysAndListsLesson,
+    MockData.functionsLesson
 ]
 
 struct MockData {
@@ -27,7 +28,7 @@ struct MockData {
             Lesson.LessonGoal(description: "Learn how to convert between binary and decimal numbers"),
             Lesson.LessonGoal(description: "Discover how text is encoded using binary")
         ],
-        
+
         // Main educational content divided into sections (some with or without code examples)
         contentSections: [
             Lesson.ContentSection(
