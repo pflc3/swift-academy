@@ -2,11 +2,12 @@ import SwiftUI
 
 struct LearningPathSection: View {
     let lessons: [Lesson]
+    let user: User
     
-    // This would come from user progress in a real implementation
+    // Determine unlocked lessons based on user progress
+    // Current lesson (next one to complete) is also unlocked
     var unlockedCount: Int {
-        // For demo, first 6 lessons are unlocked
-        return min(6, lessons.count-1)
+        return min(user.lessonsCompleted + 1, lessons.count)
     }
     
     var body: some View {
@@ -57,10 +58,13 @@ struct LearningPathSection: View {
 #Preview {
     Spacer()
         .frame(height: 180)
-    LearningPathSection(lessons: [
-        LessonData.binaryCommunicationLesson,
-        LessonData.swiftDataTypesLesson,
-        LessonData.binaryCommunicationLesson,
-        LessonData.swiftDataTypesLesson,
-    ])
+    LearningPathSection(
+        lessons: [
+            LessonData.binaryCommunicationLesson,
+            LessonData.swiftDataTypesLesson,
+            LessonData.binaryCommunicationLesson,
+            LessonData.swiftDataTypesLesson,
+        ],
+        user: MockData.currentUser
+    )
 }

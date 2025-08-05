@@ -15,8 +15,11 @@ struct HomeView: View {
                         .padding(.top, 25)
                     
                     // Learning path view
-                    LearningPathSection(lessons: LessonData.allLessons)
-                        .padding(.top, 75)
+                    LearningPathSection(
+                        lessons: LessonData.allLessons,
+                        user: user
+                    )
+                    .padding(.top, 75)
                 }
             }
         }
@@ -25,16 +28,10 @@ struct HomeView: View {
     
     // Keep student's background length calculation
     private func backgroundLength(for lessonCount: Int) -> Int {
-        let estimatedFill = Int(UIScreen.main.bounds.height / 90) + 2
-        print(UIScreen.main.bounds.height)
-        print(estimatedFill)
         return max(lessonCount, (135*lessonCount+100)/50)
-        
     }
 }
 
 #Preview {
     HomeView()
 }
-
-
