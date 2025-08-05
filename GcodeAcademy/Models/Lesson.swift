@@ -7,7 +7,7 @@ struct Lesson: Identifiable {
     var description: String
     
     // Metadata
-    var difficulty: String = "Beginner"
+    var difficulty: Difficulty
     var duration: Int = 20
     
     // Content
@@ -46,4 +46,12 @@ extension Lesson {
         var description: String
         var url: String
     }
+}
+
+// Using cases prevent typos and allow sorting/filtering
+enum Difficulty: String, CaseIterable, Codable {
+    case beginner = "Beginner"
+    case intermediate = "Intermediate"
+    case advanced = "Advanced"
+    case challenging = "Challenging"
 }

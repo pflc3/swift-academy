@@ -61,7 +61,7 @@ struct LessonResourcesSection: View {
 // Preview with mock data
 #Preview {
     LessonResourcesSection(
-        resources: MockData.binaryCommunicationLesson.resources,
+        resources: LessonData.binaryCommunicationLesson.resources,
         showingResourceLinks: .constant(true)
     )
     .padding()

@@ -85,7 +85,7 @@ struct LessonPreviewSheet: View {
 
 #Preview {
     LessonPreviewSheet(
-        lesson: MockData.binaryCommunicationLesson,
+        lesson: LessonData.binaryCommunicationLesson,
         isPresented: .constant(true)
     )
 }

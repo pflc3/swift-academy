@@ -46,7 +46,7 @@ struct LessonCard: View {
                 // Lesson metadata
                 HStack {
                     // Difficulty tag
-                    Text(lesson.difficulty)
+                    Text(lesson.difficulty.rawValue)
                         .font(.caption)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
@@ -86,8 +86,8 @@ struct LessonCard: View {
 
 #Preview {
     VStack {
-        LessonCard(lesson: MockData.binaryCommunicationLesson, index: 1, isUnlocked: true)
-        LessonCard(lesson: MockData.swiftDataTypesLesson, index: 2, isUnlocked: false)
+        LessonCard(lesson: LessonData.binaryCommunicationLesson, index: 1, isUnlocked: true)
+        LessonCard(lesson: LessonData.arraysAndListsLesson, index: 2, isUnlocked: false)
     }
     .padding()
     .background(Color.backgroundApp)

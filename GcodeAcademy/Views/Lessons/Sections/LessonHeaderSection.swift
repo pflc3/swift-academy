@@ -14,7 +14,7 @@ struct LessonHeaderSection: View {
             // Difficulty and duration info
             HStack(spacing: 16) {
                 Label {
-                    Text(lesson.difficulty)
+                    Text(lesson.difficulty.rawValue)
                         .font(.caption)
                         .foregroundColor(.textSecondaryApp)
                 } icon: {
@@ -50,7 +50,7 @@ struct LessonHeaderSection: View {
 
 #Preview {
     LessonHeaderSection(
-        lesson: MockData.binaryCommunicationLesson,
+        lesson: LessonData.binaryCommunicationLesson,
         progressPercentage: 0.35
     )
     .padding()

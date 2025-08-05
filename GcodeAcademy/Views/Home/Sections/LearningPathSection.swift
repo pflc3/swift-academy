@@ -58,9 +58,9 @@ struct LearningPathSection: View {
     Spacer()
         .frame(height: 180)
     LearningPathSection(lessons: [
-        MockData.binaryCommunicationLesson,
-        MockData.swiftDataTypesLesson,
-        MockData.binaryCommunicationLesson,
-        MockData.swiftDataTypesLesson,
+        LessonData.binaryCommunicationLesson,
+        LessonData.swiftDataTypesLesson,
+        LessonData.binaryCommunicationLesson,
+        LessonData.swiftDataTypesLesson,
     ])
 }

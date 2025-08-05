@@ -108,6 +108,6 @@ struct LessonDetailView: View {
 // Update the preview to pass a lesson
 #Preview {
     NavigationStack {
-        LessonDetailView(lesson: MockData.swiftDataTypesLesson)
+        LessonDetailView(lesson: LessonData.swiftDataTypesLesson)
     }
 }

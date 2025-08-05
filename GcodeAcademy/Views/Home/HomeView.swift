@@ -8,14 +8,14 @@ struct HomeView: View {
         ScrollView {
             ZStack(alignment: .top) {
                 // Keep student's background with floating icons
-                BackgroundView(length: backgroundLength(for: lessons.count))
+                BackgroundView(length: backgroundLength(for: LessonData.allLessons.count))
 
                 VStack {
-                    HomeHeaderSection(user: user, lessons: lessons)
+                    HomeHeaderSection(user: user, lessons: LessonData.allLessons)
                         .padding(.top, 25)
                     
                     // Learning path view
-                    LearningPathSection(lessons: lessons)
+                    LearningPathSection(lessons: LessonData.allLessons)
                         .padding(.top, 75)
                 }
             }

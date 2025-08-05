@@ -76,7 +76,7 @@ struct LessonQuestionsSection: View {
 // Preview
 #Preview {
     LessonQuestionsSection(
-        questions: MockData.binaryCommunicationLesson.questions,
+        questions: LessonData.binaryCommunicationLesson.questions,
         selectedQuestionIndex: .constant(nil)
     )
     .padding()

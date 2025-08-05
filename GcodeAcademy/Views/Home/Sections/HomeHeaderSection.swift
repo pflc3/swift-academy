@@ -37,5 +37,5 @@ struct HomeHeaderSection: View {
 }
 
 #Preview {
-    HomeHeaderSection(user: MockData.currentUser, lessons: lessons)
+    HomeHeaderSection(user: MockData.currentUser, lessons: LessonData.allLessons)
 }
