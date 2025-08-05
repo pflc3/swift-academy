@@ -4,25 +4,31 @@ struct ProfileView: View {
     // State variables to track user data and edit profile sheet visibility
     @State private var user = MockData.currentUser
     @State private var showingEditProfile = false
-    
+
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 16){
-                    // Use the modular components instead of inline implementations
-                    ProfileHeaderSection(user: user)
-                    ProfileStatsSection(user: user)
-                    ProfileAchievementsSection(user: user)
-                    ProfileInfoSection()
-                    
+            ZStack(alignment: .top) {
+                // Gray background on ScrollView
+                ScrollView {
+                    VStack(spacing: 16) {
+                        ProfileHeaderSection(user: user)
+                        ProfileStatsSection(user: user)
+                        ProfileAchievementsSection(user: user)
+                        ProfileInfoSection()
+                    }
+                    .frame(maxWidth: .infinity)
                 }
                 .background(Color.backgroundApp)
-                .padding(.bottom, 20)
+
+                // Overlay white background under toolbar
+                Color.white
+                    .frame(height: 100)
+                    .edgesIgnoringSafeArea(.top)
             }
             .toolbar {
                 // Edit button in the navigation bar
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: { showingEditProfile = true}) {
+                    Button(action: { showingEditProfile = true }) {
                         Image(systemName: "pencil")
                             .font(.system(size:10))
                             .foregroundColor(Color.primaryApp)
