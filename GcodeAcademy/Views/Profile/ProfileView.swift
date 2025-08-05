@@ -6,43 +6,23 @@ struct ProfileView: View {
     @State private var showingEditProfile = false
 
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .top) {
-                // Gray background on ScrollView
-                ScrollView {
-                    VStack(spacing: 16) {
-                        ProfileHeaderSection(user: user)
-                        ProfileStatsSection(user: user)
-                        ProfileAchievementsSection(user: user)
-                        ProfileInfoSection()
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                .background(Color.backgroundApp)
-
-                // Overlay white background under toolbar
-                Color.white
-                    .frame(height: 100)
-                    .edgesIgnoringSafeArea(.top)
+        ScrollView {
+            VStack(spacing: 0) {
+                // Pass the binding to the header
+                ProfileHeaderSection(
+                    user: user,
+                    showingEditProfile: $showingEditProfile
+                )
+                
+                ProfileStatsSection(user: user)
+                ProfileAchievementsSection(user: user)
+                ProfileFooterSection()
             }
-            .toolbar {
-                // Edit button in the navigation bar
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: { showingEditProfile = true }) {
-                        Image(systemName: "pencil")
-                            .font(.system(size:10))
-                            .foregroundColor(Color.primaryApp)
-                            .frame(width: 36, height: 36)
-                            .background(
-                                Circle()
-                                    .fill(Color.surfaceApp)
-                            )
-                    }
-                }
-            }
-            .sheet(isPresented: $showingEditProfile) {
-                EditProfileView(user: $user)
-            }
+            .background(Color.backgroundApp)
+        }
+        .edgesIgnoringSafeArea(.bottom)
+        .sheet(isPresented: $showingEditProfile) {
+            EditProfileView(user: $user)
         }
     }
 }

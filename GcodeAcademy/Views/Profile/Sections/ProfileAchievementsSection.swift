@@ -25,6 +25,8 @@ struct ProfileAchievementsSection: View {
         .cornerRadius(16)
         .shadow(color: Color.black.opacity(0.03), radius: 3, x: 0, y: 1)
         .padding(.horizontal, 16)
+        .padding(.top, 8)
+        .padding(.bottom, 16)
     }
     
     /*
