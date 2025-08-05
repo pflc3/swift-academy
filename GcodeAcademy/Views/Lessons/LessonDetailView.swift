@@ -1,14 +1,19 @@
 import SwiftUI
 
-// This view pulls together all the modular components to display a full lesson page
 struct LessonDetailView: View {
-    // Holds the current lesson data (replace with real model in future)
-    @State private var lesson = MockData.swiftDataTypesLesson
+    // Holds the current lesson data
+    @State private var lesson: Lesson
     @State private var isVideoWatched = false
     @State private var completedGoals: Set<UUID> = []
     @State private var showingSlides = false
     @State private var selectedQuestionIndex: Int? = nil
     @State private var showingResourceLinks = false
+    
+    // Initialize with a lesson parameter
+    init(lesson: Lesson) {
+        // Initialize the @State property
+        _lesson = State(initialValue: lesson)
+    }
     
     var body: some View {
         ScrollView {
@@ -31,7 +36,7 @@ struct LessonDetailView: View {
                     completedGoals: $completedGoals
                 )
                 
-                // Explanations, examples, and codr
+                // Explanations, examples, and code
                 LessonContentSection(
                     contentSections: lesson.contentSections
                 )
@@ -96,12 +101,13 @@ struct LessonDetailView: View {
     
     private func navigateToNextLesson() {
         // TODO: Add logic for navigating forward
-        print("Navigating to previous lesson")
+        print("Navigating to next lesson")
     }
 }
 
+// Update the preview to pass a lesson
 #Preview {
     NavigationStack {
-        LessonDetailView()
+        LessonDetailView(lesson: MockData.swiftDataTypesLesson)
     }
 }

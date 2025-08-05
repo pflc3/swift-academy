@@ -11,8 +11,6 @@ struct HomeView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    // Header
-                    
                     // Diagonal learning path
                     // We'll repeat our two lessons multiple times to simulate content
                     ForEach(0..<8) { index in
@@ -73,7 +71,7 @@ struct HomeView: View {
     // Simplified lesson card component
     @ViewBuilder
     func simpleLessonCard(lesson: Lesson, index: Int, isCompleted: Bool) -> some View {
-        NavigationLink(destination: LessonDetailView()) {
+        NavigationLink(destination: LessonDetailView(lesson: lesson)) {
             VStack(alignment: .leading, spacing: 10) {
                 // Lesson number and completion status
                 HStack {
