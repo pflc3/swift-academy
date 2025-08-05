@@ -7,8 +7,7 @@ struct ProfileFooterSection: View {
             .font(.caption)
             .foregroundColor(.textTertiaryApp)
         .frame(maxWidth: .infinity)
-        .padding(.top, 8)
-        .padding(.bottom, 24)
+        .padding(8)
         .background(Color.backgroundApp)
     }
 }

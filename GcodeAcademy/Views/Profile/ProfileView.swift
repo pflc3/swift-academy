@@ -7,7 +7,7 @@ struct ProfileView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
+            VStack(spacing: 16) {
                 // Pass the binding to the header
                 ProfileHeaderSection(
                     user: user,
@@ -17,6 +17,8 @@ struct ProfileView: View {
                 ProfileStatsSection(user: user)
                 ProfileAchievementsSection(user: user)
                 ProfileFooterSection()
+                
+                Spacer(minLength: 16)
             }
             .background(Color.backgroundApp)
         }
