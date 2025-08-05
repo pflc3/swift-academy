@@ -42,6 +42,7 @@ extension Color {
 /* Typography - Defines standard text styles for consistency */
 extension Font {
     static let titleLarge = Font.system(size: 28, weight: .bold)
+    static let titleExtraM = Font.system(size: 25, weight: .semibold)
     static let titleMedium = Font.system(size: 22, weight: .semibold)
     static let titleSmall = Font.system(size: 20, weight: .semibold)
     
