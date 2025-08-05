@@ -4,20 +4,13 @@ struct HomeView: View {
     // Sample lessons (in a real app, this would come from a data model)
     let lessons = [
         MockData.binaryCommunicationLesson,
-        MockData.binaryCommunicationLesson
+        MockData.swiftDataTypesLesson
     ]
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    // Header
-                    Text("Your Learning Path")
-                        .font(.titleLarge)
-                        .foregroundColor(.textPrimaryApp)
-                        .padding(.top, 20)
-                        .padding(.bottom, 30)
-                    
                     // Diagonal learning path
                     // We'll repeat our two lessons multiple times to simulate content
                     ForEach(0..<8) { index in
@@ -72,14 +65,13 @@ struct HomeView: View {
                 }
                 .padding(.horizontal)
             }
-            .navigationTitle("Gcode Academy")
         }
     }
     
     // Simplified lesson card component
     @ViewBuilder
     func simpleLessonCard(lesson: Lesson, index: Int, isCompleted: Bool) -> some View {
-        NavigationLink(destination: LessonDetailView()) {
+        NavigationLink(destination: LessonDetailView(lesson: lesson)) {
             VStack(alignment: .leading, spacing: 10) {
                 // Lesson number and completion status
                 HStack {

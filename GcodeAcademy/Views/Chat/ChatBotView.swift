@@ -14,7 +14,6 @@ struct ChatBotView: View {
                 isLoading: $chatManager.isLoading,
                 onSendMessage: chatManager.sendMessage
             )
-            .navigationTitle("Gcode Helper")
         }
     }
 }
