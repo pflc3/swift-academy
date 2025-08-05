@@ -1,10 +1,3 @@
-//
-//  LessonHeader.swift
-//  GcodeAcademy
-//
-//  Created by Joshua Fineboy-Mark on 8/5/25.
-//
-
 import SwiftUI
 
 struct LessonHeader: View {
