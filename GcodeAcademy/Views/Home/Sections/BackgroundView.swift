@@ -19,7 +19,7 @@ struct BackgroundView: View {
                 ForEach(0..<length, id: \.self) { i in
                     BackgroundSymbol(
                         symbolName: backgroundSymbols[i % backgroundSymbols.count],
-                        offsetX: i.isMultiple(of: 2) ? 128 : -120
+                        offsetX: i.isMultiple(of: 2) ? -120 : 128
                     )
                 }
                 Spacer()
@@ -33,23 +33,13 @@ struct BackgroundSymbol: View {
     var symbolName: String
     var offsetX: CGFloat
     
-    @State private var floatOffset: CGFloat = 0
-    
     var body: some View {
         Image(systemName: symbolName)
             .font(.system(size: 50))
             .foregroundColor(Color.primaryApp.opacity(0.12))
             .frame(width: 70, height: 70)
             .padding(10)
-            .offset(x: offsetX, y: floatOffset)
-            .onAppear {
-                withAnimation(
-                    .easeInOut(duration: Double.random(in: 3.0...4.5))
-                        .repeatForever(autoreverses: true)
-                ) {
-                    floatOffset = CGFloat.random(in: -6...6)
-                }
-            }
+            .offset(x: offsetX, y: -10)
     }
 }
 
