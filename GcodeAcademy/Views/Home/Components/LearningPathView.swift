@@ -5,30 +5,29 @@ struct LearningPathView: View {
     
     // This would come from user progress in a real implementation
     var unlockedCount: Int {
-        return min(3, lessons.count) // For demo, first 3 lessons are unlocked
+        // For demo, first 6 lessons are unlocked
+        return min(6, lessons.count-1)
     }
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 60) // Space for the header
-            
             ForEach(lessons.indices, id: \.self) { index in
                 let lesson = lessons[index]
                 let isEven = index % 2 == 0
                 let isLast = index == lessons.count - 1
+                let secondToLast = index == lessons.count - 2
                 let isUnlocked = index < unlockedCount
                 
                 ZStack {
-                    // Keep their diagonal connector line implementation
+                    // Only draw connector if it's not the last lesson
                     if !isLast {
                         LessonConnectorLine(
                             isEven: isEven,
-                            isUnlocked: isUnlocked,
-                            isFirst: index == 0
+                            isUnlocked: isUnlocked && index+1 < unlockedCount // Only color the connector if the next lesson is also unlocked
                         )
                     }
                     
-                    // Keep their lesson positioning
+                    // Position cards on alternating sides
                     LessonCard(
                         lesson: lesson,
                         index: index + 1,
@@ -36,21 +35,31 @@ struct LearningPathView: View {
                     )
                     .offset(
                         x: isEven ? 70 : -70,
-                        y: index == 0 ? 0 : -90
+                        y: -75
                     )
                 }
+                
+                if secondToLast {
+                    // Add extra space after second to last card
+                    Spacer()
+                        .frame(height: 70)
+                } else if !isLast {
+                    // Add space after each card, except last
+                    Spacer()
+                        .frame(height: 60)
+                }
             }
-            
-            Spacer(minLength: 40)
         }
     }
 }
 
 #Preview {
+    Spacer()
+        .frame(height: 180)
     LearningPathView(lessons: [
         MockData.binaryCommunicationLesson,
         MockData.swiftDataTypesLesson,
         MockData.binaryCommunicationLesson,
-        MockData.swiftDataTypesLesson
+        MockData.swiftDataTypesLesson,
     ])
 }

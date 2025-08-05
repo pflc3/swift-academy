@@ -11,7 +11,7 @@ struct HomeView: View {
     var allLessons: [Lesson] {
         var result: [Lesson] = []
         // Repeat lessons to have 8 total for demonstration
-        for i in 0..<4 {
+        for i in 0..<8 {
             result.append(lessons[i % 2])
         }
         return result
@@ -58,7 +58,7 @@ struct HomeView: View {
                     
                     // Learning path view - keep the zigzag pattern
                     LearningPathView(lessons: allLessons)
-                        .padding(.top, 20)
+                        .padding(.top, 75)
                 }
             }
         }

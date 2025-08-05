@@ -3,25 +3,23 @@ import SwiftUI
 struct LessonConnectorLine: View {
     var isEven: Bool
     var isUnlocked: Bool
-    var isFirst: Bool
     
     var body: some View {
+        // Diagonal line connecting lessons
         Rectangle()
             .fill(isUnlocked ? Color.primaryApp : Color.dividerApp)
-            .frame(width: 3, height: isFirst ? 180 : 195)
-            .offset(
-                x: isEven ? (isFirst ? 30 : -1) : 1,
-                y: isFirst ? 30 : 15
-            )
-            .rotationEffect(Angle(degrees: isEven ? (isFirst ? 45 : 40) : -40))
+            .frame(width: 3, height: 180) // Consistent height
+            .offset(y: 60) // Position it lower to connect cards
+            .rotationEffect(Angle(degrees: isEven ? 45 : -45)) // Consistent angle
     }
 }
 
 #Preview {
     VStack {
-        LessonConnectorLine(isEven: true, isUnlocked: true, isFirst: true)
-        LessonConnectorLine(isEven: false, isUnlocked: false, isFirst: false)
+        LessonConnectorLine(isEven: true, isUnlocked: true)
+        LessonConnectorLine(isEven: false, isUnlocked: true)
+        LessonConnectorLine(isEven: true, isUnlocked: false)
     }
-    .frame(width: 300, height: 500)
+    .frame(width: 500, height: 1000)
     .background(Color.backgroundApp)
 }
