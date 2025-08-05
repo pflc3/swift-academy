@@ -1,4 +1,14 @@
 import Foundation
+let lessons = [
+    MockData.binaryCommunicationLesson,
+    MockData.swiftDataTypesLesson,
+    MockData.binaryCommunicationLesson,
+    MockData.swiftDataTypesLesson,
+    MockData.binaryCommunicationLesson,
+    MockData.swiftDataTypesLesson,
+    MockData.binaryCommunicationLesson,
+    MockData.swiftDataTypesLesson
+]
 
 struct MockData {
     // Sample detailed lesson on binary communication
@@ -201,7 +211,7 @@ struct MockData {
         name: "Ada Lovelace",
         bio: "High school beginner learning iOS development with Swift",
         lessonsCompleted: 2,
-        totalLessons: 8,
+        totalLessons: lessons.count,
         achievements: achievements
     )
 }

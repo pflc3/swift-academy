@@ -6,13 +6,11 @@
 //
 
 import SwiftUI
-let lessons = [
-    MockData.binaryCommunicationLesson,
-    MockData.swiftDataTypesLesson
-]
+
 struct LessonHeader: View {
-    var user:User
+    var user: User
     var Lessons: [Lesson]
+    
     var body: some View {
         VStack(spacing: 0) {
             // Simple welcome section (not a full header since we have one in ContentView)
@@ -26,13 +24,13 @@ struct LessonHeader: View {
                     
                     Spacer()
                     
-                    Text("\((user.lessonsCompleted/Lessons.count)*100)%")
+                    Text("\(Int((Float(user.lessonsCompleted) / Float(Lessons.count)) * 100))%")
                         .font(.bodyMedium.bold())
                         .foregroundColor(.primaryApp)
                 }
                 
-                // Progress bar
-                ProgressView(value: Float(user.lessonsCompleted/Lessons.count))
+                // Corrected Progress bar
+                ProgressView(value: Float(user.lessonsCompleted) / Float(Lessons.count))
                     .tint(Color.primaryApp)
                     .padding(.bottom, 8)
             }
