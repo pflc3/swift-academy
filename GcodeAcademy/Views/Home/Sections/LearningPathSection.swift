@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct LearningPathView: View {
+struct LearningPathSection: View {
     let lessons: [Lesson]
     
     // This would come from user progress in a real implementation
@@ -57,7 +57,7 @@ struct LearningPathView: View {
 #Preview {
     Spacer()
         .frame(height: 180)
-    LearningPathView(lessons: [
+    LearningPathSection(lessons: [
         MockData.binaryCommunicationLesson,
         MockData.swiftDataTypesLesson,
         MockData.binaryCommunicationLesson,

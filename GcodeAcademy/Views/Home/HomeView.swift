@@ -1,15 +1,22 @@
 import SwiftUI
 
 struct HomeView: View {
+    // State variables to track user data
+    @State private var user = MockData.currentUser
 
     var body: some View {
         ScrollView {
             ZStack {
                 // Keep student's background with floating icons
                 BackgroundView(length: backgroundLength(for: lessons.count))
-                    .ignoresSafeArea()
-                
-                LessonHeader(user: MockData.currentUser, Lessons: lessons)
+
+                VStack {
+                    HomeHeaderSection(user: user, lessons: lessons)
+                    
+                    // Learning path view
+                    LearningPathSection(lessons: lessons)
+                        .padding(.top, 65)
+                }
             }
         }
         .background(Color.backgroundApp)
