@@ -33,7 +33,7 @@ struct HomeView: View {
                         
                         // Simple progress indicator
                         HStack {
-                            Text("2/\(allLessons.count) lessons completed")
+                            Text("\(allLessons.count)/\(allLessons.count) lessons completed")
                                 .font(.bodyMedium)
                                 .foregroundColor(.textSecondaryApp)
                             
