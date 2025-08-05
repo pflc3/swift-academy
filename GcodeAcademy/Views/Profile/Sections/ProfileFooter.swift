@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProfileInfoSection: View {
+struct ProfileFooter: View {
     var body : some View {
         VStack(spacing: 8) {
             // App name
@@ -9,9 +9,10 @@ struct ProfileInfoSection: View {
                 .foregroundColor(.textSecondaryApp)
             
             // App version
-            Text("Version 1.0")
+            Text("@ 2025 Prime Factors Learning Lab")
                 .font(.caption)
                 .foregroundColor(.textTertiaryApp)
+        
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 8)
@@ -20,5 +21,5 @@ struct ProfileInfoSection: View {
 }
 
 #Preview {
-    ProfileInfoSection()
+    ProfileFooter()
 }
