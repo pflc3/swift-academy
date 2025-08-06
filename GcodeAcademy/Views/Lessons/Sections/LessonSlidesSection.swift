@@ -8,7 +8,7 @@ struct LessonSlidesSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Section header
-            Text("Presentation Slides")
+            Text("Presentation")
                 .font(.titleMedium)
                 .foregroundColor(.textPrimaryApp)
             
@@ -44,7 +44,7 @@ struct LessonSlidesSection: View {
         .padding(16)
         .background(Color.cardBackgroundApp)
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.03), radius: 3, x: 0, y: 1)
+        .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 1)
     }
 }
 

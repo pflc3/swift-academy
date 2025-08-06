@@ -1,7 +1,8 @@
+// LessonDetailView.swift
 import SwiftUI
 
 struct LessonDetailView: View {
-    // Holds the current lesson data
+    // State
     @State private var lesson: Lesson
     @State private var isVideoWatched = false
     @State private var completedGoals: Set<UUID> = []
@@ -9,65 +10,71 @@ struct LessonDetailView: View {
     @State private var selectedQuestionIndex: Int? = nil
     @State private var showingResourceLinks = false
     
-    // Initialize with a lesson parameter
+    // Computed properties
+    private var isLessonCompleted: Bool {
+        // Consider lesson complete if video watched and all goals checked
+        return isVideoWatched && completedGoals.count == lesson.goals.count
+    }
+    
+    // Initialization
     init(lesson: Lesson) {
-        // Initialize the @State property
         _lesson = State(initialValue: lesson)
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                // Title and description of the lesson
-                LessonHeaderSection(
-                    lesson: lesson,
-                    progressPercentage: progressPercentage
-                )
-                
-                // Video content (Youtube embed)
-                LessonVideoSection(
-                    videoID: lesson.videoID ?? "",
-                    isVideoWatched: $isVideoWatched
-                )
-                
-                // Checklist of learning goals
-                LessonGoalsSection(
-                    goals: lesson.goals,
-                    completedGoals: $completedGoals
-                )
-                
-                // Explanations, examples, and code
-                LessonContentSection(
-                    contentSections: lesson.contentSections
-                )
-                
-                // Small preview + full slides toggle
-                LessonSlidesSection(
-                    showingSlides: $showingSlides,
-                    slidesURL: lesson.slidesURL
-                )
-                
-                // Interactive multiple choice question
-                LessonQuestionsSection(
-                    questions: lesson.questions,
-                    selectedQuestionIndex: $selectedQuestionIndex
-                )
-                
-                // Optional links for further learning
-                LessonResourcesSection(
-                    resources: lesson.resources,
-                    showingResourceLinks: $showingResourceLinks
-                )
-                
-                // Navigation buttons to move between lessons
-                LessonNavControls(
-                    onPrevious: navigateToPreviousLesson,
-                    onNext: navigateToNextLesson
-                )
+        VStack(spacing: 0) {
+            // Custom top bar
+            TopBar(title: lesson.title)
+            
+            // Main content
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    // Overview section
+                    LessonHeaderSection(
+                        lesson: lesson,
+                        isCompleted: isLessonCompleted
+                    )
+                    
+                    // Video section
+                    LessonVideoSection(
+                        videoID: lesson.videoID ?? "",
+                        isVideoWatched: $isVideoWatched
+                    )
+                    
+                    // Learning goals section
+                    LessonGoalsSection(
+                        goals: lesson.goals,
+                        completedGoals: $completedGoals
+                    )
+                    
+                    // Content sections
+                    LessonContentSection(
+                        contentSections: lesson.contentSections
+                    )
+                    
+                    // Slides section
+                    LessonSlidesSection(
+                        showingSlides: $showingSlides,
+                        slidesURL: lesson.slidesURL
+                    )
+                    
+                    // Questions section
+                    LessonQuestionsSection(
+                        questions: lesson.questions,
+                        selectedQuestionIndex: $selectedQuestionIndex
+                    )
+                    
+                    // Resources section
+                    LessonResourcesSection(
+                        resources: lesson.resources,
+                        showingResourceLinks: $showingResourceLinks
+                    )
+                }
+                .padding()
             }
-            .padding()
         }
-        // Google Slides sheet shown when user taps "View All Slides"
+        .background(Color.backgroundApp)
+        .navigationBarHidden(true)
         .sheet(isPresented: $showingSlides) {
             LessonSlidesDetailView(
                 showingSlides: $showingSlides,
@@ -75,37 +82,8 @@ struct LessonDetailView: View {
             )
         }
     }
-    
-    // Calculates overall progress for this lesson
-    private var progressPercentage: Double {
-        var total = 0.0
-        
-        // Watching the video is worth 35%
-        if isVideoWatched {
-            total += 0.35
-        }
-        
-        // Completed goals is worth 65%
-        if !lesson.goals.isEmpty {
-            let goalWeight = 0.65 / Double(lesson.goals.count)
-            total += Double(completedGoals.count) * goalWeight
-        }
-        
-        return total
-    }
-    
-    private func navigateToPreviousLesson() {
-        // TODO: Add logic for navigating back
-        print("Navigating to previous lesson")
-    }
-    
-    private func navigateToNextLesson() {
-        // TODO: Add logic for navigating forward
-        print("Navigating to next lesson")
-    }
 }
 
-// Update the preview to pass a lesson
 #Preview {
     NavigationStack {
         LessonDetailView(lesson: LessonData.swiftDataTypesLesson)

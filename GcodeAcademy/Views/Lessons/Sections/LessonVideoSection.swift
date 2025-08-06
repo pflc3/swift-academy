@@ -7,13 +7,13 @@ struct LessonVideoSection: View {
         var body: some View {
             VStack(alignment: .leading, spacing: 12) {
                 // Section title
-                Text("Lesson Video")
+                Text("Video")
                     .font(.titleMedium)
                     .foregroundColor(.textPrimaryApp)
                 
                 // Embedded video player
                 YouTubePlayer(videoID: videoID)
-                    .frame(height: 220)
+                    .frame(height: 200)
                     .cornerRadius(12)
                 
                 // "Mark as watched" checkbox
@@ -33,7 +33,7 @@ struct LessonVideoSection: View {
             .padding(16)
             .background(Color.cardBackgroundApp)
             .cornerRadius(16)
-            .shadow(color: Color.black.opacity(0.03), radius: 3, x: 0, y: 1)
+            .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 1)
         }
     }
 

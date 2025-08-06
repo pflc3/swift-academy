@@ -1,18 +1,21 @@
+// LessonHeaderSection.swift
 import SwiftUI
 
 struct LessonHeaderSection: View {
     let lesson: Lesson
-    let progressPercentage: Double
+    let isCompleted: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Title
-            Text(lesson.title)
-                .font(.titleLarge)
-                .foregroundColor(.textPrimaryApp)
+        VStack(alignment: .leading, spacing: 16) {
+            // Description
+            Text(lesson.description)
+                .font(.bodyLarge)
+                .foregroundColor(.textSecondaryApp)
+                .padding(.top, 4)
             
-            // Difficulty and duration info
-            HStack(spacing: 16) {
+            // Metadata row with completion status
+            HStack(spacing: 20) {
+                // Difficulty
                 Label {
                     Text(lesson.difficulty.rawValue)
                         .font(.caption)
@@ -22,6 +25,7 @@ struct LessonHeaderSection: View {
                         .foregroundColor(.primaryApp)
                 }
                 
+                // Duration
                 Label {
                     Text("\(lesson.duration) minutes")
                         .font(.caption)
@@ -30,28 +34,35 @@ struct LessonHeaderSection: View {
                     Image(systemName: "clock")
                         .foregroundColor(.primaryApp)
                 }
+                
+                Spacer()
+                
+                // Completion status
+                HStack(spacing: 4) {
+                    Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
+                        .foregroundColor(isCompleted ? .accentApp : .textTertiaryApp)
+                    
+                    Text(isCompleted ? "Completed" : "In Progress")
+                        .font(.caption)
+                        .foregroundColor(isCompleted ? .accentApp : .textTertiaryApp)
+                }
             }
-            
-            // Description
-            Text(lesson.description)
-                .font(.bodyMedium)
-                .foregroundColor(.textSecondaryApp)
-                .padding(.top, 4)
-            
-            // Progress bar
-            ProgressView(value: progressPercentage)
-                .progressViewStyle(.linear)
-                .tint(Color.accentApp)
-                .padding(.top, 8)
         }
         .padding(.bottom, 10)
     }
 }
 
 #Preview {
-    LessonHeaderSection(
-        lesson: LessonData.binaryCommunicationLesson,
-        progressPercentage: 0.35
-    )
+    VStack {
+        LessonHeaderSection(
+            lesson: LessonData.binaryCommunicationLesson,
+            isCompleted: true
+        )
+        
+        LessonHeaderSection(
+            lesson: LessonData.swiftDataTypesLesson,
+            isCompleted: false
+        )
+    }
     .padding()
 }

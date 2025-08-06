@@ -6,17 +6,12 @@ struct LessonContentSection: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            // Section header
-            Text("Lesson content")
-                .font(.titleMedium)
-                .foregroundColor(.textPrimaryApp)
-            
             // Loop through each section in the content
             ForEach(contentSections) { section in
                 VStack(alignment: .leading, spacing: 8) {
                     // Section title
                     Text(section.title)
-                        .font(.titleSmall)
+                        .font(.titleMedium)
                         .foregroundColor(.textPrimaryApp)
                     
                     // Main lesson explanation
@@ -34,7 +29,7 @@ struct LessonContentSection: View {
         .padding(16)
         .background(Color.cardBackgroundApp)
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.03), radius: 3, x:0, y:1)
+        .shadow(color: Color.black.opacity(0.05), radius: 3, x:0, y:1)
     }
 }
 

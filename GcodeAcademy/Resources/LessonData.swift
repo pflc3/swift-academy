@@ -178,7 +178,7 @@ struct LessonData {
     )
     
     static let arraysAndListsLesson = Lesson(
-        title: "Data Structures: Arrays and Lists",
+        title: "Arrays and Lists",
         shortTitle: "Arrays & Lists",
         description: "Master the fundamentals of organizing and storing data using arrays and lists - the building blocks of programming.",
         difficulty: .intermediate,
@@ -273,7 +273,7 @@ struct LessonData {
     )
     
     static let functionsLesson = Lesson(
-        title: "Functions: Building Reusable Code",
+        title: "Functions",
         shortTitle: "Functions",
         description: "Learn to write reusable code using functions – small, organized blocks that make your programs easier to manage.",
         difficulty: .intermediate,
