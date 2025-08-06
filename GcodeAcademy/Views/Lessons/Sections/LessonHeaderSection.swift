@@ -71,8 +71,8 @@ struct LessonHeaderSection: View {
                                 .rotationEffect(.degrees(-90))
                             
                             Text("\(percent)")
-                                .font(.system(size: 10, weight: .bold))
-                                .foregroundColor(.accentApp)
+                                .font(.system(size: 10, weight: percent > 0 ? .bold : .regular))
+                                .foregroundColor(percent > 0 ? .accentApp : .textSecondaryApp)
                         }
                         
                         Text("Progress")
