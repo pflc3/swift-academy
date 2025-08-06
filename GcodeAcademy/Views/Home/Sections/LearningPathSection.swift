@@ -35,6 +35,7 @@ struct LearningPathSection: View {
                         lesson: lesson,
                         index: index + 1,
                         isUnlocked: isUnlocked,
+                        isNextLesson: index == user.lessonsCompleted,
                         onStartLesson: onStartLesson
                     )
                     .offset(

@@ -1,10 +1,19 @@
 import SwiftUI
 
+struct SolidButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
+            .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
+    }
+}
+
 struct LessonCard: View {
     @State private var showPreview = false
     let lesson: Lesson
     let index: Int
     let isUnlocked: Bool
+    let isNextLesson: Bool
     var onStartLesson: (Lesson) -> Void
     
     var body: some View {
@@ -36,6 +45,19 @@ struct LessonCard: View {
                     }
                     
                     Spacer()
+                    
+                    // Blue "Next" badge
+                    if isNextLesson {
+                        Text("Next")
+                            .font(.bodySmall)
+                            .padding(.horizontal, 7)
+                            .padding(.vertical, 3)
+                            .background(
+                                Capsule()
+                                    .fill(Color.primaryApp.opacity(0.15))
+                            )
+                            .foregroundColor(Color.primaryApp)
+                    }
                 }
                 
                 // Use the shorter title for the card display
@@ -69,15 +91,15 @@ struct LessonCard: View {
             .frame(width: 200)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(isUnlocked ? Color.cardBackgroundApp : Color.surfaceApp) // Light gray for locked cards
+                    .fill(isUnlocked ? Color.cardBackgroundApp : Color.surfaceApp)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(isUnlocked ? Color.clear : Color.dividerApp, lineWidth: 2)
                     )
             )
-            .shadow(color: Color.black.opacity(isUnlocked ? 0.1 : 0.05), radius: 3, x: 0, y: 2) // Slightly less transparent for locked cards
+            .shadow(color: Color.black.opacity(isUnlocked ? 0.1 : 0.05), radius: 3, x: 0, y: 2)
         }
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(SolidButtonStyle())
         .sheet(isPresented: $showPreview) {
             LessonPreviewSheet(
                 lesson: lesson,
@@ -99,6 +121,22 @@ struct LessonCard: View {
             lesson: LessonData.binaryLesson,
             index: 1,
             isUnlocked: true,
+            isNextLesson: false,
+            onStartLesson: { _ in /* Preview only */ }
+        )
+    }
+    
+    ZStack {
+        LessonConnectorLine(
+            isEven: false,
+            isUnlocked: true
+        )
+
+        LessonCard(
+            lesson: LessonData.binaryLesson,
+            index: 2,
+            isUnlocked: true,
+            isNextLesson: true,
             onStartLesson: { _ in /* Preview only */ }
         )
     }
@@ -106,13 +144,14 @@ struct LessonCard: View {
     ZStack {
         LessonConnectorLine(
             isEven: true,
-            isUnlocked: true
+            isUnlocked: false
         )
 
         LessonCard(
             lesson: LessonData.binaryLesson,
-            index: 2,
+            index: 3,
             isUnlocked: false,
+            isNextLesson: false,
             onStartLesson: { _ in /* Preview only */ }
         )
     }
