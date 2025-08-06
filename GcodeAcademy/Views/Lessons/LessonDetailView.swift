@@ -11,9 +11,25 @@ struct LessonDetailView: View {
     @State private var showingResourceLinks = false
     
     // Computed properties
-    private var isLessonCompleted: Bool {
-        // Consider lesson complete if video watched and all goals checked
-        return isVideoWatched && completedGoals.count == lesson.goals.count
+    
+    private var progressPercentage: Double {
+        var total = 0.0
+        if isVideoWatched {
+            total += 0.35
+        }
+        if !lesson.goals.isEmpty {
+            let goalWeight = 0.65 / Double(lesson.goals.count)
+            total += Double(completedGoals.count) * goalWeight
+        }
+        return total
+    }
+
+    private var isFirstTwoLessons: Bool {
+        let firstTwoLessonIds = [
+            LessonData.allLessons[0].id,
+            LessonData.allLessons[1].id
+        ].compactMap { $0 }
+        return firstTwoLessonIds.contains(lesson.id)
     }
     
     // Initialization
@@ -32,7 +48,7 @@ struct LessonDetailView: View {
                     // Overview section
                     LessonHeaderSection(
                         lesson: lesson,
-                        isCompleted: isLessonCompleted
+                        progressPercentage: progressPercentage
                     )
                     
                     // Video section
@@ -69,6 +85,11 @@ struct LessonDetailView: View {
                         resources: lesson.resources,
                         showingResourceLinks: $showingResourceLinks
                     )
+                    
+                    // Completion hint for first two lessons only
+                    if isFirstTwoLessons {
+                        CompletionHintView()
+                    }
                 }
                 .padding()
             }
@@ -81,6 +102,22 @@ struct LessonDetailView: View {
                 slidesURL: lesson.slidesURL
             )
         }
+    }
+}
+
+struct CompletionHintView: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "lightbulb.fill")
+                .foregroundColor(.accentApp.opacity(0.8))
+                .font(.system(size: 18))
+            
+            Text("To complete this lesson, mark the video as watched and check off all learning goals.")
+                .font(.callout)
+                .foregroundColor(.textSecondaryApp)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(16)
     }
 }
 

@@ -3,7 +3,15 @@ import SwiftUI
 
 struct LessonHeaderSection: View {
     let lesson: Lesson
-    let isCompleted: Bool
+    let progressPercentage: Double
+    
+    private var percent: Int {
+        return Int(progressPercentage * 100.0)
+    }
+    
+    private var isCompleted: Bool {
+        return percent >= 100
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -14,37 +22,64 @@ struct LessonHeaderSection: View {
                 .padding(.top, 4)
             
             // Metadata row with completion status
-            HStack(spacing: 20) {
+            HStack(spacing: 16) {
                 // Difficulty
                 Label {
                     Text(lesson.difficulty.rawValue)
-                        .font(.caption)
+                        .font(.bodySmall)
                         .foregroundColor(.textSecondaryApp)
                 } icon: {
                     Image(systemName: "chart.bar")
                         .foregroundColor(.primaryApp)
+                        .font(.system(size: 19))
                 }
                 
                 // Duration
                 Label {
                     Text("\(lesson.duration) minutes")
-                        .font(.caption)
+                        .font(.bodySmall)
                         .foregroundColor(.textSecondaryApp)
                 } icon: {
                     Image(systemName: "clock")
                         .foregroundColor(.primaryApp)
+                        .font(.system(size: 19))
                 }
                 
                 Spacer()
                 
                 // Completion status
-                HStack(spacing: 4) {
-                    Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
-                        .foregroundColor(isCompleted ? .accentApp : .textTertiaryApp)
-                    
-                    Text(isCompleted ? "Completed" : "In Progress")
-                        .font(.caption)
-                        .foregroundColor(isCompleted ? .accentApp : .textTertiaryApp)
+                HStack(spacing: 6) {
+                    if isCompleted {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.accentApp)
+                            .font(.system(size: 19))
+                        
+                        Text("Completed")
+                            .font(.bodySmall)
+                            .foregroundColor(.accentApp)
+                    } else {
+                        // Mini progress circle
+                        ZStack {
+                            Circle()
+                                .stroke(Color.dividerApp, lineWidth: 2)
+                                .frame(width: 20, height: 20)
+                            
+                            Circle()
+                                .trim(from: 0, to: CGFloat(progressPercentage))
+                                .stroke(Color.accentApp, lineWidth: 2)
+                                .frame(width: 20, height: 20)
+                                .rotationEffect(.degrees(-90))
+                            
+                            Text("\(percent)")
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundColor(.accentApp)
+                        }
+                        
+                        Text("Progress")
+                            .font(.bodySmall)
+                            .foregroundColor(.textSecondaryApp)
+                            .padding(.leading, 3)
+                    }
                 }
             }
         }
@@ -53,16 +88,22 @@ struct LessonHeaderSection: View {
 }
 
 #Preview {
-    VStack {
+    VStack(spacing: 20) {
         LessonHeaderSection(
             lesson: LessonData.binaryLesson,
-            isCompleted: true
+            progressPercentage: 0.0
         )
         
         LessonHeaderSection(
-            lesson: LessonData.dataTypesLesson,
-            isCompleted: false
+            lesson: LessonData.binaryLesson,
+            progressPercentage: 0.65
+        )
+        
+        LessonHeaderSection(
+            lesson: LessonData.binaryLesson,
+            progressPercentage: 1.0
         )
     }
     .padding()
+    .background(Color.backgroundApp)
 }
