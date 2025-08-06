@@ -71,11 +71,11 @@ struct SideMenu: View {
             HStack {
                 Spacer()
                 Text("© 2025 Prime Factors Learning Lab")
-                    .font(.caption2)
+                    .font(.caption)
                     .foregroundColor(.textTertiaryApp)
                 Spacer()
             }
-            .padding(.bottom, 20)
+            .padding(.bottom, 32)
         }
         .frame(width: 280)
         .background(Color.cardBackgroundApp)
