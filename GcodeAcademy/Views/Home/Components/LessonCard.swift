@@ -28,7 +28,7 @@ struct LessonCard: View {
                     // Number or lock indicator
                     ZStack {
                         Circle()
-                            .fill(isUnlocked ? Color.primaryApp : Color(hex: "CED4DC"))
+                            .fill(isUnlocked ? Color.primaryApp : Color(hex: "CED4DC").opacity(0.75))
                             .frame(width: 36, height: 36)
                         
                         if isUnlocked {
@@ -40,7 +40,7 @@ struct LessonCard: View {
                             // Show lock if locked
                             Image(systemName: "lock.fill")
                                 .font(.system(size: 16))
-                                .foregroundColor(.textTertiaryApp)
+                                .foregroundColor(.textTertiaryApp.opacity(0.75))
                         }
                     }
                     
@@ -63,7 +63,7 @@ struct LessonCard: View {
                 // Use the shorter title for the card display
                 Text(lesson.shortTitle)
                     .font(.bodyLarge.bold())
-                    .foregroundColor(isUnlocked ? .textPrimaryApp : .textTertiaryApp)
+                    .foregroundColor(isUnlocked ? .textPrimaryApp : .textTertiaryApp.opacity(0.75))
                     .lineLimit(1) // Ensure it stays on one line
                 
                 // Lesson metadata
@@ -75,9 +75,9 @@ struct LessonCard: View {
                         .padding(.vertical, 4)
                         .background(
                             Capsule()
-                                .fill(isUnlocked ? Color.surfaceApp : Color(hex: "CED4DC"))
+                                .fill(isUnlocked ? Color.surfaceApp : Color(hex: "CED4DC").opacity(0.75))
                         )
-                        .foregroundColor(isUnlocked ? .textSecondaryApp : .textTertiaryApp)
+                        .foregroundColor(isUnlocked ? .textSecondaryApp : .textTertiaryApp.opacity(0.75))
                     
                     Spacer()
                     
