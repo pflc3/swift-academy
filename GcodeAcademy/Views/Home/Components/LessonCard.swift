@@ -19,7 +19,7 @@ struct LessonCard: View {
                     // Number or lock indicator
                     ZStack {
                         Circle()
-                            .fill(isUnlocked ? Color.primaryApp : Color.surfaceApp)
+                            .fill(isUnlocked ? Color.primaryApp : Color(hex: "CED4DC"))
                             .frame(width: 36, height: 36)
                         
                         if isUnlocked {
@@ -31,7 +31,7 @@ struct LessonCard: View {
                             // Show lock if locked
                             Image(systemName: "lock.fill")
                                 .font(.system(size: 16))
-                                .foregroundColor(.textSecondaryApp)
+                                .foregroundColor(.textTertiaryApp)
                         }
                     }
                     
@@ -41,7 +41,7 @@ struct LessonCard: View {
                 // Use the shorter title for the card display
                 Text(lesson.shortTitle)
                     .font(.bodyLarge.bold())
-                    .foregroundColor(isUnlocked ? .textPrimaryApp : .textSecondaryApp)
+                    .foregroundColor(isUnlocked ? .textPrimaryApp : .textTertiaryApp)
                     .lineLimit(1) // Ensure it stays on one line
                 
                 // Lesson metadata
@@ -53,9 +53,9 @@ struct LessonCard: View {
                         .padding(.vertical, 4)
                         .background(
                             Capsule()
-                                .fill(Color.surfaceApp)
+                                .fill(isUnlocked ? Color.surfaceApp : Color(hex: "CED4DC"))
                         )
-                        .foregroundColor(.textSecondaryApp)
+                        .foregroundColor(isUnlocked ? .textSecondaryApp : .textTertiaryApp)
                     
                     Spacer()
                     
@@ -69,17 +69,15 @@ struct LessonCard: View {
             .frame(width: 200)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.cardBackgroundApp)
+                    .fill(isUnlocked ? Color.cardBackgroundApp : Color.surfaceApp) // Light gray for locked cards
                     .overlay(
-                        // Add a subtle border for locked cards to make them more distinguishable
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(isUnlocked ? Color.clear : Color.dividerApp, lineWidth: 1.5)
+                            .stroke(isUnlocked ? Color.clear : Color.dividerApp, lineWidth: 2)
                     )
             )
             .shadow(color: Color.black.opacity(isUnlocked ? 0.1 : 0.05), radius: 3, x: 0, y: 2) // Slightly less transparent for locked cards
         }
         .buttonStyle(PlainButtonStyle())
-        .disabled(!isUnlocked)
         .sheet(isPresented: $showPreview) {
             LessonPreviewSheet(
                 lesson: lesson,
@@ -91,20 +89,31 @@ struct LessonCard: View {
 }
 
 #Preview {
-    VStack {
+    ZStack {
+        LessonConnectorLine(
+            isEven: true,
+            isUnlocked: true
+        )
+
         LessonCard(
             lesson: LessonData.binaryLesson,
             index: 1,
             isUnlocked: true,
             onStartLesson: { _ in /* Preview only */ }
         )
+    }
+    
+    ZStack {
+        LessonConnectorLine(
+            isEven: true,
+            isUnlocked: true
+        )
+
         LessonCard(
-            lesson: LessonData.arraysListsLesson,
+            lesson: LessonData.binaryLesson,
             index: 2,
             isUnlocked: false,
             onStartLesson: { _ in /* Preview only */ }
         )
     }
-    .padding()
-    .background(Color.backgroundApp)
 }

@@ -11,7 +11,7 @@ struct HomeHeaderSection: View {
                 
                 // Simple progress indicator
                 HStack {
-                    Text("\(user.lessonsCompleted)/\(lessons.count) lessons completed")
+                    Text("\(user.lessonsCompleted)/\(lessons.count) completed")
                         .font(.bodyMedium)
                         .foregroundColor(.textSecondaryApp)
                     
