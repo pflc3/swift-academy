@@ -89,7 +89,7 @@ struct ContentView: View {
     var title: String {
         switch selectedTab {
         case 1:
-            return "Learning Path"
+            return "Swift Journey"
         case 2:
             return "AI Tutor"
         case 3:

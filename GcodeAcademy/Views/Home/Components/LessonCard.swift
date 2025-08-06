@@ -1,10 +1,19 @@
 import SwiftUI
 
+struct SolidButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
+            .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
+    }
+}
+
 struct LessonCard: View {
     @State private var showPreview = false
     let lesson: Lesson
     let index: Int
     let isUnlocked: Bool
+    let isNextLesson: Bool
     var onStartLesson: (Lesson) -> Void
     
     var body: some View {
@@ -19,7 +28,7 @@ struct LessonCard: View {
                     // Number or lock indicator
                     ZStack {
                         Circle()
-                            .fill(isUnlocked ? Color.primaryApp : Color.surfaceApp)
+                            .fill(isUnlocked ? Color.primaryApp : Color(hex: "CED4DC").opacity(0.75))
                             .frame(width: 36, height: 36)
                         
                         if isUnlocked {
@@ -31,17 +40,30 @@ struct LessonCard: View {
                             // Show lock if locked
                             Image(systemName: "lock.fill")
                                 .font(.system(size: 16))
-                                .foregroundColor(.textSecondaryApp)
+                                .foregroundColor(.textTertiaryApp.opacity(0.75))
                         }
                     }
                     
                     Spacer()
+                    
+                    // Blue "Next" badge
+                    if isNextLesson {
+                        Text("Next")
+                            .font(.bodySmall)
+                            .padding(.horizontal, 7)
+                            .padding(.vertical, 3)
+                            .background(
+                                Capsule()
+                                    .fill(Color.primaryApp.opacity(0.15))
+                            )
+                            .foregroundColor(Color.primaryApp)
+                    }
                 }
                 
                 // Use the shorter title for the card display
                 Text(lesson.shortTitle)
                     .font(.bodyLarge.bold())
-                    .foregroundColor(isUnlocked ? .textPrimaryApp : .textSecondaryApp)
+                    .foregroundColor(isUnlocked ? .textPrimaryApp : .textTertiaryApp.opacity(0.75))
                     .lineLimit(1) // Ensure it stays on one line
                 
                 // Lesson metadata
@@ -53,9 +75,9 @@ struct LessonCard: View {
                         .padding(.vertical, 4)
                         .background(
                             Capsule()
-                                .fill(Color.surfaceApp)
+                                .fill(isUnlocked ? Color.surfaceApp : Color(hex: "CED4DC").opacity(0.75))
                         )
-                        .foregroundColor(.textSecondaryApp)
+                        .foregroundColor(isUnlocked ? .textSecondaryApp : .textTertiaryApp.opacity(0.75))
                     
                     Spacer()
                     
@@ -69,17 +91,15 @@ struct LessonCard: View {
             .frame(width: 200)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.cardBackgroundApp)
+                    .fill(isUnlocked ? Color.cardBackgroundApp : Color.surfaceApp)
                     .overlay(
-                        // Add a subtle border for locked cards to make them more distinguishable
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(isUnlocked ? Color.clear : Color.dividerApp, lineWidth: 1.5)
+                            .stroke(isUnlocked ? Color.clear : Color.dividerApp, lineWidth: 2)
                     )
             )
-            .shadow(color: Color.black.opacity(isUnlocked ? 0.1 : 0.05), radius: 3, x: 0, y: 2) // Slightly less transparent for locked cards
+            .shadow(color: Color.black.opacity(isUnlocked ? 0.1 : 0.05), radius: 3, x: 0, y: 2)
         }
-        .buttonStyle(PlainButtonStyle())
-        .disabled(!isUnlocked)
+        .buttonStyle(SolidButtonStyle())
         .sheet(isPresented: $showPreview) {
             LessonPreviewSheet(
                 lesson: lesson,
@@ -91,20 +111,48 @@ struct LessonCard: View {
 }
 
 #Preview {
-    VStack {
+    ZStack {
+        LessonConnectorLine(
+            isEven: true,
+            isUnlocked: true
+        )
+
         LessonCard(
             lesson: LessonData.binaryLesson,
             index: 1,
             isUnlocked: true,
-            onStartLesson: { _ in /* Preview only */ }
-        )
-        LessonCard(
-            lesson: LessonData.arraysListsLesson,
-            index: 2,
-            isUnlocked: false,
+            isNextLesson: false,
             onStartLesson: { _ in /* Preview only */ }
         )
     }
-    .padding()
-    .background(Color.backgroundApp)
+    
+    ZStack {
+        LessonConnectorLine(
+            isEven: false,
+            isUnlocked: true
+        )
+
+        LessonCard(
+            lesson: LessonData.binaryLesson,
+            index: 2,
+            isUnlocked: true,
+            isNextLesson: true,
+            onStartLesson: { _ in /* Preview only */ }
+        )
+    }
+    
+    ZStack {
+        LessonConnectorLine(
+            isEven: true,
+            isUnlocked: false
+        )
+
+        LessonCard(
+            lesson: LessonData.binaryLesson,
+            index: 3,
+            isUnlocked: false,
+            isNextLesson: false,
+            onStartLesson: { _ in /* Preview only */ }
+        )
+    }
 }

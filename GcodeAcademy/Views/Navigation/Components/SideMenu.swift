@@ -36,7 +36,7 @@ struct SideMenu: View {
             // Navigation Menu Items
             VStack(spacing: 8) {
                 MenuItem(
-                    title: "Learning Path",
+                    title: "Swift Journey",
                     icon: "house",
                     isSelected: selectedTab == 1,
                     action: { selectTab(1) }
