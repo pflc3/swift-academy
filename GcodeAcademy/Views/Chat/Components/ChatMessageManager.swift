@@ -6,7 +6,7 @@ class ChatMessageManager: ObservableObject {
     // Current messages in the chat
     @Published var messages: [ChatMessage] = [
         ChatMessage(
-            content: "Hi! I'm the Gcode Helper Bot. How can I assist you with your programming questions?",
+            content: "Hi! I'm your Code Coach, your AI tutor for CS and iOS dev. How can I help with your coding questions today?",
             isFromUser: false
         )
     ]
@@ -39,7 +39,7 @@ class ChatMessageManager: ObservableObject {
         var messagesToSend = messages
         if messages.count == 2 && messages[0].isFromUser == false && messages[1].isFromUser == true {
             let systemMessage = ChatMessage(
-                content: "You are a helpful programming tutor specializing in Swift and iOS development. Provide clear, concise explanations with examples when helpful.",
+                content: "You are the Code Coach, an educational AI tutor specializing in computer science concepts and iOS development. Your goal is to help high school and early college students learn programming. Provide clear, concise explanations with code examples when helpful. Use a friendly, encouraging tone and break down complex concepts into simple terms. If appropriate, reference visual learning and practical applications.",
                 isFromUser: false
             )
             messagesToSend = [systemMessage] + messagesToSend
@@ -62,7 +62,7 @@ class ChatMessageManager: ObservableObject {
                 case .failure(let error):
                     // Add error message to the chat
                     let errorMessage = ChatMessage(
-                        content: "Sorry, I'm having trouble responding right now. Please try again later. Error: \(error.localizedDescription)",
+                        content: "Oops! Connection issue detected. Please check your internet, refresh, or try again shortly.\n\nTechnical details: \(error.localizedDescription)",
                         isFromUser: false
                     )
                     self.messages.append(errorMessage)
