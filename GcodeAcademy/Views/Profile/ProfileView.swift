@@ -21,6 +21,7 @@ struct ProfileView: View {
                 Spacer(minLength: 22)
             }
         }
+        .ignoresSafeArea(.all)
         .background(Color.backgroundApp)
         .sheet(isPresented: $showingEditProfile) {
             EditProfileView(user: $user)
