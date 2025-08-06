@@ -14,6 +14,7 @@ struct ChatBotView: View {
                 isLoading: $chatManager.isLoading,
                 onSendMessage: chatManager.sendMessage
             )
+            .ignoresSafeArea(.container, edges: .top)
         }
     }
 }
