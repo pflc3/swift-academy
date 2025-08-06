@@ -388,4 +388,167 @@ struct LessonData {
             )
         ]
     )
+    
+    static let SwiftUIBasics = Lesson(
+        title: "SwiftUI Basics",
+        shortTitle: "SwiftUI",
+        description: "Learn to build beautiful iOS app interfaces using SwiftUI – Apple's modern framework for creating user interfaces with declarative code.",
+        difficulty: .intermediate,
+        duration: 45,
+        videoID: "sZSlTDlo0Ag",
+        slidesURL:"https://docs.google.com/presentation/d/1K-MEeuOo1wPqlmblDfbthgTj0Bb9MjwSBnKkdmsIHOg/edit?slide=id.g344e1d1e5ab_0_31#slide=id.g344e1d1e5ab_0_31",
+        slideThumbnails: ["swift1", "swift2", "swift3"],
+        
+        goals: [
+            Lesson.LessonGoal(description: "Understand SwiftUI's declarative programming approach"),
+            Lesson.LessonGoal(description: "Create basic UI elements like Text, Button, and VStack"),
+            Lesson.LessonGoal(description: "Build a simple interactive interface with state management"),
+        ],
+        
+        contentSections: [
+            Lesson.ContentSection(
+                title: "What is SwiftUI?",
+                content: "SwiftUI is Apple's modern framework for building user interfaces. Instead of describing how to build the UI step by step, you describe what you want it to look like. SwiftUI figures out how to make it happen."
+            ),
+            Lesson.ContentSection(
+                title: "Basic Views and Layout",
+                content: "Views are the building blocks of SwiftUI. VStack arranges views vertically, HStack horizontally, and ZStack layers them on top of each other.",
+                codeExample: """
+                struct ContentView: View {
+                    var body: some View {
+                        VStack {
+                            Text("Hello, SwiftUI!")
+                                .font(.title)
+                                .foregroundColor(.blue)
+                            
+                            HStack {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.red)
+                                Text("Welcome to iOS development")
+                            }
+                            
+                            Button("Tap Me!") {
+                                print("Button tapped!")
+                            }
+                            .padding()
+                            .background(Color.green)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                        }
+                        .padding()
+                    }
+                }
+                """
+            ),
+            Lesson.ContentSection(
+                title: "State and Data Binding",
+                content: "Use @State to store data that can change. When state changes, SwiftUI automatically updates the interface to match.",
+                codeExample: """
+                struct CounterView: View {
+                    @State private var count = 0
+                    @State private var name = ""
+                    
+                    var body: some View {
+                        VStack(spacing: 20) {
+                            Text("Count: \\(count)")
+                                .font(.largeTitle)
+                            
+                            HStack {
+                                Button("-") {
+                                    count -= 1
+                                }
+                                .buttonStyle(.bordered)
+                                
+                                Button("+") {
+                                    count += 1
+                                }
+                                .buttonStyle(.bordered)
+                            }
+                            
+                            TextField("Enter your name", text: $name)
+                                .textFieldStyle(.roundedBorder)
+                            
+                            if !name.isEmpty {
+                                Text("Hello, \\(name)!")
+                                    .foregroundColor(.purple)
+                            }
+                        }
+                        .padding()
+                    }
+                }
+                """
+            ),
+            Lesson.ContentSection(
+                title: "Lists and Navigation",
+                content: "Lists display scrollable data. NavigationView and NavigationLink create navigation between screens.",
+                codeExample: """
+                struct FruitListView: View {
+                    let fruits = ["Apple", "Banana", "Orange", "Grape", "Strawberry"]
+                    
+                    var body: some View {
+                        NavigationView {
+                            List(fruits, id: \\.self) { fruit in
+                                NavigationLink(destination: FruitDetailView(fruit: fruit)) {
+                                    HStack {
+                                        Image(systemName: "leaf.fill")
+                                            .foregroundColor(.green)
+                                        Text(fruit)
+                                            .font(.headline)
+                                    }
+                                }
+                            }
+                            .navigationTitle("Fruits")
+                        }
+                    }
+                }
+                
+                struct FruitDetailView: View {
+                    let fruit: String
+                    
+                    var body: some View {
+                        VStack {
+                            Text(fruit)
+                                .font(.largeTitle)
+                                .padding()
+                            Text("This is a delicious \\(fruit.lowercased())!")
+                                .foregroundColor(.secondary)
+                        }
+                        .navigationTitle(fruit)
+                    }
+                }
+                """
+            ),
+        ],
+        
+        questions: [
+            Lesson.Question(
+                text: "What makes SwiftUI different from traditional UI frameworks?",
+                options: ["It's faster", "It uses declarative syntax", "It only works on iPhone"],
+                correctOptionIndex: 1
+            ),
+            Lesson.Question(
+                text: "Which property wrapper is used to store changeable data in SwiftUI?",
+                options: ["@State", "@Binding", "@Published"],
+                correctOptionIndex: 0
+            ),
+            Lesson.Question(
+                text: "What does VStack do in SwiftUI?",
+                options: ["Creates variables", "Arranges views vertically", "Validates input"],
+                correctOptionIndex: 1
+            ),
+        ],
+        
+        resources: [
+            Lesson.Resource(
+                title: "SwiftUI Documentation",
+                description: "Apple's official SwiftUI framework documentation",
+                url: "https://developer.apple.com/documentation/swiftui"
+            ),
+            Lesson.Resource(
+                title: "SwiftUI Tutorials by Apple",
+                description: "Step-by-step tutorials for learning SwiftUI",
+                url: "https://developer.apple.com/tutorials/swiftui"
+            ),
+        ]
+    )
 }
