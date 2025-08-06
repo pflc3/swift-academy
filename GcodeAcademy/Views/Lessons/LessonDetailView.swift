@@ -71,7 +71,8 @@ struct LessonDetailView: View {
                     // Slides section
                     LessonSlidesSection(
                         showingSlides: $showingSlides,
-                        slidesURL: lesson.slidesURL
+                        slidesURL: lesson.slidesURL,
+                        slideThumbnails: lesson.slideThumbnails
                     )
                     
                     // Questions section
