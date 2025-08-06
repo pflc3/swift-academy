@@ -3,22 +3,40 @@ import SwiftUI
 struct MenuItem: View {
     let title: String
     let icon: String
+    let selectedIcon: String? // Optional selected state icon
     let isSelected: Bool
     let action: () -> Void
+    let isCustomIcon: Bool // Flag to determine if it's a custom icon
     
     var body: some View {
         Button(action: action) {
             HStack(spacing: 16) {
-                // Icon
-                Image(systemName: icon)
-                    .font(.system(size: 20))
-                    .foregroundColor(isSelected ? .primaryApp : .textSecondaryApp)
-                    .frame(width: 24)
+                // Icon handling
+                if isCustomIcon {
+                    // Use either the selected icon or the normal icon
+                    if isSelected && selectedIcon != nil {
+                        Image(selectedIcon!)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 28, height: 28)
+                    } else {
+                        Image(icon)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 28, height: 28)
+                    }
+                } else {
+                    // Default system icon behavior
+                    Image(systemName: icon)
+                        .font(.system(size: 20))
+                        .foregroundColor(isSelected ? Color.primaryApp : Color.textSecondaryApp)
+                        .frame(width: 28)
+                }
                 
                 // Title
                 Text(title)
-                    .font(.bodyLarge)
-                    .foregroundColor(isSelected ? .primaryApp : .textPrimaryApp)
+                    .font(.system(size: 18.5))
+                    .foregroundColor(isSelected ? Color.primaryApp : Color.textPrimaryApp)
                 
                 Spacer()
                 
@@ -26,7 +44,7 @@ struct MenuItem: View {
                 if isSelected {
                     Rectangle()
                         .fill(Color.primaryApp)
-                        .frame(width: 3, height: 24)
+                        .frame(width: 3, height: 28)
                 }
             }
             .padding(.vertical, 12)
@@ -39,9 +57,31 @@ struct MenuItem: View {
 
 #Preview {
     VStack {
-        MenuItem(title: "Learning Path", icon: "house", isSelected: true, action: {})
-        MenuItem(title: "Chat Assistant", icon: "message", isSelected: false, action: {})
-        MenuItem(title: "My Profile", icon: "person", isSelected: false, action: {})
+        MenuItem(
+            title: "Swift Journey",
+            icon: "house",
+            selectedIcon: nil,
+            isSelected: true,
+            action: {},
+            isCustomIcon: false
+        )
+        
+        MenuItem(
+            title: "Code Coach",
+            icon: "code-coach-normal",
+            selectedIcon: "code-coach-selected",
+            isSelected: false,
+            action: { },
+            isCustomIcon: true
+        )
+        
+        MenuItem(
+            title: "My Profile",
+            icon: "person",
+            selectedIcon: nil,
+            isSelected: false,
+            action: { },
+            isCustomIcon: false
+        )
     }
-    .padding()
 }

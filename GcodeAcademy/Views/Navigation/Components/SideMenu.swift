@@ -17,11 +17,11 @@ struct SideMenu: View {
                 // Stacked text
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Gcode")
-                        .font(.titleExtraM)
+                        .font(.system(size: 28, weight: .semibold))
                         .foregroundColor(.primaryApp)
                     
                     Text("Academy")
-                        .font(.titleExtraM)
+                        .font(.system(size: 28, weight: .semibold))
                         .foregroundColor(.primaryApp)
                 }
             }
@@ -37,23 +37,29 @@ struct SideMenu: View {
             VStack(spacing: 8) {
                 MenuItem(
                     title: "Swift Journey",
-                    icon: "house",
+                    icon: "map",
+                    selectedIcon: nil,
                     isSelected: selectedTab == 1,
-                    action: { selectTab(1) }
+                    action: { selectTab(1) },
+                    isCustomIcon: false
                 )
                 
                 MenuItem(
-                    title: "AI Tutor",
-                    icon: "message",
+                    title: "Code Coach",
+                    icon: "code-coach-normal",
+                    selectedIcon: "code-coach-selected",
                     isSelected: selectedTab == 2,
-                    action: { selectTab(2) }
+                    action: { selectTab(2) },
+                    isCustomIcon: true
                 )
                 
                 MenuItem(
                     title: "My Profile",
                     icon: "person",
+                    selectedIcon: nil,
                     isSelected: selectedTab == 3,
-                    action: { selectTab(3) }
+                    action: { selectTab(3) },
+                    isCustomIcon: false
                 )
             }
             .padding(.horizontal, 12)
@@ -84,6 +90,10 @@ struct SideMenu: View {
     }
 }
 
-#Preview {
+#Preview("Swift Journey") {
     SideMenu(selectedTab: .constant(1), showMenu: .constant(true))
+}
+
+#Preview("Code Coach") {
+    SideMenu(selectedTab: .constant(2), showMenu: .constant(true))
 }

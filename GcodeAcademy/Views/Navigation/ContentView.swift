@@ -91,7 +91,7 @@ struct ContentView: View {
         case 1:
             return "Swift Journey"
         case 2:
-            return "AI Tutor"
+            return "Code Coach"
         case 3:
             return "My Profile"
         default:
