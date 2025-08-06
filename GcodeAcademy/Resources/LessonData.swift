@@ -389,6 +389,192 @@ struct LessonData {
         ]
     )
     
+    static let dictionariesLesson = Lesson(
+        title: "Dictionaries and Data Structures",
+        shortTitle: "Dictionaries",
+        description: "Discover how to organize and access data efficiently using dictionaries, key-value pairs, and other fundamental data structures.",
+        difficulty: .intermediate,
+        duration: 30,
+        videoID: "iM2lMBAckKg", // Placeholder - replace with actual video ID
+        slidesURL: "https://docs.google.com/presentation/d/14f5fMvwcECWb20oxvrpuC-H3GprAKv8QbCdl3mpLa-o/edit?slide=id.p#slide=id.p", // Placeholder - replace with actual slides URL
+        slideThumbnails: ["dict1", "dict2", "dict3"],
+        
+        // Learning objectives for this lesson
+        goals: [
+            Lesson.LessonGoal(description: "Understand what dictionaries are and when to use them"),
+            Lesson.LessonGoal(description: "Learn to create, access, and modify dictionary data"),
+            Lesson.LessonGoal(description: "Explore nested data structures and real-world applications"),
+            Lesson.LessonGoal(description: "Compare dictionaries with arrays and understand performance benefits")
+        ],
+        
+        // Main educational content divided into sections with code examples
+        contentSections: [
+            Lesson.ContentSection(
+                title: "Introduction to Dictionaries",
+                content: "A dictionary is a collection that stores key-value pairs. Unlike arrays that use numeric indices, dictionaries use unique keys to access values. This makes them perfect for storing related information where you need fast lookups by name or identifier.",
+                codeExample: """
+                // Creating a dictionary
+                var student: [String: Any] = [
+                    "name": "Maya Chen",
+                    "age": 16,
+                    "grade": "A",
+                    "isActive": true
+                ]
+                
+                // Accessing values using keys
+                let studentName = student["name"] as? String
+                let studentAge = student["age"] as? Int
+                """
+            ),
+            Lesson.ContentSection(
+                title: "Dictionary Operations",
+                content: "Dictionaries support many operations for managing data: adding new key-value pairs, updating existing values, removing entries, and checking if keys exist. These operations are typically very fast, making dictionaries ideal for data that needs frequent updates.",
+                codeExample: """
+                var scores: [String: Int] = ["Alice": 85, "Bob": 92]
+                
+                // Adding new entries
+                scores["Charlie"] = 78
+                scores["Diana"] = 95
+                
+                // Updating existing values
+                scores["Alice"] = 88
+                
+                // Removing entries
+                scores.removeValue(forKey: "Bob")
+                
+                // Checking if a key exists
+                if let aliceScore = scores["Alice"] {
+                    print("Alice's score is \\(aliceScore)")
+                }
+                """
+            ),
+            Lesson.ContentSection(
+                title: "Nested Data Structures",
+                content: "Real-world data is often complex and hierarchical. You can create sophisticated data structures by nesting dictionaries within arrays, or arrays within dictionaries. This allows you to model complex relationships like a student database or inventory system.",
+                codeExample: """
+                // Array of dictionaries - like a database table
+                let students: [[String: Any]] = [
+                    ["name": "Alex", "subjects": ["Math", "Physics"], "gpa": 3.8],
+                    ["name": "Sam", "subjects": ["History", "English"], "gpa": 3.6],
+                    ["name": "Jordan", "subjects": ["Chemistry", "Biology"], "gpa": 3.9]
+                ]
+                
+                // Dictionary containing arrays - grouped data
+                let classList: [String: [String]] = [
+                    "Math": ["Alex", "Emma", "Lucas"],
+                    "Physics": ["Alex", "Sophie"],
+                    "Chemistry": ["Jordan", "Emma"]
+                ]
+                """
+            ),
+            Lesson.ContentSection(
+                title: "Iterating Through Dictionaries",
+                content: "You can loop through dictionaries to process all key-value pairs, just the keys, or just the values. This is essential for tasks like calculating totals, finding specific entries, or transforming data.",
+                codeExample: """
+                let inventory: [String: Int] = [
+                    "Apples": 50,
+                    "Bananas": 30,
+                    "Oranges": 25
+                ]
+                
+                // Loop through key-value pairs
+                for (fruit, quantity) in inventory {
+                    print("We have \\(quantity) \\(fruit)")
+                }
+                
+                // Loop through just keys
+                for fruit in inventory.keys {
+                    print("Available: \\(fruit)")
+                }
+                
+                // Loop through just values
+                let totalItems = inventory.values.reduce(0, +)
+                print("Total inventory: \\(totalItems)")
+                """
+            ),
+            Lesson.ContentSection(
+                title: "Performance and Use Cases",
+                content: "Dictionaries excel at fast lookups, insertions, and deletions - typically O(1) time complexity. Use dictionaries when you need to associate data with unique identifiers, count occurrences, cache results, or when order doesn't matter but fast access does.",
+                codeExample: """
+                // Counting word frequency - perfect dictionary use case
+                let text = "the quick brown fox jumps over the lazy dog"
+                var wordCount: [String: Int] = [:]
+                
+                for word in text.split(separator: " ") {
+                    let wordString = String(word)
+                    wordCount[wordString] = (wordCount[wordString] ?? 0) + 1
+                }
+                
+                // Result: ["the": 2, "quick": 1, "brown": 1, ...]
+                """
+            )
+        ],
+        
+        // Practice questions to test understanding
+        questions: [
+            Lesson.Question(
+                text: "What is the main difference between arrays and dictionaries?",
+                options: [
+                    "Arrays can only store numbers, dictionaries can store any type",
+                    "Arrays use numeric indices, dictionaries use unique keys",
+                    "Arrays are faster than dictionaries for all operations"
+                ],
+                correctOptionIndex: 1  // Index 1 is the correct answer
+            ),
+            Lesson.Question(
+                text: "What happens when you try to access a dictionary key that doesn't exist?",
+                options: [
+                    "The app crashes with an error",
+                    "It returns nil (optional value)",
+                    "It returns an empty string"
+                ],
+                correctOptionIndex: 1  // Index 1 is correct - returns nil
+            ),
+            Lesson.Question(
+                text: "Which scenario is BEST suited for using a dictionary?",
+                options: [
+                    "Storing a list of high scores in order",
+                    "Looking up student information by student ID",
+                    "Keeping track of items in a shopping cart sequence"
+                ],
+                correctOptionIndex: 1  // Index 1 - lookup by ID is perfect for dictionaries
+            ),
+            Lesson.Question(
+                text: "What is the time complexity for looking up a value in a dictionary?",
+                options: [
+                    "O(n) - linear time",
+                    "O(log n) - logarithmic time",
+                    "O(1) - constant time"
+                ],
+                correctOptionIndex: 2  // Index 2 - O(1) constant time
+            )
+        ],
+        
+        // Additional learning resources
+        resources: [
+            Lesson.Resource(
+                title: "Swift.org: Collection Types",
+                description: "Official Swift documentation covering dictionaries and other collection types",
+                url: "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/collectiontypes/"
+            ),
+            Lesson.Resource(
+                title: "Apple Developer: Dictionary",
+                description: "Complete API reference for Swift Dictionary type",
+                url: "https://developer.apple.com/documentation/swift/dictionary"
+            ),
+            Lesson.Resource(
+                title: "Data Structures Visualizer",
+                description: "Interactive tool to visualize how dictionaries and hash tables work",
+                url: "https://www.cs.usfca.edu/~galles/visualization/OpenHash.html"
+            ),
+            Lesson.Resource(
+                title: "Big O Notation Guide",
+                description: "Learn about algorithm complexity and why dictionaries are efficient",
+                url: "https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation"
+            )
+        ]
+    )
+
     static let SwiftUIBasics = Lesson(
         title: "SwiftUI Basics",
         shortTitle: "SwiftUI",
