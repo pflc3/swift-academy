@@ -49,7 +49,7 @@ struct ContentView: View {
                         .transition(.opacity)
                     }
                 }
-                .animation(.easeInOut, value: selectedTab)
+                .animation(.easeInOut(duration: 0.2), value: selectedTab) // Shorter animation
             }
             .background(Color.backgroundApp)
             .edgesIgnoringSafeArea(.bottom)
@@ -63,11 +63,8 @@ struct ContentView: View {
                 Color.black.opacity(0.4)
                     .ignoresSafeArea()
                     .transition(.opacity)
-                    .animation(.easeInOut, value: showMenu)
                     .onTapGesture {
-                        withAnimation(.spring()) {
-                            showMenu = false
-                        }
+                        hideMenu()
                     }
             }
             
@@ -75,7 +72,8 @@ struct ContentView: View {
             if !isShowingLessonDetail {
                 SideMenu(
                     selectedTab: $selectedTab,
-                    showMenu: $showMenu
+                    showMenu: $showMenu,
+                    hideMenuAction: hideMenu // Pass the same hide function
                 )
                 .offset(x: showMenu ? 0 : -280)
                 .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showMenu)
@@ -83,6 +81,13 @@ struct ContentView: View {
         }
         .animation(.easeOut(duration: 0.2), value: isShowingLessonDetail) // Animate navbar changes
         .ignoresSafeArea(.all, edges: .bottom)
+    }
+    
+    // Centralized function to hide menu
+    private func hideMenu() {
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+            showMenu = false
+        }
     }
     
     // Dynamic title based on selected tab

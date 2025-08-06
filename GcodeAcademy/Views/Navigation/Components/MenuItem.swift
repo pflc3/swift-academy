@@ -13,18 +13,25 @@ struct MenuItem: View {
             HStack(spacing: 16) {
                 // Icon handling
                 if isCustomIcon {
-                    // Use either the selected icon or the normal icon
-                    if isSelected && selectedIcon != nil {
-                        Image(selectedIcon!)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 28, height: 28)
-                    } else {
+                    // Preload both images
+                    ZStack {
+                        // Normal icon always present but hidden when selected
                         Image(icon)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 28, height: 28)
+                            .opacity(isSelected && selectedIcon != nil ? 0 : 1)
+                        
+                        // Selected icon always present but hidden when not selected
+                        if let selectedIcon = selectedIcon {
+                            Image(selectedIcon)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 28, height: 28)
+                                .opacity(isSelected ? 1 : 0)
+                        }
                     }
+                    .frame(width: 28)
                 } else {
                     // Default system icon behavior
                     Image(systemName: icon)

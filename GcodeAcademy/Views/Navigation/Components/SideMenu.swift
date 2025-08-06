@@ -3,6 +3,7 @@ import SwiftUI
 struct SideMenu: View {
     @Binding var selectedTab: Int
     @Binding var showMenu: Bool
+    var hideMenuAction: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -84,16 +85,14 @@ struct SideMenu: View {
     
     private func selectTab(_ tab: Int) {
         selectedTab = tab
-        withAnimation(.spring()) {
-            showMenu = false
-        }
+        hideMenuAction()
     }
 }
 
 #Preview("Swift Journey") {
-    SideMenu(selectedTab: .constant(1), showMenu: .constant(true))
+    SideMenu(selectedTab: .constant(1), showMenu: .constant(true), hideMenuAction: {})
 }
 
 #Preview("Code Coach") {
-    SideMenu(selectedTab: .constant(2), showMenu: .constant(true))
+    SideMenu(selectedTab: .constant(2), showMenu: .constant(true), hideMenuAction: {})
 }
