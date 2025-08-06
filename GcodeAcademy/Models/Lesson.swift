@@ -10,9 +10,12 @@ struct Lesson: Identifiable {
     var difficulty: Difficulty
     var duration: Int = 20
     
-    // Content
+    // External content
     var videoID: String? = nil
     var slidesURL: String? = nil
+    var slideThumbnails: [String] = []
+    
+    // Content
     var goals: [LessonGoal] = []
     var contentSections: [ContentSection] = []
     var questions: [Question] = []

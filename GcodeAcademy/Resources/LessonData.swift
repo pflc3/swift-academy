@@ -25,6 +25,7 @@ struct LessonData {
         duration: 20,
         videoID: "k68-cStI1ok",
         slidesURL: "https://docs.google.com/presentation/d/1mGTJNUocYB3rweKax4Id0PYb1tHGyAgT3rel3P5eB_8/edit?usp=sharing",
+        slideThumbnails: ["binary1", "binary2", "binary3"],
         
         // Learning objectives for this lesson
         goals: [
@@ -101,6 +102,7 @@ struct LessonData {
         duration: 25,
         videoID: "YjSfJTXaqTI",
         slidesURL: "https://docs.google.com/presentation/d/15-sR9-beHDIPxEvpBoW5LjQ-I3YMHClzUgsMFmTeBp4/edit?usp=sharing",
+        slideThumbnails: ["datatypes1", "datatypes2", "datatypes3"],
         
         // Learning objectives for this lesson
         goals: [
@@ -184,7 +186,8 @@ struct LessonData {
         difficulty: .intermediate,
         duration: 30,
         videoID: "DuDz6B4cqVc",
-        slidesURL: "https://docs.google.com/presentation/d/1nH2KLMocYD4sweKbx5Je1QZc2uIHzBgU4sfm4Q6fD_9/edit?usp=sharing",
+        slidesURL: "https://docs.google.com/presentation/d/1GakhlxRNLV3AAw5uXXZSghMN1pZ3PQaVylLOCqRHtK8/edit?usp=sharing",
+        slideThumbnails: ["arrays1", "arrays2", "arrays3"],
         
         // Learning objectives for this lesson
         goals: [
@@ -278,8 +281,9 @@ struct LessonData {
         description: "Learn to write reusable code using functions – small, organized blocks that make your programs easier to manage.",
         difficulty: .intermediate,
         duration: 30,
-        videoID: "BFh0DhBs9N4",
-        slidesURL: "https://docs.google.com/presentation/d/1mK3LPxcYE5htweKbx7Je2QZc3vIHzBgU6tfm5R7gE_8/edit?usp=sharing",
+        videoID: "fffG55Ei1Qc",
+        slidesURL: "https://docs.google.com/presentation/d/193FcPGqmMt6zAtX3m3Yb6YlFW8ins6hzTCjbxUqnxhE/edit?usp=sharing",
+        slideThumbnails: ["functions1", "functions2", "functions3"],
         
         goals: [
             Lesson.LessonGoal(description: "Understand what functions are and why they're useful"),
