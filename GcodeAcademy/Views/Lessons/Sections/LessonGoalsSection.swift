@@ -54,7 +54,7 @@ struct LessonGoalsSection: View {
         
 #Preview {
     LessonGoalsSection(
-        goals: LessonData.binaryCommunicationLesson.goals,
+        goals: LessonData.binaryLesson.goals,
         completedGoals: .constant([])
     )
     .padding()

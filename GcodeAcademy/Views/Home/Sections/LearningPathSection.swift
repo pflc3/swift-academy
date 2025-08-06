@@ -62,10 +62,10 @@ struct LearningPathSection: View {
         .frame(height: 180)
     LearningPathSection(
         lessons: [
-            LessonData.binaryCommunicationLesson,
-            LessonData.swiftDataTypesLesson,
-            LessonData.binaryCommunicationLesson,
-            LessonData.swiftDataTypesLesson,
+            LessonData.binaryLesson,
+            LessonData.dataTypesLesson,
+            LessonData.binaryLesson,
+            LessonData.dataTypesLesson,
         ],
         user: MockData.currentUser,
         onStartLesson: { _ in /* Preview only */ }

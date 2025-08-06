@@ -55,12 +55,12 @@ struct LessonHeaderSection: View {
 #Preview {
     VStack {
         LessonHeaderSection(
-            lesson: LessonData.binaryCommunicationLesson,
+            lesson: LessonData.binaryLesson,
             isCompleted: true
         )
         
         LessonHeaderSection(
-            lesson: LessonData.swiftDataTypesLesson,
+            lesson: LessonData.dataTypesLesson,
             isCompleted: false
         )
     }

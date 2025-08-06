@@ -86,6 +86,6 @@ struct LessonDetailView: View {
 
 #Preview {
     NavigationStack {
-        LessonDetailView(lesson: LessonData.swiftDataTypesLesson)
+        LessonDetailView(lesson: LessonData.dataTypesLesson)
     }
 }

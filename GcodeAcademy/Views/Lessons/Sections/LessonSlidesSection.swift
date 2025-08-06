@@ -84,7 +84,7 @@ struct LessonSlidesDetailView: View {
 #Preview("SlidesSection") {
     LessonSlidesSection(
         showingSlides: .constant(false),
-        slidesURL: LessonData.binaryCommunicationLesson.slidesURL
+        slidesURL: LessonData.binaryLesson.slidesURL
     )
     .padding()
 }
@@ -92,6 +92,6 @@ struct LessonSlidesDetailView: View {
 #Preview("SlidesDetailView"){
     LessonSlidesDetailView(
         showingSlides: .constant(true),
-        slidesURL: LessonData.binaryCommunicationLesson.slidesURL
+        slidesURL: LessonData.binaryLesson.slidesURL
     )
 }

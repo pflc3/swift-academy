@@ -35,7 +35,7 @@ struct LessonContentSection: View {
 
 #Preview {
     LessonContentSection(
-        contentSections: LessonData.binaryCommunicationLesson.contentSections
+        contentSections: LessonData.binaryLesson.contentSections
     )
     .padding()
 }

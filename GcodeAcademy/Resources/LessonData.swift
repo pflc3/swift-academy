@@ -4,20 +4,20 @@ import Foundation
 struct LessonData {
     // Collection of all available lessons
     static let allLessons: [Lesson] = [
-        binaryCommunicationLesson,
-        swiftDataTypesLesson,
-        arraysAndListsLesson,
+        binaryLesson,
+        dataTypesLesson,
+        arraysListsLesson,
         functionsLesson,
         
         // Duplicates
-        binaryCommunicationLesson,
-        swiftDataTypesLesson,
-        arraysAndListsLesson,
+        binaryLesson,
+        dataTypesLesson,
+        arraysListsLesson,
         functionsLesson
     ]
     
     // Individual lesson definitions
-    static let binaryCommunicationLesson = Lesson(
+    static let binaryLesson = Lesson(
         title: "Binary Communication",
         shortTitle: "Binary Comm",
         description: "Learn how computers communicate using binary code and how binary digits represent information.",
@@ -93,7 +93,7 @@ struct LessonData {
         ]
     )
     
-    static let swiftDataTypesLesson = Lesson(
+    static let dataTypesLesson = Lesson(
         title: "Swift Data Types",
         shortTitle: "Data Types",
         description: "Learn about Swift's fundamental data types, type safety, and how to use different types in your code.",
@@ -177,7 +177,7 @@ struct LessonData {
         ]
     )
     
-    static let arraysAndListsLesson = Lesson(
+    static let arraysListsLesson = Lesson(
         title: "Arrays and Lists",
         shortTitle: "Arrays & Lists",
         description: "Master the fundamentals of organizing and storing data using arrays and lists - the building blocks of programming.",

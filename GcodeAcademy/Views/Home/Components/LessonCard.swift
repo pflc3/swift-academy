@@ -93,13 +93,13 @@ struct LessonCard: View {
 #Preview {
     VStack {
         LessonCard(
-            lesson: LessonData.binaryCommunicationLesson,
+            lesson: LessonData.binaryLesson,
             index: 1,
             isUnlocked: true,
             onStartLesson: { _ in /* Preview only */ }
         )
         LessonCard(
-            lesson: LessonData.arraysAndListsLesson,
+            lesson: LessonData.arraysListsLesson,
             index: 2,
             isUnlocked: false,
             onStartLesson: { _ in /* Preview only */ }
