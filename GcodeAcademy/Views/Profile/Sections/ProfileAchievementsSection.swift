@@ -50,16 +50,18 @@ struct ProfileAchievementsSection: View {
             
             // Achievement name and status
             VStack(spacing: 2) {
-                Text(achievement.name)
-                    .font(.bodyMedium)
-                    .foregroundColor(achievement.unlocked ? .textPrimaryApp : .textSecondaryApp)
-                    .multilineTextAlignment(.center)
-                
-                // Only show "Locked" text for locked achievements
-                if !achievement.unlocked {
-                    Text("Locked")
+                if achievement.unlocked {
+                    // Show only name if unlocked
+                    Text(achievement.name)
+                        .font(.bodyMedium)
+                        .foregroundColor(.textPrimaryApp)
+                        .multilineTextAlignment(.center)
+                } else {
+                    // Show "Locked" text for locked achievements
+                    Text("Locked: \(achievement.name)")
                         .font(.caption)
-                        .foregroundColor(.textTertiaryApp)
+                        .foregroundColor(.textSecondaryApp)
+                        .lineLimit(1)
                 }
             }
         }

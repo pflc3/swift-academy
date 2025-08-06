@@ -59,7 +59,7 @@ struct ProfileHeaderSection: View {
                 .padding(.bottom, 16)
         }
         .frame(maxWidth: .infinity)
-        .background(Color.cardBackgroundApp)
+        .background(Color.backgroundApp)
     }
 }
 
