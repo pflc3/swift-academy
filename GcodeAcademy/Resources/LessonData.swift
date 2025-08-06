@@ -8,6 +8,8 @@ struct LessonData {
         dataTypesLesson,
         arraysListsLesson,
         functionsLesson,
+        dictionariesLesson,
+        SwiftUIBasicsLesson,
         
         // Duplicates
         binaryLesson,
@@ -575,7 +577,7 @@ struct LessonData {
         ]
     )
 
-    static let SwiftUIBasics = Lesson(
+    static let SwiftUIBasicsLesson = Lesson(
         title: "SwiftUI Basics",
         shortTitle: "SwiftUI",
         description: "Learn to build beautiful iOS app interfaces using SwiftUI – Apple's modern framework for creating user interfaces with declarative code.",
