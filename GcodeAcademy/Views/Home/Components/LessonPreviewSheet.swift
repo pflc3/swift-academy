@@ -9,6 +9,11 @@ struct LessonPreviewSheet: View {
         VStack(spacing: 0) {
             // Header
             HStack {
+                Image(systemName: "xmark")
+                    .padding(8)
+                    .clipShape(Circle())
+                    .opacity(0)
+                
                 Spacer()
                 Text(lesson.title)
                     .font(.titleMedium)
@@ -37,7 +42,10 @@ struct LessonPreviewSheet: View {
                 .padding(.horizontal, 20)
                 .padding(.bottom, 12)
             
-            Divider().background(Color.dividerApp)
+            Divider()
+                .background(Color.dividerApp)
+                .padding(.horizontal, 16)
+            
             
             // Top 2 Learning Goals (no scroll)
             VStack(alignment: .leading, spacing: 10) {
