@@ -1,29 +1,117 @@
 import SwiftUI
 
 struct SignupSection: View {
+    // Form field bindings
     @Binding var name: String
     @Binding var email: String
     @Binding var password: String
+    
+    // Error handling and loading state
     let errorMessage: String?
     let isLoading: Bool
+    
+    // Actions
     let signup: () -> Void
     let showLogin: () -> Void
     
     var body: some View {
-        Text("SignupSection Placeholder")
-            .font(.title)
-            .padding()
+        VStack(spacing: 24) {
+            // Header
+            Text("Create Account")
+                .font(.titleLarge)
+                .foregroundColor(.white)
+                .padding(.bottom, 16)
+            
+            // Error message if any
+            if let errorMessage = errorMessage {
+                Text(errorMessage)
+                    .font(.caption)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.errorApp.opacity(0.0))
+                    .cornerRadius(0)
+            }
+            
+            // Form fields
+            VStack(spacing: 16) {
+                AuthTextField(
+                    iconName: "person",
+                    placeholder: "Full Name",
+                    isSecure: false,
+                    text: $name
+                )
+                
+                AuthTextField(
+                    iconName: "envelope",
+                    placeholder: "Email",
+                    isSecure: false,
+                    text: $email
+                )
+                
+                AuthTextField(
+                    iconName: "lock",
+                    placeholder: "Password",
+                    isSecure: true,
+                    text: $password
+                )
+                
+            }
+            .padding(.horizontal, 16)
+            
+            // Terms and conditions
+            HStack {
+                Image(systemName: "checkmark.square")
+                    .foregroundColor(.white)
+                
+                Text("I agree to the Terms & Privacy Policy")
+                    .font(.caption)
+                    .foregroundColor(.white)
+            }
+            .padding(.top, 8)
+            
+            // Sign up button
+            AuthButton(
+                title: "Create Account",
+                isLoading: isLoading
+            ) {
+                signup()
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 16)
+            
+            // Sign in option
+            HStack {
+                Text("Already have an account?")
+                    .font(.caption)
+                    .foregroundColor(.white)
+                
+                Button {
+                    showLogin()
+                } label: {
+                    Text("Sign in")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                }
+            }
+            .padding(.top, 16)
+        }
+        .padding(.bottom, 60)
     }
 }
-
+        
 #Preview {
-    SignupSection(
-        name: .constant(""),
-        email: .constant(""),
-        password: .constant(""),
-        errorMessage: nil,
-        isLoading: false,
-        signup: {},
-        showLogin: {}
-    )
+    ZStack {
+        Color.primaryApp.ignoresSafeArea()
+        
+        SignupSection(
+            name: .constant(""),
+            email: .constant(""),
+            password: .constant(""),
+            errorMessage: "Please fill in all fields",
+            isLoading: false,
+            signup: {},
+            showLogin: {}
+        )
+    }
 }
