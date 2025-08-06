@@ -5,6 +5,9 @@ struct HomeView: View {
     @State private var user = MockData.currentUser
     @State private var showLessonDetail = false
     @State private var selectedLesson: Lesson?
+    
+    // Callback to notify ContentView about lesson detail visibility
+    var onShowingLessonDetail: ((Bool) -> Void)?
 
     var body: some View {
         NavigationStack {
@@ -32,7 +35,11 @@ struct HomeView: View {
                 }
             }
             .background(Color.backgroundApp)
-            // Use a simple navigationDestination with a separate boolean state
+            .ignoresSafeArea(.all)
+            .onChange(of: showLessonDetail) {
+                // Notify ContentView about navbar visibility
+                onShowingLessonDetail?(showLessonDetail)
+            }
             .navigationDestination(isPresented: $showLessonDetail) {
                 if let lesson = selectedLesson {
                     LessonDetailView(lesson: lesson)
