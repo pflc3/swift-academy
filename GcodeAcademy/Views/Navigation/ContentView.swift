@@ -98,7 +98,7 @@ struct ContentView: View {
         case 2:
             return "Code Coach"
         case 3:
-            return "My Profile"
+            return ""
         default:
             return "Gcode Academy"
         }

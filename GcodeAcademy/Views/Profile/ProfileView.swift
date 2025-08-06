@@ -20,9 +20,8 @@ struct ProfileView: View {
                 
                 Spacer(minLength: 22)
             }
-            .background(Color.backgroundApp)
         }
-        .edgesIgnoringSafeArea(.bottom)
+        .background(Color.backgroundApp)
         .sheet(isPresented: $showingEditProfile) {
             EditProfileView(user: $user)
         }

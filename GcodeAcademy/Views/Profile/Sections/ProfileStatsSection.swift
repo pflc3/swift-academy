@@ -114,7 +114,7 @@ struct ProfileStatsSection: View {
             .frame(height: 8)
             
             // Progress labels – completed lessons counter
-            Text("\(user.lessonsCompleted) of \(user.totalLessons) lessons")
+            Text("\(user.lessonsCompleted) of \(user.totalLessons)")
                 .font(.caption)
                 .foregroundColor(.textSecondaryApp)
         }
