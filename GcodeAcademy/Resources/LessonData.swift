@@ -8,6 +8,8 @@ struct LessonData {
         dataTypesLesson,
         arraysListsLesson,
         functionsLesson,
+        dictionariesLesson,
+        SwiftUIBasicsLesson,
         
         // Duplicates
         binaryLesson,
@@ -386,6 +388,355 @@ struct LessonData {
                 description: "Tips for writing simple, readable functions",
                 url: "https://www.freecodecamp.org/news/clean-coding-for-beginners/"
             )
+        ]
+    )
+    
+    static let dictionariesLesson = Lesson(
+        title: "Dictionaries and Data Structures",
+        shortTitle: "Dictionaries",
+        description: "Discover how to organize and access data efficiently using dictionaries, key-value pairs, and other fundamental data structures.",
+        difficulty: .intermediate,
+        duration: 30,
+        videoID: "iM2lMBAckKg", // Placeholder - replace with actual video ID
+        slidesURL: "https://docs.google.com/presentation/d/14f5fMvwcECWb20oxvrpuC-H3GprAKv8QbCdl3mpLa-o/edit?slide=id.p#slide=id.p", // Placeholder - replace with actual slides URL
+        slideThumbnails: ["dict1", "dict2", "dict3"],
+        
+        // Learning objectives for this lesson
+        goals: [
+            Lesson.LessonGoal(description: "Understand what dictionaries are and when to use them"),
+            Lesson.LessonGoal(description: "Learn to create, access, and modify dictionary data"),
+            Lesson.LessonGoal(description: "Explore nested data structures and real-world applications"),
+            Lesson.LessonGoal(description: "Compare dictionaries with arrays and understand performance benefits")
+        ],
+        
+        // Main educational content divided into sections with code examples
+        contentSections: [
+            Lesson.ContentSection(
+                title: "Introduction to Dictionaries",
+                content: "A dictionary is a collection that stores key-value pairs. Unlike arrays that use numeric indices, dictionaries use unique keys to access values. This makes them perfect for storing related information where you need fast lookups by name or identifier.",
+                codeExample: """
+                // Creating a dictionary
+                var student: [String: Any] = [
+                    "name": "Maya Chen",
+                    "age": 16,
+                    "grade": "A",
+                    "isActive": true
+                ]
+                
+                // Accessing values using keys
+                let studentName = student["name"] as? String
+                let studentAge = student["age"] as? Int
+                """
+            ),
+            Lesson.ContentSection(
+                title: "Dictionary Operations",
+                content: "Dictionaries support many operations for managing data: adding new key-value pairs, updating existing values, removing entries, and checking if keys exist. These operations are typically very fast, making dictionaries ideal for data that needs frequent updates.",
+                codeExample: """
+                var scores: [String: Int] = ["Alice": 85, "Bob": 92]
+                
+                // Adding new entries
+                scores["Charlie"] = 78
+                scores["Diana"] = 95
+                
+                // Updating existing values
+                scores["Alice"] = 88
+                
+                // Removing entries
+                scores.removeValue(forKey: "Bob")
+                
+                // Checking if a key exists
+                if let aliceScore = scores["Alice"] {
+                    print("Alice's score is \\(aliceScore)")
+                }
+                """
+            ),
+            Lesson.ContentSection(
+                title: "Nested Data Structures",
+                content: "Real-world data is often complex and hierarchical. You can create sophisticated data structures by nesting dictionaries within arrays, or arrays within dictionaries. This allows you to model complex relationships like a student database or inventory system.",
+                codeExample: """
+                // Array of dictionaries - like a database table
+                let students: [[String: Any]] = [
+                    ["name": "Alex", "subjects": ["Math", "Physics"], "gpa": 3.8],
+                    ["name": "Sam", "subjects": ["History", "English"], "gpa": 3.6],
+                    ["name": "Jordan", "subjects": ["Chemistry", "Biology"], "gpa": 3.9]
+                ]
+                
+                // Dictionary containing arrays - grouped data
+                let classList: [String: [String]] = [
+                    "Math": ["Alex", "Emma", "Lucas"],
+                    "Physics": ["Alex", "Sophie"],
+                    "Chemistry": ["Jordan", "Emma"]
+                ]
+                """
+            ),
+            Lesson.ContentSection(
+                title: "Iterating Through Dictionaries",
+                content: "You can loop through dictionaries to process all key-value pairs, just the keys, or just the values. This is essential for tasks like calculating totals, finding specific entries, or transforming data.",
+                codeExample: """
+                let inventory: [String: Int] = [
+                    "Apples": 50,
+                    "Bananas": 30,
+                    "Oranges": 25
+                ]
+                
+                // Loop through key-value pairs
+                for (fruit, quantity) in inventory {
+                    print("We have \\(quantity) \\(fruit)")
+                }
+                
+                // Loop through just keys
+                for fruit in inventory.keys {
+                    print("Available: \\(fruit)")
+                }
+                
+                // Loop through just values
+                let totalItems = inventory.values.reduce(0, +)
+                print("Total inventory: \\(totalItems)")
+                """
+            ),
+            Lesson.ContentSection(
+                title: "Performance and Use Cases",
+                content: "Dictionaries excel at fast lookups, insertions, and deletions - typically O(1) time complexity. Use dictionaries when you need to associate data with unique identifiers, count occurrences, cache results, or when order doesn't matter but fast access does.",
+                codeExample: """
+                // Counting word frequency - perfect dictionary use case
+                let text = "the quick brown fox jumps over the lazy dog"
+                var wordCount: [String: Int] = [:]
+                
+                for word in text.split(separator: " ") {
+                    let wordString = String(word)
+                    wordCount[wordString] = (wordCount[wordString] ?? 0) + 1
+                }
+                
+                // Result: ["the": 2, "quick": 1, "brown": 1, ...]
+                """
+            )
+        ],
+        
+        // Practice questions to test understanding
+        questions: [
+            Lesson.Question(
+                text: "What is the main difference between arrays and dictionaries?",
+                options: [
+                    "Arrays can only store numbers, dictionaries can store any type",
+                    "Arrays use numeric indices, dictionaries use unique keys",
+                    "Arrays are faster than dictionaries for all operations"
+                ],
+                correctOptionIndex: 1  // Index 1 is the correct answer
+            ),
+            Lesson.Question(
+                text: "What happens when you try to access a dictionary key that doesn't exist?",
+                options: [
+                    "The app crashes with an error",
+                    "It returns nil (optional value)",
+                    "It returns an empty string"
+                ],
+                correctOptionIndex: 1  // Index 1 is correct - returns nil
+            ),
+            Lesson.Question(
+                text: "Which scenario is BEST suited for using a dictionary?",
+                options: [
+                    "Storing a list of high scores in order",
+                    "Looking up student information by student ID",
+                    "Keeping track of items in a shopping cart sequence"
+                ],
+                correctOptionIndex: 1  // Index 1 - lookup by ID is perfect for dictionaries
+            ),
+            Lesson.Question(
+                text: "What is the time complexity for looking up a value in a dictionary?",
+                options: [
+                    "O(n) - linear time",
+                    "O(log n) - logarithmic time",
+                    "O(1) - constant time"
+                ],
+                correctOptionIndex: 2  // Index 2 - O(1) constant time
+            )
+        ],
+        
+        // Additional learning resources
+        resources: [
+            Lesson.Resource(
+                title: "Swift.org: Collection Types",
+                description: "Official Swift documentation covering dictionaries and other collection types",
+                url: "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/collectiontypes/"
+            ),
+            Lesson.Resource(
+                title: "Apple Developer: Dictionary",
+                description: "Complete API reference for Swift Dictionary type",
+                url: "https://developer.apple.com/documentation/swift/dictionary"
+            ),
+            Lesson.Resource(
+                title: "Data Structures Visualizer",
+                description: "Interactive tool to visualize how dictionaries and hash tables work",
+                url: "https://www.cs.usfca.edu/~galles/visualization/OpenHash.html"
+            ),
+            Lesson.Resource(
+                title: "Big O Notation Guide",
+                description: "Learn about algorithm complexity and why dictionaries are efficient",
+                url: "https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation"
+            )
+        ]
+    )
+
+    static let SwiftUIBasicsLesson = Lesson(
+        title: "SwiftUI Basics",
+        shortTitle: "SwiftUI",
+        description: "Learn to build beautiful iOS app interfaces using SwiftUI – Apple's modern framework for creating user interfaces with declarative code.",
+        difficulty: .intermediate,
+        duration: 45,
+        videoID: "sZSlTDlo0Ag",
+        slidesURL:"https://docs.google.com/presentation/d/1K-MEeuOo1wPqlmblDfbthgTj0Bb9MjwSBnKkdmsIHOg/edit?slide=id.g344e1d1e5ab_0_31#slide=id.g344e1d1e5ab_0_31",
+        slideThumbnails: ["swift1", "swift2", "swift3"],
+        
+        goals: [
+            Lesson.LessonGoal(description: "Understand SwiftUI's declarative programming approach"),
+            Lesson.LessonGoal(description: "Create basic UI elements like Text, Button, and VStack"),
+            Lesson.LessonGoal(description: "Build a simple interactive interface with state management"),
+        ],
+        
+        contentSections: [
+            Lesson.ContentSection(
+                title: "What is SwiftUI?",
+                content: "SwiftUI is Apple's modern framework for building user interfaces. Instead of describing how to build the UI step by step, you describe what you want it to look like. SwiftUI figures out how to make it happen."
+            ),
+            Lesson.ContentSection(
+                title: "Basic Views and Layout",
+                content: "Views are the building blocks of SwiftUI. VStack arranges views vertically, HStack horizontally, and ZStack layers them on top of each other.",
+                codeExample: """
+                struct ContentView: View {
+                    var body: some View {
+                        VStack {
+                            Text("Hello, SwiftUI!")
+                                .font(.title)
+                                .foregroundColor(.blue)
+                            
+                            HStack {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.red)
+                                Text("Welcome to iOS development")
+                            }
+                            
+                            Button("Tap Me!") {
+                                print("Button tapped!")
+                            }
+                            .padding()
+                            .background(Color.green)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                        }
+                        .padding()
+                    }
+                }
+                """
+            ),
+            Lesson.ContentSection(
+                title: "State and Data Binding",
+                content: "Use @State to store data that can change. When state changes, SwiftUI automatically updates the interface to match.",
+                codeExample: """
+                struct CounterView: View {
+                    @State private var count = 0
+                    @State private var name = ""
+                    
+                    var body: some View {
+                        VStack(spacing: 20) {
+                            Text("Count: \\(count)")
+                                .font(.largeTitle)
+                            
+                            HStack {
+                                Button("-") {
+                                    count -= 1
+                                }
+                                .buttonStyle(.bordered)
+                                
+                                Button("+") {
+                                    count += 1
+                                }
+                                .buttonStyle(.bordered)
+                            }
+                            
+                            TextField("Enter your name", text: $name)
+                                .textFieldStyle(.roundedBorder)
+                            
+                            if !name.isEmpty {
+                                Text("Hello, \\(name)!")
+                                    .foregroundColor(.purple)
+                            }
+                        }
+                        .padding()
+                    }
+                }
+                """
+            ),
+            Lesson.ContentSection(
+                title: "Lists and Navigation",
+                content: "Lists display scrollable data. NavigationView and NavigationLink create navigation between screens.",
+                codeExample: """
+                struct FruitListView: View {
+                    let fruits = ["Apple", "Banana", "Orange", "Grape", "Strawberry"]
+                    
+                    var body: some View {
+                        NavigationView {
+                            List(fruits, id: \\.self) { fruit in
+                                NavigationLink(destination: FruitDetailView(fruit: fruit)) {
+                                    HStack {
+                                        Image(systemName: "leaf.fill")
+                                            .foregroundColor(.green)
+                                        Text(fruit)
+                                            .font(.headline)
+                                    }
+                                }
+                            }
+                            .navigationTitle("Fruits")
+                        }
+                    }
+                }
+                
+                struct FruitDetailView: View {
+                    let fruit: String
+                    
+                    var body: some View {
+                        VStack {
+                            Text(fruit)
+                                .font(.largeTitle)
+                                .padding()
+                            Text("This is a delicious \\(fruit.lowercased())!")
+                                .foregroundColor(.secondary)
+                        }
+                        .navigationTitle(fruit)
+                    }
+                }
+                """
+            ),
+        ],
+        
+        questions: [
+            Lesson.Question(
+                text: "What makes SwiftUI different from traditional UI frameworks?",
+                options: ["It's faster", "It uses declarative syntax", "It only works on iPhone"],
+                correctOptionIndex: 1
+            ),
+            Lesson.Question(
+                text: "Which property wrapper is used to store changeable data in SwiftUI?",
+                options: ["@State", "@Binding", "@Published"],
+                correctOptionIndex: 0
+            ),
+            Lesson.Question(
+                text: "What does VStack do in SwiftUI?",
+                options: ["Creates variables", "Arranges views vertically", "Validates input"],
+                correctOptionIndex: 1
+            ),
+        ],
+        
+        resources: [
+            Lesson.Resource(
+                title: "SwiftUI Documentation",
+                description: "Apple's official SwiftUI framework documentation",
+                url: "https://developer.apple.com/documentation/swiftui"
+            ),
+            Lesson.Resource(
+                title: "SwiftUI Tutorials by Apple",
+                description: "Step-by-step tutorials for learning SwiftUI",
+                url: "https://developer.apple.com/tutorials/swiftui"
+            ),
         ]
     )
 }
