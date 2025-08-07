@@ -4,26 +4,31 @@ import SwiftUI
 struct LessonSlidesSection: View {
     @Binding var showingSlides: Bool // Controls sheet/modal visibilty
     var slidesURL: String? // Slides URL from the lesson model
+    var slideThumbnails: [String] = [] // Thumbnail image names
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Section header
-            Text("Presentation Slides")
+            Text("Presentation")
                 .font(.titleMedium)
                 .foregroundColor(.textPrimaryApp)
             
-            // Slide thumbnail (just visual placeholders for now)
-            HStack(spacing: 10) {
-                ForEach(0..<3) { index in
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.surfaceApp)
-                        .frame(height: 90)
-                        .overlay(
-                            Text("Slide \(index + 1)")
-                                .font(.caption)
-                                .foregroundColor(.textTertiaryApp)
-                        )
+            // Slide thumbnails
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(slideThumbnails.indices, id: \.self) { index in
+                        Image(slideThumbnails[index])
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 160, height: 90)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.dividerApp, lineWidth: 0.5)
+                            )
+                    }
                 }
+                .padding(.vertical, 4)
             }
             
             // Button to open full slide view
@@ -44,7 +49,7 @@ struct LessonSlidesSection: View {
         .padding(16)
         .background(Color.cardBackgroundApp)
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.03), radius: 3, x: 0, y: 1)
+        .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 1)
     }
 }
 
@@ -84,14 +89,15 @@ struct LessonSlidesDetailView: View {
 #Preview("SlidesSection") {
     LessonSlidesSection(
         showingSlides: .constant(false),
-        slidesURL: MockData.binaryCommunicationLesson.slidesURL
+        slidesURL: LessonData.binaryLesson.slidesURL,
+        slideThumbnails: LessonData.binaryLesson.slideThumbnails
     )
     .padding()
 }
 
-#Preview("SlidesDetailView"){
+#Preview("SlidesDetailView") {
     LessonSlidesDetailView(
         showingSlides: .constant(true),
-        slidesURL: MockData.binaryCommunicationLesson.slidesURL
+        slidesURL: LessonData.binaryLesson.slidesURL
     )
 }

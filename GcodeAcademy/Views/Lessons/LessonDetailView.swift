@@ -1,68 +1,103 @@
+// LessonDetailView.swift
 import SwiftUI
 
-// This view pulls together all the modular components to display a full lesson page
 struct LessonDetailView: View {
-    // Holds the current lesson data (replace with real model in future)
-    @State private var lesson = MockData.binaryCommunicationLesson
+    // State
+    @State private var lesson: Lesson
     @State private var isVideoWatched = false
     @State private var completedGoals: Set<UUID> = []
     @State private var showingSlides = false
     @State private var selectedQuestionIndex: Int? = nil
     @State private var showingResourceLinks = false
     
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                // Title and description of the lesson
-                LessonHeaderSection(
-                    lesson: lesson,
-                    progressPercentage: progressPercentage
-                )
-                
-                // Video content (Youtube embed)
-                LessonVideoSection(
-                    videoID: lesson.videoID ?? "",
-                    isVideoWatched: $isVideoWatched
-                )
-                
-                // Checklist of learning goals
-                LessonGoalsSection(
-                    goals: lesson.goals,
-                    completedGoals: $completedGoals
-                )
-                
-                // Explanations, examples, and codr
-                LessonContentSection(
-                    contentSections: lesson.contentSections
-                )
-                
-                // Small preview + full slides toggle
-                LessonSlidesSection(
-                    showingSlides: $showingSlides,
-                    slidesURL: lesson.slidesURL
-                )
-                
-                // Interactive multiple choice question
-                LessonQuestionsSection(
-                    questions: lesson.questions,
-                    selectedQuestionIndex: $selectedQuestionIndex
-                )
-                
-                // Optional links for further learning
-                LessonResourcesSection(
-                    resources: lesson.resources,
-                    showingResourceLinks: $showingResourceLinks
-                )
-                
-                // Navigation buttons to move between lessons
-                LessonNavControls(
-                    onPrevious: navigateToPreviousLesson,
-                    onNext: navigateToNextLesson
-                )
-            }
-            .padding()
+    // Computed properties
+    
+    private var progressPercentage: Double {
+        var total = 0.0
+        if isVideoWatched {
+            total += 0.35
         }
-        // Google Slides sheet shown when user taps "View All Slides"
+        if !lesson.goals.isEmpty {
+            let goalWeight = 0.65 / Double(lesson.goals.count)
+            total += Double(completedGoals.count) * goalWeight
+        }
+        return total
+    }
+
+    private var isFirstTwoLessons: Bool {
+        let firstTwoLessonIds = [
+            LessonData.allLessons[0].id,
+            LessonData.allLessons[1].id
+        ].compactMap { $0 }
+        return firstTwoLessonIds.contains(lesson.id)
+    }
+    
+    // Initialization
+    init(lesson: Lesson) {
+        _lesson = State(initialValue: lesson)
+    }
+    
+    var body: some View {
+        
+        VStack(spacing: 0) {
+            // Custom top bar
+            TopBar(title: lesson.title)
+            
+            // Main content
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    // Overview section
+                    LessonHeaderSection(
+                        lesson: lesson,
+                        progressPercentage: progressPercentage
+                    ).environmentObject(CurrentUser.user)
+                    
+                    // Video section
+                    LessonVideoSection(
+                        videoID: lesson.videoID ?? "",
+                        isVideoWatched: $isVideoWatched
+                    )
+                    
+                    // Learning goals section
+                    LessonGoalsSection(
+                        goals: lesson.goals,
+                        completedGoals: $completedGoals
+                    )
+                    
+                    // Content sections
+                    LessonContentSection(
+                        contentSections: lesson.contentSections
+                    )
+                    
+                    // Slides section
+                    LessonSlidesSection(
+                        showingSlides: $showingSlides,
+                        slidesURL: lesson.slidesURL,
+                        slideThumbnails: lesson.slideThumbnails
+                    )
+                    
+                    // Questions section
+                    LessonQuestionsSection(
+                        questions: lesson.questions,
+                        selectedQuestionIndex: $selectedQuestionIndex
+                    )
+                    
+                    // Resources section
+                    LessonResourcesSection(
+                        resources: lesson.resources,
+                        showingResourceLinks: $showingResourceLinks
+                    )
+                    
+                    // Completion hint for first two lessons only
+                    if isFirstTwoLessons {
+                        CompletionHintView()
+                    }
+                }
+                .padding()
+            }
+        }
+        .background(Color.backgroundApp)
+        .navigationBarHidden(true)
         .sheet(isPresented: $showingSlides) {
             LessonSlidesDetailView(
                 showingSlides: $showingSlides,
@@ -70,38 +105,26 @@ struct LessonDetailView: View {
             )
         }
     }
-    
-    // Calculates overall progress for this lesson
-    private var progressPercentage: Double {
-        var total = 0.0
-        
-        // Watching the video is worth 35%
-        if isVideoWatched {
-            total += 0.35
+}
+
+struct CompletionHintView: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "lightbulb.fill")
+                .foregroundColor(.accentApp.opacity(0.8))
+                .font(.system(size: 18))
+            
+            Text("To complete this lesson, mark the video as watched and check off all learning goals.")
+                .font(.callout)
+                .foregroundColor(.textSecondaryApp)
+                .fixedSize(horizontal: false, vertical: true)
         }
-        
-        // Completed goals is worth 65%
-        if !lesson.goals.isEmpty {
-            let goalWeight = 0.65 / Double(lesson.goals.count)
-            total += Double(completedGoals.count) * goalWeight
-        }
-        
-        return total
-    }
-    
-    private func navigateToPreviousLesson() {
-        // TODO: Add logic for navigating back
-        print("Navigating to previous lesson")
-    }
-    
-    private func navigateToNextLesson() {
-        // TODO: Add logic for navigating forward
-        print("Navigating to previous lesson")
+        .padding(16)
     }
 }
 
 #Preview {
     NavigationStack {
-        LessonDetailView()
+        LessonDetailView(lesson: LessonData.allLessons[1])
     }
 }

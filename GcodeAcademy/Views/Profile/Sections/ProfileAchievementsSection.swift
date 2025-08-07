@@ -3,7 +3,7 @@ import SwiftUI
 // Displays a grid of the user's achievements
 struct ProfileAchievementsSection: View {
     // The user model containing achievements
-    let user: User
+    @EnvironmentObject var user: User
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -50,16 +50,18 @@ struct ProfileAchievementsSection: View {
             
             // Achievement name and status
             VStack(spacing: 2) {
-                Text(achievement.name)
-                    .font(.bodyMedium)
-                    .foregroundColor(achievement.unlocked ? .textPrimaryApp : .textSecondaryApp)
-                    .multilineTextAlignment(.center)
-                
-                // Only show "Locked" text for locked achievements
-                if !achievement.unlocked {
-                    Text("Locked")
+                if achievement.unlocked {
+                    // Show only name if unlocked
+                    Text(achievement.name)
+                        .font(.bodyMedium)
+                        .foregroundColor(.textPrimaryApp)
+                        .multilineTextAlignment(.center)
+                } else {
+                    // Show "Locked" text for locked achievements
+                    Text("Locked: \(achievement.name)")
                         .font(.caption)
-                        .foregroundColor(.textTertiaryApp)
+                        .foregroundColor(.textSecondaryApp)
+                        .lineLimit(1)
                 }
             }
         }
@@ -75,5 +77,5 @@ struct ProfileAchievementsSection: View {
 
 #Preview {
     // Make sure we have achievements data in the user for the preview
-    ProfileAchievementsSection(user: MockData.currentUser)
+    ProfileAchievementsSection().environmentObject(CurrentUser.user)
 }

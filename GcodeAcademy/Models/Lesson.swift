@@ -1,17 +1,25 @@
 import Foundation
 
-struct Lesson: Identifiable {
+struct Lesson: Identifiable, Equatable {
+    static func == (lhs: Lesson, rhs: Lesson) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id = UUID()
     var title: String
+    var shortTitle: String
     var description: String
     
     // Metadata
-    var difficulty: String = "Beginner"
-    var duration: String = "20 minutes"
+    var difficulty: Difficulty
+    var duration: Int = 20
     
-    // Content
+    // External content
     var videoID: String? = nil
     var slidesURL: String? = nil
+    var slideThumbnails: [String] = []
+    
+    // Content
     var goals: [LessonGoal] = []
     var contentSections: [ContentSection] = []
     var questions: [Question] = []
@@ -45,4 +53,12 @@ extension Lesson {
         var description: String
         var url: String
     }
+}
+
+// Using cases prevent typos and allow sorting/filtering
+enum Difficulty: String, CaseIterable, Codable {
+    case beginner = "Beginner"
+    case intermediate = "Intermediate"
+    case advanced = "Advanced"
+    case challenging = "Challenging"
 }

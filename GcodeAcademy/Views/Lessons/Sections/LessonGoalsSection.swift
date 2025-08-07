@@ -8,7 +8,7 @@ struct LessonGoalsSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Section header
-            Text("Lesson Goals")
+            Text("Goals")
                 .font(.titleMedium)
                 .foregroundColor(.textPrimaryApp)
             
@@ -38,7 +38,7 @@ struct LessonGoalsSection: View {
         .padding(16)
         .background(Color.cardBackgroundApp)
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.03), radius: 3, x: 0, y: 1)
+        .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 1)
     }
     
     // Toggle goal between completed and not
@@ -54,7 +54,7 @@ struct LessonGoalsSection: View {
         
 #Preview {
     LessonGoalsSection(
-        goals: MockData.binaryCommunicationLesson.goals,
+        goals: LessonData.binaryLesson.goals,
         completedGoals: .constant([])
     )
     .padding()

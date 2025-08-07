@@ -1,40 +1,41 @@
-import Foundation
 
-struct User: Identifiable {
-    var id = UUID() // Universally unique identifier
-    var name: String
-    var bio: String = "Gcode Academy Student"
-    var lessonsCompleted: Int = 0
-    var totalLessons: Int = 7
-    var achievements: [Achievement] = [] // Achievement array
+import Foundation
+import Combine
+
+class User: ObservableObject, Identifiable {
+    let id = UUID()
     
-    // Generates intials from the user's name/
+    @Published var name: String
+    @Published var bio: String = "Gcode Academy Student"
+    @Published var lessonsCompleted: Int = 0
+    @Published var totalLessons: Int = LessonData.allLessons.count
+    @Published var achievements: [Achievement] = []
+
+    init(name: String) {
+        self.name = name
+    }
+
+    func addLesson() {
+        self.lessonsCompleted += 1
+    }
+
+    // Generates initials from the user's name
     var initials: String {
-        // Split the name into components using spaces
         let components = name.components(separatedBy: " ")
-        
         if components.count >= 2 {
-            // If we have two name, take first letter from each
             let first = components[0].prefix(1)
             let last = components[1].prefix(1)
             return "\(first)\(last)"
         } else if let first = name.first {
-            //if we have one name, take the first letter
             return String(first)
         } else {
-            // Fallback if name is empty
             return "?"
         }
     }
-    
-    // Calucates completion percentage as a value between 0.0 and 1.0
+
+    // Calculates completion percentage as a value between 0.0 and 1.0
     var progressPercentage: Double {
-        //Avoid division by zero
-        if totalLessons == 0 {
-            return 0.0
-        }
-        
-        // Calculate the percentage
+        guard totalLessons > 0 else { return 0.0 }
         return Double(lessonsCompleted) / Double(totalLessons)
     }
 }

@@ -54,14 +54,14 @@ struct LessonResourcesSection: View {
         .padding(16)
         .background(Color.cardBackgroundApp)
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.03), radius: 3, x: 0, y: 1)
+        .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 1)
     }
 }
 
 // Preview with mock data
 #Preview {
     LessonResourcesSection(
-        resources: MockData.binaryCommunicationLesson.resources,
+        resources: LessonData.binaryLesson.resources,
         showingResourceLinks: .constant(true)
     )
     .padding()
