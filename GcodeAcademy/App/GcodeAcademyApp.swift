@@ -2,18 +2,20 @@ import SwiftUI
 
 @main
 struct GcodeAcademyApp: App {
-    // State to track if user is authenticated
-    @State private var isAuthenticated = false
-    
-    // For development, you can set this to true to skip the auth screens
-    @State private var skipAuth = false
+    // Create our user manager as a StateObject at the app level
+    @StateObject private var userManager = UserManager()
     
     var body: some Scene {
         WindowGroup {
-            if isAuthenticated || skipAuth {
+            if userManager.isAuthenticated {
+                // User is authenticated
                 ContentView()
+                    .environmentObject(userManager)
+                    .environmentObject(userManager.currentUser!)
             } else {
-                AuthView(isAuthenticated: $isAuthenticated)
+                // User needs to authenticate
+                AuthView()
+                    .environmentObject(userManager)
             }
         }
     }

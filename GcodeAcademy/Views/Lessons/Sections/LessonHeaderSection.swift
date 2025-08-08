@@ -1,7 +1,7 @@
-// LessonHeaderSection.swift
 import SwiftUI
 
 struct LessonHeaderSection: View {
+    @EnvironmentObject var user: User
     let lesson: Lesson
     let progressPercentage: Double
     
@@ -11,6 +11,10 @@ struct LessonHeaderSection: View {
     
     private var isCompleted: Bool {
         return percent >= 100
+    }
+    
+    private var lessonIndex: Int? {
+        return LessonData.allLessons.firstIndex(of: lesson)
     }
     
     var body: some View {
@@ -57,6 +61,9 @@ struct LessonHeaderSection: View {
                         Text("Completed")
                             .font(.bodySmall)
                             .foregroundColor(.accentApp)
+                            .onAppear {
+                                updateUserProgress()
+                            }
                     } else {
                         // Mini progress circle
                         ZStack {
@@ -85,6 +92,19 @@ struct LessonHeaderSection: View {
         }
         .padding(.bottom, 10)
     }
+    
+    // Update user progress when a lesson is completed
+    private func updateUserProgress() {
+        // Only update if we have a valid lesson index
+        guard let currentIndex = lessonIndex else { return }
+        
+        // If this is the next lesson the user should complete
+        if currentIndex == user.lessonsCompleted {
+            // Increment the user's completed lessons count
+            user.addLesson()
+            print("Lesson completed: \(user.lessonsCompleted)")
+        }
+    }
 }
 
 #Preview {
@@ -106,4 +126,5 @@ struct LessonHeaderSection: View {
     }
     .padding()
     .background(Color.backgroundApp)
+    .environmentObject(MockData.users[0])
 }

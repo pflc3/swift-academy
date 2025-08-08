@@ -10,7 +10,7 @@ struct WelcomeSection: View {
         VStack(spacing: 30) {
             // Welcome message
             VStack(spacing: 16) {
-                Text("welcome to")
+                Text("Welcome to")
                     .font(.titleLarge)
                     .foregroundColor(.white)
                 
@@ -37,7 +37,7 @@ struct WelcomeSection: View {
                     showLogin()
                 }
                 
-                // Skip option for demo purpose
+                // Skip option for demo purposes
                 Button(action: tryDemo) {
                     Text("Try a Demo")
                         .font(.subheadline)
@@ -53,7 +53,7 @@ struct WelcomeSection: View {
 
 #Preview {
     ZStack {
-        Color .primaryApp.ignoresSafeArea()
+        Color.primaryApp.ignoresSafeArea()
         
         WelcomeSection(
             showLogin: {},

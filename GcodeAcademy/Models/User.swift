@@ -1,16 +1,38 @@
 import Foundation
+import Combine
 
-struct User: Identifiable {
-    var id = UUID() // Universally unique identifier
-    var name: String
-    var email: String // Field for authentication
-    var password: String // Field for authentication (Usually don't store this directly)
-    var bio: String = "Gcode Academy Student"
-    var lessonsCompleted: Int = 0
-    var totalLessons: Int = 7
-    var achievements: [Achievement] = [] // Achievement array
+class User: ObservableObject, Identifiable {
+    // Identity
+    let id = UUID()
     
-    // Generates intials from the user's name
+    // Authentication fields
+    @Published var email: String
+    @Published var password: String
+    
+    // Profile information
+    @Published var name: String
+    @Published var bio: String
+    
+    // Progress tracking
+    @Published var lessonsCompleted: Int
+    @Published var achievements: [Achievement]
+    
+    // Initializers
+    init(name: String, email: String, password: String, bio: String = "GCode Academy Student", lessonsCompleted: Int = 0, achievements: [Achievement] = []) {
+        self.name = name
+        self.email = email
+        self.password = password
+        self.bio = bio
+        self.lessonsCompleted = lessonsCompleted
+        self.achievements = achievements
+    }
+    
+    // Progress management
+    func addLesson() {
+        self.lessonsCompleted += 1
+    }
+    
+    // Generates initials from the user's name
     var initials: String {
         // Split the name into components using spaces
         let components = name.components(separatedBy: " ")
@@ -29,14 +51,14 @@ struct User: Identifiable {
         }
     }
     
-    // Calucates completion percentage as a value between 0.0 and 1.0
+    // Calculates completion percentage as a value between 0.0 and 1.0
     var progressPercentage: Double {
-        // Avoid division by zero
-        if totalLessons == 0 {
-            return 0.0
-        }
-        
-        // Calculate the percentage
-        return Double(lessonsCompleted) / Double(totalLessons)
+        guard LessonData.allLessons.count > 0 else { return 0.0 }
+        return Double(lessonsCompleted) / Double(LessonData.allLessons.count)
+    }
+    
+    // Computed property for total lessons
+    var totalLessons: Int {
+        return LessonData.allLessons.count
     }
 }

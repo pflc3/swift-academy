@@ -1,30 +1,26 @@
 import SwiftUI
 
-/// Sheet view for editing user profile information
 struct EditProfileView: View {
-    // Binding to the user model so changes are reflected in parent view
-    @Binding var user: User
+    // Access user from environment
+    @EnvironmentObject var user: User
+    @EnvironmentObject var userManager: UserManager
     
     // Environment value to dismiss the sheet
     @Environment(\.dismiss) private var dismiss
     
-    //Local editable copies of name and bio
-    @State private var name: String
-    @State private var bio: String
-    
-    // Initialize state from current user model
-    init(user: Binding<User>) {
-        self._user = user
-        self._name = State(initialValue: user.wrappedValue.name)
-        self._bio = State(initialValue: user.wrappedValue.bio)
-    }
+    // Local editable copies of user fields
+    @State private var name: String = ""
+    @State private var bio: String = ""
+    @State private var email: String = ""
+    @State private var password: String = ""
+    @State private var showPassword: Bool = false // Toggle to show/hide password
     
     var body: some View {
         NavigationStack {
             Form {
                 Section {
-                    //Name field
-                    VStack(alignment: .leading, spacing:4) {
+                    // Name field
+                    VStack(alignment: .leading, spacing: 4) {
                         Text("Name")
                             .font(.caption)
                             .foregroundColor(.textSecondaryApp)
@@ -33,7 +29,7 @@ struct EditProfileView: View {
                             .padding(.vertical, 6)
                     }
                     
-                    //Big field - multiline
+                    // Bio field - multiline
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Bio")
                             .font(.caption)
@@ -47,6 +43,68 @@ struct EditProfileView: View {
                     Text("Profile Information")
                 }
                 .padding(.vertical, 8)
+                
+                Section {
+                    // Email field
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Email")
+                            .font(.caption)
+                            .foregroundColor(.textSecondaryApp)
+                        
+                        TextField("Enter your email", text: $email)
+                            .keyboardType(.emailAddress)
+                            .autocapitalization(.none)
+                            .padding(.vertical, 6)
+                    }
+                    
+                    // Password field with toggle to show/hide
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Password")
+                            .font(.caption)
+                            .foregroundColor(.textSecondaryApp)
+                        
+                        ZStack(alignment: .trailing) {
+                            if showPassword {
+                                TextField("Enter your password", text: $password)
+                                    .padding(.vertical, 6)
+                                    .padding(.trailing, 30) // Make room for the button
+                            } else {
+                                SecureField("Enter your password", text: $password)
+                                    .padding(.vertical, 6)
+                                    .padding(.trailing, 30) // Make room for the button
+                            }
+                            
+                            Button(action: {
+                                showPassword.toggle()
+                            }) {
+                                Image(systemName: showPassword ? "eye.slash" : "eye")
+                                    .foregroundColor(.primaryApp)
+                            }
+                            // Prevent the button from capturing the whole area
+                            .buttonStyle(BorderlessButtonStyle())
+                        }
+                    }
+                } header: {
+                    Text("Account Information")
+                }
+                .padding(.vertical, 8)
+                
+                Section {
+                    Button(action: {
+                        // Logout the user
+                        userManager.logout()
+                        dismiss()
+                    }) {
+                        HStack {
+                            Spacer()
+                            Text("Log Out")
+                                .foregroundColor(.red)
+                                .bold()
+                            Spacer()
+                        }
+                    }
+                }
+                .padding(.vertical, 8)
             }
             .navigationTitle("Edit Profile")
             .navigationBarTitleDisplayMode(.inline)
@@ -58,17 +116,28 @@ struct EditProfileView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
+                        // Save all fields to user
                         user.name = name
                         user.bio = bio
+                        user.email = email
+                        user.password = password
                         dismiss()
                     }
                 }
+            }
+            .onAppear {
+                // Initialize state values when view appears
+                name = user.name
+                bio = user.bio
+                email = user.email
+                password = user.password
             }
         }
     }
 }
 
 #Preview {
-    // We need to create a binding for the preview
-    EditProfileView(user: .constant(MockData.currentUser))
+    EditProfileView()
+        .environmentObject(MockData.users[0])
+        .environmentObject(UserManager())
 }

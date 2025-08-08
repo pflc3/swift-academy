@@ -1,6 +1,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    // Environment objects
+    @EnvironmentObject var userManager: UserManager
+    @EnvironmentObject var user: User
+    
     // State for tracking selected tab and menu visibility
     @State private var selectedTab = 1  // Default to Home
     @State private var showMenu = false
@@ -106,5 +110,9 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    let userManager = UserManager()
+    userManager.currentUser = MockData.users[0]
+    return ContentView()
+        .environmentObject(userManager)
+        .environmentObject(MockData.users[0])
 }

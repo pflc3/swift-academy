@@ -28,8 +28,8 @@ struct SignupSection: View {
                     .font(.caption)
                     .foregroundColor(.white)
                     .padding()
-                    .background(Color.errorApp.opacity(0.0))
-                    .cornerRadius(0)
+                    .background(Color.errorApp.opacity(0.8))
+                    .cornerRadius(8)
             }
             
             // Form fields
@@ -54,7 +54,6 @@ struct SignupSection: View {
                     isSecure: true,
                     text: $password
                 )
-                
             }
             .padding(.horizontal, 16)
             
@@ -99,7 +98,7 @@ struct SignupSection: View {
         .padding(.bottom, 60)
     }
 }
-        
+
 #Preview {
     ZStack {
         Color.primaryApp.ignoresSafeArea()

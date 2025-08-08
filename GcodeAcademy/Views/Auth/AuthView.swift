@@ -9,8 +9,8 @@ enum AuthScreen {
 
 // The main container for authentication screens
 struct AuthView: View {
-    // Binding to update app-wide authentication state
-    @Binding var isAuthenticated: Bool
+    // Access to the user manager
+    @EnvironmentObject var userManager: UserManager
     
     // State for tracking which screen to display
     @State private var currentView: AuthScreen = .welcome
@@ -59,7 +59,8 @@ struct AuthView: View {
                         showSignup: { withAnimation { currentView = .signup } },
                         tryDemo: {
                             withAnimation {
-                                isAuthenticated = true
+                                // Auto-login with first mock user
+                                _ = userManager.login(email: "ada@gcode.academy", password: "password123")
                             }
                         }
                     )
@@ -91,9 +92,7 @@ struct AuthView: View {
         .animation(.easeInOut, value: currentView)
     }
     
-    /*
-     * Authentication Methods
-     */
+    // MARK: - Authentication Methods
     
     private func handleLogin() {
         isLoading = true
@@ -103,12 +102,8 @@ struct AuthView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             isLoading = false
             
-            // For demo purposes, check against mock data
-            if email == MockData.currentUser.email && password == MockData.currentUser.password {
+            if userManager.login(email: email, password: password) {
                 // Successfully logged in
-                withAnimation {
-                    isAuthenticated = true
-                }
             } else if !email.isEmpty && !password.isEmpty {
                 // Show credentials error
                 errorMessage = "Invalid email or password"
@@ -127,11 +122,13 @@ struct AuthView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             isLoading = false
             
-            // For demo purposes, accept any non-empty fields
+            // Check for empty fields
             if !name.isEmpty && !email.isEmpty && !password.isEmpty {
-                // Successfully signed up - in a real app, you would create a new user here
-                withAnimation {
-                    isAuthenticated = true
+                if userManager.signup(name: name, email: email, password: password) {
+                    // Successfully signed up
+                } else {
+                    // Email already exists
+                    errorMessage = "This email is already registered"
                 }
             } else {
                 // Show error
@@ -141,7 +138,7 @@ struct AuthView: View {
     }
 }
 
-// Preview with binding
 #Preview {
-    AuthView(isAuthenticated: .constant(false))
+    AuthView()
+        .environmentObject(UserManager())
 }
