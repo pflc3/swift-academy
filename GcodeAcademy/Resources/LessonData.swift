@@ -9,13 +9,7 @@ struct LessonData {
         arraysListsLesson,
         functionsLesson,
         dictionariesLesson,
-        SwiftUIBasicsLesson,
-        
-        // Duplicates
-        binaryLesson,
-        dataTypesLesson,
-        arraysListsLesson,
-        functionsLesson
+        SwiftUIBasicsLesson
     ]
     
     // Individual lesson definitions
@@ -78,7 +72,7 @@ struct LessonData {
                 text: "What is the decimal value of binary 1010?",
                 options: ["5", "15", "10"],
                 correctOptionIndex: 2  // Index 2 is "10"
-            ),
+            )
         ],
         
         // Additional learning resources
@@ -163,7 +157,7 @@ struct LessonData {
                 text: "What happens when you convert a Double to an Int in Swift?",
                 options: ["It rounds to the nearest whole number", "It truncates the decimal portion", "It causes a compile error"],
                 correctOptionIndex: 1  // Index 1 is "It truncates the decimal portion"
-            ),
+            )
         ],
         
         // Additional learning resources
@@ -191,15 +185,12 @@ struct LessonData {
         slidesURL: "https://docs.google.com/presentation/d/1GakhlxRNLV3AAw5uXXZSghMN1pZ3PQaVylLOCqRHtK8/edit?usp=sharing",
         slideThumbnails: ["arrays1", "arrays2", "arrays3"],
         
-        // Learning objectives for this lesson
         goals: [
             Lesson.LessonGoal(description: "Understand what data structures are and why they're essential in programming"),
             Lesson.LessonGoal(description: "Learn the differences between arrays and lists"),
-            Lesson.LessonGoal(description: "Master basic operations: adding, removing, and accessing elements"),
-            Lesson.LessonGoal(description: "Discover when to use arrays vs lists in real applications")
+            Lesson.LessonGoal(description: "Master basic operations: adding, removing, and accessing elements")
         ],
         
-        // Main educational content divided into sections
         contentSections: [
             Lesson.ContentSection(
                 title: "What are Data Structures?",
@@ -242,8 +233,7 @@ struct LessonData {
                 """
             )
         ],
-        
-        // Practice questions to test understanding
+
         questions: [
             Lesson.Question(
                 text: "What is the index of the first element in an array?",
@@ -261,8 +251,7 @@ struct LessonData {
                 correctOptionIndex: 1  // Index 1 is "15"
             )
         ],
-        
-        // Additional learning resources
+
         resources: [
             Lesson.Resource(
                 title: "Visualgo: Array Visualizations",
@@ -289,7 +278,7 @@ struct LessonData {
         
         goals: [
             Lesson.LessonGoal(description: "Understand what functions are and why they're useful"),
-            Lesson.LessonGoal(description: "Write simple functions with parameters and return values"),
+            Lesson.LessonGoal(description: "Write simple functions with parameters and return values")
         ],
         
         contentSections: [
@@ -304,15 +293,12 @@ struct LessonData {
                 func sayHello() {
                     print("Hello!")
                 }
-
                 func greet(name: String) {
                     print("Hi, \\(name)!")
                 }
-
                 func add(a: Int, b: Int) -> Int {
                     return a + b
                 }
-
                 sayHello()
                 greet(name: "Sam")
                 let total = add(a: 2, b: 3)  // 5
@@ -325,11 +311,9 @@ struct LessonData {
                 func area(width: Double, height: Double) -> Double {
                     return width * height
                 }
-
                 func welcome(name: String = "Guest") {
                     print("Welcome, \\(name)!")
                 }
-
                 let result = area(width: 5, height: 2)
                 welcome()
                 welcome(name: "Lily")
@@ -345,18 +329,16 @@ struct LessonData {
                     }
                     return numbers.max()
                 }
-
                 func checkAge(_ age: Int) -> String {
                     if age < 18 {
                         return "Too young"
                     }
                     return "Allowed"
                 }
-
                 let max = findMax([1, 3, 2])
                 print(checkAge(20))  // Allowed
                 """
-            ),
+            )
         ],
         
         questions: [
@@ -392,24 +374,21 @@ struct LessonData {
     )
     
     static let dictionariesLesson = Lesson(
-        title: "Dictionaries and Data Structures",
+        title: "Dictionaries",
         shortTitle: "Dictionaries",
         description: "Discover how to organize and access data efficiently using dictionaries, key-value pairs, and other fundamental data structures.",
         difficulty: .intermediate,
         duration: 30,
-        videoID: "iM2lMBAckKg", // Placeholder - replace with actual video ID
-        slidesURL: "https://docs.google.com/presentation/d/14f5fMvwcECWb20oxvrpuC-H3GprAKv8QbCdl3mpLa-o/edit?slide=id.p#slide=id.p", // Placeholder - replace with actual slides URL
+        videoID: "iM2lMBAckKg",
+        slidesURL: "https://docs.google.com/presentation/d/14f5fMvwcECWb20oxvrpuC-H3GprAKv8QbCdl3mpLa-o/edit?slide=id.p#slide=id.p",
         slideThumbnails: ["dict1", "dict2", "dict3"],
-        
-        // Learning objectives for this lesson
+
         goals: [
             Lesson.LessonGoal(description: "Understand what dictionaries are and when to use them"),
             Lesson.LessonGoal(description: "Learn to create, access, and modify dictionary data"),
-            Lesson.LessonGoal(description: "Explore nested data structures and real-world applications"),
-            Lesson.LessonGoal(description: "Compare dictionaries with arrays and understand performance benefits")
+            Lesson.LessonGoal(description: "Explore nested data structures and real-world applications")
         ],
-        
-        // Main educational content divided into sections with code examples
+
         contentSections: [
             Lesson.ContentSection(
                 title: "Introduction to Dictionaries",
@@ -493,26 +472,9 @@ struct LessonData {
                 let totalItems = inventory.values.reduce(0, +)
                 print("Total inventory: \\(totalItems)")
                 """
-            ),
-            Lesson.ContentSection(
-                title: "Performance and Use Cases",
-                content: "Dictionaries excel at fast lookups, insertions, and deletions - typically O(1) time complexity. Use dictionaries when you need to associate data with unique identifiers, count occurrences, cache results, or when order doesn't matter but fast access does.",
-                codeExample: """
-                // Counting word frequency - perfect dictionary use case
-                let text = "the quick brown fox jumps over the lazy dog"
-                var wordCount: [String: Int] = [:]
-                
-                for word in text.split(separator: " ") {
-                    let wordString = String(word)
-                    wordCount[wordString] = (wordCount[wordString] ?? 0) + 1
-                }
-                
-                // Result: ["the": 2, "quick": 1, "brown": 1, ...]
-                """
             )
         ],
-        
-        // Practice questions to test understanding
+
         questions: [
             Lesson.Question(
                 text: "What is the main difference between arrays and dictionaries?",
@@ -540,19 +502,9 @@ struct LessonData {
                     "Keeping track of items in a shopping cart sequence"
                 ],
                 correctOptionIndex: 1  // Index 1 - lookup by ID is perfect for dictionaries
-            ),
-            Lesson.Question(
-                text: "What is the time complexity for looking up a value in a dictionary?",
-                options: [
-                    "O(n) - linear time",
-                    "O(log n) - logarithmic time",
-                    "O(1) - constant time"
-                ],
-                correctOptionIndex: 2  // Index 2 - O(1) constant time
             )
         ],
-        
-        // Additional learning resources
+
         resources: [
             Lesson.Resource(
                 title: "Swift.org: Collection Types",
@@ -563,20 +515,10 @@ struct LessonData {
                 title: "Apple Developer: Dictionary",
                 description: "Complete API reference for Swift Dictionary type",
                 url: "https://developer.apple.com/documentation/swift/dictionary"
-            ),
-            Lesson.Resource(
-                title: "Data Structures Visualizer",
-                description: "Interactive tool to visualize how dictionaries and hash tables work",
-                url: "https://www.cs.usfca.edu/~galles/visualization/OpenHash.html"
-            ),
-            Lesson.Resource(
-                title: "Big O Notation Guide",
-                description: "Learn about algorithm complexity and why dictionaries are efficient",
-                url: "https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation"
             )
         ]
     )
-
+    
     static let SwiftUIBasicsLesson = Lesson(
         title: "SwiftUI Basics",
         shortTitle: "SwiftUI",
@@ -584,13 +526,13 @@ struct LessonData {
         difficulty: .intermediate,
         duration: 45,
         videoID: "sZSlTDlo0Ag",
-        slidesURL:"https://docs.google.com/presentation/d/1K-MEeuOo1wPqlmblDfbthgTj0Bb9MjwSBnKkdmsIHOg/edit?slide=id.g344e1d1e5ab_0_31#slide=id.g344e1d1e5ab_0_31",
+        slidesURL: "https://docs.google.com/presentation/d/1K-MEeuOo1wPqlmblDfbthgTj0Bb9MjwSBnKkdmsIHOg/edit?slide=id.g344e1d1e5ab_0_31#slide=id.g344e1d1e5ab_0_31",
         slideThumbnails: ["swift1", "swift2", "swift3"],
         
         goals: [
             Lesson.LessonGoal(description: "Understand SwiftUI's declarative programming approach"),
             Lesson.LessonGoal(description: "Create basic UI elements like Text, Button, and VStack"),
-            Lesson.LessonGoal(description: "Build a simple interactive interface with state management"),
+            Lesson.LessonGoal(description: "Build a simple interactive interface with state management")
         ],
         
         contentSections: [
@@ -665,47 +607,7 @@ struct LessonData {
                     }
                 }
                 """
-            ),
-            Lesson.ContentSection(
-                title: "Lists and Navigation",
-                content: "Lists display scrollable data. NavigationView and NavigationLink create navigation between screens.",
-                codeExample: """
-                struct FruitListView: View {
-                    let fruits = ["Apple", "Banana", "Orange", "Grape", "Strawberry"]
-                    
-                    var body: some View {
-                        NavigationView {
-                            List(fruits, id: \\.self) { fruit in
-                                NavigationLink(destination: FruitDetailView(fruit: fruit)) {
-                                    HStack {
-                                        Image(systemName: "leaf.fill")
-                                            .foregroundColor(.green)
-                                        Text(fruit)
-                                            .font(.headline)
-                                    }
-                                }
-                            }
-                            .navigationTitle("Fruits")
-                        }
-                    }
-                }
-                
-                struct FruitDetailView: View {
-                    let fruit: String
-                    
-                    var body: some View {
-                        VStack {
-                            Text(fruit)
-                                .font(.largeTitle)
-                                .padding()
-                            Text("This is a delicious \\(fruit.lowercased())!")
-                                .foregroundColor(.secondary)
-                        }
-                        .navigationTitle(fruit)
-                    }
-                }
-                """
-            ),
+            )
         ],
         
         questions: [
@@ -723,7 +625,7 @@ struct LessonData {
                 text: "What does VStack do in SwiftUI?",
                 options: ["Creates variables", "Arranges views vertically", "Validates input"],
                 correctOptionIndex: 1
-            ),
+            )
         ],
         
         resources: [
@@ -736,7 +638,7 @@ struct LessonData {
                 title: "SwiftUI Tutorials by Apple",
                 description: "Step-by-step tutorials for learning SwiftUI",
                 url: "https://developer.apple.com/tutorials/swiftui"
-            ),
+            )
         ]
     )
 }
