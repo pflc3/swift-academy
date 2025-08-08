@@ -1,30 +1,22 @@
 import SwiftUI
 
-/// Sheet view for editing user profile information
 struct EditProfileView: View {
-    // Binding to the user model so changes are reflected in parent view
-    @Binding var user: User
+    // Access user from environment
+    @EnvironmentObject var user: User
     
     // Environment value to dismiss the sheet
     @Environment(\.dismiss) private var dismiss
     
-    //Local editable copies of name and bio
-    @State private var name: String
-    @State private var bio: String
-    
-    // Initialize state from current user model
-    init(user: Binding<User>) {
-        self._user = user
-        self._name = State(initialValue: user.wrappedValue.name)
-        self._bio = State(initialValue: user.wrappedValue.bio)
-    }
+    // Local editable copies of name and bio
+    @State private var name: String = ""
+    @State private var bio: String = ""
     
     var body: some View {
         NavigationStack {
             Form {
                 Section {
-                    //Name field
-                    VStack(alignment: .leading, spacing:4) {
+                    // Name field
+                    VStack(alignment: .leading, spacing: 4) {
                         Text("Name")
                             .font(.caption)
                             .foregroundColor(.textSecondaryApp)
@@ -33,7 +25,7 @@ struct EditProfileView: View {
                             .padding(.vertical, 6)
                     }
                     
-                    //Big field - multiline
+                    // Bio field - multiline
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Bio")
                             .font(.caption)
@@ -64,11 +56,16 @@ struct EditProfileView: View {
                     }
                 }
             }
+            .onAppear {
+                // Initialize state values when view appears
+                name = user.name
+                bio = user.bio
+            }
         }
     }
 }
 
 #Preview {
-    // We need to create a binding for the preview
-    EditProfileView(user: .constant(MockData.currentUser))
+    EditProfileView()
+        .environmentObject(MockData.users[0])
 }

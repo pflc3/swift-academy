@@ -2,8 +2,8 @@ import SwiftUI
 
 // Displays a grid of the user's achievements
 struct ProfileAchievementsSection: View {
-    // The user model containing achievements
-    let user: User
+    // Get user from environment object
+    @EnvironmentObject var user: User
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -76,6 +76,6 @@ struct ProfileAchievementsSection: View {
 }
 
 #Preview {
-    // Make sure we have achievements data in the user for the preview
-    ProfileAchievementsSection(user: MockData.currentUser)
+    ProfileAchievementsSection()
+        .environmentObject(MockData.users[0])
 }
