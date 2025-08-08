@@ -1,7 +1,9 @@
-// LessonDetailView.swift
 import SwiftUI
 
 struct LessonDetailView: View {
+    // Environment object
+    @EnvironmentObject var user: User
+    
     // State
     @State private var lesson: Lesson
     @State private var isVideoWatched = false
@@ -11,7 +13,6 @@ struct LessonDetailView: View {
     @State private var showingResourceLinks = false
     
     // Computed properties
-    
     private var progressPercentage: Double {
         var total = 0.0
         if isVideoWatched {
@@ -23,7 +24,7 @@ struct LessonDetailView: View {
         }
         return total
     }
-
+    
     private var isFirstTwoLessons: Bool {
         let firstTwoLessonIds = [
             LessonData.allLessons[0].id,
@@ -125,5 +126,6 @@ struct CompletionHintView: View {
 #Preview {
     NavigationStack {
         LessonDetailView(lesson: LessonData.dataTypesLesson)
+            .environmentObject(MockData.users[0])
     }
 }

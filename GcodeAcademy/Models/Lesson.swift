@@ -1,6 +1,10 @@
 import Foundation
 
-struct Lesson: Identifiable {
+struct Lesson: Identifiable, Equatable {
+    static func == (lhs: Lesson, rhs: Lesson) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id = UUID()
     var title: String
     var shortTitle: String

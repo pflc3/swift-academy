@@ -42,7 +42,6 @@ struct HomeView: View {
             .navigationDestination(isPresented: $showLessonDetail) {
                 if let lesson = selectedLesson {
                     LessonDetailView(lesson: lesson)
-                        .environmentObject(user) // Pass the environment object to detail view
                 }
             }
         }
