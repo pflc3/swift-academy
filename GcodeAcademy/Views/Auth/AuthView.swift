@@ -61,7 +61,7 @@ struct AuthView: View {
                         tryDemo: {
                             withAnimation {
                                 // Auto-login with first mock user
-                                _ = userManager.login(email: "ada@gcode.academy", password: "password123")
+                                _ = userManager.login(email: "al@gcode.academy", password: "sorting")
                             }
                         }
                     )
