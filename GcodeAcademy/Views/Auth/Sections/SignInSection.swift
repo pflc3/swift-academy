@@ -1,8 +1,7 @@
 import SwiftUI
 
-struct SignupSection: View {
+struct SignInSection: View {
     // Form field bindings
-    @Binding var name: String
     @Binding var email: String
     @Binding var password: String
     
@@ -11,13 +10,13 @@ struct SignupSection: View {
     let isLoading: Bool
     
     // Actions
-    let signup: () -> Void
-    let showLogin: () -> Void
+    let login: () -> Void
+    let showSignup: () -> Void
     
     var body: some View {
         VStack(spacing: 24) {
             // Header
-            Text("Create Account")
+            Text("Sign In")
                 .font(.titleLarge)
                 .foregroundColor(.white)
                 .padding(.bottom, 16)
@@ -35,13 +34,6 @@ struct SignupSection: View {
             // Form fields
             VStack(spacing: 16) {
                 AuthTextField(
-                    iconName: "person",
-                    placeholder: "Full Name",
-                    isSecure: false,
-                    text: $name
-                )
-                
-                AuthTextField(
                     iconName: "envelope",
                     placeholder: "Email",
                     isSecure: false,
@@ -57,37 +49,36 @@ struct SignupSection: View {
             }
             .padding(.horizontal, 16)
             
-            // Terms and conditions
-            HStack {
-                Image(systemName: "checkmark.square")
-                    .foregroundColor(.white)
-                
-                Text("I agree to the Terms & Privacy Policy")
+            /* Forgot password link
+            Button {
+                // Implement forgot password
+            } label: {
+                Text("Forgot Password?")
                     .font(.caption)
                     .foregroundColor(.white)
-            }
-            .padding(.top, 8)
+                    .padding(.top, 8)
+            } */
             
-            // Sign up button
+            // Sign in button
             AuthButton(
-                title: "Create Account",
+                title: "Sign In",
                 isLoading: isLoading
             ) {
-                signup()
+                login()
             }
             .padding(.horizontal, 16)
             .padding(.top, 16)
             
-            // Sign in option
+            // Sign up option
             HStack {
-                Text("Already have an account?")
+                Text("Don't have an account?")
                     .font(.caption)
                     .foregroundColor(.white)
                 
                 Button {
-                    showLogin()
+                    showSignup()
                 } label: {
-                    Text("Sign in")
+                    Text("Create one")
                         .font(.caption)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
@@ -103,14 +94,13 @@ struct SignupSection: View {
     ZStack {
         Color.primaryApp.ignoresSafeArea()
         
-        SignupSection(
-            name: .constant(""),
+        SignInSection(
             email: .constant(""),
             password: .constant(""),
-            errorMessage: "Please fill in all fields",
+            errorMessage: nil,
             isLoading: false,
-            signup: {},
-            showLogin: {}
+            login: {},
+            showSignup: {}
         )
     }
 }

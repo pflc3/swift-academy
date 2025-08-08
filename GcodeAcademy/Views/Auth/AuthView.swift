@@ -3,11 +3,10 @@ import SwiftUI
 // Enum to track current auth screen
 enum AuthScreen {
     case welcome
-    case login
-    case signup
+    case signin
+    case create
 }
 
-// The main container for authentication screens
 struct AuthView: View {
     // Access to the user manager
     @EnvironmentObject var userManager: UserManager
@@ -23,7 +22,9 @@ struct AuthView: View {
     @State private var errorMessage: String? = nil
     
     var body: some View {
-        // Auth screens
+        /*
+         * The main container for authentication screens
+         */
         ZStack {
             // Animated wave background
             WaveBackground()
@@ -55,8 +56,8 @@ struct AuthView: View {
                 switch currentView {
                 case .welcome:
                     WelcomeSection(
-                        showLogin: { withAnimation { currentView = .login } },
-                        showSignup: { withAnimation { currentView = .signup } },
+                        showLogin: { withAnimation { currentView = .signin } },
+                        showSignup: { withAnimation { currentView = .create } },
                         tryDemo: {
                             withAnimation {
                                 // Auto-login with first mock user
@@ -64,24 +65,24 @@ struct AuthView: View {
                             }
                         }
                     )
-                case .login:
-                    LoginSection(
+                case .signin:
+                    SignInSection(
                         email: $email,
                         password: $password,
                         errorMessage: errorMessage,
                         isLoading: isLoading,
                         login: handleLogin,
-                        showSignup: { withAnimation { currentView = .signup } }
+                        showSignup: { withAnimation { currentView = .create } }
                     )
-                case .signup:
-                    SignupSection(
+                case .create:
+                    CreateAcntSection(
                         name: $name,
                         email: $email,
                         password: $password,
                         errorMessage: errorMessage,
                         isLoading: isLoading,
                         signup: handleSignup,
-                        showLogin: { withAnimation { currentView = .login } }
+                        showLogin: { withAnimation { currentView = .signin } }
                     )
                 }
                 
@@ -92,7 +93,9 @@ struct AuthView: View {
         .animation(.easeInOut, value: currentView)
     }
     
-    // MARK: - Authentication Methods
+    /*
+     * Authentication Methods
+     */
     
     private func handleLogin() {
         isLoading = true
@@ -102,11 +105,14 @@ struct AuthView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             isLoading = false
             
-            if userManager.login(email: email, password: password) {
-                // Successfully logged in
-            } else if !email.isEmpty && !password.isEmpty {
-                // Show credentials error
-                errorMessage = "Invalid email or password"
+            // Check for empty fields
+            if !email.isEmpty && !password.isEmpty {
+                if userManager.login(email: email, password: password) {
+                    // Successfully logged in
+                } else {
+                    // Credentials error
+                    errorMessage = "Invalid email or password"
+                }
             } else {
                 // Show empty fields error
                 errorMessage = "Please enter both email and password"

@@ -10,11 +10,7 @@ struct WelcomeSection: View {
         VStack(spacing: 30) {
             // Welcome message
             VStack(spacing: 16) {
-                Text("Welcome to")
-                    .font(.titleLarge)
-                    .foregroundColor(.white)
-                
-                Text("GCode Academy")
+                Text("Welcome")
                     .font(.system(size: 38, weight: .bold))
                     .foregroundColor(.white)
                 
