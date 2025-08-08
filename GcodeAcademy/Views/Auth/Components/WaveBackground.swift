@@ -22,7 +22,7 @@ struct WaveBackground: View {
         }
         .onAppear {
             // Start animation
-            withAnimation(.linear(duration:20).repeatForever(autoreverses: false)) {
+            withAnimation(.linear(duration: 20).repeatForever(autoreverses: false)) {
                 phase += 2 * .pi
             }
         }
@@ -46,7 +46,7 @@ struct Wave: Shape {
         // Start at the bottom left
         path.move(to: CGPoint(x: 0, y: rect.height))
         
-        // Draw to bottom right thorugh a series of points
+        // Draw to bottom right through a series of points
         let width = Double(rect.width)
         let height = Double(rect.height)
         let midHeight = height / 2
@@ -56,14 +56,14 @@ struct Wave: Shape {
             let relativeX = x / width
             let waveHeight = sin((relativeX * frequency + phase) * 2 * .pi)
             let y = midHeight + waveHeight * strength
-           
-            path.addLine(to: CGPoint( x: x, y:y))
+            
+            path.addLine(to: CGPoint(x: x, y: y))
         }
-       
+        
         // Complete the path to the bottom right and back to start
         path.addLine(to: CGPoint(x: rect.width, y: rect.height))
         path.close()
-       
+        
         return Path(path.cgPath)
     }
 }

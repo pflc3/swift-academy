@@ -3,7 +3,7 @@ import SwiftUI
 struct AuthButton: View {
     // The text displayed on the button
     let title: String
-    // The action to perform when the buttom is tapped
+    // The action to perform when the button is tapped
     let action: () -> Void
     // Whether the button is in a loading state
     let isLoading: Bool
@@ -24,10 +24,10 @@ struct AuthButton: View {
             }
         }) {
             ZStack {
-                // Buttom background
+                // Button background
                 RoundedRectangle(cornerRadius: 12)
                     .fill(isPrimary ? Color.primaryApp : Color.white)
-                    .shadow(color: Color.black.opacity(0.1), radius: 5, x:0, y:2)
+                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
                 
                 // Content
                 if isLoading {
@@ -40,8 +40,7 @@ struct AuthButton: View {
                     Text(title)
                         .font(.headline)
                         .foregroundColor(isPrimary ? .white : .primaryApp)
-                
-                 }
+                }
             }
         }
         .frame(height: 56)

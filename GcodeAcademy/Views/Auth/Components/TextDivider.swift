@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TextDivider: View {
-    // Text to displsy in the center of the divider
+    // Text to display in the center of the divider
     let text: String
     
     var body: some View {

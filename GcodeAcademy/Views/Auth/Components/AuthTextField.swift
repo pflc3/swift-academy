@@ -33,7 +33,7 @@ struct AuthTextField: View {
         .background(
             RoundedRectangle(cornerRadius: 12)
                 .fill(Color.white)
-                .shadow(color: Color.black.opacity(0.1), radius: 5, x:0, y:2)
+                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
         )
     }
 }
@@ -46,6 +46,7 @@ struct AuthTextField: View {
             isSecure: false,
             text: .constant("user@example.com")
         )
+        
         AuthTextField(
             iconName: "lock",
             placeholder: "Password",
