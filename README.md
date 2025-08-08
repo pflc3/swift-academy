@@ -13,22 +13,32 @@ Bridge the gap between traditional education and modern tech skills, making prog
 ### **Interactive Learning Path**
 - Visual progress tracking with completion percentages
 - Structured lesson progression from beginner to advanced
-- Achievement system to motivate continued learning
+- Smooth and intuitive UI for lesson selection
+
+### **Authentication & Navigation**
+- Secure sign-up and login flow for all users
+- Persistent user sessions across app use
+- Custom side menu for seamless navigation across all features
 
 ### **Comprehensive Lessons**
-- In-depth programming modules covering iOS development
-- Swift and SwiftUI fundamentals
-- Hands-on coding exercises and projects
+- Integrated video and slide-based instruction
+- In-line questions to reinforce concepts during each lesson
+- Modular format to support different learning styles
 
 ### **AI-Powered Assistant**
-- Intelligent chatbot for instant coding help
-- Personalized learning support
-- 24/7 availability for student questions
+- Friendly, helpful chatbot tailored to beginner coders
+- Provides context-aware answers during lessons
+- Personalized and always available for coding help
 
 ### **Personalized Profiles**
-- Individual progress tracking
-- Achievement badges and milestones
-- Custom learning paths based on skill level
+- Editable profiles with avatars, bios, and progress stats
+- Achievement badges and learning milestones
+- Encouraging, student-friendly design
+
+### **Gamified Experience**
+- Unlock achievements as you learn
+- Celebrate progress with visual milestones
+- Designed to build confidence and motivation
 
 ## 🏗️ Technical Architecture
 
@@ -42,15 +52,19 @@ Bridge the gap between traditional education and modern tech skills, making prog
 ### **Project Structure**
 ```
 GcodeAcademy/
-├── App/                    # App configuration and entry point
-├── Models/                 # Data models (User, Lesson, Achievements)
-├── Views/                  # SwiftUI views organized by feature
-│   ├── Home/              # Learning path and dashboard
-│   ├── Lessons/           # Lesson content and detail views  
-│   ├── Chat/              # AI chatbot interface
-│   └── Profile/           # User profile and progress tracking
-├── Resources/             # Theme, mock data, and assets
-└── Assets.xcassets/       # App icons and visual assets
+├── App/ # App configuration and entry point
+│ └── Launch Screen.storyboard
+├── ManagersServices/ # Chat and user management logic
+├── Models/ # Data models (User, Lesson, Chat, etc.)
+├── Resources/ # Theme, mock data, and assets
+│ └── Assets.xcassets/ # App icons, images, and slide thumbnails
+├── Views/ # SwiftUI views organized by feature
+│ ├── Auth/ # Sign-in, sign-up, welcome UI
+│ ├── Chat/ # AI chatbot interface and components
+│ ├── Home/ # Home dashboard and learning path
+│ ├── Lessons/ # Lesson detail, slides, questions, and resources
+│ ├── Navigation/ # Navigation and side menu UI
+│ └── Profile/ # User profile, stats, and achievements
 ```
 
 ## 🎓 About Gcode Program
