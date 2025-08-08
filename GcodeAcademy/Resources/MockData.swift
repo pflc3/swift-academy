@@ -9,7 +9,7 @@ struct MockData {
             email: "ada@gcode.academy",
             password: "password123",
             bio: "High school student learning iOS development with Swift",
-            lessonsCompleted: 2,
+            lessonsCompleted: 42,
             achievements: achievements
         ),
         User(
