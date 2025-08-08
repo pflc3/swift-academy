@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     // State variables to track user data
-    @State private var user = MockData.currentUser
+    @EnvironmentObject var user: User
     @State private var showLessonDetail = false
     @State private var selectedLesson: Lesson?
     
@@ -17,13 +17,12 @@ struct HomeView: View {
                     BackgroundView(length: backgroundLength(for: LessonData.allLessons.count))
 
                     VStack {
-                        HomeHeaderSection(user: user, lessons: LessonData.allLessons)
+                        HomeHeaderSection(lessons: LessonData.allLessons)
                             .padding(.top, 25)
                         
                         // Learning path view
                         LearningPathSection(
                             lessons: LessonData.allLessons,
-                            user: user,
                             onStartLesson: { lesson in
                                 // Set the selected lesson and trigger navigation
                                 selectedLesson = lesson
@@ -43,6 +42,7 @@ struct HomeView: View {
             .navigationDestination(isPresented: $showLessonDetail) {
                 if let lesson = selectedLesson {
                     LessonDetailView(lesson: lesson)
+                        .environmentObject(user) // Pass the environment object to detail view
                 }
             }
         }
@@ -56,4 +56,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environmentObject(MockData.users[0])
 }

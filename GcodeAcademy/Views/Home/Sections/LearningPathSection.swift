@@ -2,7 +2,7 @@ import SwiftUI
 
 struct LearningPathSection: View {
     let lessons: [Lesson]
-    let user: User
+    @EnvironmentObject var user: User
     var onStartLesson: (Lesson) -> Void
     
     // Determine unlocked lessons based on user progress
@@ -68,7 +68,7 @@ struct LearningPathSection: View {
             LessonData.binaryLesson,
             LessonData.dataTypesLesson,
         ],
-        user: MockData.currentUser,
         onStartLesson: { _ in /* Preview only */ }
     )
+    .environmentObject(MockData.users[0])
 }
