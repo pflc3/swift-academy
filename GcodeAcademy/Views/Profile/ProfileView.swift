@@ -31,4 +31,5 @@ struct ProfileView: View {
 #Preview {
     ProfileView()
         .environmentObject(MockData.users[0])
+        .environmentObject(UserManager())
 }

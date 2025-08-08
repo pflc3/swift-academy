@@ -35,7 +35,6 @@ struct ContentView: View {
                                     isShowingLessonDetail = isShowing
                                 }
                             })
-                            .environmentObject(user)
                         }
                         .transition(.opacity)
                     }
@@ -43,7 +42,6 @@ struct ContentView: View {
                     if selectedTab == 2 {
                         NavigationView {
                             ChatBotView()
-                                .environmentObject(user)
                         }
                         .transition(.opacity)
                     }
@@ -51,7 +49,6 @@ struct ContentView: View {
                     if selectedTab == 3 {
                         NavigationView {
                             ProfileView()
-                                .environmentObject(user)
                         }
                         .transition(.opacity)
                     }
