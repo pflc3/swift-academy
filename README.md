@@ -52,19 +52,19 @@ Bridge the gap between traditional education and modern tech skills, making prog
 ### **Project Structure**
 ```
 GcodeAcademy/
-├── App/ # App configuration and entry point
+├── App/                        # App configuration and entry point
 │ └── Launch Screen.storyboard
-├── ManagersServices/ # Chat and user management logic
-├── Models/ # Data models (User, Lesson, Chat, etc.)
-├── Resources/ # Theme, mock data, and assets
-│ └── Assets.xcassets/ # App icons, images, and slide thumbnails
-├── Views/ # SwiftUI views organized by feature
-│ ├── Auth/ # Sign-in, sign-up, welcome UI
-│ ├── Chat/ # AI chatbot interface and components
-│ ├── Home/ # Home dashboard and learning path
-│ ├── Lessons/ # Lesson detail, slides, questions, and resources
-│ ├── Navigation/ # Navigation and side menu UI
-│ └── Profile/ # User profile, stats, and achievements
+├── ManagersServices/           # Chat and user management logic
+├── Models/                     # Data models (User, Lesson, Chat, etc.)
+├── Resources/                  # Theme, mock data, and assets
+│ └── Assets.xcassets/          # App icons, images, and slide thumbnails
+├── Views/                      # SwiftUI views organized by feature
+│ ├── Auth/                     # Sign-in, sign-up, welcome UI
+│ ├── Chat/                     # AI chatbot interface and components
+│ ├── Home/                     # Home dashboard and learning path
+│ ├── Lessons/                  # Lesson detail, slides, questions, and resources
+│ ├── Navigation/               # Navigation and side menu UI
+│ └── Profile/                  # User profile, stats, and achievements
 ```
 
 ## 🎓 About Gcode Program
