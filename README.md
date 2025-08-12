@@ -85,6 +85,7 @@ Gcode Academy is inspired by the **Gcode Summer Program**, a transformative 6-we
 - **Sureima Burgos** - [@Sureima](https://github.com/Sureima)
 - **Joshua Fineboy-Mark** - [@AnonymousPanda7](https://github.com/AnonymousPanda7)
 - **Alana Davis** - [@lanagzz](https://github.com/lanagzz)
+- **Leslie Martinez-Quintero** - [@D4rk-nOva](https://github.com/D4rk-nOva)
 
 ## 📞 Connect With Us
 
