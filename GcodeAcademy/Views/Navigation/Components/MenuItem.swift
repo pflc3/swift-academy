@@ -56,7 +56,7 @@ struct MenuItem: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .contentShape(Rectangle())
-            //the two top modifiers makes the entire area tappable by expanding the area of the button; making the icon, text, and dead space clickable
+            // The two modifiers above makes the entire area tappable by expanding the area of the button; making the icon, text, and dead space clickable
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
             .background(isSelected ? Color.primaryApp.opacity(0.05) : Color.clear)
