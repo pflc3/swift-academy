@@ -1,27 +1,30 @@
-// Models for API communication with the chat backend
+/*
+ * Simple data transfer objects (DTOs) for API requests/responses.
+ * These structs only define shape of JSON, no logic.
+ */
 
 import Foundation
 
-// Represents a single message in the API format
+// API-ready message format
 struct APIMessage: Codable {
     let role: String  // "user" or "assistant"
     let content: String
 }
 
-// Request body for sending messages to the API
+// Request payload for /chat
 struct ChatRequest: Codable {
     let messages: [APIMessage]
     let userId: String?
     let context: [String: String]?
-    
+
     enum CodingKeys: String, CodingKey {
         case messages
-        case userId = "user_id" // Maps to snake_case in JSON
+        case userId = "user_id"
         case context
-        }
     }
+}
 
-// Response from the chat API
+// Response payload from /chat
 struct ChatResponse: Codable {
     let message: APIMessage
 }
