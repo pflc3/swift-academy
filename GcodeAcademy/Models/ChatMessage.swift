@@ -1,3 +1,8 @@
+/*
+ * Represents a message in the local chat UI (frontend only).
+ * Separate from APIMessage, which is the wire format.
+ */
+
 import Foundation
 
 struct ChatMessage: Identifiable {
@@ -5,12 +10,8 @@ struct ChatMessage: Identifiable {
     var content: String
     var isFromUser: Bool
     var timestamp: Date = Date()
-    
-    // For displaying loading state
-    var isLoading: Bool = false
-    
-    // Convert to the format expected by the API
-    var apiRole: String {
-        return isFromUser ? "user" : "assistant"
-    }
+    var isLoading: Bool = false  // For typing indicator, if needed
+
+    // Convert to API role string
+    var apiRole: String { isFromUser ? "user" : "assistant" }
 }
