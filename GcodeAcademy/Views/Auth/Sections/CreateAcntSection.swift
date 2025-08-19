@@ -5,6 +5,7 @@ struct CreateAcntSection: View {
     @Binding var name: String
     @Binding var email: String
     @Binding var password: String
+    @Binding var confirmPassword: String
     
     // Error handling and loading state
     let errorMessage: String?
@@ -53,6 +54,13 @@ struct CreateAcntSection: View {
                     placeholder: "Password",
                     isSecure: true,
                     text: $password
+                )
+                
+                AuthTextField(
+                    iconName: "lock",
+                    placeholder: "Confirm Password",
+                    isSecure: true,
+                    text: $confirmPassword
                 )
             }
             .padding(.horizontal, 16)
@@ -107,6 +115,7 @@ struct CreateAcntSection: View {
             name: .constant(""),
             email: .constant(""),
             password: .constant(""),
+            confirmPassword: .constant(""),
             errorMessage: "Please fill in all fields",
             isLoading: false,
             signup: {},

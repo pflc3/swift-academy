@@ -22,7 +22,7 @@ class UserManager: ObservableObject {
     }
     
     // Create a new user
-    func signup(name: String, email: String, password: String) -> Bool {
+    func signup(name: String, email: String, password: String, confirmPassword: String) -> Bool {
         // Check if email already exists
         if MockData.users.contains(where: { $0.email.lowercased() == email.lowercased() }) {
             return false
