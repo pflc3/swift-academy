@@ -51,7 +51,7 @@ Bridge the gap between traditional education and modern tech skills, making prog
 
 ### **Project Structure**
 ```
-GcodeAcademy/
+SwiftAcademy/
 ├── App/                        # App configuration and entry point
 │ └── Launch Screen.storyboard
 ├── ManagersServices/           # Chat and user management logic
@@ -67,7 +67,7 @@ GcodeAcademy/
 │ └── Profile/                  # User profile, stats, and achievements
 ```
 
-## 🎓 About Gcode Program
+## 🎓 About the Gcode Program
 
 Swift Academy is inspired by the **Gcode Summer Program**, a transformative 6-week initiative by **Prime Factors Learning Lab** that:
 
@@ -98,7 +98,7 @@ Swift Academy is inspired by the **Gcode Summer Program**, a transformative 6-we
 ## 🙏 Acknowledgments
 
 - **Prime Factors Learning Lab** for the inspiring Gcode program
-- **Our amazing student engineers** from the Gcode program
+- **Our amazing student engineers**
 - **The Swift community** for continuous support and learning resources
 
 Made with ❤️ by the Swift Minds team
