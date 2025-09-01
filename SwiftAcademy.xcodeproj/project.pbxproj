@@ -72,7 +72,7 @@
 			name = SwiftAcademy;
 			packageProductDependencies = (
 			);
-			productName = GcodeAcademy;
+			productName = SwiftAcademy;
 			productReference = E86ACF522E313245006BB2FF /* SwiftAcademy.app */;
 			productType = "com.apple.product-type.application";
 		};
