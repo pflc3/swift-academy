@@ -18,7 +18,7 @@ class User: ObservableObject, Identifiable {
     @Published var achievements: [Achievement]
     
     // Initializers
-    init(name: String, email: String, password: String, bio: String = "GCode Academy Student", lessonsCompleted: Int = 0, achievements: [Achievement] = []) {
+    init(name: String, email: String, password: String, bio: String = "Swift Academy Student", lessonsCompleted: Int = 0, achievements: [Achievement] = []) {
         self.name = name
         self.email = email
         self.password = password

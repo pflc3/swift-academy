@@ -33,7 +33,7 @@ class UserManager: ObservableObject {
             name: name,
             email: email,
             password: password,
-            bio: "GCode Academy Student",
+            bio: "Swift Academy Student",
             lessonsCompleted: 0,
             achievements: MockData.achievements
         )

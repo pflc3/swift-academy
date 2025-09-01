@@ -57,7 +57,7 @@ struct ChatMessagesSection: View {
 #Preview {
     ChatMessagesSection(
         messages: .constant([
-            ChatMessage(content: "Hello! I'm the Gcode Helper Bot.", isFromUser: false),
+            ChatMessage(content: "Hello! I'm the Helper Bot.", isFromUser: false),
             ChatMessage(content: "Can you help me with Swift?", isFromUser: true)
         ]),
         isLoading: .constant(true)

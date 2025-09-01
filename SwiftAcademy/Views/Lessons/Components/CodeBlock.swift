@@ -19,6 +19,6 @@ struct CodeBlock: View {
         
 
 #Preview {
-    CodeBlock(code: "// This is a code example\nlet name = \"Gcode\"", language: "swift")
+    CodeBlock(code: "// This is a code example\nlet name = \"Jane\"", language: "swift")
         .padding()
 }

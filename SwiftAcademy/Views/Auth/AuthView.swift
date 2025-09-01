@@ -39,7 +39,7 @@ struct AuthView: View {
                         .frame(width: 60, height: 60)
                     
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("GCode")
+                        Text("Swift")
                             .font(.system(size: 28, weight: .semibold))
                             .foregroundColor(.white)
                         
@@ -61,7 +61,7 @@ struct AuthView: View {
                         tryDemo: {
                             withAnimation {
                                 // Auto-login with first mock user
-                                _ = userManager.login(email: "al@gcode.academy", password: "sorting")
+                                _ = userManager.login(email: "al@swift.academy", password: "sorting")
                             }
                         }
                     )

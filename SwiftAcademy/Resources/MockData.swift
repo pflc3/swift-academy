@@ -6,7 +6,7 @@ struct MockData {
     static var users: [User] = [
         User(
             name: "Al Gorithm",
-            email: "al@gcode.academy",
+            email: "al@swift.academy",
             password: "sorting",
             bio: "Trying to optimize life one step at a time.",
             lessonsCompleted: 1,
@@ -14,7 +14,7 @@ struct MockData {
         ),
         User(
             name: "Alan Turing",
-            email: "alan@gcode.academy",
+            email: "alan@swift.academy",
             password: "enigma",
             bio: "CS enthusiast trying to crack Swift like I cracked codes.",
             lessonsCompleted: 4,

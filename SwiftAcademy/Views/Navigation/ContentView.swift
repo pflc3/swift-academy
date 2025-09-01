@@ -104,7 +104,7 @@ struct ContentView: View {
         case 3:
             return ""
         default:
-            return "Gcode Academy"
+            return "Swift Academy"
         }
     }
 }

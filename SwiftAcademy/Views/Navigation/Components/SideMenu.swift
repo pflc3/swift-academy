@@ -17,7 +17,7 @@ struct SideMenu: View {
                 
                 // Stacked text
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Gcode")
+                    Text("Swift")
                         .font(.system(size: 28, weight: .semibold))
                         .foregroundColor(.primaryApp)
                     
