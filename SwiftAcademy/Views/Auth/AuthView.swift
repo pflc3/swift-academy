@@ -17,6 +17,7 @@ struct AuthView: View {
     // State for authentication
     @State private var email = ""
     @State private var password = ""
+    @State private var confirmPassword = ""
     @State private var name = ""
     @State private var isLoading = false
     @State private var errorMessage: String? = nil
@@ -79,6 +80,7 @@ struct AuthView: View {
                         name: $name,
                         email: $email,
                         password: $password,
+                        confirmPassword: $confirmPassword,
                         errorMessage: errorMessage,
                         isLoading: isLoading,
                         signup: handleSignup,
@@ -129,16 +131,19 @@ struct AuthView: View {
             isLoading = false
             
             // Check for empty fields
-            if !name.isEmpty && !email.isEmpty && !password.isEmpty {
-                if userManager.signup(name: name, email: email, password: password) {
+            if !name.isEmpty && !email.isEmpty && !password.isEmpty && confirmPassword == password {
+               if userManager.signup(name: name, email: email, password: password, confirmPassword: confirmPassword) {
                     // Successfully signed up
                 } else {
                     // Email already exists
                     errorMessage = "This email is already registered"
                 }
-            } else {
-                // Show error
+            } else if name.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
+                // Empty error
                 errorMessage = "Please fill in all fields"
+            } else if confirmPassword != password {
+                // Password error
+                errorMessage = "Please make sure passwords match"
             }
         }
     }
