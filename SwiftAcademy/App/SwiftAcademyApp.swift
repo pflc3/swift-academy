@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct GcodeAcademyApp: App {
+struct SwiftAcademyApp: App {
     // Create our user manager as a StateObject at the app level
     @StateObject private var userManager = UserManager()
     
