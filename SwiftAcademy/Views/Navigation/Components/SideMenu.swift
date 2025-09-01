@@ -10,7 +10,7 @@ struct SideMenu: View {
             // App Logo and Title
             HStack(alignment: .center, spacing: 16) {
                 // Beaver image
-                Image("Beaver")
+                Image("BeaverDark")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 60, height: 60)

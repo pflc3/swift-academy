@@ -33,7 +33,7 @@ struct AuthView: View {
             VStack {
                 // Logo at top
                 HStack(alignment: .center, spacing: 16) {
-                    Image("Beaver")
+                    Image("BeaverLight")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 60, height: 60)
