@@ -1,8 +1,8 @@
-# Gcode Academy 📱
+# Swift Academy 📱
 
 ## 🌟 Overview
 
-Gcode Academy is an interactive learning platform designed to support coding education for high school students. Inspired by the successful Gcode summer program, this app transforms traditional programming education into an engaging, gamified experience.
+Swift Academy is an interactive learning platform designed to support coding education for high school students. Inspired by the successful Gcode summer program, this app transforms traditional programming education into an engaging, gamified experience.
 
 ## 🎯 Mission: Empowering the next generation of coders
 
@@ -69,7 +69,7 @@ GcodeAcademy/
 
 ## 🎓 About Gcode Program
 
-Gcode Academy is inspired by the **Gcode Summer Program**, a transformative 6-week initiative by **Prime Factors Learning Lab** that:
+Swift Academy is inspired by the **Gcode Summer Program**, a transformative 6-week initiative by **Prime Factors Learning Lab** that:
 
 - Introduces high school students to computer science fundamentals
 - Provides hands-on mobile development experience
