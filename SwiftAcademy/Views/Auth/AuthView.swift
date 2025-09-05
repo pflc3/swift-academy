@@ -61,8 +61,11 @@ struct AuthView: View {
                         showSignup: { withAnimation { currentView = .create } },
                         tryDemo: {
                             withAnimation {
-                                // Auto-login with first mock user
-                                _ = userManager.login(email: "al@swift.academy", password: "sorting")
+                                userManager.login(email: "demo@swift.academy", password: "password123") { success, error in
+                                    if !success {
+                                        print("Demo login failed: \(error ?? "Unknown error")")
+                                    }
+                                }
                             }
                         }
                     )
@@ -98,55 +101,61 @@ struct AuthView: View {
     /*
      * Authentication Methods
      */
-    
+
     private func handleLogin() {
         isLoading = true
         errorMessage = nil
-        
-        // Simulate network request
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+
+        // Local checks
+        guard !email.isEmpty, !password.isEmpty else {
+            errorMessage = "Please enter both email and password"
             isLoading = false
-            
-            // Check for empty fields
-            if !email.isEmpty && !password.isEmpty {
-                if userManager.login(email: email, password: password) {
-                    // Successfully logged in
+            return
+        }
+
+        // Firebase login
+        userManager.login(email: email, password: password) { success, error in
+            DispatchQueue.main.async {
+                isLoading = false
+                if success {
+                    // Logged in successfully
                 } else {
-                    // Credentials error
-                    errorMessage = "Invalid email or password"
+                    errorMessage = error ?? "Login failed"
                 }
-            } else {
-                // Show empty fields error
-                errorMessage = "Please enter both email and password"
             }
         }
     }
-    
+
     private func handleSignup() {
         isLoading = true
         errorMessage = nil
-        
-        // Simulate network request
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+
+        // Local checks
+        guard !name.isEmpty, !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty else {
+            errorMessage = "Please fill in all fields"
             isLoading = false
-            
-            // Check for empty fields
-            if !name.isEmpty && !email.isEmpty && !password.isEmpty && confirmPassword == password {
-               if userManager.signup(name: name, email: email, password: password, confirmPassword: confirmPassword) {
-                    // Successfully signed up
+            return
+        }
+
+        guard password == confirmPassword else {
+            errorMessage = "Passwords do not match"
+            isLoading = false
+            return
+        }
+
+        // Firebase signup
+        userManager.signup(name: name, email: email, password: password, confirmPassword: confirmPassword) { success, error in
+            DispatchQueue.main.async {
+                isLoading = false
+                if success {
+                    // Signed up successfully
                 } else {
-                    // Email already exists
-                    errorMessage = "This email is already registered"
+                    errorMessage = error ?? "Signup failed"
                 }
-            } else if name.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
-                // Empty error
-                errorMessage = "Please fill in all fields"
-            } else if confirmPassword != password {
-                // Password error
-                errorMessage = "Please make sure passwords match"
             }
         }
     }
+
 }
 
 #Preview {

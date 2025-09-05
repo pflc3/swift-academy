@@ -5,15 +5,16 @@ struct MockData {
     // Sample user database
     static var users: [User] = [
         User(
+            uid: "1",
             name: "Al Gorithm",
             email: "al@swift.academy",
-            password: "sorting",
-            bio: "Trying to optimize life one step at a time.",
+            password: "sortinxaptimize life one step at a time.",
             lessonsCompleted: 1,
             achievements: achievements
         ),
         User(
-            name: "Alan Turing",
+            uid: "2",
+            name: "Alaxan Turing",
             email: "alan@swift.academy",
             password: "enigma",
             bio: "CS enthusiast trying to crack Swift like I cracked codes.",

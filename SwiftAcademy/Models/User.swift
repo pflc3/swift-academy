@@ -3,7 +3,8 @@ import Combine
 
 class User: ObservableObject, Identifiable {
     // Identity
-    let id = UUID()
+    let id = UUID() // local UI id
+    var uid: String // Firebase Auth UID
     
     // Authentication fields
     @Published var email: String
@@ -18,7 +19,14 @@ class User: ObservableObject, Identifiable {
     @Published var achievements: [Achievement]
     
     // Initializers
-    init(name: String, email: String, password: String, bio: String = "Swift Academy Student", lessonsCompleted: Int = 0, achievements: [Achievement] = []) {
+    init(uid: String,
+         name: String,
+         email: String,
+         password: String,
+         bio: String = "Swift Academy Student",
+         lessonsCompleted: Int = 0,
+         achievements: [Achievement] = []) {
+        self.uid = uid
         self.name = name
         self.email = email
         self.password = password
