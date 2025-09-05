@@ -11,30 +11,26 @@ struct EditProfileView: View {
     // Local editable copies of user fields
     @State private var name: String = ""
     @State private var bio: String = ""
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var showPassword: Bool = false // Toggle to show/hide password
     
     var body: some View {
         NavigationStack {
             Form {
+                // Profile info section
                 Section {
-                    // Name field
+                    // Name
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Name")
                             .font(.caption)
                             .foregroundColor(.textSecondaryApp)
-                        
                         TextField("Enter your name", text: $name)
                             .padding(.vertical, 6)
                     }
                     
-                    // Bio field - multiline
+                    // Bio
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Bio")
                             .font(.caption)
                             .foregroundColor(.textSecondaryApp)
-                        
                         TextEditor(text: $bio)
                             .frame(minHeight: 100)
                             .padding(.vertical, 6)
@@ -44,51 +40,22 @@ struct EditProfileView: View {
                 }
                 .padding(.vertical, 8)
                 
+                // Account info section
                 Section {
-                    // Email field
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Email")
                             .font(.caption)
                             .foregroundColor(.textSecondaryApp)
                         
-                        TextField("Enter your email", text: $email)
-                            .keyboardType(.emailAddress)
-                            .autocapitalization(.none)
+                        Text(user.email) // Just display
                             .padding(.vertical, 6)
-                    }
-                    
-                    // Password field with toggle to show/hide
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Password")
-                            .font(.caption)
-                            .foregroundColor(.textSecondaryApp)
-                        
-                        ZStack(alignment: .trailing) {
-                            if showPassword {
-                                TextField("Enter your password", text: $password)
-                                    .padding(.vertical, 6)
-                                    .padding(.trailing, 30) // Make room for the button
-                            } else {
-                                SecureField("Enter your password", text: $password)
-                                    .padding(.vertical, 6)
-                                    .padding(.trailing, 30) // Make room for the button
-                            }
-                            
-                            Button(action: {
-                                showPassword.toggle()
-                            }) {
-                                Image(systemName: showPassword ? "eye.slash" : "eye")
-                                    .foregroundColor(.primaryApp)
-                            }
-                            // Prevent the button from capturing the whole area
-                            .buttonStyle(BorderlessButtonStyle())
-                        }
                     }
                 } header: {
                     Text("Account Information")
                 }
                 .padding(.vertical, 8)
                 
+                // Logout button
                 Section {
                     Button(action: {
                         // Logout the user
@@ -119,8 +86,6 @@ struct EditProfileView: View {
                         // Save all fields to user
                         user.name = name
                         user.bio = bio
-                        user.email = email
-                        user.password = password
                         dismiss()
                     }
                 }
@@ -129,8 +94,6 @@ struct EditProfileView: View {
                 // Initialize state values when view appears
                 name = user.name
                 bio = user.bio
-                email = user.email
-                password = user.password
             }
         }
     }

@@ -30,7 +30,6 @@ class UserManager: ObservableObject {
                 uid: user.uid,
                 name: name,
                 email: email,
-                password: password, // normally you wouldn't keep this!
                 bio: "Swift Academy Student"
             )
             self.isAuthenticated = true
@@ -56,8 +55,7 @@ class UserManager: ObservableObject {
             self.currentUser = User(
                 uid: user.uid,
                 name: "Student", // placeholder until we load profile later
-                email: email,
-                password: password
+                email: email
             )
             self.isAuthenticated = true
             completion(true, nil)

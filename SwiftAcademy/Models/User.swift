@@ -8,7 +8,6 @@ class User: ObservableObject, Identifiable {
     
     // Authentication fields
     @Published var email: String
-    @Published var password: String
     
     // Profile information
     @Published var name: String
@@ -18,18 +17,15 @@ class User: ObservableObject, Identifiable {
     @Published var lessonsCompleted: Int
     @Published var achievements: [Achievement]
     
-    // Initializers
     init(uid: String,
          name: String,
          email: String,
-         password: String,
          bio: String = "Swift Academy Student",
          lessonsCompleted: Int = 0,
          achievements: [Achievement] = []) {
         self.uid = uid
         self.name = name
         self.email = email
-        self.password = password
         self.bio = bio
         self.lessonsCompleted = lessonsCompleted
         self.achievements = achievements

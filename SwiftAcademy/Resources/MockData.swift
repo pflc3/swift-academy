@@ -8,7 +8,6 @@ struct MockData {
             uid: "1",
             name: "Al Gorithm",
             email: "al@swift.academy",
-            password: "sortinxaptimize life one step at a time.",
             lessonsCompleted: 1,
             achievements: achievements
         ),
@@ -16,7 +15,6 @@ struct MockData {
             uid: "2",
             name: "Alaxan Turing",
             email: "alan@swift.academy",
-            password: "enigma",
             bio: "CS enthusiast trying to crack Swift like I cracked codes.",
             lessonsCompleted: 4,
             achievements: achievements
