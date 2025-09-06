@@ -70,10 +70,6 @@ struct AuthView: View {
 }
 
 #Preview {
-    let deps = AppDependencies()
-    deps.session.isBootstrapping = false
-    return AuthView()
-        .environmentObject(deps.session)
-        .environmentObject(deps.userService)
-        .environmentObject(deps.toasts)
+    let deps = PreviewDeps()
+    return AuthView().previewEnv(deps)
 }

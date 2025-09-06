@@ -49,10 +49,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    let deps = AppDependencies()
-    deps.session.isBootstrapping = false
-    deps.session.isAuthenticated = true
-    deps.session.user = MockData.users[0]
-    return HomeView()
-        .environmentObject(deps.session)
+    let deps = PreviewDeps(user: MockData.users.first)
+    return HomeView().previewEnv(deps)
 }

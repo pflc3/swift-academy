@@ -35,12 +35,6 @@ struct ProfileView: View {
 }
 
 #Preview {
-    let deps = AppDependencies()
-    deps.session.isBootstrapping = false
-    deps.session.isAuthenticated = true
-    deps.session.user = MockData.users[0]
-    return ProfileView()
-        .environmentObject(deps.session)
-        .environmentObject(deps.userService)
-        .environmentObject(deps.toasts)
+    let deps = PreviewDeps(user: MockData.users.first)
+    return ProfileView().previewEnv(deps)
 }

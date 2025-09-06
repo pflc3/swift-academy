@@ -23,11 +23,6 @@ struct ChatBotView: View {
 }
 
 #Preview {
-    let deps = AppDependencies()
-    deps.session.isBootstrapping = false
-    deps.session.isAuthenticated = true
-    return ChatBotView()
-        .environmentObject(deps.session)
-        .environmentObject(deps.chatService)
-        .environmentObject(deps.toasts)
+    let deps = PreviewDeps(user: MockData.users.first)
+    return ChatBotView().previewEnv(deps)
 }

@@ -95,12 +95,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    let session = SessionManager(userService: UserService())
-    session.isBootstrapping = false
-    session.isAuthenticated = true
-    session.user = MockData.users[0]
-    let toasts = ToastCenter()
-    return ContentView()
-        .environmentObject(session)
-        .environmentObject(toasts)
+    let deps = PreviewDeps(user: MockData.users.first)
+    return ContentView().previewEnv(deps)
 }

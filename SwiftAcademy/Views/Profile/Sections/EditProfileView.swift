@@ -78,13 +78,12 @@ struct EditProfileView: View {
 }
 
 #Preview {
-    let deps = AppDependencies()
-    deps.session.user = MockData.users[0]
+    let deps = PreviewDeps(user: MockData.users.first)
     return EditProfileView(
         vm: ProfileViewModel(
             session: deps.session,
             userService: deps.userService,
             toasts: deps.toasts
         )
-    )
+    ).previewEnv(deps)
 }
