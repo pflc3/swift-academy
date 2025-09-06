@@ -15,10 +15,12 @@ class UserManager: ObservableObject {
     @Published var currentUser: User?
     @Published var isAuthenticated = false
     @Published var currentToast: ToastMessage?
+    @Published var isBootstrapping = true
 
     // Firestore handle
     private let db = Firestore.firestore()
     private var authHandle: AuthStateDidChangeListenerHandle?
+    private var didResolveInitialState = false
     
     init() {
         observeAuthState()
@@ -47,7 +49,7 @@ class UserManager: ObservableObject {
                             )
                             self.isAuthenticated = true
                         } else {
-                            // No profile doc — treat as signed out or create a minimal user as you prefer
+                            // No profile doc — treat as signed out
                             self.currentUser = nil
                             self.isAuthenticated = false
                         }
@@ -61,6 +63,12 @@ class UserManager: ObservableObject {
                     // Signed out
                     self.currentUser = nil
                     self.isAuthenticated = false
+                }
+
+                // end of first pass: drop the splash
+                if !self.didResolveInitialState {
+                    self.isBootstrapping = false
+                    self.didResolveInitialState = true
                 }
             }
         }

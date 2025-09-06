@@ -22,11 +22,13 @@ struct SwiftAcademyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if userManager.isAuthenticated {
+            if userManager.isBootstrapping {
+                SplashView()
+            } else if userManager.isAuthenticated, let user = userManager.currentUser {
                 // User is authenticated
                 ContentView()
                     .environmentObject(userManager)
-                    .environmentObject(userManager.currentUser!)
+                    .environmentObject(user)
             } else {
                 // User needs to authenticate
                 AuthView()
