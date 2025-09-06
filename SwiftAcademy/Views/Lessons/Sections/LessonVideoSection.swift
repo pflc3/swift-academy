@@ -13,6 +13,7 @@ struct LessonVideoSection: View {
                 
                 // Embedded video player
                 YouTubePlayer(videoID: videoID)
+                    .frame(maxWidth: .infinity)
                     .frame(height: 200)
                     .cornerRadius(12)
                 
@@ -31,6 +32,7 @@ struct LessonVideoSection: View {
                 .buttonStyle(.plain)
             }
             .padding(16)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.cardBackgroundApp)
             .cornerRadius(16)
             .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 1)

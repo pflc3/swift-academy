@@ -94,6 +94,7 @@ struct CompletionHintView: View {
                 .fixedSize(horizontal: false, vertical: true)
         }
         .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

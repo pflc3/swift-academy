@@ -70,6 +70,7 @@ struct LessonHeaderSection: View {
             }
         }
         .padding(.bottom, 10)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
