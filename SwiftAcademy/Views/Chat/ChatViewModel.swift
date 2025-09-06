@@ -41,7 +41,8 @@ final class ChatViewModel: ObservableObject {
                 }
                 messages.append(ChatMessage(content: reply, isFromUser: false))
             } catch {
-                messages.append(ChatMessage(content: "Something went wrong. Please try again.", isFromUser: false))
+                messages.append(ChatMessage(content: ChatService.friendlyMessage(error), isFromUser: false))
+                isLoading = false
             }
             isLoading = false
         }
