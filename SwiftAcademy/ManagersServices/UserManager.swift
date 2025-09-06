@@ -18,6 +18,53 @@ class UserManager: ObservableObject {
 
     // Firestore handle
     private let db = Firestore.firestore()
+    private var authHandle: AuthStateDidChangeListenerHandle?
+    
+    init() {
+        observeAuthState()
+    }
+    
+    deinit {
+        if let h = authHandle { Auth.auth().removeStateDidChangeListener(h) }
+    }
+    
+    private func observeAuthState() {
+        authHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
+            guard let self else { return }
+            Task { @MainActor in
+                if let user = user {
+                    // User is already signed in — fetch profile
+                    do {
+                        let snap = try await self.readFromUserDoc(uid: user.uid)
+                        if let data = snap.data() {
+                            self.currentUser = User(
+                                uid: user.uid,
+                                name: data["name"] as? String ?? "Student",
+                                email: data["email"] as? String ?? "",
+                                bio: data["bio"] as? String ?? "",
+                                lessonsCompleted: data["lessonsCompleted"] as? Int ?? 0,
+                                achievements: self.convertAchFirestoreToUser(data: data)
+                            )
+                            self.isAuthenticated = true
+                        } else {
+                            // No profile doc — treat as signed out or create a minimal user as you prefer
+                            self.currentUser = nil
+                            self.isAuthenticated = false
+                        }
+                    } catch {
+                        // Failed to load profile, surface a toast and stay on auth screen
+                        self.currentToast = ToastMessage("Couldn’t load profile", isPositive: false)
+                        self.currentUser = nil
+                        self.isAuthenticated = false
+                    }
+                } else {
+                    // Signed out
+                    self.currentUser = nil
+                    self.isAuthenticated = false
+                }
+            }
+        }
+    }
 
     // Create Firebase Auth user, seed profile doc, update local model
     func signup(name: String, email: String, password: String, confirmPassword: String) async throws {
