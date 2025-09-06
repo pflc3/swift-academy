@@ -60,11 +60,14 @@ struct AuthView: View {
                         showLogin: { withAnimation { currentView = .signin } },
                         showSignup: { withAnimation { currentView = .create } },
                         tryDemo: {
-                            withAnimation {
-                                userManager.login(email: "demo@swift.academy", password: "password123") { success, error in
-                                    if !success {
-                                        print("Demo login failed: \(error ?? "Unknown error")")
-                                    }
+                            Task {
+                                do {
+                                    try await userManager.login(
+                                        email: "demo@swift.academy",
+                                        password: "password123"
+                                    )
+                                } catch {
+                                    print("Demo login failed: \(error.localizedDescription)")
                                 }
                             }
                         }
@@ -114,14 +117,13 @@ struct AuthView: View {
         }
 
         // Firebase login
-        userManager.login(email: email, password: password) { success, error in
-            DispatchQueue.main.async {
+        Task {
+            do {
+                try await userManager.login(email: email, password: password)
                 isLoading = false
-                if success {
-                    // Logged in successfully
-                } else {
-                    errorMessage = error ?? "Login failed"
-                }
+            } catch {
+                isLoading = false
+                errorMessage = error.localizedDescription
             }
         }
     }
@@ -144,14 +146,18 @@ struct AuthView: View {
         }
 
         // Firebase signup
-        userManager.signup(name: name, email: email, password: password, confirmPassword: confirmPassword) { success, error in
-            DispatchQueue.main.async {
+        Task {
+            do {
+                try await userManager.signup(
+                    name: name,
+                    email: email,
+                    password: password,
+                    confirmPassword: confirmPassword
+                )
                 isLoading = false
-                if success {
-                    // Signed up successfully
-                } else {
-                    errorMessage = error ?? "Signup failed"
-                }
+            } catch {
+                isLoading = false
+                errorMessage = error.localizedDescription
             }
         }
     }

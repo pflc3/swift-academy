@@ -58,9 +58,12 @@ struct EditProfileView: View {
                 // Logout button
                 Section {
                     Button(action: {
-                        // Logout the user
-                        userManager.logout()
-                        dismiss()
+                        do {
+                            try userManager.logout()
+                            dismiss()
+                        } catch {
+                            print("Error signing out: \(error.localizedDescription)")
+                        }
                     }) {
                         HStack {
                             Spacer()

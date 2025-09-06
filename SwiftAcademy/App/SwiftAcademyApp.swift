@@ -17,6 +17,7 @@ struct SwiftAcademyApp: App {
     // Register AppDelegate so Firebase initializes properly
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
+    // Observable object: Keeps it alive for the lifetime creator
     @StateObject private var userManager = UserManager()
 
     var body: some Scene {
