@@ -85,6 +85,60 @@ struct ContentView: View {
         }
         .animation(.easeOut(duration: 0.2), value: isShowingLessonDetail) // Animate navbar changes
         .ignoresSafeArea(.all, edges: .bottom)
+        // Toast overlay (global, bottom of screen)
+        .overlay(
+            Group {
+                if let toast = userManager.currentToast {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            if toast.isPositive {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.green)
+                                    .font(.title3)
+                            } else {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(.orange)
+                                    .font(.title3)
+                            }
+                            
+                            Text(toast.message)
+                                .font(.body)
+                                .fontWeight(.medium)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(3)
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 14)
+                        .background(
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(Color(.systemBackground))
+                                .shadow(
+                                    color: .black.opacity(0.15),
+                                    radius: 8,
+                                    x: 0,
+                                    y: 4
+                                )
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(
+                                    toast.isPositive ? Color.green.opacity(0.3) : Color.orange.opacity(0.3),
+                                    lineWidth: 1
+                                )
+                        )
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 50)
+                    }
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .bottom).combined(with: .opacity),
+                        removal: .move(edge: .bottom).combined(with: .opacity)
+                    ))
+                    .animation(.spring(response: 0.6, dampingFraction: 0.8), value: toast.message)
+                }
+            }
+            .allowsHitTesting(false)
+        )
     }
     
     // Centralized function to hide menu

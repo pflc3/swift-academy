@@ -60,9 +60,15 @@ struct AuthView: View {
                         showLogin: { withAnimation { currentView = .signin } },
                         showSignup: { withAnimation { currentView = .create } },
                         tryDemo: {
-                            withAnimation {
-                                // Auto-login with first mock user
-                                _ = userManager.login(email: "al@swift.academy", password: "sorting")
+                            Task {
+                                do {
+                                    try await userManager.login(
+                                        email: "demo@swift.academy",
+                                        password: "password123"
+                                    )
+                                } catch {
+                                    print("Demo login failed: \(error.localizedDescription)")
+                                }
                             }
                         }
                     )
@@ -98,55 +104,64 @@ struct AuthView: View {
     /*
      * Authentication Methods
      */
-    
+
     private func handleLogin() {
         isLoading = true
         errorMessage = nil
-        
-        // Simulate network request
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+
+        // Local checks
+        guard !email.isEmpty, !password.isEmpty else {
+            errorMessage = "Please enter both email and password"
             isLoading = false
-            
-            // Check for empty fields
-            if !email.isEmpty && !password.isEmpty {
-                if userManager.login(email: email, password: password) {
-                    // Successfully logged in
-                } else {
-                    // Credentials error
-                    errorMessage = "Invalid email or password"
-                }
-            } else {
-                // Show empty fields error
-                errorMessage = "Please enter both email and password"
+            return
+        }
+
+        // Firebase login
+        Task {
+            do {
+                try await userManager.login(email: email, password: password)
+                isLoading = false
+            } catch {
+                isLoading = false
+                errorMessage = error.localizedDescription
             }
         }
     }
-    
+
     private func handleSignup() {
         isLoading = true
         errorMessage = nil
-        
-        // Simulate network request
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+
+        // Local checks
+        guard !name.isEmpty, !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty else {
+            errorMessage = "Please fill in all fields"
             isLoading = false
-            
-            // Check for empty fields
-            if !name.isEmpty && !email.isEmpty && !password.isEmpty && confirmPassword == password {
-               if userManager.signup(name: name, email: email, password: password, confirmPassword: confirmPassword) {
-                    // Successfully signed up
-                } else {
-                    // Email already exists
-                    errorMessage = "This email is already registered"
-                }
-            } else if name.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
-                // Empty error
-                errorMessage = "Please fill in all fields"
-            } else if confirmPassword != password {
-                // Password error
-                errorMessage = "Please make sure passwords match"
+            return
+        }
+
+        guard password == confirmPassword else {
+            errorMessage = "Passwords do not match"
+            isLoading = false
+            return
+        }
+
+        // Firebase signup
+        Task {
+            do {
+                try await userManager.signup(
+                    name: name,
+                    email: email,
+                    password: password,
+                    confirmPassword: confirmPassword
+                )
+                isLoading = false
+            } catch {
+                isLoading = false
+                errorMessage = error.localizedDescription
             }
         }
     }
+
 }
 
 #Preview {
