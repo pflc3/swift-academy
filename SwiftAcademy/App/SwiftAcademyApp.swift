@@ -1,39 +1,39 @@
 import SwiftUI
-import FirebaseCore
-
-// AppDelegate handles Firebase setup
-class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
-    ) -> Bool {
-        FirebaseApp.configure()
-        return true
-    }
-}
 
 @main
 struct SwiftAcademyApp: App {
-    // Register AppDelegate so Firebase initializes properly
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
-    // Observable object: Keeps it alive for the lifetime creator
-    @StateObject private var userManager = UserManager()
+    private let deps: AppDependencies
+    @StateObject private var session: SessionManager
+    @StateObject private var toasts: ToastCenter
+
+    init() {
+        let deps = AppDependencies()
+        _session = StateObject(wrappedValue: deps.session)
+        _toasts  = StateObject(wrappedValue: deps.toasts)
+        self.deps = deps
+    }
 
     var body: some Scene {
         WindowGroup {
-            if userManager.isBootstrapping {
-                SplashView()
-            } else if userManager.isAuthenticated, let user = userManager.currentUser {
-                // User is authenticated
-                ContentView()
-                    .environmentObject(userManager)
-                    .environmentObject(user)
-            } else {
-                // User needs to authenticate
-                AuthView()
-                    .environmentObject(userManager)
+            Group {
+                if session.isBootstrapping {
+                    SplashView()
+                } else if session.isAuthenticated, session.user != nil {
+                    ContentView()
+                        .environmentObject(session)
+                        .environmentObject(deps.userService)
+                        .environmentObject(deps.chatService)
+                        .environmentObject(toasts)
+                } else {
+                    AuthView()
+                        .environmentObject(session)
+                        .environmentObject(deps.userService)
+                        .environmentObject(toasts)
+                }
             }
+            .task { session.start() }
         }
     }
 }

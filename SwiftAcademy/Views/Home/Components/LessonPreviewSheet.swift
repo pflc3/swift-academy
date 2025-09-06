@@ -3,23 +3,20 @@ import SwiftUI
 struct LessonPreviewSheet: View {
     let lesson: Lesson
     @Binding var isPresented: Bool
-    var onStartLesson: (Lesson) -> Void  // Callback to parent view
+    var onStartLesson: (Lesson) -> Void
     
     var body: some View {
         VStack(spacing: 0) {
-            // Header
             HStack {
                 Image(systemName: "xmark")
                     .padding(8)
                     .clipShape(Circle())
                     .opacity(0)
-                
                 Spacer()
                 Text(lesson.title)
                     .font(.titleMedium)
                     .foregroundColor(.textPrimaryApp)
                 Spacer()
-                
                 Button {
                     isPresented = false
                 } label: {
@@ -34,11 +31,10 @@ struct LessonPreviewSheet: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 12)
             
-            // Short description
             Text(lesson.description)
                 .font(.bodyMedium)
                 .foregroundColor(.textSecondaryApp)
-                .lineLimit(3) // Limit lines to prevent overflow
+                .lineLimit(3)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 12)
             
@@ -46,20 +42,16 @@ struct LessonPreviewSheet: View {
                 .background(Color.dividerApp)
                 .padding(.horizontal, 16)
             
-            
-            // Top 2 Learning Goals (no scroll)
             VStack(alignment: .leading, spacing: 10) {
                 Text("What You'll Learn")
                     .font(.titleSmall)
                     .foregroundColor(.textPrimaryApp)
-                
                 ForEach(lesson.goals.prefix(2)) { goal in
                     HStack(alignment: .top) {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundColor(.accentApp)
                             .font(.caption)
                             .padding(.top, 2)
-                        
                         Text(goal.description)
                             .font(.bodyMedium)
                             .foregroundColor(.textSecondaryApp)
@@ -72,10 +64,9 @@ struct LessonPreviewSheet: View {
             
             Spacer()
             
-            // Action button - simple button that calls the callback
             Button {
-                isPresented = false  // First dismiss the sheet
-                onStartLesson(lesson)  // Then trigger navigation in parent
+                isPresented = false
+                onStartLesson(lesson)
             } label: {
                 Text("Start Lesson")
                     .font(.bodyLarge.bold())
@@ -89,7 +80,7 @@ struct LessonPreviewSheet: View {
             .padding(.vertical, 16)
         }
         .background(Color.backgroundApp)
-        .presentationDetents([.height(350)]) // Adjust height as needed
+        .presentationDetents([.height(350)])
         .presentationCornerRadius(16)
     }
 }

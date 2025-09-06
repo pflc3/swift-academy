@@ -1,10 +1,7 @@
 import Foundation
 
-// Provides access to the app's lesson content
 struct LessonData {
-    // Collection of all available lessons
     static let allLessons: [Lesson] = [
-        // Old lessons
         binaryLesson,
         dataTypesLesson,
         arraysListsLesson,
@@ -12,16 +9,13 @@ struct LessonData {
         dictionariesLesson,
         SwiftUIBasicsLesson,
 
-        // Foundational Swift
         controlFlowLesson,
         optionalsLesson,
         closuresLesson,
         protocolsLesson,
-        
-        // Xcode & iOS Dev
+
         xcodeIntroLesson,
-        
-        // SwiftUI Concepts
+
         dataHandlingLesson,
         stateLesson,
         navigationLesson,
@@ -34,12 +28,10 @@ struct LessonData {
         customViewsLesson,
         listAndForEachLesson,
         stateObjectLesson,
-        
-        // Async + Error Handling
+
         asyncAwaitLesson,
         errorHandlingLesson,
 
-        // CRUD App Flow
         projectSetupLesson,
         mainUILayoutLesson,
         stateManagementLesson,
@@ -59,7 +51,6 @@ struct LessonData {
         whatsNextLesson
     ]
 
-    // Individual lesson definitions
     static let binaryLesson = Lesson(
         title: "Binary Communication",
         shortTitle: "Binary Comm",
@@ -69,15 +60,13 @@ struct LessonData {
         videoID: "k68-cStI1ok",
         slidesURL: "https://docs.google.com/presentation/d/1mGTJNUocYB3rweKax4Id0PYb1tHGyAgT3rel3P5eB_8/edit?usp=sharing",
         slideThumbnails: ["binary1", "binary2", "binary3"],
-        
-        // Learning objectives for this lesson
+
         goals: [
             Lesson.LessonGoal(description: "Understand what binary code is and why computers use it"),
             Lesson.LessonGoal(description: "Learn how to convert between binary and decimal numbers"),
             Lesson.LessonGoal(description: "Discover how text is encoded using binary")
         ],
 
-        // Main educational content divided into sections (some with or without code examples)
         contentSections: [
             Lesson.ContentSection(
                 title: "What is Binary?",
@@ -102,27 +91,25 @@ struct LessonData {
                 """
             )
         ],
-        
-        // Practice questions to test understanding
+
         questions: [
             Lesson.Question(
                 text: "What number system do computers use internally?",
                 options: ["Decimal (Base 10)", "Binary (Base 2)", "Hexadecimal (Base 16)"],
-                correctOptionIndex: 1  // Index 1 is "Binary"
+                correctOptionIndex: 1
             ),
             Lesson.Question(
                 text: "What is the decimal value of binary 1010?",
                 options: ["5", "15", "10"],
-                correctOptionIndex: 2  // Index 2 is "10"
+                correctOptionIndex: 2
             ),
             Lesson.Question(
                 text: "What is the decimal value of binary 1010?",
                 options: ["5", "15", "10"],
-                correctOptionIndex: 2  // Index 2 is "10"
+                correctOptionIndex: 2
             )
         ],
-        
-        // Additional learning resources
+
         resources: [
             Lesson.Resource(
                 title: "Khan Academy: Binary Numbers",
@@ -136,7 +123,7 @@ struct LessonData {
             )
         ]
     )
-    
+
     static let dataTypesLesson = Lesson(
         title: "Swift Data Types",
         shortTitle: "Data Types",
@@ -146,15 +133,13 @@ struct LessonData {
         videoID: "YjSfJTXaqTI",
         slidesURL: "https://docs.google.com/presentation/d/15-sR9-beHDIPxEvpBoW5LjQ-I3YMHClzUgsMFmTeBp4/edit?usp=sharing",
         slideThumbnails: ["datatypes1", "datatypes2", "datatypes3"],
-        
-        // Learning objectives for this lesson
+
         goals: [
             Lesson.LessonGoal(description: "Understand Swift's basic data types (String, Int, Double, Bool)"),
             Lesson.LessonGoal(description: "Learn about type safety and type inference"),
             Lesson.LessonGoal(description: "Practice using and converting between different data types")
         ],
-        
-        // Main educational content divided into sections with code examples
+
         contentSections: [
             Lesson.ContentSection(
                 title: "Basic Data Types",
@@ -187,27 +172,25 @@ struct LessonData {
                 """
             )
         ],
-        
-        // Pract-ice questions to test understanding
+
         questions: [
             Lesson.Question(
                 text: "Which data type would you use to store someone's name?",
                 options: ["Int", "String", "Bool"],
-                correctOptionIndex: 1  // Index 1 is "String"
+                correctOptionIndex: 1
             ),
             Lesson.Question(
                 text: "What will Swift infer the type of 'let score = 42' to be?",
                 options: ["String", "Double", "Int"],
-                correctOptionIndex: 2  // Index 2 is "Int"
+                correctOptionIndex: 2
             ),
             Lesson.Question(
                 text: "What happens when you convert a Double to an Int in Swift?",
                 options: ["It rounds to the nearest whole number", "It truncates the decimal portion", "It causes a compile error"],
-                correctOptionIndex: 1  // Index 1 is "It truncates the decimal portion"
+                correctOptionIndex: 1
             )
         ],
-        
-        // Additional learning resources
+
         resources: [
             Lesson.Resource(
                 title: "Swift.org: The Basics",
@@ -221,7 +204,7 @@ struct LessonData {
             )
         ]
     )
-    
+
     static let arraysListsLesson = Lesson(
         title: "Arrays and Lists",
         shortTitle: "Arrays & Lists",
@@ -231,13 +214,13 @@ struct LessonData {
         videoID: "DuDz6B4cqVc",
         slidesURL: "https://docs.google.com/presentation/d/1GakhlxRNLV3AAw5uXXZSghMN1pZ3PQaVylLOCqRHtK8/edit?usp=sharing",
         slideThumbnails: ["arrays1", "arrays2", "arrays3"],
-        
+
         goals: [
             Lesson.LessonGoal(description: "Understand what data structures are and why they're essential in programming"),
             Lesson.LessonGoal(description: "Learn the differences between arrays and lists"),
             Lesson.LessonGoal(description: "Master basic operations: adding, removing, and accessing elements")
         ],
-        
+
         contentSections: [
             Lesson.ContentSection(
                 title: "What are Data Structures?",
@@ -312,7 +295,7 @@ struct LessonData {
             )
         ]
     )
-    
+
     static let functionsLesson = Lesson(
         title: "Functions",
         shortTitle: "Functions",
@@ -322,12 +305,12 @@ struct LessonData {
         videoID: "fffG55Ei1Qc",
         slidesURL: "https://docs.google.com/presentation/d/193FcPGqmMt6zAtX3m3Yb6YlFW8ins6hzTCjbxUqnxhE/edit?usp=sharing",
         slideThumbnails: ["functions1", "functions2", "functions3"],
-        
+
         goals: [
             Lesson.LessonGoal(description: "Understand what functions are and why they're useful"),
             Lesson.LessonGoal(description: "Write simple functions with parameters and return values")
         ],
-        
+
         contentSections: [
             Lesson.ContentSection(
                 title: "What are Functions?",
@@ -387,7 +370,7 @@ struct LessonData {
                 """
             )
         ],
-        
+
         questions: [
             Lesson.Question(
                 text: "What keyword is used to define a function in Swift?",
@@ -405,7 +388,7 @@ struct LessonData {
                 correctOptionIndex: 1
             )
         ],
-        
+
         resources: [
             Lesson.Resource(
                 title: "Swift Functions Documentation",
@@ -419,7 +402,7 @@ struct LessonData {
             )
         ]
     )
-    
+
     static let dictionariesLesson = Lesson(
         title: "Dictionaries",
         shortTitle: "Dictionaries",

@@ -1,49 +1,25 @@
 import SwiftUI
 
-// Enum to track current auth screen
-enum AuthScreen {
-    case welcome
-    case signin
-    case create
-}
-
 struct AuthView: View {
-    // Access to the user manager
-    @EnvironmentObject var userManager: UserManager
+    @EnvironmentObject var session: SessionManager
+    @EnvironmentObject var userService: UserService
+    @EnvironmentObject var toasts: ToastCenter
     
-    // State for tracking which screen to display
-    @State private var currentView: AuthScreen = .welcome
-    
-    // State for authentication
-    @State private var email = ""
-    @State private var password = ""
-    @State private var confirmPassword = ""
-    @State private var name = ""
-    @State private var isLoading = false
-    @State private var errorMessage: String? = nil
+    @StateObject private var vm = AuthViewModel()
     
     var body: some View {
-        /*
-         * The main container for authentication screens
-         */
         ZStack {
-            // Animated wave background
             WaveBackground()
-            
-            // Content overlays
             VStack {
-                // Logo at top
                 HStack(alignment: .center, spacing: 16) {
                     Image("BeaverLight")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 60, height: 60)
-                    
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Swift")
                             .font(.system(size: 28, weight: .semibold))
                             .foregroundColor(.white)
-                        
                         Text("Academy")
                             .font(.system(size: 28, weight: .semibold))
                             .foregroundColor(.white)
@@ -53,44 +29,32 @@ struct AuthView: View {
                 
                 Spacer()
                 
-                // Dynamic content area
-                switch currentView {
+                switch vm.currentView {
                 case .welcome:
                     WelcomeSection(
-                        showLogin: { withAnimation { currentView = .signin } },
-                        showSignup: { withAnimation { currentView = .create } },
-                        tryDemo: {
-                            Task {
-                                do {
-                                    try await userManager.login(
-                                        email: "demo@swift.academy",
-                                        password: "password123"
-                                    )
-                                } catch {
-                                    print("Demo login failed: \(error.localizedDescription)")
-                                }
-                            }
-                        }
+                        showLogin: { withAnimation { vm.currentView = .signin } },
+                        showSignup: { withAnimation { vm.currentView = .create } },
+                        tryDemo: { vm.demoLogin() }
                     )
                 case .signin:
                     SignInSection(
-                        email: $email,
-                        password: $password,
-                        errorMessage: errorMessage,
-                        isLoading: isLoading,
-                        login: handleLogin,
-                        showSignup: { withAnimation { currentView = .create } }
+                        email: $vm.email,
+                        password: $vm.password,
+                        errorMessage: vm.errorMessage,
+                        isLoading: vm.isLoading,
+                        login: { vm.login() },
+                        showSignup: { withAnimation { vm.currentView = .create } }
                     )
                 case .create:
                     CreateAcntSection(
-                        name: $name,
-                        email: $email,
-                        password: $password,
-                        confirmPassword: $confirmPassword,
-                        errorMessage: errorMessage,
-                        isLoading: isLoading,
-                        signup: handleSignup,
-                        showLogin: { withAnimation { currentView = .signin } }
+                        name: $vm.name,
+                        email: $vm.email,
+                        password: $vm.password,
+                        confirmPassword: $vm.confirmPassword,
+                        errorMessage: vm.errorMessage,
+                        isLoading: vm.isLoading,
+                        signup: { vm.signup() },
+                        showLogin: { withAnimation { vm.currentView = .signin } }
                     )
                 }
                 
@@ -98,73 +62,18 @@ struct AuthView: View {
             }
             .padding(.horizontal)
         }
-        .animation(.easeInOut, value: currentView)
-    }
-    
-    /*
-     * Authentication Methods
-     */
-
-    private func handleLogin() {
-        isLoading = true
-        errorMessage = nil
-
-        // Local checks
-        guard !email.isEmpty, !password.isEmpty else {
-            errorMessage = "Please enter both email and password"
-            isLoading = false
-            return
-        }
-
-        // Firebase login
-        Task {
-            do {
-                try await userManager.login(email: email, password: password)
-                isLoading = false
-            } catch {
-                isLoading = false
-                errorMessage = error.localizedDescription
-            }
+        .animation(.easeInOut, value: vm.currentView)
+        .onAppear {
+            vm.configure(session: session, userService: userService, toasts: toasts)
         }
     }
-
-    private func handleSignup() {
-        isLoading = true
-        errorMessage = nil
-
-        // Local checks
-        guard !name.isEmpty, !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty else {
-            errorMessage = "Please fill in all fields"
-            isLoading = false
-            return
-        }
-
-        guard password == confirmPassword else {
-            errorMessage = "Passwords do not match"
-            isLoading = false
-            return
-        }
-
-        // Firebase signup
-        Task {
-            do {
-                try await userManager.signup(
-                    name: name,
-                    email: email,
-                    password: password,
-                    confirmPassword: confirmPassword
-                )
-                isLoading = false
-            } catch {
-                isLoading = false
-                errorMessage = error.localizedDescription
-            }
-        }
-    }
-
 }
 
 #Preview {
-    AuthView()
-        .environmentObject(UserManager())
+    let deps = AppDependencies()
+    deps.session.isBootstrapping = false
+    return AuthView()
+        .environmentObject(deps.session)
+        .environmentObject(deps.userService)
+        .environmentObject(deps.toasts)
 }

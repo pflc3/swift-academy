@@ -2,13 +2,11 @@ import SwiftUI
 
 struct LearningPathSection: View {
     let lessons: [Lesson]
-    @EnvironmentObject var user: User
+    let lessonsCompleted: Int
     var onStartLesson: (Lesson) -> Void
     
-    // Determine unlocked lessons based on user progress
-    // Current lesson (next one to complete) is also unlocked
-    var unlockedCount: Int {
-        return min(user.lessonsCompleted + 1, lessons.count)
+    private var unlockedCount: Int {
+        min(lessonsCompleted + 1, lessons.count)
     }
     
     var body: some View {
@@ -21,37 +19,27 @@ struct LearningPathSection: View {
                 let isUnlocked = index < unlockedCount
                 
                 ZStack {
-                    // Draw connector, except last
                     if !isLast {
                         LessonConnectorLine(
                             isEven: isEven,
-                            // Only color the connector if the next lesson is also unlocked
-                            isUnlocked: isUnlocked && index+1 < unlockedCount
+                            isUnlocked: isUnlocked && index + 1 < unlockedCount
                         )
                     }
                     
-                    // Position cards on alternating sides
                     LessonCard(
                         lesson: lesson,
                         index: index + 1,
                         isUnlocked: isUnlocked,
-                        isNextLesson: index == user.lessonsCompleted,
+                        isNextLesson: index == lessonsCompleted,
                         onStartLesson: onStartLesson
                     )
-                    .offset(
-                        x: isEven ? 70 : -70,
-                        y: -75
-                    )
+                    .offset(x: isEven ? 70 : -70, y: -75)
                 }
                 
                 if secondToLast {
-                    // Add extra space after second to last card
-                    Spacer()
-                        .frame(height: 70)
+                    Spacer().frame(height: 70)
                 } else if !isLast {
-                    // Add space after each card, except last
-                    Spacer()
-                        .frame(height: 60)
+                    Spacer().frame(height: 60)
                 }
             }
         }
@@ -59,16 +47,14 @@ struct LearningPathSection: View {
 }
 
 #Preview {
-    Spacer()
-        .frame(height: 180)
     LearningPathSection(
         lessons: [
             LessonData.binaryLesson,
             LessonData.dataTypesLesson,
-            LessonData.binaryLesson,
-            LessonData.dataTypesLesson,
+            LessonData.arraysListsLesson,
+            LessonData.functionsLesson
         ],
-        onStartLesson: { _ in /* Preview only */ }
+        lessonsCompleted: 1,
+        onStartLesson: { _ in }
     )
-    .environmentObject(MockData.users[0])
 }

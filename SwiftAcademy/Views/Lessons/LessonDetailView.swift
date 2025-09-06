@@ -1,94 +1,63 @@
 import SwiftUI
 
 struct LessonDetailView: View {
-    // Environment object
-    @EnvironmentObject var user: User
+    @EnvironmentObject var session: SessionManager
+    @EnvironmentObject var userService: UserService
+    @EnvironmentObject var toasts: ToastCenter
     
-    // State
-    @State private var lesson: Lesson
-    @State private var isVideoWatched = false
-    @State private var completedGoals: Set<UUID> = []
-    @State private var showingSlides = false
-    @State private var selectedQuestionIndex: Int? = nil
-    @State private var showingResourceLinks = false
+    @StateObject private var vm: LessonDetailViewModel
     
-    // Computed properties
-    private var progressPercentage: Double {
-        var total = 0.0
-        if isVideoWatched {
-            total += 0.35
-        }
-        if !lesson.goals.isEmpty {
-            let goalWeight = 0.65 / Double(lesson.goals.count)
-            total += Double(completedGoals.count) * goalWeight
-        }
-        return total
+    init(lesson: Lesson) {
+        _vm = StateObject(wrappedValue: LessonDetailViewModel(lesson: lesson))
     }
     
     private var isFirstTwoLessons: Bool {
-        let firstTwoLessonIds = [
-            LessonData.allLessons[0].id,
-            LessonData.allLessons[1].id
-        ].compactMap { $0 }
-        return firstTwoLessonIds.contains(lesson.id)
-    }
-    
-    // Initialization
-    init(lesson: Lesson) {
-        _lesson = State(initialValue: lesson)
+        let ids = Array(LessonData.allLessons.prefix(2)).map { $0.id }
+        return ids.contains(vm.lesson.id)
     }
     
     var body: some View {
         VStack(spacing: 0) {
-            // Custom top bar
-            TopBar(title: lesson.title)
+            TopBar(title: vm.lesson.title)
             
-            // Main content
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    // Overview section
                     LessonHeaderSection(
-                        lesson: lesson,
-                        progressPercentage: progressPercentage
+                        lesson: vm.lesson,
+                        progressPercentage: vm.progressPercentage,
+                        onCompleted: { vm.submitCompletionIfEligible() }
                     )
                     
-                    // Video section
                     LessonVideoSection(
-                        videoID: lesson.videoID ?? "",
-                        isVideoWatched: $isVideoWatched
+                        videoID: vm.lesson.videoID ?? "",
+                        isVideoWatched: $vm.isVideoWatched
                     )
                     
-                    // Learning goals section
                     LessonGoalsSection(
-                        goals: lesson.goals,
-                        completedGoals: $completedGoals
+                        goals: vm.lesson.goals,
+                        completedGoals: $vm.completedGoals
                     )
                     
-                    // Content sections
                     LessonContentSection(
-                        contentSections: lesson.contentSections
+                        contentSections: vm.lesson.contentSections
                     )
                     
-                    // Slides section
                     LessonSlidesSection(
-                        showingSlides: $showingSlides,
-                        slidesURL: lesson.slidesURL,
-                        slideThumbnails: lesson.slideThumbnails
+                        showingSlides: $vm.showingSlides,
+                        slidesURL: vm.lesson.slidesURL,
+                        slideThumbnails: vm.lesson.slideThumbnails
                     )
                     
-                    // Questions section
                     LessonQuestionsSection(
-                        questions: lesson.questions,
-                        selectedQuestionIndex: $selectedQuestionIndex
+                        questions: vm.lesson.questions,
+                        selectedQuestionIndex: $vm.selectedQuestionIndex
                     )
                     
-                    // Resources section
                     LessonResourcesSection(
-                        resources: lesson.resources,
-                        showingResourceLinks: $showingResourceLinks
+                        resources: vm.lesson.resources,
+                        showingResourceLinks: $vm.showingResourceLinks
                     )
                     
-                    // Completion hint for first two lessons only
                     if isFirstTwoLessons {
                         CompletionHintView()
                     }
@@ -98,11 +67,17 @@ struct LessonDetailView: View {
         }
         .background(Color.backgroundApp)
         .navigationBarHidden(true)
-        .sheet(isPresented: $showingSlides) {
+        .sheet(isPresented: $vm.showingSlides) {
             LessonSlidesDetailView(
-                showingSlides: $showingSlides,
-                slidesURL: lesson.slidesURL
+                showingSlides: $vm.showingSlides,
+                slidesURL: vm.lesson.slidesURL
             )
+        }
+        .onAppear {
+            vm.configure(session: session, userService: userService, toasts: toasts)
+        }
+        .onChange(of: vm.progressPercentage) { _, newValue in
+            if newValue >= 1.0 { vm.submitCompletionIfEligible() }
         }
     }
 }
@@ -113,7 +88,6 @@ struct CompletionHintView: View {
             Image(systemName: "lightbulb.fill")
                 .foregroundColor(.accentApp.opacity(0.8))
                 .font(.system(size: 18))
-            
             Text("To complete this lesson, mark the video as watched and check off all learning goals.")
                 .font(.callout)
                 .foregroundColor(.textSecondaryApp)
@@ -124,8 +98,14 @@ struct CompletionHintView: View {
 }
 
 #Preview {
-    NavigationStack {
-        LessonDetailView(lesson: LessonData.dataTypesLesson)
-            .environmentObject(MockData.users[0])
+    let deps = AppDependencies()
+    deps.session.isBootstrapping = false
+    deps.session.isAuthenticated = true
+    deps.session.user = MockData.users[0]
+    return NavigationStack {
+        LessonDetailView(lesson: LessonData.binaryLesson)
+            .environmentObject(deps.session)
+            .environmentObject(deps.userService)
+            .environmentObject(deps.toasts)
     }
 }

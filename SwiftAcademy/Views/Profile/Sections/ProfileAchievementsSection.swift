@@ -1,20 +1,15 @@
 import SwiftUI
 
-// Displays a grid of the user's achievements
 struct ProfileAchievementsSection: View {
-    // Get user from environment object
-    @EnvironmentObject var user: User
+    let user: UserProfile
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            // Section title
             Text("Achievements")
                 .font(.titleSmall)
                 .foregroundColor(.textPrimaryApp)
             
-            // Grid layout for achievement badges - two columns
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-                // Display each achievement from user data using our card function
                 ForEach(user.achievements) { achievement in
                     achievementCard(achievement)
                 }
@@ -27,37 +22,22 @@ struct ProfileAchievementsSection: View {
         .padding(.horizontal, 16)
     }
     
-    /*
-     * Helper function to create achievement cards with different styling based on unlock status
-     *
-     * This function:
-     * - Shows an icon from SF Symbols
-     * - Changes colors based on whether the achievement is unlocked
-     * - Shows a "Locked" label for locked achievements
-     * - Adds subtle shadows and background changes
-     */
     private func achievementCard(_ achievement: Achievement) -> some View {
         VStack(spacing: 12) {
-            // Achievement icon
             Image(systemName: achievement.icon)
                 .font(.system(size: 24))
                 .foregroundColor(achievement.unlocked ? .accentApp : .textTertiaryApp)
                 .frame(width: 48, height: 48)
                 .background(
-                    Circle()
-                        .fill(achievement.unlocked ? Color.accentApp.opacity(0.1) : Color.surfaceApp)
+                    Circle().fill(achievement.unlocked ? Color.accentApp.opacity(0.1) : Color.surfaceApp)
                 )
-            
-            // Achievement name and status
             VStack(spacing: 2) {
                 if achievement.unlocked {
-                    // Show only name if unlocked
                     Text(achievement.name)
                         .font(.bodyMedium)
                         .foregroundColor(.textPrimaryApp)
                         .multilineTextAlignment(.center)
                 } else {
-                    // Show "Locked" text for locked achievements
                     Text("Locked: \(achievement.name)")
                         .font(.caption)
                         .foregroundColor(.textSecondaryApp)
@@ -76,6 +56,5 @@ struct ProfileAchievementsSection: View {
 }
 
 #Preview {
-    ProfileAchievementsSection()
-        .environmentObject(MockData.users[0])
+    ProfileAchievementsSection(user: MockData.users[0])
 }

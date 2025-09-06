@@ -1,17 +1,12 @@
 import SwiftUI
 
-// Displays the user's avatar, name, and bio
 struct ProfileHeaderSection: View {
-    // Get user from environment object
-    @EnvironmentObject var user: User
-    // Binding to control edit profile sheet
+    let user: UserProfile
     @Binding var showingEditProfile: Bool
     
     var body: some View {
         VStack(spacing: 16) {
-            // Container for the avatar + edit button
             ZStack(alignment: .topTrailing) {
-                // Avatar circle with user initials
                 VStack {
                     ZStack {
                         Circle()
@@ -25,7 +20,6 @@ struct ProfileHeaderSection: View {
                     .padding(.top, 20)
                 }
                 
-                // Edit button
                 Button(action: { showingEditProfile = true }) {
                     Image(systemName: "pencil")
                         .font(.system(size: 14))
@@ -36,21 +30,17 @@ struct ProfileHeaderSection: View {
                                 .fill(Color.surfaceApp)
                                 .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
                                 .overlay(
-                                    Circle()
-                                        .stroke(Color.primaryApp.opacity(0.2), lineWidth: 1)
+                                    Circle().stroke(Color.primaryApp.opacity(0.2), lineWidth: 1)
                                 )
                         )
                 }
                 .padding(.top, 18)
-                .padding(.trailing, 0)
             }
             
-            // User's full name
             Text(user.name)
                 .font(.titleMedium)
                 .foregroundColor(.textPrimaryApp)
             
-            // User's biography/description
             Text(user.bio)
                 .font(.bodyMedium)
                 .foregroundColor(.textSecondaryApp)
@@ -64,6 +54,5 @@ struct ProfileHeaderSection: View {
 }
 
 #Preview {
-    ProfileHeaderSection(showingEditProfile: .constant(false))
-        .environmentObject(MockData.users[0])
+    ProfileHeaderSection(user: MockData.users[0], showingEditProfile: .constant(false))
 }

@@ -1,37 +1,26 @@
 import SwiftUI
 
 struct EditProfileView: View {
-    // Access user from environment
-    @EnvironmentObject var user: User
-    @EnvironmentObject var userManager: UserManager
-    
-    // Environment value to dismiss the sheet
+    @ObservedObject var vm: ProfileViewModel
     @Environment(\.dismiss) private var dismiss
-    
-    // Local editable copies of user fields
-    @State private var name: String = ""
-    @State private var bio: String = ""
     
     var body: some View {
         NavigationStack {
             Form {
-                // Profile info section
                 Section {
-                    // Name
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Name")
                             .font(.caption)
                             .foregroundColor(.textSecondaryApp)
-                        TextField("Enter your name", text: $name)
+                        TextField("Enter your name", text: $vm.name)
                             .padding(.vertical, 6)
                     }
                     
-                    // Bio
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Bio")
                             .font(.caption)
                             .foregroundColor(.textSecondaryApp)
-                        TextEditor(text: $bio)
+                        TextEditor(text: $vm.bio)
                             .frame(minHeight: 100)
                             .padding(.vertical, 6)
                     }
@@ -40,14 +29,12 @@ struct EditProfileView: View {
                 }
                 .padding(.vertical, 8)
                 
-                // Account info section
                 Section {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Email")
                             .font(.caption)
                             .foregroundColor(.textSecondaryApp)
-                        
-                        Text(user.email) // Just display
+                        Text(vm.email)
                             .padding(.vertical, 6)
                     }
                 } header: {
@@ -55,16 +42,11 @@ struct EditProfileView: View {
                 }
                 .padding(.vertical, 8)
                 
-                // Logout button
                 Section {
-                    Button(action: {
-                        do {
-                            try userManager.logout()
-                            dismiss()
-                        } catch {
-                            print("Error signing out: \(error.localizedDescription)")
-                        }
-                    }) {
+                    Button {
+                        vm.logout()
+                        dismiss()
+                    } label: {
                         HStack {
                             Spacer()
                             Text("Log Out")
@@ -80,34 +62,29 @@ struct EditProfileView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
+                    Button("Cancel") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         Task {
-                            do {
-                                try await userManager.updateProfile(name: name, bio: bio)
-                                dismiss()
-                            } catch {
-                                print("Failed to save profile: \(error.localizedDescription)")
-                            }
+                            await vm.save()
+                            dismiss()
                         }
                     }
                 }
-            }
-            .onAppear {
-                // Initialize state values when view appears
-                name = user.name
-                bio = user.bio
             }
         }
     }
 }
 
 #Preview {
-    EditProfileView()
-        .environmentObject(MockData.users[0])
-        .environmentObject(UserManager())
+    let deps = AppDependencies()
+    deps.session.user = MockData.users[0]
+    return EditProfileView(
+        vm: ProfileViewModel(
+            session: deps.session,
+            userService: deps.userService,
+            toasts: deps.toasts
+        )
+    )
 }
