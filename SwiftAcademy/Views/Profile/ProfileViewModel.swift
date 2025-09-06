@@ -19,7 +19,7 @@ final class ProfileViewModel: ObservableObject {
     }
     
     var email: String { session.user?.email ?? "" }
-    
+
     func save() async {
         guard let uid = session.user?.uid else {
             toasts.show("Not logged in", positive: false)
@@ -29,7 +29,6 @@ final class ProfileViewModel: ObservableObject {
             try await userService.updateProfile(uid: uid, name: name, bio: bio)
             session.user?.name = name
             session.user?.bio  = bio
-            toasts.show("Profile updated")
         } catch {
             toasts.show("Failed to save profile", positive: false)
         }

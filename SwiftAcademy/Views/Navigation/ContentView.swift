@@ -69,7 +69,7 @@ struct ContentView: View {
             if let toast = toasts.current {
                 ToastBanner(toast: toast)
                     .padding(.horizontal, 16)
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 10)
                     .transition(.asymmetric(
                         insertion: .move(edge: .bottom).combined(with: .opacity),
                         removal: .move(edge: .bottom).combined(with: .opacity)

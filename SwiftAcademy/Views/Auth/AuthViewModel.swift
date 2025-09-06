@@ -39,7 +39,6 @@ final class AuthViewModel: ObservableObject {
                 let profile = try await userService.login(email: email, password: password)
                 session.user = profile
                 session.isAuthenticated = true
-                toasts?.show("Welcome back, \(profile.name)!")
             } catch {
                 errorMessage = error.localizedDescription
             }
@@ -66,7 +65,6 @@ final class AuthViewModel: ObservableObject {
                 let profile = try await userService.signup(name: name, email: email, password: password)
                 session.user = profile
                 session.isAuthenticated = true
-                toasts?.show("Account created 🎉")
             } catch {
                 errorMessage = error.localizedDescription
             }
