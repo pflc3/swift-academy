@@ -2,6 +2,8 @@ import SwiftUI
 
 struct LessonHeaderSection: View {
     @EnvironmentObject var user: User
+    @EnvironmentObject var userManager: UserManager
+
     let lesson: Lesson
     let progressPercentage: Double
     
@@ -95,14 +97,8 @@ struct LessonHeaderSection: View {
     
     // Update user progress when a lesson is completed
     private func updateUserProgress() {
-        // Only update if we have a valid lesson index
-        guard let currentIndex = lessonIndex else { return }
-        
-        // If this is the next lesson the user should complete
-        if currentIndex == user.lessonsCompleted {
-            // Increment the user's completed lessons count
-            user.addLesson()
-            print("Lesson completed: \(user.lessonsCompleted)")
+        Task {
+            await userManager.markLessonCompletedIfNeeded(for: lesson)
         }
     }
 }
@@ -127,4 +123,5 @@ struct LessonHeaderSection: View {
     .padding()
     .background(Color.backgroundApp)
     .environmentObject(MockData.users[0])
+    .environmentObject(UserManager())
 }

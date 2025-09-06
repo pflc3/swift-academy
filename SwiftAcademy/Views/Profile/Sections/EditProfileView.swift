@@ -86,10 +86,14 @@ struct EditProfileView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        // Save all fields to user
-                        user.name = name
-                        user.bio = bio
-                        dismiss()
+                        Task {
+                            do {
+                                try await userManager.updateProfile(name: name, bio: bio)
+                                dismiss()
+                            } catch {
+                                print("Failed to save profile: \(error.localizedDescription)")
+                            }
+                        }
                     }
                 }
             }

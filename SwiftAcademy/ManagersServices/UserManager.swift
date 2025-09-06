@@ -14,6 +14,7 @@ class UserManager: ObservableObject {
     // @Published: Automatically updates SwiftUI views whenever this property changes
     @Published var currentUser: User?
     @Published var isAuthenticated = false
+    @Published var currentToast: ToastMessage?
 
     // Firestore handle
     private let db = Firestore.firestore()
@@ -34,7 +35,7 @@ class UserManager: ObservableObject {
             "lessonsCompleted": 0,
             "achievements": MockData.defaultAchievementsFirestoreLocked()
         ]
-        try await setUserDoc(uid: uid, data: profile)
+        try await writeToUserDoc(uid: uid, data: profile)
 
         // 3) Reflect locally
         currentUser = User(
@@ -53,7 +54,7 @@ class UserManager: ObservableObject {
         let uid = result.user.uid
 
         // 2) Fetch profile
-        let snap = try await getUserDoc(uid: uid)
+        let snap = try await readFromUserDoc(uid: uid)
         guard let data = snap.data() else { throw AuthError.profileMissing }
 
         // 3) Map Firestore -> User
@@ -73,6 +74,34 @@ class UserManager: ObservableObject {
         try Auth.auth().signOut()
         currentUser = nil
         isAuthenticated = false
+    }
+    
+    // Update profile and write to Firebase
+    func updateProfile(name: String, bio: String) async throws {
+        guard let u = currentUser else { throw UserDataError.notLoggedIn }
+        try await writeToUserDoc(uid: u.uid, data: ["name": name, "bio": bio], merge: true)
+        // keep local state in sync
+        u.name = name
+        u.bio  = bio
+    }
+    
+    // Update completed lessons and write to Firebase
+    func markLessonCompletedIfNeeded(for lesson: Lesson) async {
+        guard let u = currentUser else { return }
+        guard let idx = LessonData.allLessons.firstIndex(of: lesson) else { return }
+
+        // Only advance if this is the next lesson in sequence
+        guard idx == u.lessonsCompleted else { return }
+
+        let newCount = u.lessonsCompleted + 1
+        do {
+            try await writeToUserDoc(uid: u.uid, data: ["lessonsCompleted": newCount], merge: true)
+            u.lessonsCompleted = newCount
+            showToast("Lesson completed! 🎉", isPositive: true)
+        } catch {
+            showToast("Failed to update progress", isPositive: false)
+            print("Failed to update lessonsCompleted: \(error.localizedDescription)")
+        }
     }
 
     /* Firebase Auth async wrappers */
@@ -107,9 +136,9 @@ class UserManager: ObservableObject {
 
     /* Firestore async wrappers */
 
-    private func setUserDoc(uid: String, data: [String: Any]) async throws {
+    private func writeToUserDoc(uid: String, data: [String: Any], merge: Bool = false) async throws {
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-            db.collection("users").document(uid).setData(data) { error in
+            db.collection("users").document(uid).setData(data, merge: merge) { error in
                 if let error = error {
                     continuation.resume(throwing: error)
                 } else {
@@ -119,7 +148,7 @@ class UserManager: ObservableObject {
         }
     }
 
-    private func getUserDoc(uid: String) async throws -> DocumentSnapshot {
+    private func readFromUserDoc(uid: String) async throws -> DocumentSnapshot {
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DocumentSnapshot, Error>) in
             db.collection("users").document(uid).getDocument { snapshot, error in
                 if let error = error {
@@ -157,6 +186,36 @@ class UserManager: ObservableObject {
                 icon: $0["icon"] as? String ?? "star",
                 unlocked: $0["unlocked"] as? Bool ?? false
             )
+        }
+    }
+    
+    enum UserDataError: LocalizedError {
+        case notLoggedIn
+        
+        var errorDescription: String? {
+            switch self {
+            case .notLoggedIn:
+                return "No user is currently logged in."
+            }
+        }
+    }
+    
+    struct ToastMessage {
+        let message: String
+        let isPositive: Bool
+        
+        init(_ message: String, isPositive: Bool = true) {
+            self.message = message
+            self.isPositive = isPositive
+        }
+    }
+    
+    func showToast(_ message: String, isPositive: Bool = true) {
+        currentToast = ToastMessage(message, isPositive: isPositive)
+        
+        // Auto-dismiss after 3 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.currentToast = nil
         }
     }
 }
