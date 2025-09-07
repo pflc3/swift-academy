@@ -34,6 +34,14 @@ final class AuthViewModel: ObservableObject {
             isLoading = false
             return
         }
+
+        if AppMode.useMocks {
+            session.user = MockData.users.first
+            session.isAuthenticated = true
+            isLoading = false
+            return
+        }
+        
         Task {
             do {
                 let profile = try await userService.login(email: email, password: password)
@@ -60,6 +68,14 @@ final class AuthViewModel: ObservableObject {
             isLoading = false
             return
         }
+        
+        if AppMode.useMocks {
+            session.user = UserProfile(uid: "preview-\(UUID().uuidString)", email: email, name: name, bio: "Swift Academy Student", lessonsCompleted: 0, achievements: MockData.defaultAchievements)
+            session.isAuthenticated = true
+            isLoading = false
+            return
+        }
+        
         Task {
             do {
                 let profile = try await userService.signup(name: name, email: email, password: password)

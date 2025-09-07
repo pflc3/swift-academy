@@ -25,6 +25,13 @@ final class ProfileViewModel: ObservableObject {
             toasts.show("Not logged in", positive: false)
             return
         }
+        
+        if AppMode.useMocks {
+            session.user?.name = name
+            session.user?.bio  = bio
+            return
+        }
+        
         do {
             try await userService.updateProfile(uid: uid, name: name, bio: bio)
             session.user?.name = name
@@ -35,6 +42,12 @@ final class ProfileViewModel: ObservableObject {
     }
     
     func logout() {
+        if AppMode.useMocks {
+            // session.user = nil, causes preview to go blank since no more user data
+            session.isAuthenticated = false
+            return
+        }
+        
         do {
             try userService.logout()
         } catch {

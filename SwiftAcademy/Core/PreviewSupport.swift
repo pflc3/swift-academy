@@ -13,7 +13,7 @@ struct PreviewDeps {
         session.isBootstrapping = false
         session.isAuthenticated = (user != nil)
         session.user = user
-        chatService = ChatService(baseURL: "http://localhost:8000/api/v1")
+        chatService = ChatService(baseURL: "")
         toasts = ToastCenter()
     }
 }

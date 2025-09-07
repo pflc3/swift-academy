@@ -31,6 +31,12 @@ final class ChatViewModel: ObservableObject {
         newMessage = ""
         isLoading = true
 
+        if AppMode.useMocks {
+            messages.append(ChatMessage(content: "This is a mocked response", isFromUser: false))
+            isLoading = false
+            return
+        }
+
         let turns = messages.map { ChatTurn(role: $0.isFromUser ? .user : .assistant, content: $0.content) }
         let userId = session?.user?.uid
 

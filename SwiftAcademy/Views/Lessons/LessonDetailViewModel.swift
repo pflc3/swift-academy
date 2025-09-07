@@ -44,8 +44,15 @@ final class LessonDetailViewModel: ObservableObject {
         guard !didSubmitCompletion, isCompleted else { return }
         guard let idx = LessonData.allLessons.firstIndex(of: lesson) else { return }
         guard var user = session.user, idx == user.lessonsCompleted else { return }
-
+        
         didSubmitCompletion = true
+        
+        if AppMode.useMocks {
+            if var u = session.user { u.lessonsCompleted += 1; session.user = u }
+            toasts?.show("Lesson completed! (Mock)")
+            return
+        }
+        
         Task {
             do {
                 try await userService.markLessonCompletedIfNeeded(for: lesson, user: &user)
