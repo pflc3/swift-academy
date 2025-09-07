@@ -1,97 +1,134 @@
 # Swift Academy 📱
 
 ## 🌟 Overview
-
-Swift Academy is an interactive learning platform designed to support coding education for high school students. Inspired by the successful Gcode summer program, this app transforms traditional programming education into an engaging, gamified experience.
+Swift Academy is an interactive learning app that makes CS and iOS fundamentals fun and approachable for students new to tech. It blends structured lessons, a friendly AI coach, and a gamified profile to keep learners engaged.
 
 ## 🎯 Mission: Empowering the next generation of coders
 
 Bridge the gap between traditional education and modern tech skills, making programming accessible to underrepresented students in technology.
 
 ## 🤖 Key Features
-
-### **Interactive Learning Path**
-- Visual progress tracking with completion percentages
-- Structured lesson progression from beginner to advanced
-- Smooth and intuitive UI for lesson selection
-
-### **Authentication & Navigation**
-- Secure sign-up and login flow for all users
-- Persistent user sessions across app use
-- Custom side menu for seamless navigation across all features
-
-### **Comprehensive Lessons**
-- Integrated video and slide-based instruction
-- In-line questions to reinforce concepts during each lesson
-- Modular format to support different learning styles
-
-### **AI-Powered Assistant**
-- Friendly, helpful chatbot tailored to beginner coders
-- Provides context-aware answers during lessons
-- Personalized and always available for coding help
-
-### **Personalized Profiles**
-- Editable profiles with avatars, bios, and progress stats
-- Achievement badges and learning milestones
-- Encouraging, student-friendly design
-
-### **Gamified Experience**
-- Unlock achievements as you learn
-- Celebrate progress with visual milestones
-- Designed to build confidence and motivation
+- **Learning Path**: tiered lessons with progress tracking
+- **Lesson UX**: videos, slides, goals, comprehension checks, resources
+- **AI Coach**: chat-based help for coding questions
+- **Profiles**: editable bio, stats, achievements
+- **Auth & Nav**: sign up / sign in, session persistence, custom side menu
+- **Toasts**: unified, polished in-app notifications
 
 ## 🏗️ Technical Architecture
-
 ### **Built With**
+- **IDE**: Xcode 14.0+
 - **Language**: Swift 5.0+
 - **Framework**: SwiftUI
-- **Platform**: iOS 15.0+
-- **IDE**: Xcode 14.0+
+- **Database**: Firebase (Auth + Firestore)
+- **Linting**: SwiftLint
 - **Architecture**: MVVM (Model-View-ViewModel)
+- **Services**: SessionManager, UserService (Firebase), ChatService (HTTP), ToastCenter
 
 ### **Project Structure**
 ```
 SwiftAcademy/
-├── App/                        # App configuration and entry point
-│ └── Launch Screen.storyboard
-├── ManagersServices/           # Chat and user management logic
-├── Models/                     # Data models (User, Lesson, Chat, etc.)
-├── Resources/                  # Theme, mock data, and assets
-│ └── Assets.xcassets/          # App icons, images, and slide thumbnails
-├── Views/                      # SwiftUI views organized by feature
-│ ├── Auth/                     # Sign-in, sign-up, welcome UI
-│ ├── Chat/                     # AI chatbot interface and components
-│ ├── Home/                     # Home dashboard and learning path
-│ ├── Lessons/                  # Lesson detail, slides, questions, and resources
-│ ├── Navigation/               # Navigation and side menu UI
-│ └── Profile/                  # User profile, stats, and achievements
+├── App/
+│   ├── AppDelegate.swift
+│   ├── AppDependencies.swift
+│   ├── GoogleService-Info.plist
+│   ├── Launch Screen.storyboard
+│   ├── SplashView.swift
+│   └── SwiftAcademyApp.swift
+├── Core/
+│   ├── AppMode.swift
+│   ├── ColorHex.swift
+│   ├── PreviewSupport.swift
+│   └── Theme.swift
+├── Models/
+│   ├── Achievement.swift
+│   ├── Chat/
+│   │   ├── ChatDomain.swift
+│   │   ├── ChatMessage.swift
+│   │   └── ChatViewID.swift
+│   ├── DTOs/
+│   │   └── ChatDTOs.swift
+│   ├── Lesson.swift
+│   └── UserProfile.swift
+├── Resources/
+│   ├── LessonData.swift
+│   └── MockData.swift
+├── Services/
+│   ├── ChatService.swift
+│   ├── SessionManager.swift
+│   ├── ToastCenter.swift
+│   └── UserService.swift
+├── SwiftAcademy.entitlements
+└── Views/
+    ├── Auth/
+    │   ├── AuthView.swift
+    │   ├── AuthViewModel.swift
+    │   ├── Components/
+    │   └── Sections/
+    ├── Chat/
+    │   ├── ChatBotView.swift
+    │   ├── ChatViewModel.swift
+    │   ├── Components/
+    │   └── Sections/
+    ├── Home/
+    │   ├── HomeView.swift
+    │   ├── HomeViewModel.swift
+    │   ├── Components/
+    │   └── Sections/
+    ├── Lessons/
+    │   ├── LessonDetailView.swift
+    │   ├── LessonDetailViewModel.swift
+    │   ├── Components/
+    │   └── Sections/
+    ├── Navigation/
+    │   ├── Components/
+    │   └── ContentView.swift
+    └── Profile/
+        ├── ProfileView.swift
+        ├── ProfileViewModel.swift
+        └── Sections/
 ```
 
-## 🎓 About the Gcode Program
+## 🗄️ Data & Backend
 
-Swift Academy is inspired by the **Gcode Summer Program**, a transformative 6-week initiative by **Prime Factors Learning Lab** that:
+### **Firebase (Auth + Firestore)**
+- Initialization: `FirebaseApp.configure()` in `AppDelegate`
+- Collections `users/{uid}` document shape:
+  ```json
+  {
+    "email": "student@example.com",
+    "name": "Student Name",
+    "bio": "Swift Academy Student",
+    "lessonsCompleted": 0,
+    "achievements": [
+      { "name": "First Steps", "description": "...", "icon": "star", "unlocked": false }
+    ]
+  }
+  ```
 
-- Introduces high school students to computer science fundamentals
-- Provides hands-on mobile development experience
-- Focuses on underrepresented communities in tech
-- Builds both technical skills and confidence
-- Creates pathways to tech careers and higher education
+### **Chat API**
+- Endpoint: `POST /chat` with message turns
+- If the server is down/offline, the app shows a friendly inline message in chat.
 
-## 👥 Development Team - Swift Minds
+### **Previews & Mocks**
+- Previews inject dependencies via a small helper (e.g. `previewEnv`) and do not hit Firebase or the API.
+- View models check if app is in "use mocks" mode and short-circuits network calls with mock responses.
 
-- **Estuardo Lopez** - [@estulpz202](https://github.com/estulpz202)
-- **Jason Obou** - [@jaalenci](https://github.com/jaalenci)
-- **Brandon Steide** - [@GcodeBrandon](https://github.com/GcodeBrandon)
-- **Sureima Burgos** - [@Sureima](https://github.com/Sureima)
-- **Joshua Fineboy-Mark** - [@AnonymousPanda7](https://github.com/AnonymousPanda7)
-- **Alana Davis** - [@lanagzz](https://github.com/lanagzz)
-- **Leslie Martinez-Quintero** - [@D4rk-nOva](https://github.com/D4rk-nOva)
+## 🧹 Linting (SwiftLint)
+- **Why**: consistent style, cleaner diffs, early feedback
+- **How**: SwiftLintPlugins via Xcode
+- **Config**: `.swiftlint.yml` in repo root enabled extra rules
+- **Usage**:
+  - In Xcode: Lint runs automatically on build (clickable warnings) 
+  - Optional CLI (auto-fix): `brew install swiftlint` then `swiftlint --fix && swiftlint`
+
+## 🎓 Origin
+Inspired by the **Gcode Summer Program** from **Prime Factors Learning Lab**, bringing CS education to underrepresented students.
 
 ## 📞 Connect With Us
 
 - **Project Lead**: Estuardo Lopez - estulpzlet@gmail.com
 - **Organization**: Prime Factors Learning Lab
-- **Program**: Gcode Summer Initiative
 - **Website**: [Prime Factors Learning Lab](https://primefactors.org/programs/gcode)
 - **Email**: team@primefactors.org
 

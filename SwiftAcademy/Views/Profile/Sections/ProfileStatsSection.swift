@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ProfileStatsSection: View {
     let user: UserProfile
-    
+
     var body: some View {
         VStack(spacing: 0) {
             Text("Progress")
@@ -12,7 +12,7 @@ struct ProfileStatsSection: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 16)
                 .padding(.bottom, 8)
-            
+
             HStack(spacing: 16) {
                 statCard(
                     value: "\(user.lessonsCompleted)",
@@ -20,7 +20,7 @@ struct ProfileStatsSection: View {
                     icon: "book.fill",
                     color: .primaryApp
                 )
-                
+
                 statCard(
                     value: "\(Int(user.progressPercentage * 100))%",
                     label: "Complete",
@@ -30,7 +30,7 @@ struct ProfileStatsSection: View {
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
-            
+
             progressBar
                 .padding(.horizontal, 16)
                 .padding(.bottom, 24)
@@ -40,7 +40,7 @@ struct ProfileStatsSection: View {
         .shadow(color: Color.black.opacity(0.03), radius: 3, x: 0, y: 1)
         .padding(.horizontal, 16)
     }
-    
+
     private func statCard(value: String, label: String, icon: String, color: Color) -> some View {
         HStack {
             Image(systemName: icon)
@@ -64,7 +64,7 @@ struct ProfileStatsSection: View {
                 .fill(color.opacity(0.1))
         )
     }
-    
+
     var progressBar: some View {
         VStack(spacing: 8) {
             GeometryReader { geometry in
@@ -73,7 +73,13 @@ struct ProfileStatsSection: View {
                         .fill(Color.surfaceApp)
                         .frame(height: 8)
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(LinearGradient(colors: [.primaryApp, .accentApp], startPoint: .leading, endPoint: .trailing))
+                        .fill(
+                            LinearGradient(
+                                colors: [.primaryApp, .accentApp],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                         .frame(width: max(8, geometry.size.width * user.progressPercentage), height: 8)
                 }
             }

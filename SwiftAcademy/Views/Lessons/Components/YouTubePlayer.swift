@@ -3,7 +3,7 @@ import WebKit
 
 struct YouTubePlayer: UIViewRepresentable {
     let videoID: String // The YouTube video ID
-    
+
     // Create the WKWebView
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
@@ -11,7 +11,7 @@ struct YouTubePlayer: UIViewRepresentable {
         webView.isOpaque = false
         return webView
     }
-    
+
     // Lead the YouTube video when the view updates
     func updateUIView(_ uiView: WKWebView, context: Context) {
         // HTML to embed a repsonsive YouTUbe video
@@ -34,7 +34,7 @@ struct YouTubePlayer: UIViewRepresentable {
             </body>
             </html>
         """
-        
+
         uiView.loadHTMLString(embedHTML, baseURL: nil)
     }
 }
@@ -43,4 +43,3 @@ struct YouTubePlayer: UIViewRepresentable {
     YouTubePlayer(videoID: "zDNaUi2cjv4")
         .padding()
 }
-

@@ -4,11 +4,11 @@ struct LearningPathSection: View {
     let lessons: [Lesson]
     let lessonsCompleted: Int
     var onStartLesson: (Lesson) -> Void
-    
+
     private var unlockedCount: Int {
         min(lessonsCompleted + 1, lessons.count)
     }
-    
+
     var body: some View {
         VStack {
             ForEach(lessons.indices, id: \.self) { index in
@@ -17,7 +17,7 @@ struct LearningPathSection: View {
                 let isLast = index == lessons.count - 1
                 let secondToLast = index == lessons.count - 2
                 let isUnlocked = index < unlockedCount
-                
+
                 ZStack {
                     if !isLast {
                         LessonConnectorLine(
@@ -25,7 +25,7 @@ struct LearningPathSection: View {
                             isUnlocked: isUnlocked && index + 1 < unlockedCount
                         )
                     }
-                    
+
                     LessonCard(
                         lesson: lesson,
                         index: index + 1,
@@ -35,7 +35,7 @@ struct LearningPathSection: View {
                     )
                     .offset(x: isEven ? 70 : -70, y: -75)
                 }
-                
+
                 if secondToLast {
                     Spacer().frame(height: 70)
                 } else if !isLast {
@@ -54,7 +54,6 @@ struct LearningPathSection: View {
             LessonData.arraysListsLesson,
             LessonData.functionsLesson
         ],
-        lessonsCompleted: 1,
-        onStartLesson: { _ in }
-    )
+        lessonsCompleted: 1
+    ) { _ in }
 }

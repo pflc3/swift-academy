@@ -26,9 +26,14 @@ struct ChatBubble: View {
 }
 
 #Preview {
-    VStack {
-        ChatBubble(message: ChatMessage(content: "Hello! Can you help me understand Swift protocols?", isFromUser: true))
-        ChatBubble(message: ChatMessage(content: "Of course! Swift protocols define a blueprint of methods, properties, and requirements that suit a particular task or piece of functionality.", isFromUser: false))
+    let userMsg = "Hello! Can you help me understand Swift protocols?"
+    let botMsg = """
+    Of course! Swift protocols define a blueprint of methods, properties, \
+    and requirements that suit a particular task or piece of functionality.
+    """
+    return VStack {
+        ChatBubble(message: ChatMessage(content: userMsg, isFromUser: true))
+        ChatBubble(message: ChatMessage(content: botMsg, isFromUser: false))
     }
     .padding()
 }

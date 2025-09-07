@@ -1,12 +1,12 @@
-import Foundation
 import FirebaseAuth
+import Foundation
 
 @MainActor
 final class SessionManager: ObservableObject {
     @Published var user: UserProfile?
     @Published var isAuthenticated = false
     @Published var isBootstrapping = true
-    
+
     private let userService: UserService
     private var authHandle: AuthStateDidChangeListenerHandle?
     private var didResolveInitial = false
@@ -15,24 +15,24 @@ final class SessionManager: ObservableObject {
     init(userService: UserService) {
         self.userService = userService
     }
-    
+
     func start() {
         guard !hasStarted else { return }
         hasStarted = true
         observeAuth()
     }
-    
+
     deinit {
-        if let h = authHandle { Auth.auth().removeStateDidChangeListener(h) }
+        if let handle = authHandle { Auth.auth().removeStateDidChangeListener(handle) }
     }
-    
+
     private func observeAuth() {
         authHandle = Auth.auth().addStateDidChangeListener { [weak self] _, firebaseUser in
             guard let self else { return }
             Task { @MainActor in
-                if let fu = firebaseUser {
+                if let fbUser = firebaseUser {
                     do {
-                        self.user = try await self.userService.loadProfile(uid: fu.uid)
+                        self.user = try await self.userService.loadProfile(uid: fbUser.uid)
                         self.isAuthenticated = true
                     } catch {
                         self.user = nil

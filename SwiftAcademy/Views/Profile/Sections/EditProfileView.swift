@@ -3,7 +3,7 @@ import SwiftUI
 struct EditProfileView: View {
     @ObservedObject var vm: ProfileViewModel
     @Environment(\.dismiss) private var dismiss
-    
+
     var body: some View {
         NavigationStack {
             Form {
@@ -15,7 +15,7 @@ struct EditProfileView: View {
                         TextField("Enter your name", text: $vm.name)
                             .padding(.vertical, 6)
                     }
-                    
+
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Bio")
                             .font(.caption)
@@ -28,7 +28,7 @@ struct EditProfileView: View {
                     Text("Profile Information")
                 }
                 .padding(.vertical, 8)
-                
+
                 Section {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Email")
@@ -41,7 +41,7 @@ struct EditProfileView: View {
                     Text("Account Information")
                 }
                 .padding(.vertical, 8)
-                
+
                 Section {
                     Button {
                         vm.logout()

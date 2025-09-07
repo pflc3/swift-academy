@@ -11,12 +11,12 @@ final class AuthViewModel: ObservableObject {
     @Published var name = ""
     @Published var isLoading = false
     @Published var errorMessage: String?
-    
+
     private var session: SessionManager?
     private var userService: UserService?
     private var toasts: ToastCenter?
     private(set) var isConfigured = false
-    
+
     func configure(session: SessionManager, userService: UserService, toasts: ToastCenter) {
         guard !isConfigured else { return }
         self.session = session
@@ -24,7 +24,7 @@ final class AuthViewModel: ObservableObject {
         self.toasts = toasts
         isConfigured = true
     }
-    
+
     func login() {
         guard let session, let userService else { return }
         isLoading = true
@@ -41,7 +41,7 @@ final class AuthViewModel: ObservableObject {
             isLoading = false
             return
         }
-        
+
         Task {
             do {
                 let profile = try await userService.login(email: email, password: password)
@@ -53,7 +53,7 @@ final class AuthViewModel: ObservableObject {
             isLoading = false
         }
     }
-    
+
     func signup() {
         guard let session, let userService else { return }
         isLoading = true
@@ -68,14 +68,20 @@ final class AuthViewModel: ObservableObject {
             isLoading = false
             return
         }
-        
+
         if AppMode.useMocks {
-            session.user = UserProfile(uid: "preview-\(UUID().uuidString)", email: email, name: name, bio: "Swift Academy Student", lessonsCompleted: 0, achievements: MockData.defaultAchievements)
+            session.user = UserProfile(
+                uid: "preview-\(UUID().uuidString)",
+                email: email, name: name,
+                bio: "Swift Academy Student",
+                lessonsCompleted: 0,
+                achievements: MockData.defaultAchievements
+            )
             session.isAuthenticated = true
             isLoading = false
             return
         }
-        
+
         Task {
             do {
                 let profile = try await userService.signup(name: name, email: email, password: password)
@@ -87,7 +93,7 @@ final class AuthViewModel: ObservableObject {
             isLoading = false
         }
     }
-    
+
     func demoLogin() {
         email = "demo@swift.academy"
         password = "password123"

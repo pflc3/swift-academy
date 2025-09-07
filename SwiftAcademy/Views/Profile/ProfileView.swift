@@ -4,9 +4,9 @@ struct ProfileView: View {
     @EnvironmentObject var session: SessionManager
     @EnvironmentObject var userService: UserService
     @EnvironmentObject var toasts: ToastCenter
-    
+
     @State private var showingEditProfile = false
-    
+
     var body: some View {
         let user = session.user
         ScrollView {

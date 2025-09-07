@@ -5,15 +5,15 @@ struct ChatInputSection: View {
     @Binding var message: String
     let isLoading: Bool
     var onSend: () -> Void
-    
+
     var body: some View {
         HStack {
             // Text input field
-            TextField ("Type a message. . .", text: $message)
+            TextField("Type a message. . .", text: $message)
                 .padding(12)
                 .background(Color.surfaceApp)
                 .cornerRadius(20)
-            
+
             // Send button
             Button(action: onSend) {
                 Image(systemName: "arrow.up.circle.fill")
@@ -34,15 +34,13 @@ struct ChatInputSection: View {
         // Preview with empty message
         ChatInputSection(
             message: .constant(""),
-            isLoading: false,
-            onSend: {}
-        )
-        
+            isLoading: false
+        ) {}
+
         // Preview with text and loading state
         ChatInputSection(
             message: .constant("hello there"),
-            isLoading: true,
-            onSend: {}
-        )
+            isLoading: true
+        ) {}
     }
 }

@@ -6,9 +6,9 @@ final class ToastCenter: ObservableObject {
         let message: String
         let isPositive: Bool
     }
-    
+
     @Published var current: ToastMessage?
-    
+
     func show(_ message: String, positive: Bool = true, autoHide: Bool = true) {
         current = ToastMessage(message: message, isPositive: positive)
         if autoHide {

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProfileFooterSection: View {
-    var body : some View {
+    var body: some View {
         // App version
         Text("@ 2025 Prime Factors Learning Lab")
             .font(.caption)

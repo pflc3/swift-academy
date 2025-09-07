@@ -1,0 +1,27 @@
+reporter: xcode
+
+included:
+  - SwiftAcademy
+
+excluded:
+  - SwiftAcademy/SwiftAcademy.xcodeproj
+  - SwiftAcademy/Resources/Assets.xcassets
+  - SwiftAcademy/Resources/LessonData.swift
+  - DerivedData
+
+# Keep warnings useful, not noisy
+line_length: 120
+type_name:
+  min_length: 3
+identifier_name:
+  excluded: ["id", "URL", "x", "y", "vm"]
+
+opt_in_rules:
+  - sorted_imports
+  - vertical_whitespace
+  - trailing_closure
+  - implicit_return
+  - redundant_self_in_closure
+
+allow_zero_lintable_files: false
+strict: false

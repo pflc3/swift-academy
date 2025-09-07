@@ -4,15 +4,15 @@ struct SignInSection: View {
     // Form field bindings
     @Binding var email: String
     @Binding var password: String
-    
+
     // Error handling and loading state
     let errorMessage: String?
     let isLoading: Bool
-    
+
     // Actions
     let login: () -> Void
     let showSignup: () -> Void
-    
+
     var body: some View {
         VStack(spacing: 24) {
             // Header
@@ -20,7 +20,7 @@ struct SignInSection: View {
                 .font(.titleLarge)
                 .foregroundColor(.white)
                 .padding(.bottom, 16)
-            
+
             // Error message if any
             if let errorMessage = errorMessage {
                 Text(errorMessage)
@@ -30,7 +30,7 @@ struct SignInSection: View {
                     .background(Color.errorApp.opacity(0.8))
                     .cornerRadius(8)
             }
-            
+
             // Form fields
             VStack(spacing: 16) {
                 AuthTextField(
@@ -39,7 +39,7 @@ struct SignInSection: View {
                     isSecure: false,
                     text: $email
                 )
-                
+
                 AuthTextField(
                     iconName: "lock",
                     placeholder: "Password",
@@ -48,7 +48,7 @@ struct SignInSection: View {
                 )
             }
             .padding(.horizontal, 16)
-            
+
             /* Forgot password link
             Button {
                 // Implement forgot password
@@ -58,7 +58,7 @@ struct SignInSection: View {
                     .foregroundColor(.white)
                     .padding(.top, 8)
             } */
-            
+
             // Sign in button
             AuthButton(
                 title: "Sign In",
@@ -68,13 +68,13 @@ struct SignInSection: View {
             }
             .padding(.horizontal, 16)
             .padding(.top, 16)
-            
+
             // Sign up option
             HStack {
                 Text("Don't have an account?")
                     .font(.caption)
                     .foregroundColor(.white)
-                
+
                 Button {
                     showSignup()
                 } label: {
@@ -93,7 +93,7 @@ struct SignInSection: View {
 #Preview {
     ZStack {
         Color.primaryApp.ignoresSafeArea()
-        
+
         SignInSection(
             email: .constant(""),
             password: .constant(""),

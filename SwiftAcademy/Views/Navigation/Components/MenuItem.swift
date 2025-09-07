@@ -7,7 +7,7 @@ struct MenuItem: View {
     let isSelected: Bool
     let action: () -> Void
     let isCustomIcon: Bool // Flag to determine if it's a custom icon
-    
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 16) {
@@ -21,7 +21,7 @@ struct MenuItem: View {
                             .scaledToFit()
                             .frame(width: 28, height: 28)
                             .opacity(isSelected && selectedIcon != nil ? 0 : 1)
-                        
+
                         // Selected icon always present but hidden when not selected
                         if let selectedIcon = selectedIcon {
                             Image(selectedIcon)
@@ -39,14 +39,14 @@ struct MenuItem: View {
                         .foregroundColor(isSelected ? Color.primaryApp : Color.textSecondaryApp)
                         .frame(width: 28)
                 }
-                
+
                 // Title
                 Text(title)
                     .font(.system(size: 18.5))
                     .foregroundColor(isSelected ? Color.primaryApp : Color.textPrimaryApp)
-                
+
                 Spacer()
-                
+
                 // Simple selection indicator
                 if isSelected {
                     Rectangle()
@@ -54,9 +54,10 @@ struct MenuItem: View {
                         .frame(width: 3, height: 28)
                 }
             }
+            // Make the entire row tappable by expanding the hit area.
+            // This includes the icon, text, and the surrounding spacing.
             .frame(maxWidth: .infinity, alignment: .leading)
             .contentShape(Rectangle())
-            // The two modifiers above makes the entire area tappable by expanding the area of the button; making the icon, text, and dead space clickable
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
             .background(isSelected ? Color.primaryApp.opacity(0.05) : Color.clear)
@@ -75,7 +76,7 @@ struct MenuItem: View {
             action: {},
             isCustomIcon: false
         )
-        
+
         MenuItem(
             title: "Code Coach",
             icon: "code-coach-normal",
@@ -84,7 +85,7 @@ struct MenuItem: View {
             action: { },
             isCustomIcon: true
         )
-        
+
         MenuItem(
             title: "My Profile",
             icon: "person",

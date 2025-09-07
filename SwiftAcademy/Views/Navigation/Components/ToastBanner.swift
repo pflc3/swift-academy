@@ -26,7 +26,10 @@ struct ToastBanner: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(toast.isPositive ? Color.successApp.opacity(0.35) : Color.errorApp.opacity(0.55), lineWidth: 0.5)
+                .stroke(toast.isPositive
+                        ? Color.successApp.opacity(0.35)
+                        : Color.errorApp.opacity(0.55), lineWidth: 0.5
+                )
         )
         .allowsHitTesting(false)
         .transition(.asymmetric(

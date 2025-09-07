@@ -4,60 +4,59 @@ struct LessonDetailView: View {
     @EnvironmentObject var session: SessionManager
     @EnvironmentObject var userService: UserService
     @EnvironmentObject var toasts: ToastCenter
-    
+
     @StateObject private var vm: LessonDetailViewModel
-    
+
     init(lesson: Lesson) {
         _vm = StateObject(wrappedValue: LessonDetailViewModel(lesson: lesson))
     }
-    
+
     private var isFirstTwoLessons: Bool {
         let ids = Array(LessonData.allLessons.prefix(2)).map { $0.id }
         return ids.contains(vm.lesson.id)
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             TopBar(title: vm.lesson.title)
-            
+
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     LessonHeaderSection(
                         lesson: vm.lesson,
-                        progressPercentage: vm.progressPercentage,
-                        onCompleted: { vm.submitCompletionIfEligible() }
-                    )
-                    
+                        progressPercentage: vm.progressPercentage
+                    ) { vm.submitCompletionIfEligible() }
+
                     LessonVideoSection(
                         videoID: vm.lesson.videoID ?? "",
                         isVideoWatched: $vm.isVideoWatched
                     )
-                    
+
                     LessonGoalsSection(
                         goals: vm.lesson.goals,
                         completedGoals: $vm.completedGoals
                     )
-                    
+
                     LessonContentSection(
                         contentSections: vm.lesson.contentSections
                     )
-                    
+
                     LessonSlidesSection(
                         showingSlides: $vm.showingSlides,
                         slidesURL: vm.lesson.slidesURL,
                         slideThumbnails: vm.lesson.slideThumbnails
                     )
-                    
+
                     LessonQuestionsSection(
                         questions: vm.lesson.questions,
                         selectedQuestionIndex: $vm.selectedQuestionIndex
                     )
-                    
+
                     LessonResourcesSection(
                         resources: vm.lesson.resources,
                         showingResourceLinks: $vm.showingResourceLinks
                     )
-                    
+
                     if isFirstTwoLessons {
                         CompletionHintView()
                     }

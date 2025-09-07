@@ -5,14 +5,14 @@ struct LessonSlidesSection: View {
     @Binding var showingSlides: Bool // Controls sheet/modal visibilty
     var slidesURL: String? // Slides URL from the lesson model
     var slideThumbnails: [String] = [] // Thumbnail image names
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Section header
             Text("Presentation")
                 .font(.titleMedium)
                 .foregroundColor(.textPrimaryApp)
-            
+
             // Slide thumbnails
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
@@ -30,21 +30,22 @@ struct LessonSlidesSection: View {
                 }
                 .padding(.vertical, 4)
             }
-            
+
             // Button to open full slide view
-            Button(action: {
-                showingSlides = true
-            }) {
-                Text("View All Slides")
-                    .font(.bodyMedium)
-                    .foregroundColor(.primaryApp)
-                    .padding(.vertical, 10)
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.primaryApp, lineWidth: 1)
-                    )
-            }
+            Button(
+                action: { showingSlides = true },
+                label: {
+                    Text("View All Slides")
+                        .font(.bodyMedium)
+                        .foregroundColor(.primaryApp)
+                        .padding(.vertical, 10)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.primaryApp, lineWidth: 1)
+                        )
+                }
+            )
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -58,7 +59,7 @@ struct LessonSlidesSection: View {
 struct LessonSlidesDetailView: View {
     @Binding var showingSlides: Bool
     var slidesURL: String? // Slides URL from the lesson model
-    
+
     var body: some View {
         VStack {
             // Top bar with close button
@@ -69,7 +70,7 @@ struct LessonSlidesDetailView: View {
                 }
                 .padding()
             }
-            
+
             // Slides content
             if let urlString = slidesURL, let url = URL(string: urlString) {
                 GoogleSlides(embedURL: url)

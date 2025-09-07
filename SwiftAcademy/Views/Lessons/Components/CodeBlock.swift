@@ -3,7 +3,7 @@ import SwiftUI
 struct CodeBlock: View {
     let code: String
     let language: String // For future syntax highlighting support
-    
+
     var body: some View {
         // Horizontal scroll for code that doesn't fit on screen
         ScrollView(.horizontal, showsIndicators: false) {
@@ -15,8 +15,6 @@ struct CodeBlock: View {
         }
     }
 }
-    
-        
 
 #Preview {
     CodeBlock(code: "// This is a code example\nlet name = \"Jane\"", language: "swift")

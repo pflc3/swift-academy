@@ -4,7 +4,7 @@ struct SideMenu: View {
     @Binding var selectedTab: Int
     @Binding var showMenu: Bool
     var hideMenuAction: () -> Void
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             // App Logo and Title
@@ -14,13 +14,13 @@ struct SideMenu: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 60, height: 60)
-                
+
                 // Stacked text
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Swift")
                         .font(.system(size: 28, weight: .semibold))
                         .foregroundColor(.primaryApp)
-                    
+
                     Text("Academy")
                         .font(.system(size: 28, weight: .semibold))
                         .foregroundColor(.primaryApp)
@@ -29,11 +29,11 @@ struct SideMenu: View {
             .padding(.horizontal, 20)
             .padding(.top, 60)
             .padding(.bottom, 30)
-            
+
             Divider()
                 .padding(.horizontal, 20)
                 .padding(.bottom, 10)
-            
+
             // Navigation Menu Items
             VStack(spacing: 8) {
                 MenuItem(
@@ -44,7 +44,7 @@ struct SideMenu: View {
                     action: { selectTab(1) },
                     isCustomIcon: false
                 )
-                
+
                 MenuItem(
                     title: "Code Coach",
                     icon: "code-coach-normal",
@@ -53,7 +53,7 @@ struct SideMenu: View {
                     action: { selectTab(2) },
                     isCustomIcon: true
                 )
-                
+
                 MenuItem(
                     title: "My Profile",
                     icon: "person",
@@ -64,9 +64,9 @@ struct SideMenu: View {
                 )
             }
             .padding(.horizontal, 12)
-            
+
             Spacer()
-            
+
             // Footer
             HStack {
                 Spacer()
@@ -82,7 +82,7 @@ struct SideMenu: View {
         .edgesIgnoringSafeArea(.vertical)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 0)
     }
-    
+
     private func selectTab(_ tab: Int) {
         selectedTab = tab
         hideMenuAction()
@@ -90,9 +90,9 @@ struct SideMenu: View {
 }
 
 #Preview("Swift Journey") {
-    SideMenu(selectedTab: .constant(1), showMenu: .constant(true), hideMenuAction: {})
+    SideMenu(selectedTab: .constant(1), showMenu: .constant(true)) {}
 }
 
 #Preview("Code Coach") {
-    SideMenu(selectedTab: .constant(2), showMenu: .constant(true), hideMenuAction: {})
+    SideMenu(selectedTab: .constant(2), showMenu: .constant(true)) {}
 }
