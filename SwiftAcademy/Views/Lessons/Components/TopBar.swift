@@ -3,34 +3,35 @@ import SwiftUI
 struct TopBar: View {
     @Environment(\.dismiss) private var dismiss
     let title: String
-    
+
     var body: some View {
         HStack {
             // Back button
-            Button(action: {
-                dismiss()
-            }) {
-                HStack(spacing: 4) {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 16.5, weight: .semibold))
-                    Text("Back")
-                        .font(.system(size: 17.5))
+            Button(
+                action: { dismiss() },
+                label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 16.5, weight: .semibold))
+                        Text("Back")
+                            .font(.system(size: 17.5))
+                    }
                 }
-            }
+            )
             .padding(.vertical, 8)
             .padding(.leading, 16)
             .foregroundColor(.primaryApp)
-            
+
             Spacer()
-            
+
             // Centered title
             Text(title)
                 .font(.system(size: 19, weight: .semibold))
                 .lineLimit(1)
                 .foregroundColor(.textPrimaryApp)
-            
+
             Spacer()
-            
+
             // Empty view for symmetry (same width as back button)
             HStack(spacing: 4) {
                 Text("ckaB")

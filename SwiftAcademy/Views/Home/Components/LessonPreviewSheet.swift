@@ -4,7 +4,7 @@ struct LessonPreviewSheet: View {
     let lesson: Lesson
     @Binding var isPresented: Bool
     var onStartLesson: (Lesson) -> Void
-    
+
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -30,18 +30,18 @@ struct LessonPreviewSheet: View {
             .padding(.top, 24)
             .padding(.horizontal, 20)
             .padding(.bottom, 12)
-            
+
             Text(lesson.description)
                 .font(.bodyMedium)
                 .foregroundColor(.textSecondaryApp)
                 .lineLimit(3)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 12)
-            
+
             Divider()
                 .background(Color.dividerApp)
                 .padding(.horizontal, 16)
-            
+
             VStack(alignment: .leading, spacing: 10) {
                 Text("What You'll Learn")
                     .font(.titleSmall)
@@ -61,9 +61,9 @@ struct LessonPreviewSheet: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 20)
             .padding(.top, 12)
-            
+
             Spacer()
-            
+
             Button {
                 isPresented = false
                 onStartLesson(lesson)
@@ -88,7 +88,6 @@ struct LessonPreviewSheet: View {
 #Preview {
     LessonPreviewSheet(
         lesson: LessonData.binaryLesson,
-        isPresented: .constant(true),
-        onStartLesson: { _ in /* Preview only */ }
-    )
+        isPresented: .constant(true)
+    ) { _ in /* Preview only */ }
 }

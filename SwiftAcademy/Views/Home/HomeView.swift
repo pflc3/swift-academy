@@ -3,12 +3,12 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var session: SessionManager
     @StateObject private var vm = HomeViewModel()
-    
+
     var onShowingLessonDetail: ((Bool) -> Void)?
-    
+
     private var lessons: [Lesson] { LessonData.allLessons }
     private var lessonsCompleted: Int { session.user?.lessonsCompleted ?? 0 }
-    
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -21,15 +21,14 @@ struct HomeView: View {
                             totalLessons: lessons.count
                         )
                         .padding(.top, 25)
-                        
+
                         LearningPathSection(
                             lessons: lessons,
-                            lessonsCompleted: lessonsCompleted,
-                            onStartLesson: { lesson in
+                            lessonsCompleted: lessonsCompleted
+                        ) { lesson in
                                 vm.selectedLesson = lesson
                                 vm.showLessonDetail = true
                             }
-                        )
                         .padding(.top, 75)
                     }
                 }

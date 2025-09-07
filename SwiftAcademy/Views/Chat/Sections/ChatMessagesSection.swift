@@ -4,7 +4,7 @@ import SwiftUI
 struct ChatMessagesSection: View {
     @Binding var messages: [ChatMessage]
     @Binding var isLoading: Bool
-    
+
     var body: some View {
         // Use ScrollViewReader to control scrolling position
         ScrollViewReader { scrollView in
@@ -15,7 +15,7 @@ struct ChatMessagesSection: View {
                         ChatBubble(message: message)
                             .id(ChatViewID.message(message.id))
                     }
-                    
+
                     // Show typing indicator when loading
                     if isLoading {
                         HStack {

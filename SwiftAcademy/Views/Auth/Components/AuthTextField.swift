@@ -9,14 +9,14 @@ struct AuthTextField: View {
     let isSecure: Bool
     // Binding to the text value
     @Binding var text: String
-    
+
     var body: some View {
         HStack {
             // Icon
             Image(systemName: iconName)
                 .foregroundColor(.primaryApp)
                 .frame(width: 24)
-            
+
             // Text field
             Group {
                 if isSecure {
@@ -46,7 +46,7 @@ struct AuthTextField: View {
             isSecure: false,
             text: .constant("user@example.com")
         )
-        
+
         AuthTextField(
             iconName: "lock",
             placeholder: "Password",

@@ -3,11 +3,11 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var session: SessionManager
     @EnvironmentObject var toasts: ToastCenter
-    
+
     @State private var selectedTab = 1
     @State private var showMenu = false
     @State private var isShowingLessonDetail = false
-    
+
     var body: some View {
         ZStack(alignment: .leading) {
             VStack(spacing: 0) {
@@ -18,24 +18,24 @@ struct ContentView: View {
                     )
                     .transition(.move(edge: .top).combined(with: .opacity))
                 }
-                
+
                 ZStack {
                     if selectedTab == 1 {
                         NavigationView {
-                            HomeView(onShowingLessonDetail: { isShowing in
+                            HomeView { isShowing in
                                 withAnimation(.easeOut(duration: 0.2)) {
                                     isShowingLessonDetail = isShowing
                                 }
-                            })
+                            }
                         }
                         .transition(.opacity)
                     }
-                    
+
                     if selectedTab == 2 {
                         NavigationView { ChatBotView() }
                             .transition(.opacity)
                     }
-                    
+
                     if selectedTab == 3 {
                         NavigationView { ProfileView() }
                             .transition(.opacity)
@@ -52,7 +52,7 @@ struct ContentView: View {
                     .transition(.opacity)
                     .onTapGesture { hideMenu() }
             }
-            
+
             if !isShowingLessonDetail {
                 SideMenu(
                     selectedTab: $selectedTab,
@@ -77,13 +77,13 @@ struct ContentView: View {
             }
         }
     }
-    
+
     private func hideMenu() {
         withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
             showMenu = false
         }
     }
-    
+
     private var title: String {
         switch selectedTab {
         case 1: return "Swift Journey"

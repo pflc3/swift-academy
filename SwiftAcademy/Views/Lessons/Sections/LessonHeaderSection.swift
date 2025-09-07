@@ -4,17 +4,17 @@ struct LessonHeaderSection: View {
     let lesson: Lesson
     let progressPercentage: Double
     var onCompleted: () -> Void = {}
-    
+
     private var percent: Int { Int(progressPercentage * 100.0) }
     private var isCompleted: Bool { percent >= 100 }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(lesson.description)
                 .font(.bodyLarge)
                 .foregroundColor(.textSecondaryApp)
                 .padding(.top, 4)
-            
+
             HStack(spacing: 16) {
                 Label {
                     Text(lesson.difficulty.rawValue)
@@ -25,7 +25,7 @@ struct LessonHeaderSection: View {
                         .foregroundColor(.primaryApp)
                         .font(.system(size: 19))
                 }
-                
+
                 Label {
                     Text("\(lesson.duration) minutes")
                         .font(.bodySmall)
@@ -35,9 +35,9 @@ struct LessonHeaderSection: View {
                         .foregroundColor(.primaryApp)
                         .font(.system(size: 19))
                 }
-                
+
                 Spacer()
-                
+
                 HStack(spacing: 6) {
                     if isCompleted {
                         Image(systemName: "checkmark.circle.fill")

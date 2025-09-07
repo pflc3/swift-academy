@@ -8,17 +8,17 @@ final class LessonDetailViewModel: ObservableObject {
     @Published var showingSlides = false
     @Published var selectedQuestionIndex: Int?
     @Published var showingResourceLinks = false
-    
+
     private var didSubmitCompletion = false
     private var session: SessionManager?
     private var userService: UserService?
     private var toasts: ToastCenter?
     private(set) var isConfigured = false
-    
+
     init(lesson: Lesson) {
         self.lesson = lesson
     }
-    
+
     func configure(session: SessionManager, userService: UserService, toasts: ToastCenter) {
         guard !isConfigured else { return }
         self.session = session
@@ -26,7 +26,7 @@ final class LessonDetailViewModel: ObservableObject {
         self.toasts = toasts
         isConfigured = true
     }
-    
+
     var progressPercentage: Double {
         var total = 0.0
         if isVideoWatched { total += 0.35 }
@@ -36,23 +36,23 @@ final class LessonDetailViewModel: ObservableObject {
         }
         return min(total, 1.0)
     }
-    
+
     var isCompleted: Bool { progressPercentage >= 1.0 }
-    
+
     func submitCompletionIfEligible() {
         guard let session, let userService else { return }
         guard !didSubmitCompletion, isCompleted else { return }
         guard let idx = LessonData.allLessons.firstIndex(of: lesson) else { return }
         guard var user = session.user, idx == user.lessonsCompleted else { return }
-        
+
         didSubmitCompletion = true
-        
+
         if AppMode.useMocks {
-            if var u = session.user { u.lessonsCompleted += 1; session.user = u }
+            if var user = session.user { user.lessonsCompleted += 1; session.user = user }
             toasts?.show("Lesson completed! (Mock)")
             return
         }
-        
+
         Task {
             do {
                 try await userService.markLessonCompletedIfNeeded(for: lesson, user: &user)

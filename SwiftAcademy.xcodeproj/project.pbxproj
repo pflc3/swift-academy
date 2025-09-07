@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8159F232E6D19DC00F11A2B /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E8159F222E6D19D800F11A2B /* .swiftlint.yml */; };
 		E84AAD352E6B97A100783D06 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E84AAD342E6B97A100783D06 /* FirebaseAnalytics */; };
 		E84AAD372E6B97A100783D06 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E84AAD362E6B97A100783D06 /* FirebaseAuth */; };
 		E84AAD392E6B97A100783D06 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E84AAD382E6B97A100783D06 /* FirebaseFirestore */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E8159F222E6D19D800F11A2B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E86ACF522E313245006BB2FF /* SwiftAcademy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAcademy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86ACF8A2E3132CB006BB2FF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -45,6 +47,7 @@
 		E86ACF492E313245006BB2FF = {
 			isa = PBXGroup;
 			children = (
+				E8159F222E6D19D800F11A2B /* .swiftlint.yml */,
 				E86ACF8A2E3132CB006BB2FF /* README.md */,
 				E86ACF542E313245006BB2FF /* SwiftAcademy */,
 				E86ACF532E313245006BB2FF /* Products */,
@@ -73,6 +76,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E8159F252E6D1AEF00F11A2B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				E86ACF542E313245006BB2FF /* SwiftAcademy */,
@@ -114,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				E84AAD332E6B97A100783D06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E8159F212E6D192400F11A2B /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E86ACF532E313245006BB2FF /* Products */;
@@ -130,6 +135,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8159F232E6D19DC00F11A2B /* .swiftlint.yml in Resources */,
 				E86ACF8B2E3132CB006BB2FF /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +151,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E8159F252E6D1AEF00F11A2B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E8159F242E6D1AEF00F11A2B /* SwiftLintBuildToolPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E86ACF722E313247006BB2FF /* Debug */ = {
@@ -373,6 +386,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E8159F212E6D192400F11A2B /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.61.0;
+			};
+		};
 		E84AAD332E6B97A100783D06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -384,6 +405,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E8159F242E6D1AEF00F11A2B /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8159F212E6D192400F11A2B /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
 		E84AAD342E6B97A100783D06 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E84AAD332E6B97A100783D06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

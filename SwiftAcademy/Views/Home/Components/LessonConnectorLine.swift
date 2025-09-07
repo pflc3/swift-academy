@@ -3,7 +3,7 @@ import SwiftUI
 struct LessonConnectorLine: View {
     var isEven: Bool
     var isUnlocked: Bool
-    
+
     var body: some View {
         Rectangle()
             .fill(isUnlocked ? Color.primaryApp : Color(hex: "CED4DC"))

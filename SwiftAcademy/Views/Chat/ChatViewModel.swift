@@ -4,7 +4,10 @@ import Foundation
 final class ChatViewModel: ObservableObject {
     @Published var messages: [ChatMessage] = [
         ChatMessage(
-            content: "Hi! I'm your Code Coach, your AI tutor for CS and iOS dev. How can I help with your coding questions today?",
+            content: """
+            Hi! I'm your Code Coach, your AI tutor for CS and iOS dev. \
+            How can I help with your coding questions today?
+            """,
             isFromUser: false
         )
     ]

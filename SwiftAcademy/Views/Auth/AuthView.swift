@@ -4,9 +4,9 @@ struct AuthView: View {
     @EnvironmentObject var session: SessionManager
     @EnvironmentObject var userService: UserService
     @EnvironmentObject var toasts: ToastCenter
-    
+
     @StateObject private var vm = AuthViewModel()
-    
+
     var body: some View {
         ZStack {
             WaveBackground()
@@ -26,9 +26,9 @@ struct AuthView: View {
                     }
                 }
                 .padding(.top, 60)
-                
+
                 Spacer()
-                
+
                 switch vm.currentView {
                 case .welcome:
                     WelcomeSection(
@@ -57,7 +57,7 @@ struct AuthView: View {
                         showLogin: { withAnimation { vm.currentView = .signin } }
                     )
                 }
-                
+
                 Spacer()
             }
             .padding(.horizontal)

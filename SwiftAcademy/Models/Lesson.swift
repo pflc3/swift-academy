@@ -8,8 +8,8 @@ struct Lesson: Identifiable, Equatable {
     var description: String
     var difficulty: Difficulty
     var duration: Int = 20
-    var videoID: String? = nil
-    var slidesURL: String? = nil
+    var videoID: String?
+    var slidesURL: String?
     var slideThumbnails: [String] = []
     var goals: [LessonGoal] = []
     var contentSections: [ContentSection] = []
@@ -26,7 +26,7 @@ extension Lesson {
         var id = UUID()
         var title: String
         var content: String
-        var codeExample: String? = nil
+        var codeExample: String?
     }
     struct Question: Identifiable {
         var id = UUID()

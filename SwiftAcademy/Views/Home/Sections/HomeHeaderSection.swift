@@ -3,12 +3,12 @@ import SwiftUI
 struct HomeHeaderSection: View {
     let lessonsCompleted: Int
     let totalLessons: Int
-    
+
     private var progressRatio: Double {
         guard totalLessons > 0 else { return 0 }
         return Double(lessonsCompleted) / Double(totalLessons)
     }
-    
+
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 8) {
@@ -16,14 +16,14 @@ struct HomeHeaderSection: View {
                     Text("\(lessonsCompleted)/\(totalLessons) completed")
                         .font(.bodyMedium)
                         .foregroundColor(.textSecondaryApp)
-                    
+
                     Spacer()
-                    
+
                     Text("\(Int(progressRatio * 100))%")
                         .font(.bodyMedium.bold())
                         .foregroundColor(.primaryApp)
                 }
-                
+
                 ProgressView(value: progressRatio)
                     .tint(Color.primaryApp)
                     .padding(.bottom, 8)

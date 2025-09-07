@@ -7,7 +7,7 @@ struct SplashView: View {
 
             VStack {
                 Spacer()
-                
+
                 Image("Logo")
                     .resizable()
                     .scaledToFit()
@@ -18,7 +18,7 @@ struct SplashView: View {
                     .font(.custom("AmericanTypewriter-Bold", size: 40))
                     .foregroundColor(Color(hex: "#38b6ff"))
                     .padding(.bottom, 66)
-                
+
                 Spacer()
                 Spacer()
             }

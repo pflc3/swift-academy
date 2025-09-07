@@ -2,13 +2,13 @@ import SwiftUI
 
 struct ProfileAchievementsSection: View {
     let user: UserProfile
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Achievements")
                 .font(.titleSmall)
                 .foregroundColor(.textPrimaryApp)
-            
+
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                 ForEach(user.achievements) { achievement in
                     achievementCard(achievement)
@@ -21,7 +21,7 @@ struct ProfileAchievementsSection: View {
         .shadow(color: Color.black.opacity(0.03), radius: 3, x: 0, y: 1)
         .padding(.horizontal, 16)
     }
-    
+
     private func achievementCard(_ achievement: Achievement) -> some View {
         VStack(spacing: 12) {
             Image(systemName: achievement.icon)

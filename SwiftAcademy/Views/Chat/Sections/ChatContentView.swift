@@ -6,10 +6,10 @@ struct ChatContentView: View {
     @Binding var messages: [ChatMessage]
     @Binding var newMessage: String
     @Binding var isLoading: Bool
-    
+
     // Callback for when the user wants to send a message
     var onSendMessage: () -> Void
-    
+
     var body: some View {
         VStack(spacing: 0) {
             // Messages list section
@@ -17,12 +17,12 @@ struct ChatContentView: View {
                 messages: $messages,
                 isLoading: $isLoading
             )
-            
+
             // Divider between messages and input
             Rectangle()
                 .fill(Color.dividerApp)
                 .frame(height: 1)
-            
+
             // Input field section
             ChatInputSection(
                 message: $newMessage,
@@ -40,7 +40,6 @@ struct ChatContentView: View {
             ChatMessage(content: "I need help with SwiftUI", isFromUser: true)
         ]),
         newMessage: .constant(""),
-        isLoading: .constant(false),
-        onSendMessage: {}
-    )
+        isLoading: .constant(false)
+    ) {}
 }

@@ -11,7 +11,9 @@ final class ChatService: ObservableObject {
     ) async throws -> String {
         guard let url = URL(string: "\(baseURL)/chat") else { throw URLError(.badURL) }
 
-        let apiMessages = messages.map { APIMessage(role: $0.role == .user ? "user" : "assistant", content: $0.content) }
+        let apiMessages = messages.map {
+            APIMessage(role: $0.role == .user ? "user" : "assistant", content: $0.content)
+        }
         let body = ChatRequest(messages: apiMessages, userId: userId, context: context)
 
         var req = URLRequest(url: url)
@@ -29,9 +31,10 @@ final class ChatService: ObservableObject {
     }
 
     static func friendlyMessage(_ error: Error) -> String {
-        if let e = error as? URLError {
-            switch e.code {
-            case .notConnectedToInternet, .cannotConnectToHost, .cannotFindHost, .networkConnectionLost, .dnsLookupFailed:
+        if let err = error as? URLError {
+            switch err.code {
+            case .notConnectedToInternet, .cannotConnectToHost, .cannotFindHost,
+                 .networkConnectionLost, .dnsLookupFailed:
                 return "Coach is offline right now. Please try again shortly."
             case .timedOut:
                 return "Coach took too long to respond — let’s try that again."

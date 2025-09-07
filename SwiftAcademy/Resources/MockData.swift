@@ -19,21 +19,41 @@ struct MockData {
             achievements: demoAchievements()
         )
     ]
-    
+
     static let defaultAchievements: [Achievement] = [
-        Achievement(name: "First Lesson", description: "Complete your first lesson", icon: "star.fill", unlocked: false),
-        Achievement(name: "Code Explorer", description: "Write your first Swift code", icon: "keyboard", unlocked: false),
-        Achievement(name: "Swift Beginner", description: "Complete the Swift fundamentals module", icon: "swift", unlocked: false),
-        Achievement(name: "UI Builder", description: "Create your first SwiftUI interface", icon: "rectangle.3.group", unlocked: false)
+        Achievement(
+            name: "First Lesson",
+            description: "Complete your first lesson",
+            icon: "star.fill",
+            unlocked: false
+        ),
+        Achievement(
+            name: "Code Explorer",
+            description: "Write your first Swift code",
+            icon: "keyboard",
+            unlocked: false
+        ),
+        Achievement(
+            name: "Swift Beginner",
+            description: "Complete the Swift fundamentals module",
+            icon: "swift",
+            unlocked: false
+        ),
+        Achievement(
+            name: "UI Builder",
+            description: "Create your first SwiftUI interface",
+            icon: "rectangle.3.group",
+            unlocked: false
+        )
     ]
-    
+
     static func demoAchievements() -> [Achievement] {
         var achs = defaultAchievements
         if !achs.isEmpty { achs[0].unlocked = true }
         if achs.count > 1 { achs[1].unlocked = true }
         return achs
     }
-    
+
     static func defaultAchievementsFirestoreLocked() -> [[String: Any]] {
         defaultAchievements.map {
             [

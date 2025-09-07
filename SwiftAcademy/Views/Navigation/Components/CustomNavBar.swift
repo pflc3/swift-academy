@@ -3,30 +3,31 @@ import SwiftUI
 struct CustomNavBar: View {
     let title: String
     @Binding var showMenu: Bool
-    
+
     var body: some View {
         HStack {
             // Menu Button
-            Button(action: {
-                withAnimation(.spring()) {
-                    showMenu.toggle()
+            Button(
+                action: {
+                    withAnimation(.spring()) { showMenu.toggle() }
+                },
+                label: {
+                    Image(systemName: "line.horizontal.3")
+                        .font(.titleMedium)
+                        .foregroundColor(.primaryApp)
+                        .padding(.leading, 16)
                 }
-            }) {
-                Image(systemName: "line.horizontal.3")
-                    .font(.titleMedium)
-                    .foregroundColor(.primaryApp)
-                    .padding(.leading, 16)
-            }
-            
+            )
+
             Spacer()
-            
+
             // Title
             Text(title)
                 .font(.titleMedium)
                 .foregroundColor(.textPrimaryApp)
-            
+
             Spacer()
-            
+
             // Empty space to balance the hamburger button
             Image(systemName: "line.horizontal.3")
                 .font(.titleMedium)

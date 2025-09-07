@@ -15,7 +15,7 @@ struct LessonCard: View {
     let isUnlocked: Bool
     let isNextLesson: Bool
     var onStartLesson: (Lesson) -> Void
-    
+
     var body: some View {
         Button {
             if isUnlocked { showPreview.toggle() }
@@ -93,11 +93,10 @@ struct LessonCard: View {
             lesson: LessonData.binaryLesson,
             index: 1,
             isUnlocked: true,
-            isNextLesson: false,
-            onStartLesson: { _ in /* Preview only */ }
-        )
+            isNextLesson: false
+        ) { _ in /* Preview only */ }
     }
-    
+
     ZStack {
         LessonConnectorLine(
             isEven: false,
@@ -108,11 +107,10 @@ struct LessonCard: View {
             lesson: LessonData.binaryLesson,
             index: 2,
             isUnlocked: true,
-            isNextLesson: true,
-            onStartLesson: { _ in /* Preview only */ }
-        )
+            isNextLesson: true
+        ) { _ in /* Preview only */ }
     }
-    
+
     ZStack {
         LessonConnectorLine(
             isEven: true,
@@ -123,8 +121,7 @@ struct LessonCard: View {
             lesson: LessonData.binaryLesson,
             index: 3,
             isUnlocked: false,
-            isNextLesson: false,
-            onStartLesson: { _ in /* Preview only */ }
-        )
+            isNextLesson: false
+        ) { _ in /* Preview only */ }
     }
 }

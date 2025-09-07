@@ -8,21 +8,21 @@ struct LessonResourcesSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Header with toggle
-            Button(action: {
-                showingResourceLinks.toggle()
-            }) {
-                HStack {
-                    Text("Additional Resources")
-                        .font(.titleMedium)
-                        .foregroundColor(.textPrimaryApp)
-                    
-                    Spacer()
-                    
-                    // Chevron up/down icon
-                    Image(systemName: showingResourceLinks ? "chevron.up" : "chevron.down")
-                        .foregroundColor(.primaryApp)
+            Button(
+                action: { showingResourceLinks.toggle() },
+                label: {
+                    HStack {
+                        Text("Additional Resources")
+                            .font(.titleMedium)
+                            .foregroundColor(.textPrimaryApp)
+
+                        Spacer()
+
+                        Image(systemName: showingResourceLinks ? "chevron.up" : "chevron.down")
+                            .foregroundColor(.primaryApp)
+                    }
                 }
-            }
+            )
             .buttonStyle(.plain)
 
             // Display links only if expanded
@@ -34,12 +34,12 @@ struct LessonResourcesSection: View {
                             HStack {
                                 Image(systemName: "link")
                                     .foregroundColor(.primaryApp)
-                                
+
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(resource.title)
                                         .font(.bodyMedium)
                                         .foregroundColor(.primaryApp)
-                                    
+
                                     Text(resource.description)
                                         .font(.caption)
                                         .foregroundColor(.textSecondaryApp)

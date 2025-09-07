@@ -10,25 +10,28 @@ struct LessonVideoSection: View {
                 Text("Video")
                     .font(.titleMedium)
                     .foregroundColor(.textPrimaryApp)
-                
+
                 // Embedded video player
                 YouTubePlayer(videoID: videoID)
                     .frame(maxWidth: .infinity)
                     .frame(height: 200)
                     .cornerRadius(12)
-                
+
                 // "Mark as watched" checkbox
-                Button(action: { isVideoWatched.toggle() }) {
-                    HStack {
-                        Image(systemName: isVideoWatched ? "checkmark.square.fill" : "square")
-                            .foregroundColor(isVideoWatched ? .accentApp : .textSecondaryApp)
-                        
-                        Text("Mark video as watched")
-                            .font(.bodyMedium)
-                            .foregroundColor(.textPrimaryApp)
+                Button(
+                    action: { isVideoWatched.toggle() },
+                    label: {
+                        HStack {
+                            Image(systemName: isVideoWatched ? "checkmark.square.fill" : "square")
+                                .foregroundColor(isVideoWatched ? .accentApp : .textSecondaryApp)
+
+                            Text("Mark video as watched")
+                                .font(.bodyMedium)
+                                .foregroundColor(.textPrimaryApp)
+                        }
+                        .padding(.vertical, 8)
                     }
-                    .padding(.vertical, 8)
-                }
+                )
                 .buttonStyle(.plain)
             }
             .padding(16)
@@ -39,7 +42,6 @@ struct LessonVideoSection: View {
         }
     }
 
-
 #Preview {
     LessonVideoSection(
         videoID: "zDNaUi2cjv4",
@@ -47,4 +49,3 @@ struct LessonVideoSection: View {
     )
     .padding()
 }
-
