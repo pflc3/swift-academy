@@ -1,24 +1,28 @@
 import SwiftUI
 
-// Main view for the chat interface
 struct ChatBotView: View {
-    // Manager for chat state and business logic
-    @StateObject private var chatManager = ChatMessageManager()
-    
+    @EnvironmentObject var session: SessionManager
+    @EnvironmentObject var chatService: ChatService
+    @EnvironmentObject var toasts: ToastCenter
+    @StateObject private var vm = ChatViewModel()
+
     var body: some View {
         NavigationStack {
-            // Use our ChatContentView component as the main container
             ChatContentView(
-                messages: $chatManager.messages,
-                newMessage: $chatManager.newMessage,
-                isLoading: $chatManager.isLoading,
-                onSendMessage: chatManager.sendMessage
+                messages: $vm.messages,
+                newMessage: $vm.newMessage,
+                isLoading: $vm.isLoading,
+                onSendMessage: vm.send
             )
             .ignoresSafeArea(.container, edges: .top)
+            .onAppear {
+                vm.configure(session: session, chatService: chatService, toasts: toasts)
+            }
         }
     }
 }
 
 #Preview {
-    ChatBotView()
+    let deps = PreviewDeps(user: MockData.users.first)
+    return ChatBotView().previewEnv(deps)
 }

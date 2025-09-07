@@ -1,6 +1,6 @@
 import Foundation
 
-struct Achievement: Identifiable {
+struct Achievement: Identifiable, Equatable {
     var id = UUID()
     var name: String
     var description: String

@@ -1,35 +1,40 @@
 import SwiftUI
 
 struct ProfileView: View {
-    // Get user from environment object
-    @EnvironmentObject var user: User
+    @EnvironmentObject var session: SessionManager
+    @EnvironmentObject var userService: UserService
+    @EnvironmentObject var toasts: ToastCenter
+    
     @State private var showingEditProfile = false
-
+    
     var body: some View {
+        let user = session.user
         ScrollView {
             VStack(spacing: 22) {
-                // Pass the binding to the header
-                ProfileHeaderSection(
-                    showingEditProfile: $showingEditProfile
-                )
-                
-                ProfileStatsSection()
-                ProfileAchievementsSection()
-                ProfileFooterSection()
-                
+                if let user {
+                    ProfileHeaderSection(user: user, showingEditProfile: $showingEditProfile)
+                    ProfileStatsSection(user: user)
+                    ProfileAchievementsSection(user: user)
+                    ProfileFooterSection()
+                }
                 Spacer(minLength: 22)
             }
         }
         .ignoresSafeArea(.all)
         .background(Color.backgroundApp)
         .sheet(isPresented: $showingEditProfile) {
-            EditProfileView()
+            EditProfileView(
+                vm: ProfileViewModel(
+                    session: session,
+                    userService: userService,
+                    toasts: toasts
+                )
+            )
         }
     }
 }
 
 #Preview {
-    ProfileView()
-        .environmentObject(MockData.users[0])
-        .environmentObject(UserManager())
+    let deps = PreviewDeps(user: MockData.users.first)
+    return ProfileView().previewEnv(deps)
 }

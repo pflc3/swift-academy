@@ -18,70 +18,46 @@ struct LessonCard: View {
     
     var body: some View {
         Button {
-            if isUnlocked {
-                showPreview.toggle()
-            }
+            if isUnlocked { showPreview.toggle() }
         } label: {
             VStack(alignment: .leading, spacing: 10) {
-                // Header with number or lock
                 HStack {
-                    // Number or lock indicator
                     ZStack {
                         Circle()
                             .fill(isUnlocked ? Color.primaryApp : Color(hex: "CED4DC").opacity(0.75))
                             .frame(width: 36, height: 36)
-                        
                         if isUnlocked {
-                            // Show number if unlocked
                             Text("\(index)")
                                 .font(.bodyMedium.bold())
                                 .foregroundColor(.white)
                         } else {
-                            // Show lock if locked
                             Image(systemName: "lock.fill")
                                 .font(.system(size: 16))
                                 .foregroundColor(.textTertiaryApp.opacity(0.75))
                         }
                     }
-                    
                     Spacer()
-                    
-                    // Blue "Next" badge
                     if isNextLesson {
                         Text("Next")
                             .font(.bodySmall)
                             .padding(.horizontal, 7)
                             .padding(.vertical, 3)
-                            .background(
-                                Capsule()
-                                    .fill(Color.primaryApp.opacity(0.15))
-                            )
+                            .background(Capsule().fill(Color.primaryApp.opacity(0.15)))
                             .foregroundColor(Color.primaryApp)
                     }
                 }
-                
-                // Use the shorter title for the card display
                 Text(lesson.shortTitle)
                     .font(.bodyLarge.bold())
                     .foregroundColor(isUnlocked ? .textPrimaryApp : .textTertiaryApp.opacity(0.75))
-                    .lineLimit(1) // Ensure it stays on one line
-                
-                // Lesson metadata
+                    .lineLimit(1)
                 HStack {
-                    // Difficulty tag
                     Text(lesson.difficulty.rawValue)
                         .font(.caption)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
-                        .background(
-                            Capsule()
-                                .fill(isUnlocked ? Color.surfaceApp : Color(hex: "CED4DC").opacity(0.75))
-                        )
+                        .background(Capsule().fill(isUnlocked ? Color.surfaceApp : Color(hex: "CED4DC").opacity(0.75)))
                         .foregroundColor(isUnlocked ? .textSecondaryApp : .textTertiaryApp.opacity(0.75))
-                    
                     Spacer()
-                    
-                    // Duration
                     Label("\(lesson.duration)", systemImage: "clock")
                         .font(.caption)
                         .foregroundColor(.textTertiaryApp)
@@ -101,11 +77,7 @@ struct LessonCard: View {
         }
         .buttonStyle(SolidButtonStyle())
         .sheet(isPresented: $showPreview) {
-            LessonPreviewSheet(
-                lesson: lesson,
-                isPresented: $showPreview,
-                onStartLesson: onStartLesson
-            )
+            LessonPreviewSheet(lesson: lesson, isPresented: $showPreview, onStartLesson: onStartLesson)
         }
     }
 }

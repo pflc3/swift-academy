@@ -1,32 +1,33 @@
 import SwiftUI
 
 struct HomeView: View {
-    // State variables to track user data
-    @EnvironmentObject var user: User
-    @State private var showLessonDetail = false
-    @State private var selectedLesson: Lesson?
+    @EnvironmentObject var session: SessionManager
+    @StateObject private var vm = HomeViewModel()
     
-    // Callback to notify ContentView about lesson detail visibility
     var onShowingLessonDetail: ((Bool) -> Void)?
-
+    
+    private var lessons: [Lesson] { LessonData.allLessons }
+    private var lessonsCompleted: Int { session.user?.lessonsCompleted ?? 0 }
+    
     var body: some View {
         NavigationStack {
             ScrollView {
                 ZStack(alignment: .top) {
-                    // Keep student's background with floating icons
-                    BackgroundView(length: backgroundLength(for: LessonData.allLessons.count))
+                    BackgroundView(length: vm.backgroundLength(for: lessons.count))
 
                     VStack {
-                        HomeHeaderSection(lessons: LessonData.allLessons)
-                            .padding(.top, 25)
+                        HomeHeaderSection(
+                            lessonsCompleted: lessonsCompleted,
+                            totalLessons: lessons.count
+                        )
+                        .padding(.top, 25)
                         
-                        // Learning path view
                         LearningPathSection(
-                            lessons: LessonData.allLessons,
+                            lessons: lessons,
+                            lessonsCompleted: lessonsCompleted,
                             onStartLesson: { lesson in
-                                // Set the selected lesson and trigger navigation
-                                selectedLesson = lesson
-                                showLessonDetail = true
+                                vm.selectedLesson = lesson
+                                vm.showLessonDetail = true
                             }
                         )
                         .padding(.top, 75)
@@ -35,25 +36,19 @@ struct HomeView: View {
             }
             .background(Color.backgroundApp)
             .ignoresSafeArea(.all)
-            .onChange(of: showLessonDetail) {
-                // Notify ContentView about navbar visibility
-                onShowingLessonDetail?(showLessonDetail)
+            .onChange(of: vm.showLessonDetail) { _, newValue in
+                onShowingLessonDetail?(newValue)
             }
-            .navigationDestination(isPresented: $showLessonDetail) {
-                if let lesson = selectedLesson {
+            .navigationDestination(isPresented: $vm.showLessonDetail) {
+                if let lesson = vm.selectedLesson {
                     LessonDetailView(lesson: lesson)
                 }
             }
         }
     }
-    
-    // Keep student's background length calculation
-    private func backgroundLength(for lessonCount: Int) -> Int {
-        return max(lessonCount, (135*lessonCount+100)/50)
-    }
 }
 
 #Preview {
-    HomeView()
-        .environmentObject(MockData.users[0])
+    let deps = PreviewDeps(user: MockData.users.first)
+    return HomeView().previewEnv(deps)
 }
