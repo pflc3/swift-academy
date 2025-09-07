@@ -23,10 +23,5 @@ opt_in_rules:
   - implicit_return
   - redundant_self_in_closure
 
-analyzer_rules:
-  - explicit_self
-  - unused_import
-
-# SwiftUI-friendly: allow short single-letter in small scopes when needed
 allow_zero_lintable_files: false
 strict: false
