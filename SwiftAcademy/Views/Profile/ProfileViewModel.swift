@@ -13,6 +13,8 @@ final class ProfileViewModel: ObservableObject {
     private let userService: UserService
     private let toasts: ToastCenter
 
+    /// Initialize view model from the current session and services.
+    /// Copies user fields into editable local properties used by the UI.
     init(session: SessionManager, userService: UserService, toasts: ToastCenter) {
         self.session = session
         self.userService = userService
@@ -24,6 +26,7 @@ final class ProfileViewModel: ObservableObject {
 
     var email: String { session.user?.email ?? "" }
 
+    /// Persist profile edits to Firestore (or apply locally in mock mode).
     func save() async {
         guard let uid = session.user?.uid else {
             toasts.show("Not logged in", positive: false)
@@ -31,6 +34,7 @@ final class ProfileViewModel: ObservableObject {
         }
 
         if AppMode.useMocks {
+            // Apply edits locally for previews and tests without a network write.
             session.user?.name = name
             session.user?.bio  = bio
             return
@@ -45,6 +49,7 @@ final class ProfileViewModel: ObservableObject {
         }
     }
 
+    /// Perform logout via `UserService` or clear session in mock mode.
     func logout() {
         if AppMode.useMocks {
             // session.user = nil, causes preview to go blank since no more user data

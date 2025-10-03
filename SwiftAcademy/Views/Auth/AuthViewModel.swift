@@ -7,6 +7,8 @@ import Foundation
 enum AuthScreen { case welcome, signin, create }
 
 @MainActor
+/// View model for the authentication screens. Handles form state and coordinates
+/// sign-in and sign-up flows using `UserService` and `SessionManager`.
 final class AuthViewModel: ObservableObject {
     @Published var currentView: AuthScreen = .welcome
     @Published var email = ""
@@ -21,6 +23,7 @@ final class AuthViewModel: ObservableObject {
     private var toasts: ToastCenter?
     private(set) var isConfigured = false
 
+    /// Configure the view model with required runtime collaborators.
     func configure(session: SessionManager, userService: UserService, toasts: ToastCenter) {
         guard !isConfigured else { return }
         self.session = session
@@ -29,6 +32,8 @@ final class AuthViewModel: ObservableObject {
         isConfigured = true
     }
 
+    /// Attempt to sign in the user with the provided credentials.
+    /// Updates `session` on success and sets `errorMessage` on failure.
     func login() {
         guard let session, let userService else { return }
         isLoading = true
@@ -52,12 +57,16 @@ final class AuthViewModel: ObservableObject {
                 session.user = profile
                 session.isAuthenticated = true
             } catch {
+                // Show a user-friendly error message returned from the auth layer.
+                // Keep messages concise for the UI.
                 errorMessage = error.localizedDescription
             }
             isLoading = false
         }
     }
 
+    /// Register a new user account and load the created profile.
+    /// Validates form fields before calling `UserService.signup`.
     func signup() {
         guard let session, let userService else { return }
         isLoading = true
@@ -92,12 +101,14 @@ final class AuthViewModel: ObservableObject {
                 session.user = profile
                 session.isAuthenticated = true
             } catch {
+                // Map service errors to a simple string for the UI.
                 errorMessage = error.localizedDescription
             }
             isLoading = false
         }
     }
 
+    /// Fill demo credentials and attempt login. Useful for quick previews/demos.
     func demoLogin() {
         email = "demo@swift.academy"
         password = "password123"

@@ -4,6 +4,8 @@
 
 import Foundation
 
+/// Simple toast notification center for short, user-facing messages.
+/// Exposes a single published `current` toast which UI components observe.
 @MainActor
 final class ToastCenter: ObservableObject {
     struct ToastMessage: Equatable {
@@ -13,6 +15,7 @@ final class ToastCenter: ObservableObject {
 
     @Published var current: ToastMessage?
 
+    /// Show a toast message. `autoHide` removes the toast after a short delay.
     func show(_ message: String, positive: Bool = true, autoHide: Bool = true) {
         current = ToastMessage(message: message, isPositive: positive)
         if autoHide {

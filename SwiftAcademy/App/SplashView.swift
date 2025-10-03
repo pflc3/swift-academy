@@ -4,8 +4,11 @@
 
 import SwiftUI
 
+/// Minimal launch placeholder used during app boot and for SwiftUI previews.
+/// Keeps the initial UX visually neutral while the session bootstraps.
 struct SplashView: View {
     var body: some View {
+        // Full-screen background aligns with system appearance.
         Color(.systemBackground).ignoresSafeArea()
     }
 }

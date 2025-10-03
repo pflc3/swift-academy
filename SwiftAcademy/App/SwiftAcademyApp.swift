@@ -4,6 +4,8 @@
 
 import SwiftUI
 
+/// Application entry point. Wires global services into the SwiftUI environment.
+/// Keeps scene composition declarative and delegates business logic to `SessionManager`.
 @main
 struct SwiftAcademyApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -14,6 +16,7 @@ struct SwiftAcademyApp: App {
 
     init() {
         let deps = AppDependencies()
+        // Use StateObject wrappers for lifecycle-managed services that SwiftUI owns.
         _session = StateObject(wrappedValue: deps.session)
         _toasts  = StateObject(wrappedValue: deps.toasts)
         self.deps = deps
@@ -37,6 +40,7 @@ struct SwiftAcademyApp: App {
                         .environmentObject(toasts)
                 }
             }
+            // Start session bootstrapping asynchronously when the scene appears.
             .task { session.start() }
         }
     }

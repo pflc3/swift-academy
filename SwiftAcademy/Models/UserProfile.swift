@@ -13,6 +13,7 @@ struct UserProfile: Identifiable, Equatable {
     var achievements: [Achievement]
     var id: String { uid }
 
+    /// Returns user initials for avatar display. Falls back to "?" when name is empty.
     var initials: String {
         let parts = name.split(separator: " ")
         if let first = parts.first?.first {
@@ -24,12 +25,14 @@ struct UserProfile: Identifiable, Equatable {
         return "?"
     }
 
+    /// Fraction of lessons completed based on `LessonData.allLessons` (0..1).
     var progressPercentage: Double {
         let total = LessonData.allLessons.count
         guard total > 0 else { return 0 }
         return Double(lessonsCompleted) / Double(total)
     }
 
+    /// Convenience accessor for total lessons available in the app data set.
     var totalLessons: Int {
         LessonData.allLessons.count
     }

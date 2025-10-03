@@ -6,10 +6,15 @@ import FirebaseAuth
 import FirebaseFirestore
 import Foundation
 
+/// Service that handles authentication flows and user profile persistence in Firestore.
+/// Converts Firestore document maps to `UserProfile` instances used by the app.
 @MainActor
 final class UserService: ObservableObject {
     private var firestore: Firestore { Firestore.firestore() }
 
+    // MARK: - Public authentication & profile API
+
+    /// Create a new account, write initial profile data to Firestore, and return the loaded profile.
     func signup(name: String, email: String, password: String) async throws -> UserProfile {
         let result: AuthDataResult = try await withCheckedThrowingContinuation { continuation in
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
@@ -32,6 +37,7 @@ final class UserService: ObservableObject {
         return try await loadProfile(uid: uid)
     }
 
+    /// Sign in using Firebase Auth and return the mapped `UserProfile`.
     func login(email: String, password: String) async throws -> UserProfile {
         let result: AuthDataResult = try await withCheckedThrowingContinuation { continuation in
             Auth.auth().signIn(withEmail: email, password: password) { result, error in
@@ -49,6 +55,7 @@ final class UserService: ObservableObject {
         try Auth.auth().signOut()
     }
 
+    /// Load a user's profile document from Firestore and map it to `UserProfile`.
     func loadProfile(uid: String) async throws -> UserProfile {
         let snapshot: DocumentSnapshot = try await withCheckedThrowingContinuation { continuation in
             firestore.collection("users").document(uid).getDocument { snapshot, error in
@@ -69,6 +76,7 @@ final class UserService: ObservableObject {
         try await writeUser(uid: uid, data: ["name": name, "bio": bio], merge: true)
     }
 
+    /// Record lesson completion when the lesson index matches the user's progress.
     func markLessonCompletedIfNeeded(for lesson: Lesson, user: inout UserProfile) async throws {
         guard let lessonIndex = LessonData.allLessons.firstIndex(of: lesson) else { return }
         guard lessonIndex == user.lessonsCompleted else { return }
@@ -77,6 +85,9 @@ final class UserService: ObservableObject {
         user.lessonsCompleted = newCount
     }
 
+    // MARK: - Private helpers
+
+    /// Write user document data to Firestore. `merge` controls whether to merge fields.
     private func writeUser(uid: String, data: [String: Any], merge: Bool) async throws {
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             firestore.collection("users").document(uid).setData(data, merge: merge) { error in
@@ -89,6 +100,8 @@ final class UserService: ObservableObject {
         }
     }
 
+    /// Map a Firestore document dictionary to the app's `UserProfile` model.
+    /// Note: achievements are reconstructed as UI-facing `Achievement` values.
     private func mapUser(uid: String, data: [String: Any]) -> UserProfile {
         let achievementsArray = (data["achievements"] as? [[String: Any]] ?? []).map {
             Achievement(
