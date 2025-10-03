@@ -1,5 +1,6 @@
-// SwiftAcademy Views - Corners helper.
+// Corners helper.
 // Small shape utility to apply corner radius to specific corners of a view.
+
 import SwiftUI
 
 extension View {

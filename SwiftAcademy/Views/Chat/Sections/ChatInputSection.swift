@@ -1,6 +1,7 @@
-// SwiftAcademy Views - Chat input section.
+// Chat input section.
 // Text field and send button used at the bottom of the chat screen.
 // Disables sending while loading or when the message is empty.
+
 import SwiftUI
 
 struct ChatInputSection: View {

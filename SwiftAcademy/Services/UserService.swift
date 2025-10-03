@@ -1,6 +1,7 @@
-// SwiftAcademy Services - UserService.
+// UserService.
 // Handles user authentication, registration, profile loading, and writes to Firestore.
 // Translates Firestore documents into `UserProfile` and updates user fields safely.
+
 import FirebaseAuth
 import FirebaseFirestore
 import Foundation

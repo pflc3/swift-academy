@@ -1,5 +1,6 @@
-// SwiftAcademy Views - SideMenu.
+// SideMenu.
 // Slide-in navigation drawer exposing major app sections and quick actions.
+
 import SwiftUI
 
 struct SideMenu: View {

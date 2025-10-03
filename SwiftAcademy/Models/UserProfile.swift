@@ -1,6 +1,7 @@
-// SwiftAcademy Models - UserProfile.
+// UserProfile.
 // Represents authenticated user information and simple UI-derived properties.
 // Includes progress and computed initials used in profile and navigation UI.
+
 import Foundation
 
 struct UserProfile: Identifiable, Equatable {

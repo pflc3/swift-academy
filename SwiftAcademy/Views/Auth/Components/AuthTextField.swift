@@ -1,6 +1,7 @@
-// SwiftAcademy Views - AuthTextField component.
+// AuthTextField component.
 // Simple stylized text field used by Auth views. Supports secure entry and an icon prefix.
 // This view is presentation-only and intentionally avoids business logic.
+
 import SwiftUI
 
 struct AuthTextField: View {

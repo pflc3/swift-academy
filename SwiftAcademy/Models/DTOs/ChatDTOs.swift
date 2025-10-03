@@ -1,6 +1,7 @@
-// SwiftAcademy Models - Chat API DTOs.
+// Chat API DTOs.
 // Data transfer objects used to serialize chat requests and responses to the backend.
 // Keeps network types separate from local ChatMessage models.
+
 import Foundation
 
 struct APIMessage: Codable {

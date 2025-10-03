@@ -1,5 +1,6 @@
-// SwiftAcademy Views - Profile stats section.
+// Profile stats section.
 // Shows quick statistics like lessons completed and overall progress bar.
+
 import SwiftUI
 
 struct ProfileStatsSection: View {

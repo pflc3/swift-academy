@@ -1,6 +1,7 @@
-// SwiftAcademy Views - LessonHeaderSection.
+// LessonHeaderSection.
 // Presents lesson summary, difficulty, duration, and a compact progress indicator.
 // Invokes `onCompleted` when the lesson reaches completed state to surface UI feedback.
+
 import SwiftUI
 
 struct LessonHeaderSection: View {

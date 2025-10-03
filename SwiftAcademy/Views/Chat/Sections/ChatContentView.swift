@@ -1,5 +1,6 @@
-// SwiftAcademy Views - Chat content container.
+// Chat content container.
 // Composes the messages list and input sections into the full chat UI.
+
 import SwiftUI
 
 struct ChatContentView: View {

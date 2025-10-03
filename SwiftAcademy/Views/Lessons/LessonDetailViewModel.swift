@@ -1,3 +1,7 @@
+// LessonDetailViewModel.
+// View model for lesson detail screens — tracks progress, completions, and UI state.
+// Handles submit logic for marking lessons completed (delegates network calls to UserService).
+
 import Foundation
 
 @MainActor

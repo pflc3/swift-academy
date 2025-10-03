@@ -1,6 +1,7 @@
-// SwiftAcademy Views - Sign In Section.
+// Sign In Section.
 // Sign-in form section shown on the Auth screen. Composes text fields and sign-in actions from the view model.
 // Keep logic minimal here; view model handles validation and network interactions.
+
 import SwiftUI
 
 struct SignInSection: View {

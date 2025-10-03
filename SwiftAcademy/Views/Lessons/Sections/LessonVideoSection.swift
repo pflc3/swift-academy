@@ -1,6 +1,7 @@
-// SwiftAcademy Views - LessonVideoSection.
+// LessonVideoSection.
 // Embeds the lesson video and provides a control to mark playback as watched.
 // Encapsulates the video player view and watch state UX.
+
 import SwiftUI
 
 struct LessonVideoSection: View {

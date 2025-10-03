@@ -1,6 +1,7 @@
-// SwiftAcademy Views - LessonGoalsSection.
+// LessonGoalsSection.
 // Displays learning goals with checkboxes and exposes a binding to the parent view model.
 // Toggling goals updates the set of completed goal IDs used to calculate progress.
+
 import SwiftUI
 
 struct LessonGoalsSection: View {

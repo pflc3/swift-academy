@@ -1,6 +1,7 @@
-// SwiftAcademy Views - ProfileViewModel.
+// ProfileViewModel.
 // View model used by the edit profile screen to persist changes and perform logout.
 // Bridges `UserService` writes and local session updates for the UI.
+
 import Foundation
 
 @MainActor

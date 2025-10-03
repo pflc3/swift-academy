@@ -1,6 +1,7 @@
-// SwiftAcademy Views - ChatBotView.
+// ChatBotView.
 // Container view for the chat experience. Wires `ChatViewModel` to UI and services.
 // Sets up environment objects required by the chat content views.
+
 import SwiftUI
 
 struct ChatBotView: View {

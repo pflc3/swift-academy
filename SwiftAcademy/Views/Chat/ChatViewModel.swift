@@ -1,6 +1,7 @@
-// SwiftAcademy Views - ChatViewModel.
+// ChatViewModel.
 // Manages chat message list, sending flow, and loading state for the chat UI.
 // Bridges view events to `ChatService` and exposes friendly errors for display.
+
 import Foundation
 
 @MainActor

@@ -1,6 +1,7 @@
-// SwiftAcademy Views - LessonConnectorLine.
+// LessonConnectorLine.
 // Decorative connector used between lesson cards in the learning path layout.
 // Reflects unlocked state visually for continuity between cards.
+
 import SwiftUI
 
 struct LessonConnectorLine: View {

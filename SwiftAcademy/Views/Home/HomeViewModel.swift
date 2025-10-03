@@ -1,6 +1,7 @@
-// SwiftAcademy Views - HomeViewModel.
+// HomeViewModel.
 // Lightweight view model holding selection state for HomeView and helper methods.
 // Keeps presentation state decoupled from UI views.
+
 import Foundation
 
 @MainActor

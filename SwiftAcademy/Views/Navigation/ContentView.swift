@@ -1,6 +1,7 @@
-// SwiftAcademy Views - ContentView.
+// ContentView.
 // Root container that coordinates the main tabs (Home, Chat, Profile) and side menu.
 // Handles global overlays like toast banners and menu visibility.
+
 import SwiftUI
 
 struct ContentView: View {

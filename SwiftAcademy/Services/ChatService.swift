@@ -1,6 +1,7 @@
-// SwiftAcademy Services - ChatService.
+// ChatService.
 // Responsible for sending chat conversation payloads to the server and returning responses.
 // Maps in-memory ChatTurn values to API DTOs and provides friendly error messages.
+
 import Foundation
 
 final class ChatService: ObservableObject {

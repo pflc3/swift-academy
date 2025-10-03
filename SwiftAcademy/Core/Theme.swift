@@ -1,6 +1,7 @@
-// SwiftAcademy Core - Theme tokens.
+// Theme tokens.
 // Centralizes app color and font tokens for consistent styling across views.
 // Provides named colors and font sizes used by the UI components.
+
 import SwiftUI
 
 extension Color {

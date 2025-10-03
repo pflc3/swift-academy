@@ -1,5 +1,6 @@
-// SwiftAcademy Views - Chat messages list.
+// Chat messages list.
 // Scrollable view showing chat messages and a typing indicator while loading.
+
 import SwiftUI
 
 struct ChatMessagesSection: View {

@@ -1,6 +1,7 @@
-// SwiftAcademy Views - Home header section.
+// Home header section.
 // Displays overall progress and summary used at the top of the Home screen.
 // Contains a simple progress view and percentage indicator.
+
 import SwiftUI
 
 struct HomeHeaderSection: View {

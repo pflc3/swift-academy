@@ -1,5 +1,6 @@
-// SwiftAcademy Views - Profile achievements section.
+// Profile achievements section.
 // Displays unlocked and locked achievements for the user in a grid.
+
 import SwiftUI
 
 struct ProfileAchievementsSection: View {

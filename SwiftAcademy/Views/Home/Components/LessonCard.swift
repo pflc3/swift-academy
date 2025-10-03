@@ -1,6 +1,7 @@
-// SwiftAcademy Views - LessonCard component.
+// LessonCard component.
 // Reusable card used in the learning path to represent a lesson preview and entry point.
 // Includes visual states for locked/unlocked and an interactive preview sheet.
+
 import SwiftUI
 
 struct SolidButtonStyle: ButtonStyle {

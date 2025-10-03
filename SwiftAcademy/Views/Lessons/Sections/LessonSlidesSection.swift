@@ -1,6 +1,7 @@
-// SwiftAcademy Views - LessonSlidesSection.
+// LessonSlidesSection.
 // Presents slide thumbnails and opens a detailed slide view embedding Google Slides.
 // Uses the provided slides URL to render the full presentation when available.
+
 import SwiftUI
 
 struct LessonSlidesSection: View {

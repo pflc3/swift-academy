@@ -1,5 +1,6 @@
-// SwiftAcademy Views - ToastBanner.
+// ToastBanner.
 // Small overlay used to display brief success/error messages to the user.
+
 import SwiftUI
 
 struct ToastBanner: View {

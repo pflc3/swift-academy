@@ -1,6 +1,7 @@
-// SwiftAcademy Models - Lesson and related content types.
+// Lesson and related content types.
 // Defines lesson metadata, content sections, questions, resources, and difficulty.
 // Primary model used by the learning paths and lesson detail screens.
+
 import Foundation
 
 struct Lesson: Identifiable, Equatable {

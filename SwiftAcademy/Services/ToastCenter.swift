@@ -1,6 +1,7 @@
-// SwiftAcademy Services - ToastCenter.
+// ToastCenter.
 // Lightweight notification center for short, user-facing toast messages shown in the UI.
 // Handles auto-hide behavior and exposes the current toast as a published property.
+
 import Foundation
 
 @MainActor

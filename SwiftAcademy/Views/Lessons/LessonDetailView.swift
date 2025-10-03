@@ -1,6 +1,7 @@
-// SwiftAcademy Views - LessonDetailView.
+// LessonDetailView.
 // Detailed lesson screen composing header, video, goals, content, slides, questions, and resources.
 // Manages interaction and delegates completion logic to the associated view model.
+
 import SwiftUI
 
 struct LessonDetailView: View {

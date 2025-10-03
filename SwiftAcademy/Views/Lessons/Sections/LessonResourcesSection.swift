@@ -1,6 +1,7 @@
-// SwiftAcademy Views - LessonResourcesSection.
+// LessonResourcesSection.
 // Shows external resources for a lesson and toggles visibility for the links list.
 // Links open in the system browser via `Link` when available.
+
 import SwiftUI
 
 struct LessonResourcesSection: View {

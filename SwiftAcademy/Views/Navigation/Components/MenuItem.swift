@@ -1,5 +1,6 @@
-// SwiftAcademy Views - MenuItem.
+// MenuItem.
 // Reusable row used in `SideMenu` to render navigation items and selection state.
+
 import SwiftUI
 
 struct MenuItem: View {
