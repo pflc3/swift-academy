@@ -132,6 +132,15 @@ Inspired by the **Gcode Summer Program** from **Prime Factors Learning Lab**, br
 - **Website**: [Prime Factors Learning Lab](https://primefactors.org/programs/gcode)
 - **Email**: team@primefactors.org
 
+## 👥 Contributors - Swift Minds
+- **Estuardo Lopez** - [@estulpz202](https://github.com/estulpz202)
+- **Jason Obou** - [@jaalenci](https://github.com/jaalenci)
+- **Brandon Steide** - [@GcodeBrandon](https://github.com/GcodeBrandon)
+- **Sureima Burgos** - [@Sureima](https://github.com/Sureima)
+- **Joshua Fineboy-Mark** - [@AnonymousPanda7](https://github.com/AnonymousPanda7)
+- **Alana Davis** - [@lanagzz](https://github.com/lanagzz)
+- **Leslie Martinez-Quintero** - [@D4rk-nOva](https://github.com/D4rk-nOva)
+
 ## 🙏 Acknowledgments
 
 - **Prime Factors Learning Lab** for the inspiring Gcode program
