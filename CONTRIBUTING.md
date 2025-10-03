@@ -1,4 +1,4 @@
-# Contributing & Git Conventions
+# Git Conventions
 
 ## 🚫 Main Rule
 - **Do NOT commit directly to `main`**

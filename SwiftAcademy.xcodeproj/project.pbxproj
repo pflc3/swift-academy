@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E8159F232E6D19DC00F11A2B /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E8159F222E6D19D800F11A2B /* .swiftlint.yml */; };
-		E844D1C72E8F9BBB00715B1C /* git-conventions.md in Sources */ = {isa = PBXBuildFile; fileRef = E844D1C62E8F9BB300715B1C /* git-conventions.md */; };
+		E844D1C72E8F9BBB00715B1C /* CONTRIBUTING.md in Sources */ = {isa = PBXBuildFile; fileRef = E844D1C62E8F9BB300715B1C /* CONTRIBUTING.md */; };
 		E84AAD352E6B97A100783D06 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E84AAD342E6B97A100783D06 /* FirebaseAnalytics */; };
 		E84AAD372E6B97A100783D06 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E84AAD362E6B97A100783D06 /* FirebaseAuth */; };
 		E84AAD392E6B97A100783D06 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E84AAD382E6B97A100783D06 /* FirebaseFirestore */; };
@@ -18,7 +18,7 @@
 
 /* Begin PBXFileReference section */
 		E8159F222E6D19D800F11A2B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		E844D1C62E8F9BB300715B1C /* git-conventions.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "git-conventions.md"; sourceTree = "<group>"; };
+		E844D1C62E8F9BB300715B1C /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		E86ACF522E313245006BB2FF /* SwiftAcademy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAcademy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86ACF8A2E3132CB006BB2FF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,7 +49,7 @@
 		E86ACF492E313245006BB2FF = {
 			isa = PBXGroup;
 			children = (
-				E844D1C62E8F9BB300715B1C /* git-conventions.md */,
+				E844D1C62E8F9BB300715B1C /* CONTRIBUTING.md */,
 				E8159F222E6D19D800F11A2B /* .swiftlint.yml */,
 				E86ACF8A2E3132CB006BB2FF /* README.md */,
 				E86ACF542E313245006BB2FF /* SwiftAcademy */,
@@ -150,7 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E844D1C72E8F9BBB00715B1C /* git-conventions.md in Sources */,
+				E844D1C72E8F9BBB00715B1C /* CONTRIBUTING.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
