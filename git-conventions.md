@@ -37,11 +37,11 @@
 
 - **Features**: `feature/<short-description>`
   *New functionality*
-- **Bug fixes**: `fix/<name>/<short-description>`
+- **Bug fixes**: `fix/<short-description>`
   *Patching issues/defects*
-- **Chores**: `chore/<name>/<short-description>`
+- **Chores**: `chore/<short-description>`
   *Tooling, configs, CI, dependencies, docs, etc.*
-- **Refactors**: `refactor/<name>/<short-description>`
+- **Refactors**: `refactor/<short-description>`
   *Organizing code, improving readability, reducing complexity*
 
 *Examples:*
