@@ -1,6 +1,9 @@
+// LessonSlidesSection.
+// Presents slide thumbnails and opens a detailed slide view embedding Google Slides.
+// Uses the provided slides URL to render the full presentation when available.
+
 import SwiftUI
 
-// Slide preview card and open button
 struct LessonSlidesSection: View {
     @Binding var showingSlides: Bool // Controls sheet/modal visibilty
     var slidesURL: String? // Slides URL from the lesson model

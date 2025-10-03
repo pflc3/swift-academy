@@ -1,3 +1,7 @@
+// AuthButton component.
+// Small reusable button used across the Auth views. Provides primary/secondary styles and optional loading state.
+// Keep this file focused on view composition only; no side effects or networking here.
+
 import SwiftUI
 
 struct AuthButton: View {

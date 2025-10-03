@@ -1,3 +1,7 @@
+// Welcome section.
+// Introductory content shown at the top of the Auth screen (title, subtitle, brief copy).
+// Purely presentational; keep copy and layout here, avoid embedding business logic.
+
 import SwiftUI
 
 struct WelcomeSection: View {

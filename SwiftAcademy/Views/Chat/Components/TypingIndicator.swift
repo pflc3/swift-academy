@@ -1,3 +1,6 @@
+// TypingIndicator.
+// Small animated indicator shown while the chat assistant is composing a reply.
+
 import SwiftUI
 
 struct TypingIndicator: View {

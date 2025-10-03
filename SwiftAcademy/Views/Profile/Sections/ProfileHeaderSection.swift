@@ -1,3 +1,6 @@
+// Profile header section.
+// Displays the user's avatar initials, name, bio, and an edit button.
+
 import SwiftUI
 
 struct ProfileHeaderSection: View {

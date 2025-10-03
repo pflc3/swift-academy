@@ -1,5 +1,11 @@
+// ChatViewModel.
+// Manages chat message list, sending flow, and loading state for the chat UI.
+// Bridges view events to `ChatService` and exposes friendly errors for display.
+
 import Foundation
 
+/// View model for the chat UI. Manages messages, send flow, and loading state.
+/// Delegates network calls to `ChatService` and exposes friendly errors for display.
 @MainActor
 final class ChatViewModel: ObservableObject {
     @Published var messages: [ChatMessage] = [
@@ -19,6 +25,7 @@ final class ChatViewModel: ObservableObject {
     private var toasts: ToastCenter?
     private(set) var isConfigured = false
 
+    /// Configure the view model with runtime collaborators required for sending messages.
     func configure(session: SessionManager, chatService: ChatService, toasts: ToastCenter) {
         guard !isConfigured else { return }
         self.session = session
@@ -27,6 +34,8 @@ final class ChatViewModel: ObservableObject {
         isConfigured = true
     }
 
+    /// Send the current `newMessage` to the chat backend and append the reply.
+    /// Appends a local message immediately and updates `isLoading` while awaiting reply.
     func send() {
         guard !newMessage.isEmpty, !isLoading, isConfigured else { return }
         let userMsg = ChatMessage(content: newMessage, isFromUser: true)
@@ -35,6 +44,7 @@ final class ChatViewModel: ObservableObject {
         isLoading = true
 
         if AppMode.useMocks {
+            // Return a short mocked assistant reply for previews and tests.
             messages.append(ChatMessage(content: "This is a mocked response", isFromUser: false))
             isLoading = false
             return

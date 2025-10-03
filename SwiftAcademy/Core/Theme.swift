@@ -1,5 +1,11 @@
+// Theme tokens.
+// Centralizes app color and font tokens for consistent styling across views.
+// Provides named colors and font sizes used by the UI components.
+
 import SwiftUI
 
+/// Centralized visual tokens for colors and fonts.
+/// Use these tokens to maintain consistent styling across the app.
 extension Color {
     static let primaryApp = Color(hex: "4080BF")
     static let secondaryApp = Color(hex: "2C5282")
@@ -18,6 +24,7 @@ extension Color {
 }
 
 extension Font {
+    // Named font tokens to be used by views for consistent typography.
     static let titleLarge = Font.system(size: 28, weight: .bold)
     static let titleExtraM = Font.system(size: 25, weight: .semibold)
     static let titleMedium = Font.system(size: 22, weight: .semibold)

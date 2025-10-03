@@ -1,5 +1,11 @@
+// ColorHex utility.
+// Provides a convenience initializer for `Color` from hex strings used in theme.
+// Handles 3/6/8 digit hex and a small fallback for invalid values.
+
 import SwiftUI
 
+/// Convenience initializer to create `Color` from hex string literals.
+/// Supports 3-, 6-, and 8-digit hex. Invalid inputs fall back to a visible color.
 extension Color {
     init(hex hexString: String) {
         let sanitized = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -29,7 +35,7 @@ extension Color {
                 hexInt >> 8 & 0xFF,
                 hexInt & 0xFF
             )
-        default: // Fallback: yellow to make mistakes visible
+        default: // Fallback: bright yellow to make mistakes visible during development.
             (alpha, red, green, blue) = (255, 255, 255, 0)
         }
 

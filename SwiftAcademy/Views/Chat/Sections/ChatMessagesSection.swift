@@ -1,6 +1,8 @@
+// Chat messages list.
+// Scrollable view showing chat messages and a typing indicator while loading.
+
 import SwiftUI
 
-// Displays a scrollable list of chat messages
 struct ChatMessagesSection: View {
     @Binding var messages: [ChatMessage]
     @Binding var isLoading: Bool

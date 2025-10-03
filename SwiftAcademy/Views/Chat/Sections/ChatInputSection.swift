@@ -1,6 +1,9 @@
+// Chat input section.
+// Text field and send button used at the bottom of the chat screen.
+// Disables sending while loading or when the message is empty.
+
 import SwiftUI
 
-// Provides an input field and send button for typing and sending messages
 struct ChatInputSection: View {
     @Binding var message: String
     let isLoading: Bool

@@ -1,6 +1,9 @@
+// LessonGoalsSection.
+// Displays learning goals with checkboxes and exposes a binding to the parent view model.
+// Toggling goals updates the set of completed goal IDs used to calculate progress.
+
 import SwiftUI
 
-// Displays a checklist of goals for a lesson
 struct LessonGoalsSection: View {
     let goals: [Lesson.LessonGoal]          // List of all lesson goals
     @Binding var completedGoals: Set<UUID> // Set of completed goal IDs (bound to parent)

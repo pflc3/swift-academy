@@ -1,3 +1,7 @@
+// ProfileView.
+// Shows the authenticated user's profile, progress, achievements, and edit actions.
+// Composes header, stats, achievements, and footer into the profile screen.
+
 import SwiftUI
 
 struct ProfileView: View {

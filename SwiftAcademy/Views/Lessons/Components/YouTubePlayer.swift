@@ -1,3 +1,7 @@
+// YouTubePlayer embed.
+// Embeds YouTube videos inside a `WKWebView` for lesson video playback.
+// Keeps lightweight HTML wrapper and responsive sizing encapsulated here.
+
 import SwiftUI
 import WebKit
 

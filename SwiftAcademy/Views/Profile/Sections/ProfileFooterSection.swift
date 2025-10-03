@@ -1,3 +1,6 @@
+// Profile footer.
+// Shows lightweight app copyright and small footer text used in profile screen.
+
 import SwiftUI
 
 struct ProfileFooterSection: View {

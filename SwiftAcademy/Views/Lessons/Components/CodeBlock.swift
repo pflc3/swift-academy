@@ -1,3 +1,7 @@
+// CodeBlock component.
+// Simple horizontally-scrollable monospaced view for displaying code examples.
+// Keeps code rendering isolated for future syntax highlighting enhancements.
+
 import SwiftUI
 
 struct CodeBlock: View {

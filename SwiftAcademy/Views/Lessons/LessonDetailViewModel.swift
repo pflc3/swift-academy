@@ -1,5 +1,10 @@
+// LessonDetailViewModel.
+// View model for lesson detail screens — tracks progress, completions, and UI state.
+// Handles submit logic for marking lessons completed (delegates network calls to UserService).
+
 import Foundation
 
+/// View model for lesson details. Tracks UI state and coordinates marking completion.
 @MainActor
 final class LessonDetailViewModel: ObservableObject {
     @Published var lesson: Lesson
@@ -15,10 +20,12 @@ final class LessonDetailViewModel: ObservableObject {
     private var toasts: ToastCenter?
     private(set) var isConfigured = false
 
+    /// Initialize the view model with a lesson to present.
     init(lesson: Lesson) {
         self.lesson = lesson
     }
 
+    /// Configure runtime collaborators used for network calls and toast feedback.
     func configure(session: SessionManager, userService: UserService, toasts: ToastCenter) {
         guard !isConfigured else { return }
         self.session = session
@@ -37,8 +44,12 @@ final class LessonDetailViewModel: ObservableObject {
         return min(total, 1.0)
     }
 
+    /// Boolean indicating whether the lesson is considered complete locally.
     var isCompleted: Bool { progressPercentage >= 1.0 }
 
+    /// Attempt to mark the lesson complete for the logged-in user when
+    /// local progress reaches 100%. Guards prevent duplicate submissions
+    /// and ensure the lesson is the expected next lesson for the user.
     func submitCompletionIfEligible() {
         guard let session, let userService else { return }
         guard !didSubmitCompletion, isCompleted else { return }

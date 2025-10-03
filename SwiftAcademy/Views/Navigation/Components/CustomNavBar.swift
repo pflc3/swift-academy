@@ -1,3 +1,6 @@
+// CustomNavBar.
+// Top navigation bar used across main screens with a menu button and centered title.
+
 import SwiftUI
 
 struct CustomNavBar: View {

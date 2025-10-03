@@ -1,3 +1,7 @@
+// ChatMessage.
+// UI model representing a chat message in the conversation list, including loading state.
+// Provides convenience properties for mapping to API role and display timestamps.
+
 import Foundation
 
 struct ChatMessage: Identifiable {
