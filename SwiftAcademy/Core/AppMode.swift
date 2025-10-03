@@ -1,3 +1,6 @@
+// SwiftAcademy Core - AppMode.
+// Identifies runtime mode used across the app (preview, test, production).
+// Used to switch mocks and test behavior consistently across modules.
 import Foundation
 
 enum AppMode {

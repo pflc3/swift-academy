@@ -1,3 +1,6 @@
+// SwiftAcademy Services - SessionManager.
+// Manages authentication state, loads user profile, and publishes session events.
+// Observes Firebase auth state and reconciles local `UserProfile` for the app environment.
 import FirebaseAuth
 import Foundation
 

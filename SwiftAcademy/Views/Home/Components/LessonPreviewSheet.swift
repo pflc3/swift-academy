@@ -1,3 +1,6 @@
+// SwiftAcademy Views - LessonPreviewSheet.
+// Modal sheet showing a lesson summary and an action to start the lesson.
+// Used by `LessonCard` to provide a quick preview before navigation.
 import SwiftUI
 
 struct LessonPreviewSheet: View {

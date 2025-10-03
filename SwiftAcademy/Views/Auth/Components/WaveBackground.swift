@@ -1,3 +1,6 @@
+// SwiftAcademy Views - WaveBackground component.
+// Animated decorative background used by the Auth screens. Contains a small Wave shape helper.
+// Animation is purely visual and has no side effects; keep animation parameters local to this file.
 import SwiftUI
 
 struct WaveBackground: View {

@@ -1,3 +1,6 @@
+// SwiftAcademy Core - ColorHex utility.
+// Provides a convenience initializer for `Color` from hex strings used in theme.
+// Handles 3/6/8 digit hex and a small fallback for invalid values.
 import SwiftUI
 
 extension Color {

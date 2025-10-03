@@ -1,3 +1,5 @@
+// SwiftAcademy Views - EditProfileView.
+// Form-based editor for updating the user's name and bio, and performing logout.
 import SwiftUI
 
 struct EditProfileView: View {

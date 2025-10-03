@@ -1,3 +1,5 @@
+// SwiftAcademy Views - ChatBubble component.
+// Renders an individual chat message with left/right alignment and bubble styling.
 import SwiftUI
 
 struct ChatBubble: View {

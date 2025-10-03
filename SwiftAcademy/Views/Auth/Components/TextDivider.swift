@@ -1,3 +1,6 @@
+// SwiftAcademy Views - TextDivider component.
+// Lightweight divider with centered text used on Auth screens to separate alternative actions.
+// Pure view component, used for visual grouping only.
 import SwiftUI
 
 struct TextDivider: View {

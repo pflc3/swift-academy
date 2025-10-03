@@ -1,3 +1,6 @@
+// SwiftAcademy App - AppDelegate.
+// Provides application lifecycle hooks used for app startup and Firebase setup.
+// Belongs to the App module; performs high-level app initialization tasks.
 import FirebaseCore
 import UIKit
 

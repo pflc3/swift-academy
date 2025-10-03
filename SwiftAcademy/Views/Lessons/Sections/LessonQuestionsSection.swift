@@ -1,6 +1,8 @@
+// SwiftAcademy Views - LessonQuestionsSection.
+// Displays multiple-choice comprehension questions and simple grading UI.
+// Supports expanding a question to reveal options and marking answers.
 import SwiftUI
 
-// Multiple-choice questions for lesson comprehension
 struct LessonQuestionsSection: View {
     let questions: [Lesson.Question]  // Questions passed from lesson model
     @Binding var selectedQuestionIndex: Int?  // Tracks which question is expanded

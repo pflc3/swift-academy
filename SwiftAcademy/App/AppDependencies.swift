@@ -1,3 +1,6 @@
+// SwiftAcademy App - Application dependency container.
+// Holds app-wide services and managers for injection into views and view models.
+// Centralizes construction of UserService, SessionManager, ChatService, and ToastCenter.
 import Foundation
 
 @MainActor

@@ -1,6 +1,8 @@
+// SwiftAcademy Views - LessonContentSection.
+// Renders lesson content sections including explanatory text and optional code blocks.
+// Keeps presentation of content isolated from the data model.
 import SwiftUI
 
-// Display lesson content sections with optional code examples
 struct LessonContentSection: View {
     let contentSections: [Lesson.ContentSection] // Each section included title, text, optional code
 

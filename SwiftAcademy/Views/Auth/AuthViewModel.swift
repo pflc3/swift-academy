@@ -1,3 +1,6 @@
+// SwiftAcademy Views - AuthViewModel.
+// Manages auth screen state, form fields, and performs sign-in/sign-up flows.
+// Bridges UI events to `UserService` and updates the session accordingly.
 import Foundation
 
 enum AuthScreen { case welcome, signin, create }

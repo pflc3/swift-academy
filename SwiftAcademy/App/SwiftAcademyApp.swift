@@ -1,3 +1,6 @@
+// SwiftAcademy App - main application entry point.
+// Configures global app objects and wires dependency container into the SwiftUI environment.
+// Controls initial routing between Splash, Auth, and main Content views.
 import SwiftUI
 
 @main

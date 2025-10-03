@@ -1,3 +1,6 @@
+// SwiftAcademy Views - BackgroundView.
+// Decorative background composed of programming-themed symbols used on Home screen.
+// Provides a configurable length to adjust density for different lesson counts.
 import SwiftUI
 
 struct BackgroundView: View {

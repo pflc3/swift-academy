@@ -1,3 +1,6 @@
+// SwiftAcademy Views - Create an Account Section.
+// Create Account section for the Auth screen. Contains fields and actions used during sign-up flows.
+// Presentation only; relies on the Auth view model for behavior and side effects.
 import SwiftUI
 
 struct CreateAcntSection: View {

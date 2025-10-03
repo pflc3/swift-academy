@@ -1,3 +1,6 @@
+// SwiftAcademy Core - Preview support utilities.
+// Provides a lightweight dependency container and `previewEnv` helper for SwiftUI previews.
+// Simplifies injecting mock services and session state during design-time previews.
 import SwiftUI
 
 @MainActor

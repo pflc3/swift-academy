@@ -1,6 +1,7 @@
+// SwiftAcademy Views - Chat content container.
+// Composes the messages list and input sections into the full chat UI.
 import SwiftUI
 
-// Main container view that organizes the chat interface layout
 struct ChatContentView: View {
     // Bindings to state managed by the parent view
     @Binding var messages: [ChatMessage]

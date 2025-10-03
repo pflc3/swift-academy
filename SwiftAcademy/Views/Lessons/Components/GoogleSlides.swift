@@ -1,9 +1,9 @@
 import SwiftUI
 import WebKit
 
-/**
- * Embeds Google Slides presentations in a SwiftUI view
- */
+// SwiftAcademy Views - GoogleSlides embed.
+// UIViewRepresentable wrapper to present a remote Google Slides presentation.
+// Used in slide detail modal when a lesson provides a slides URL.
 struct GoogleSlides: UIViewRepresentable {
     // The URL of the Google Slides presentation to embed
     let embedURL: URL

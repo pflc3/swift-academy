@@ -1,3 +1,6 @@
+// SwiftAcademy Views - LearningPathSection.
+// Vertical list composing `LessonCard` entries and connector lines into a learning path.
+// Determines unlocked lessons and arranges cards with alternating offsets.
 import SwiftUI
 
 struct LearningPathSection: View {

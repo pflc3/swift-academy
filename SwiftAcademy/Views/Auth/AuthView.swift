@@ -1,3 +1,6 @@
+// SwiftAcademy Views - AuthView.
+// Entry point for authentication flows (welcome, sign-in, sign-up).
+// Composes auth sections and wires the `AuthViewModel` into the environment at runtime.
 import SwiftUI
 
 struct AuthView: View {

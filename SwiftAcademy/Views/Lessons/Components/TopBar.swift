@@ -1,3 +1,6 @@
+// SwiftAcademy Views - TopBar component.
+// Reusable top navigation bar for detail screens providing back navigation and title.
+// Designed for consistent header appearance across lesson screens.
 import SwiftUI
 
 struct TopBar: View {

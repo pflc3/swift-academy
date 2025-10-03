@@ -1,3 +1,6 @@
+// SwiftAcademy Views - HomeView.
+// Main learning hub that shows progress, learning path, and navigation into lessons.
+// Composes header, background, and learning path sections for the home screen.
 import SwiftUI
 
 struct HomeView: View {

@@ -40,6 +40,10 @@ final class LessonDetailViewModel: ObservableObject {
     var isCompleted: Bool { progressPercentage >= 1.0 }
 
     func submitCompletionIfEligible() {
+        /// Attempts to mark the lesson complete for the logged-in user when
+        /// the local progress reaches 100%. Performs guard checks to avoid
+        /// duplicate submissions and only writes when the lesson is the next
+        /// expected lesson for the user's progress.
         guard let session, let userService else { return }
         guard !didSubmitCompletion, isCompleted else { return }
         guard let idx = LessonData.allLessons.firstIndex(of: lesson) else { return }
