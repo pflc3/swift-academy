@@ -17,11 +17,13 @@ jobs:
       - name: Show Xcode version
         run: /usr/bin/xcodebuild -version
 
-      - name: Build & Test (Simulator)
+      - name: Build & Test (iPhone 17)
         run: |
           set -o pipefail
           xcodebuild \
             -project SwiftAcademy.xcodeproj \
             -scheme SwiftAcademy \
             -destination 'platform=iOS Simulator,name=iPhone 17' \
+            -skipPackagePluginValidation \
+            -skipMacroValidation \
             test
